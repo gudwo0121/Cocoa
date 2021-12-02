@@ -3453,18 +3453,6 @@ textarea.form-control-lg {
   background-color: #000;
   border-color: #000;
 }
-.btn-third-dark {
-  color: #000;
-  background-color: #FFCCCC;
-  border-color: #000;
-  font-weight: 700;
-}
-.btn-third-dark:hover {
-  color: #fff;
-  background-color: #000;
-  border-color: #000;
-  font-weight: 700;
-}
 .btn-check:focus + .btn-outline-dark, .btn-outline-dark:focus {
   box-shadow: 0 0 0 0.25rem rgba(33, 37, 41, 0.5);
 }
@@ -9736,7 +9724,7 @@ textarea.form-control-lg {
   }
 
   .ms-lg-4 {
-    margin-left: 30rem !important;
+    margin-left: 1.5rem !important;
   }
 
   .ms-lg-5 {
