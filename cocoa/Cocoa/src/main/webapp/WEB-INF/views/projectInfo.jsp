@@ -146,20 +146,20 @@
 							<!-- pTitle 표시 -->
 							<hr>
 							<input name="pTitle" type="text" value="${projectInfo.pTitle}"
-								style="border: 0; text-align: center; width: 100%; background-color: #FFCC99;">
+								style="border: 0; text-align: center; width: 100%; background-color: #FFCC99; font-weight: 700;">
 							<hr>
 
 							<!-- memberCount 표시 -->
 							인원 : <input name="memberCount" type="text"
 								value="${projectInfo.memberCount}"
-								style="border: 0; width: 5%; text-align: center; background-color: #FFCC99;">
+								style="border: 0; width: 5%; text-align: center; background-color: #FFCC99; font-weight: 700;">
 							<b>명</b>
 							<hr>
 
 							<!-- level 표시 -->
 							난이도 : <input name="level" type="text"
 								value="${projectInfo.level}"
-								style="border: 0; width: 7%; text-align: center; background-color: #FFCC99;">
+								style="border: 0; width: 7%; text-align: center; background-color: #FFCC99; font-weight: 700;">
 							<hr>
 
 							<!-- pContents 표시 -->

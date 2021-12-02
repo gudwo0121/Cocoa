@@ -35,4 +35,10 @@
 21.12.2 추가
 
 * coachInfo.jsp / projectInfo.jsp 생성
-* 전체적인 css 보완 
+* 전체적인 css 보완
+* coachInfo 수정 (본인이면 수정 버튼 활성화, 누르면 수정 가능) 구현 완료 - 타인 완벽 배제
+* projectInfo 삭제 (본인이면 삭제 버튼 활성화) 구현 완료 - 문제점 : 타인이 본인글 수정 가능
+* home.jsp에서 카탈로그 조회하면 coach랑 project가 겹치는 부분 회의 필요
+
+***
+
