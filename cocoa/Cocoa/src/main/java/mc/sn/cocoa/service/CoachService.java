@@ -8,7 +8,17 @@ import mc.sn.cocoa.vo.CoachVO;
 public interface CoachService {
 
 	public int addNewCoach(Map coachMap);
+<<<<<<< HEAD
 	public List<CoachVO> listCoaches() throws Exception;
 	public CoachVO viewCoach(int coachNO) throws Exception;
 	public void modCoach(Map coachMap) throws Exception;
 }
+=======
+
+	public List<CoachVO> listCoaches() throws Exception;
+
+	public CoachVO viewCoach(int coachNO) throws Exception;
+
+	public void modCoach(Map coachMap) throws Exception;
+}
+>>>>>>> upstream/master

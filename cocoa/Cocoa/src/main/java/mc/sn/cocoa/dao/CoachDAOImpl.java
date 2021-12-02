@@ -11,10 +11,10 @@ import org.springframework.stereotype.Repository;
 import mc.sn.cocoa.vo.CoachVO;
 
 @Repository("coachDAO")
-public class CoachDAOImpl implements CoachDAO{
+public class CoachDAOImpl implements CoachDAO {
 	@Autowired
 	private SqlSession sqlSession;
-	
+
 	// 새 코칭 글 삽입
 	@Override
 	public int insertNewCoach(Map coachMap) {
@@ -23,11 +23,12 @@ public class CoachDAOImpl implements CoachDAO{
 		sqlSession.insert("mapper.coach.insertNewCoach", coachMap);
 		return coachNO;
 	}
-	
+
 	// 코칭 글 넘버링
 	private int selectNewCoachNO() {
 		return sqlSession.selectOne("mapper.coach.selectNewCoachNO");
 	}
+<<<<<<< HEAD
 	
 	@Override
 	public List selectAllCoachesList() throws DataAccessException {
@@ -36,12 +37,26 @@ public class CoachDAOImpl implements CoachDAO{
 		return coachesList;
 	}
 	
+=======
+
+	@Override
+	public List selectAllCoachesList() throws DataAccessException {
+		// 전체 조회 sql 문 호출
+		List<CoachVO> coachesList = sqlSession.selectList("mapper.coach.selectAllCoachesList");
+		return coachesList;
+	}
+
+>>>>>>> upstream/master
 	// 코칭 글 조회
 	@Override
 	public CoachVO selectCoach(int coachNO) throws DataAccessException {
 		return sqlSession.selectOne("mapper.coach.selectCoach", coachNO);
 	}
+<<<<<<< HEAD
 	
+=======
+
+>>>>>>> upstream/master
 	@Override
 	public void updateCoach(Map coachMap) throws DataAccessException {
 		sqlSession.update("mapper.coach.updateCoach", coachMap);

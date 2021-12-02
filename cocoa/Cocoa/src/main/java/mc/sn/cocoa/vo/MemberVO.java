@@ -10,11 +10,19 @@ public class MemberVO {
 	private String phone;
 	private String proImg;
 	private String proContents;
+<<<<<<< HEAD
 	
+=======
+
+>>>>>>> upstream/master
 	public MemberVO() {
 		
 	}
+<<<<<<< HEAD
 	
+=======
+
+>>>>>>> upstream/master
 	public MemberVO(String id, String pwd, String name, String phone, String proImg, String proContents) {
 		this.id = id;
 		this.pwd = pwd;
