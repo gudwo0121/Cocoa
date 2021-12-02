@@ -117,11 +117,7 @@ public class CoachControllerImpl implements CoachController {
 			message += " location.href='" + multipartRequest.getContextPath() + "/'; ";
 			message += " </script>";
 			resEnt = new ResponseEntity(message, responseHeaders, HttpStatus.CREATED);
-<<<<<<< HEAD
-			
-=======
 
->>>>>>> upstream/master
 		}
 		return resEnt;
 	}
@@ -202,10 +198,6 @@ public class CoachControllerImpl implements CoachController {
 		// 세션 불러오기
 		HttpSession session = multipartRequest.getSession();
 
-<<<<<<< HEAD
-
-=======
->>>>>>> upstream/master
 		String cImg = upload(multipartRequest);
 		coachMap.put("cImg", cImg);
 
@@ -221,37 +213,16 @@ public class CoachControllerImpl implements CoachController {
 				File srcFile = new File(COACH_IMAGE_REPO + "\\" + "temp" + "\\" + cImg);
 				File destDir = new File(COACH_IMAGE_REPO + "\\" + coach + "\\" + coachNO);
 				FileUtils.moveFileToDirectory(srcFile, destDir, true);
-<<<<<<< HEAD
-				
-				String originalFileName = (String)coachMap.get("originalFileName");
-		         File oldFile = new File(COACH_IMAGE_REPO + "\\" + coach + "\\" + coachNO+"\\"+originalFileName);
-		         oldFile.delete();
-=======
 
 				String originalFileName = (String) coachMap.get("originalFileName");
 				File oldFile = new File(COACH_IMAGE_REPO + "\\" + coach + "\\" + coachNO + "\\" + originalFileName);
 				oldFile.delete();
->>>>>>> upstream/master
 			}
 			message = "<script>";
 			message += " alert('수정이 완료되었습니다.');";
 			message += " location.href='" + multipartRequest.getContextPath() + "/'; ";
 			message += " </script>";
 			resEnt = new ResponseEntity(message, responseHeaders, HttpStatus.CREATED);
-<<<<<<< HEAD
-			
-		} catch (Exception e) {
-			// TODO: handle exception
-			// 예외발생시 취소 및 삭제
-						File srcFile = new File(COACH_IMAGE_REPO + "\\" + "temp" + "\\" + cImg);
-						srcFile.delete();
-
-						message = " <script>";
-						message += " alert('오류가 발생했습니다. 다시 시도해주세요.');');";
-						message += " location.href='" + multipartRequest.getContextPath() + "/'; ";
-						message += " </script>";
-						resEnt = new ResponseEntity(message, responseHeaders, HttpStatus.CREATED);
-=======
 
 		} catch (Exception e) {
 			// TODO: handle exception
@@ -264,7 +235,6 @@ public class CoachControllerImpl implements CoachController {
 			message += " location.href='" + multipartRequest.getContextPath() + "/'; ";
 			message += " </script>";
 			resEnt = new ResponseEntity(message, responseHeaders, HttpStatus.CREATED);
->>>>>>> upstream/master
 		}
 		return resEnt;
 

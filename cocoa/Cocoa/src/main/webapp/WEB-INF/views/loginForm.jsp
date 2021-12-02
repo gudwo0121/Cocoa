@@ -20,7 +20,7 @@
 	<c:when test="${result=='loginFailed'}">
 		<script>
 			window.onload=function(){
-				alert("���̵� ��й�ȣ�� Ʋ���ϴ�. �ٽ� �α����ϼ���!");
+				alert("아이디나 비밀번호가 틀립니다. 다시 로그인하세요!");
 			}
 		</script>
 	</c:when>
@@ -32,7 +32,7 @@
     
         <div class="card rcol py">
             	<h2 class="heading mt-5 mb-4" align="center"><a href="/cocoa">CoCoa</a></h2>
-                <h3 class="mb-2">�α���</h3>
+                <h3 class="mb-2">로그인</h3>
                
                 <div class="fone mt-3"> <i class="fas fa-id-card"></i> <input type="text" name="id" class="form-control ml-3" placeholder="ID"></div>
                 <div class="fone mt-5"> <i class="fas fa-lock"></i> <input type="password" name="pwd" class="form-control ml-3" placeholder="Password"></div>

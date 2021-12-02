@@ -2,6 +2,9 @@ package mc.sn.cocoa;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -9,35 +12,17 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import mc.sn.cocoa.service.CoachService;
-<<<<<<< HEAD
-=======
 import mc.sn.cocoa.service.ProjectService;
->>>>>>> upstream/master
 
 @Controller
 public class HomeController {
 	@Autowired
-<<<<<<< HEAD
-=======
 	private ProjectService projectService;
 	@Autowired
->>>>>>> upstream/master
 	private CoachService coachService;
 
+	// 홈화면 이동하면서 프로젝트 카탈로그 리스트 가져오기
 	@RequestMapping(value = "/", method = { RequestMethod.GET, RequestMethod.POST })
-<<<<<<< HEAD
-	public ModelAndView home() throws Exception{
-		ModelAndView mav = new ModelAndView();
-		//홈 화면으로 연결
-		String url = "/home";
-		mav.setViewName(url);
-		
-		//coachList 호출
-		List coachesList = coachService.listCoaches();
-		
-		//조회한 글 정보를 바인딩한 후 JSP로 전달
-		mav.addObject("coachesList", coachesList);
-=======
 	public ModelAndView home(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		ModelAndView mav = new ModelAndView();
 
@@ -53,7 +38,6 @@ public class HomeController {
 
 		String url = "/home";
 		mav.setViewName(url);
->>>>>>> upstream/master
 
 		return mav;
 	}

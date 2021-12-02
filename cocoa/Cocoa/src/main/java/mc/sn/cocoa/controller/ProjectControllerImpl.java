@@ -1,6 +1,9 @@
 package mc.sn.cocoa.controller;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.OutputStream;
+import java.io.UnsupportedEncodingException;
 import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -18,6 +21,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
@@ -25,6 +29,8 @@ import org.springframework.web.servlet.ModelAndView;
 
 import mc.sn.cocoa.service.ProjectService;
 import mc.sn.cocoa.vo.MemberVO;
+import mc.sn.cocoa.vo.ProjectVO;
+import net.coobird.thumbnailator.Thumbnails;
 
 @Controller("projectController")
 public class ProjectControllerImpl implements ProjectController {
@@ -40,6 +46,22 @@ public class ProjectControllerImpl implements ProjectController {
 	public ModelAndView view_projectWrite(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		ModelAndView mav = new ModelAndView();
 		String url = "/projectWriteForm";
+		mav.setViewName(url);
+		return mav;
+	}
+
+	@Override
+	@RequestMapping(value = "/view_projectInfo", method = RequestMethod.GET)
+	public ModelAndView projectInfo(@RequestParam("id") String id, @RequestParam("projectNO") int projectNO,
+			HttpServletRequest request, HttpServletResponse response) throws UnsupportedEncodingException {
+		request.setCharacterEncoding("utf-8");
+		ModelAndView mav = new ModelAndView();
+		ProjectVO projectVO = new ProjectVO();
+		projectVO.setLeader(id);
+		projectVO.setProjectNO(projectNO);
+		ProjectVO vo = projectService.searchProject(projectVO);
+		mav.addObject("projectInfo", vo);
+		String url = "/projectInfo";
 		mav.setViewName(url);
 		return mav;
 	}
@@ -116,6 +138,40 @@ public class ProjectControllerImpl implements ProjectController {
 		return resEnt;
 	}
 
+	@Override
+	@RequestMapping(value = "/removeProject", method = RequestMethod.GET)
+	@ResponseBody
+	public ResponseEntity removeProject(@RequestParam("projectNO") int projectNO, @RequestParam("leader") String id,
+			HttpServletRequest request, HttpServletResponse response) {
+		response.setContentType("text/html; charset=UTF-8");
+		System.out.println(projectNO + "," + id);
+		String message;
+		ResponseEntity resEnt = null;
+		HttpHeaders responseHeaders = new HttpHeaders();
+		responseHeaders.add("Content-Type", "text/html; charset=utf-8");
+		try {
+			projectService.removeProject(projectNO);
+			File destDir = new File(project_IMAGE_REPO + "\\" + id + "\\" + projectNO);
+			FileUtils.deleteDirectory(destDir);
+
+			message = "<script>";
+			message += " alert('프로젝트 게시글을 삭제하였습니다');";
+			message += " location.href='" + request.getContextPath() + "/';";
+			message += " </script>";
+			resEnt = new ResponseEntity(message, responseHeaders, HttpStatus.CREATED);
+
+		} catch (Exception e) {
+			message = "<script>";
+			message += " alert('삭제에 실패했습니다');";
+			message += " location.href='" + request.getContextPath() + "/';";
+			message += " </script>";
+			resEnt = new ResponseEntity(message, responseHeaders, HttpStatus.CREATED);
+			e.printStackTrace();
+		}
+		return resEnt;
+
+	}
+
 	// 파일 업로드
 	private String upload(MultipartHttpServletRequest multipartRequest) throws Exception {
 
@@ -140,5 +196,46 @@ public class ProjectControllerImpl implements ProjectController {
 			}
 		}
 		return pImg;
+	}
+
+	// 이미지파일 썸네일로 다운로드
+	@RequestMapping("/thumbnails")
+	// RequestParam으로 key&value 값을 가져와 변수에 저장
+	protected void thumbnails(@RequestParam("pImg") String pImg, @RequestParam("leader") String leader,
+			@RequestParam("projectNO") String projectNO, HttpServletResponse response) throws Exception {
+		OutputStream out = response.getOutputStream();
+		// 파일 경로
+		String filePath = project_IMAGE_REPO + "\\" + leader + "\\" + projectNO + "\\" + pImg;
+		File image = new File(filePath);
+
+		if (image.exists()) {
+			// 원본 이미지에 대한 썸네일 이미지를 생성한 후 OutputStream 객체에 할당
+			Thumbnails.of(image).size(1024, 1024).outputFormat("png").toOutputStream(out);
+		}
+		// 썸네일 이미지를 OutputStream 객체를 이용해 브라우저로 전송
+		byte[] buffer = new byte[1024 * 8];
+		out.write(buffer);
+		out.close();
+	}
+
+	@RequestMapping("/download")
+	protected void download(@RequestParam("pImg") String pImg, @RequestParam("leader") String leader,
+			@RequestParam("projectNO") String projectNO, HttpServletResponse response) throws Exception {
+		OutputStream out = response.getOutputStream();
+		String filePath = project_IMAGE_REPO + "\\" + leader + "\\" + projectNO + "\\" + pImg;
+		File image = new File(filePath);
+
+		response.setHeader("Cache-Control", "no-cache");
+		response.addHeader("Content-disposition", "attachment; fileName=" + pImg);
+		FileInputStream in = new FileInputStream(image);
+		byte[] buffer = new byte[1024 * 8];
+		while (true) {
+			int count = in.read(buffer);
+			if (count == -1)
+				break;
+			out.write(buffer, 0, count);
+		}
+		in.close();
+		out.close();
 	}
 }

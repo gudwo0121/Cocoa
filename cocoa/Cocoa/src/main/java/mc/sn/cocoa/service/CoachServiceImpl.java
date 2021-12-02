@@ -22,15 +22,6 @@ public class CoachServiceImpl implements CoachService {
 	public int addNewCoach(Map coachMap) {
 		return coachDAO.insertNewCoach(coachMap);
 	}
-<<<<<<< HEAD
-	
-	public List<CoachVO> listCoaches() throws Exception{
-		//코치 글 조회 메서드 호출
-		List<CoachVO> coachesList = coachDAO.selectAllCoachesList();
-		return coachesList;
-	}
-	
-=======
 
 	public List<CoachVO> listCoaches() throws Exception {
 		// 코치 글 조회 메서드 호출
@@ -38,23 +29,14 @@ public class CoachServiceImpl implements CoachService {
 		return coachesList;
 	}
 
->>>>>>> upstream/master
 	@Override
 	public CoachVO viewCoach(int coachNO) throws Exception {
 		CoachVO coachVO = coachDAO.selectCoach(coachNO);
 		return coachVO;
 	}
-<<<<<<< HEAD
-	
-=======
 
->>>>>>> upstream/master
 	@Override
 	public void modCoach(Map coachMap) throws Exception {
 		coachDAO.updateCoach(coachMap);
 	}
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> upstream/master

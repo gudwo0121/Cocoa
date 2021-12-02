@@ -1,10 +1,13 @@
 package mc.sn.cocoa.dao;
 
+import java.util.List;
 import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+
+import mc.sn.cocoa.vo.ProjectVO;
 
 @Repository("projectDAO")
 public class ProjectDAOImpl implements ProjectDAO {
@@ -23,5 +26,25 @@ public class ProjectDAOImpl implements ProjectDAO {
 	// 프로젝트 글 넘버링
 	private int selectNewProjectNO() {
 		return sqlSession.selectOne("mapper.project.selectNewProjectNO");
+	}
+
+	// 프로젝트 카탈로그 리스트 셀렉
+	@Override
+	public List selectAllProjectList() {
+		List<ProjectVO> projectsList = null;
+		projectsList = sqlSession.selectList("mapper.project.selectAllProjectList");
+		return projectsList;
+	}
+
+	@Override
+	public ProjectVO selectProjectById(ProjectVO projectVO) {
+		ProjectVO vo = null;
+		vo = sqlSession.selectOne("mapper.project.selectById", projectVO);
+		return vo;
+	}
+
+	@Override
+	public void deleteProject(int projectNO) {
+		sqlSession.delete("mapper.project.deleteProject", projectNO);
 	}
 }

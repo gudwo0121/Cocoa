@@ -30,7 +30,7 @@
 		cnt++;
 	}
 </script>
-<title>코치 등록</title>
+<title>CoCoa</title>
 </head>
 <body style="background-color: #FFEBCD">
 
@@ -40,15 +40,11 @@
 		<div class="container px-4 px-lg-5">
 
 			<!-- 로고 -->
-<<<<<<< HEAD
-			<a class="navbar-brand" href="/cocoa/" style="color: black;"><b>CoCoa</b></a>
-=======
 			<a class="navbar-brand" href="/cocoa/"
 				style="color: #CFFFE5; font-size: 30px;"
 				onmouseover="this.style.color='black';"
 				onmouseout="this.style.color='#CFFFE5';"><b>CoCoa</b></a>
 
->>>>>>> upstream/master
 			<div class="collapse navbar-collapse" id="navbarSupportedContent">
 
 				<!-- 상단 가운데공간 지우면 안됌 -->
@@ -73,33 +69,6 @@
 			<div class="container main-secction">
 				<div class="row">
 
-<<<<<<< HEAD
-					<!-- 좌측 프로필 : coach~pImg / coach~name / 등급이미지 -->
-					<div class="col-md-3 col-sm-3 col-xs-12 user-profil-part pull-left">
-						
-							<div class="row">
-								<div
-									class="col-md-12 col-md-12-sm-12 col-xs-12 user-image text-center">
-									
-
-									<!-- 프로필 사진 클릭시 조회 가능 -->
-									<a href="/cocoa/view_profileInfo"> <img name="pImg"
-										src="resources/image/kakao.png" width="120px" height="120px"><br>
-									<br>
-									</a>
-
-									<!-- coach -->
-									<input type="text" name="coach" value="coach" readonly
-										style="text-align: center; border: 0; background-color: #FFEBCD;"><br>
-									<br>
-
-									<!-- 등급이미지 : 좋아요수에 따른 변경 로직 필요 -->
-									<img name="tier" src="resources/image/tier.jpg" width="50px"
-										height="50px"><br>
-									<br>
-									
-								</div>
-=======
 					<!-- 좌측 프로필 : coach~proImg / coach~name -->
 					<div class="col-md-3 col-sm-3 col-xs-12 user-profil-part pull-left">
 						<div class="row">
@@ -120,28 +89,19 @@
 								<input type="text" name="coach" value="coach" readonly
 									style="text-align: center; border: 0; font-weight: 700; background-color: #FFCCCC;"><br>
 								<br>
->>>>>>> upstream/master
 							</div>
-						
+						</div>
 					</div>
 
 					<!-- 우측 내용 : cImg / cTitle / basicPrice / cContents -->
-<<<<<<< HEAD
-					<div class="card" style="width: 50rem;">
-=======
 					<div class="card"
 						style="width: 50rem; border: 1px solid; background-color: #FFCC99">
->>>>>>> upstream/master
 
 						<!-- cImg -->
 						<div align="center">
 							<br>
-<<<<<<< HEAD
-							<img id="preview" src="..." width=90% height=300 /><br>
-=======
 							<img id="preview" src="resources/image/sample.png" width=100%
 								height=300 style="border: 1px solid;" /><br>
->>>>>>> upstream/master
 							<br> <label class="btn btn-outline-dark" for="cImg">
 								대표 이미지 변경 </label><input type="file" id="cImg" name="cImg"
 								onchange="readURL(this);" style="display: none;" />

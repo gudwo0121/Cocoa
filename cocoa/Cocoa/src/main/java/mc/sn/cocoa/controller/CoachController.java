@@ -13,18 +13,10 @@ public interface CoachController {
 
 	public ResponseEntity addNewCoach(MultipartHttpServletRequest multipartRequest, HttpServletResponse response)
 			throws Exception;
-<<<<<<< HEAD
-	public void download(@RequestParam("cImg") String cImg, @RequestParam("coach") String coach, @RequestParam("coachNO") int coachNO,
-			HttpServletResponse response) throws Exception;
-	public ModelAndView viewCoach(@RequestParam("coachNO") int coachNO, HttpServletRequest request,
-			HttpServletResponse response) throws Exception;
-	
-=======
 
 	public void download(@RequestParam("cImg") String cImg, @RequestParam("coach") String coach,
 			@RequestParam("coachNO") int coachNO, HttpServletResponse response) throws Exception;
 
 	public ModelAndView viewCoach(@RequestParam("coachNO") int coachNO, HttpServletRequest request,
 			HttpServletResponse response) throws Exception;
->>>>>>> upstream/master
 }

@@ -28,16 +28,6 @@ public class CoachDAOImpl implements CoachDAO {
 	private int selectNewCoachNO() {
 		return sqlSession.selectOne("mapper.coach.selectNewCoachNO");
 	}
-<<<<<<< HEAD
-	
-	@Override
-	public List selectAllCoachesList() throws DataAccessException {
-		//전체 조회 sql 문 호출
-		List<CoachVO> coachesList = sqlSession.selectList("mapper.coach.selectAllCoachesList");
-		return coachesList;
-	}
-	
-=======
 
 	@Override
 	public List selectAllCoachesList() throws DataAccessException {
@@ -46,17 +36,12 @@ public class CoachDAOImpl implements CoachDAO {
 		return coachesList;
 	}
 
->>>>>>> upstream/master
 	// 코칭 글 조회
 	@Override
 	public CoachVO selectCoach(int coachNO) throws DataAccessException {
 		return sqlSession.selectOne("mapper.coach.selectCoach", coachNO);
 	}
-<<<<<<< HEAD
-	
-=======
 
->>>>>>> upstream/master
 	@Override
 	public void updateCoach(Map coachMap) throws DataAccessException {
 		sqlSession.update("mapper.coach.updateCoach", coachMap);
