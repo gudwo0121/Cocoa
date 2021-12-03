@@ -30,16 +30,23 @@ public class ProjectServiceImpl implements ProjectService {
 		projectsList = projectDAO.selectAllProjectList();
 		return projectsList;
 	}
-
+	
 	@Override
 	public ProjectVO searchProject(ProjectVO projectVO) {
 		ProjectVO vo = null;
 		vo = projectDAO.selectProjectById(projectVO);
 		return vo;
 	}
-
+	
+	//프로젝트 제거
 	@Override
 	public void removeProject(int projectNO) {
 		projectDAO.deleteProject(projectNO);
+	}
+	
+	// 프로젝트 수정
+	@Override
+	public void modProject(Map projectMap) throws Exception {
+		projectDAO.updateProject(projectMap);
 	}
 }
