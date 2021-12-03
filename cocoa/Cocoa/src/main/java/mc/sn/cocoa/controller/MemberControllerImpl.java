@@ -55,7 +55,6 @@ public class MemberControllerImpl implements MemberController {
 		request.setCharacterEncoding("utf-8");
 		int result = 0;
 		result = memberService.joinMember(memberVO);
-		System.out.println(result);
 		return result;
 	}
 
@@ -78,7 +77,7 @@ public class MemberControllerImpl implements MemberController {
 		return mav;
 	}
 
-	//로그아웃
+	// 로그아웃
 	@Override
 	@RequestMapping(value = "/logout", method = RequestMethod.GET)
 	public ModelAndView logout(HttpServletRequest request, HttpServletResponse response) {
@@ -89,15 +88,13 @@ public class MemberControllerImpl implements MemberController {
 		mav.setViewName("redirect:/");
 		return mav;
 	}
-	
-	//아이디 체크
+
+	// 아이디 체크
 	@ResponseBody
-	@RequestMapping(value="/idChk", method = RequestMethod.POST)
-	public int idChk(MemberVO vo)  throws Exception{
+	@RequestMapping(value = "/idChk", method = RequestMethod.POST)
+	public int idChk(MemberVO vo) throws Exception {
 		int result = 0;
-		System.out.println(vo.getId());
-		result = memberService.idChk(vo); 
-		System.out.println(result);
+		result = memberService.idChk(vo);
 		return result;
 	}
 }

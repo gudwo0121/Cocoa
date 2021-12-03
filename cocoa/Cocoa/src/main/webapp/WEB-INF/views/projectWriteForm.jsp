@@ -83,7 +83,7 @@
 								</a>
 
 								<!-- leader -->
-								<input type="text" name="leader" value="leader" readonly
+								<input type="text" name="leader" value="${member.id}" readonly
 									style="text-align: center; border: 0; font-weight: 700; background-color: #FFCCCC;"><br>
 								<br>
 

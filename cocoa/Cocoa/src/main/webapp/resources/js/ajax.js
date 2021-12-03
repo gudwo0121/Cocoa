@@ -2,7 +2,6 @@
  * 
  */
 	$(document).ready(function() {
-		alert('회원가입 내용을 작성하세요')
 		$('#validate').click(function() {
 			
 			var flag = false;
@@ -20,7 +19,7 @@
 				url : '/cocoa/join',
 				success : function(data){
 					if (data == 1) {
-						alert("회원가입에 성공했습니다");
+						alert("회원가입에 성공했습니다.\n마이페이지에서 프로필을 작성해주세요!");
 						location.href='/cocoa/';
 					} else {
 						alert("회원가입에 실패했습니다");
@@ -60,7 +59,7 @@
 		
 		$('#idCheck').click(function(){
 			var _id = $("#id").val();
-			if (_id == null) {
+			if (_id == "") {
 				alert("ID를 입력하세요");
 				return;
 			}
@@ -79,11 +78,22 @@
 					} else {
 						alert("사용할 수 있는 ID입니다.");
 					}
+					
+					// 수호님 검증 테스트 로직 (joinForm display 속성은 빼놨습니다!)
+//					if (data == 1) {
+//						alert("사용할 수 없는 ID입니다.");
+//						$("#validate").css('display', 'none');
+//					} else {
+//						alert("사용할 수 있는 ID입니다.");
+//						$("#validate").css('display', 'inline-block');
+//					}
 				},
+				
 				error : function(data) {
 					alert("에러가! 발생했습니다.");
 					
 				},
+				
 				complete : function(data) {
 					//alert("작업을 완료 했습니다");
 				}

@@ -77,16 +77,14 @@
 								style="width: 80%; height: 100%; border: 2px solid; background-color: #FFCCCC;">
 
 								<!-- 프로필 조회 이동 -->
-								<br>
-								<br>
-								<a href="/cocoa/view_profileInfo"> <img name="proImg"
-									src="resources/image/kakao.png" style="border: 1px solid;"
-									width="120px" height="120px"><br>
-								<br>
+								<br> <br> <a href="/cocoa/view_profileInfo"> <img
+									name="proImg" src="resources/image/kakao.png"
+									style="border: 1px solid;" width="120px" height="120px"><br>
+									<br>
 								</a>
 
 								<!-- coach -->
-								<input type="text" name="coach" value="coach" readonly
+								<input type="text" name="coach" value="${member.id}" readonly
 									style="text-align: center; border: 0; font-weight: 700; background-color: #FFCCCC;"><br>
 								<br>
 							</div>
@@ -99,11 +97,10 @@
 
 						<!-- cImg -->
 						<div align="center">
-							<br>
-							<img id="preview" src="resources/image/sample.png" width=100%
-								height=300 style="border: 1px solid;" /><br>
-							<br> <label class="btn btn-outline-dark" for="cImg">
-								대표 이미지 변경 </label><input type="file" id="cImg" name="cImg"
+							<br> <img id="preview" src="resources/image/sample.png"
+								width=100% height=300 style="border: 1px solid;" /><br> <br>
+							<label class="btn btn-outline-dark" for="cImg"> 대표 이미지 변경
+							</label><input type="file" id="cImg" name="cImg"
 								onchange="readURL(this);" style="display: none;" />
 						</div>
 
