@@ -14,4 +14,6 @@ public interface ProjectDAO {
 	public ProjectVO selectProjectById(ProjectVO projectVO);
 
 	public void deleteProject(int projectNO);
+
+	public void updateProject(Map projectMap);
 }
