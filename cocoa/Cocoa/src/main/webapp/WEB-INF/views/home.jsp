@@ -85,9 +85,7 @@
 			<div class="d-grid gap-3 d-sm-flex justify-content-sm-center">
 				<a class="btn btn-primary btn-lg px-4 me-sm-3" href="">C/C++</a> <a
 					class="btn btn-primary btn-lg px-4 me-sm-3" href="">Java</a> <a
-					class="btn btn-primary btn-lg px-4 me-sm-3" href="">Python</a> <a
-					class="btn btn-primary btn-lg px-4 me-sm-3" href="">PHP</a> <a
-					class="btn btn-primary btn-lg px-4 me-sm-3" href="">Swift</a>
+					class="btn btn-primary btn-lg px-4 me-sm-3" href="">Python</a>
 			</div>
 
 			<!-- 프로젝트 세부(미완) -->
@@ -151,13 +149,9 @@
 					</div>
 				</c:forEach>
 				<!-- Project 반복문 끝 -->
-			</div>
 
 
-  			<!-- 2. 생성된 카탈로그 표시 [Coach] + 페이징 필요 -->
-			<div
-				class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
-
+				<!-- 2. 생성된 카탈로그 표시 [Coach] + 페이징 필요 -->
 				<!-- 반복문 시작 컨트롤러에서 addObject한 coachesList를 가져와서 coach라고 저장 -->
 				<c:forEach var="coach" items="${coachesList}">
 
@@ -200,8 +194,8 @@
 				</c:forEach>
 				<!-- Coach 반복문 끝 -->
 			</div>
-
-			<!-- 위의 카탈로그 틀이 반복 생성 및 표시 -->
+		</div>
+		<!-- 위의 카탈로그 틀이 반복 생성 및 표시 -->
 	</section>
 
 	<!-- 하단바 (마지막에 추가) -->

@@ -43,8 +43,15 @@ public class ProjectDAOImpl implements ProjectDAO {
 		return vo;
 	}
 
+	// 프로젝트 삭제
 	@Override
 	public void deleteProject(int projectNO) {
 		sqlSession.delete("mapper.project.deleteProject", projectNO);
+	}
+
+	// 프로젝트 수정
+	@Override
+	public void updateProject(Map projectMap) {
+		sqlSession.update("mapper.project.updateProject", projectMap);
 	}
 }

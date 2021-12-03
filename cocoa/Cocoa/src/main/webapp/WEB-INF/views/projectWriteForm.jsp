@@ -76,12 +76,10 @@
 								style="width: 80%; height: 100%; border: 2px solid; background-color: #FFCCCC;">
 
 								<!-- 프로필 조회 이동 -->
-								<br>
-								<br>
-								<a href="/cocoa/view_profileInfo"> <img name="proImg"
-									src="resources/image/kakao.png" style="border: 1px solid;"
-									width="120px" height="120px"><br>
-								<br>
+								<br> <br> <a href="/cocoa/view_profileInfo"> <img
+									name="proImg" src="resources/image/kakao.png"
+									style="border: 1px solid;" width="120px" height="120px"><br>
+									<br>
 								</a>
 
 								<!-- leader -->
@@ -90,9 +88,8 @@
 								<br>
 
 								<!-- kakao -->
-								<b>카카오톡 오픈채팅 :</b><br>
-								<br> <input type="text" name="kakao" value=""
-									placeholder="링크 입력"
+								<b>카카오톡 오픈채팅 :</b><br> <br> <input type="text"
+									name="kakao" placeholder="링크 입력"
 									style="text-align: center; border: 1; background-color: #FFCCCC;"><br>
 								<br>
 							</div>
@@ -105,11 +102,10 @@
 
 						<!-- pImg -->
 						<div align="center">
-							<br>
-							<img id="preview" src="resources/image/sample.png" width=100%
-								height=300 style="border: 1px solid;" /><br>
-							<br> <label class="btn btn-outline-dark" for="pImg">
-								대표 이미지 변경 </label><input type="file" id="pImg" name="pImg"
+							<br> <img id="preview" src="resources/image/sample.png"
+								width=100% height=300 style="border: 1px solid;" /><br> <br>
+							<label class="btn btn-outline-dark" for="pImg"> 대표 이미지 변경
+							</label><input type="file" id="pImg" name="pImg"
 								onchange="readURL(this);" style="display: none;" />
 						</div>
 

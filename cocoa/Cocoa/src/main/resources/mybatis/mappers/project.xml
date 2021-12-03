@@ -38,16 +38,35 @@
       ]]>
 	</select>
 
+	<!-- 프로젝트 게시글 조회를 위한 select문 -->
 	<select id="selectById" resultType="projectVO">
       <![CDATA[
          select * from projectTBL where leader=#{leader} and projectNO=#{projectNO}
       ]]>
 	</select>
 
+	<!-- 프로젝트 게시글 삭제 -->
 	<delete id="deleteProject" parameterType="int">
     <![CDATA[
       delete from projectTBL
       where projectNO=#{projectNO}
     ]]>
 	</delete>
+
+	<!-- 프로젝트 게시글 수정 -->
+	<update id="updateProject" parameterType="java.util.Map">
+		update projectTBL
+		set pTitle=#{pTitle},
+		pContents=#{pContents},
+		level=#{level},
+		kakao=#{kakao},
+		memberCount=#{memberCount}
+		<if test="pImg!='' and pImg!=null">
+			, pImg=#{pImg}
+		</if>
+		where projectNO=#{projectNO}
+	</update>
+
+
+
 </mapper>
