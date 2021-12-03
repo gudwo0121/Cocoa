@@ -123,6 +123,7 @@
 
 							<!-- 간판 이미지 (src=경로) thumbnails로 보내면서 쿼리스트링을 사용 -->
 							<img class="card-img-top" alt="" height=200
+								onerror=" this.src='resources/image/sample.png'"
 								src="${contextPath}/thumbnails?leader=${project.leader}&pImg=${project.pImg}&projectNO=${project.projectNO}" />
 
 							<!-- 간판이미지 아래 정보 -->
@@ -166,7 +167,8 @@
 							<!-- 간판 이미지 (src=경로) -->
 							<img class="card-img-top"
 								src="${contextPath}/coachImgDownload?coach=${coach.coach }&coachNO=${coach.coachNO}&cImg=${coach.cImg}"
-								height="200px" alt="..." />
+								height="200px" alt="..."
+								onerror="this.src='resources/image/sample.png'" />
 
 							<!-- 간판이미지 아래 정보 -->
 							<div class="card-body p-4">

@@ -237,7 +237,6 @@ public class CoachControllerImpl implements CoachController {
 			resEnt = new ResponseEntity(message, responseHeaders, HttpStatus.CREATED);
 		}
 		return resEnt;
-
 	}
 
 	// 코치 글 삭제

@@ -29,7 +29,7 @@ public class CoachServiceImpl implements CoachService {
 		return coachesList;
 	}
 
-	// 코칭 글 상세조회 창 호출
+	// 코칭 글 상세 조회 창 호출
 	@Override
 	public CoachVO viewCoach(int coachNO) throws Exception {
 		CoachVO coachVO = coachDAO.selectCoach(coachNO);
@@ -47,4 +47,5 @@ public class CoachServiceImpl implements CoachService {
 	public void removeCoach(int coachNO) throws Exception {
 		coachDAO.deleteCoach(coachNO);
 	}
+	
 }

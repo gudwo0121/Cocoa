@@ -60,13 +60,13 @@
 		</if>
 		where coachNO=#{coachNO}
 	</update>
-	
+
 	<!-- 코치 글 삭제 -->
-	<delete id="deleteCoach"  parameterType="int">
+	<delete id="deleteCoach" parameterType="int">
     <![CDATA[
       delete from coachingTBL
       where coachNO = #{coachNO}
-    ]]>      
-  </delete>
+    ]]>
+	</delete>
 
 </mapper>

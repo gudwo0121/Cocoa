@@ -33,7 +33,7 @@ public class HomeController {
 
 		// mav에 "projectList" 키값으로 projectList 밸류 값을 저장
 		mav.addObject("projectList", projectList);
-		// mav에 "coachesList" 키값으로 coachesList 밸류 값을 삭제
+		// mav에 "coachesList" 키값으로 coachesList 밸류 값을 저장
 		mav.addObject("coachesList", coachesList);
 
 		String url = "/home";
@@ -42,5 +42,13 @@ public class HomeController {
 		return mav;
 	}
 	
+	@RequestMapping(value = "/test", method = { RequestMethod.GET, RequestMethod.POST })
+	public ModelAndView test(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		ModelAndView mav = new ModelAndView();
 
+		String url = "/myPageProfile";
+		mav.setViewName(url);
+
+		return mav;
+	}
 }
