@@ -147,7 +147,7 @@
 									<c:when
 										test="${isLogOn == true && member.id ==projectInfo.leader}">
 										<input type="submit" class="btn btn-third-dark" value="수정"
-											formaction="/cocoa/수정" id="p_mod"> &nbsp;
+											 id="p_mod"> &nbsp;
 								<input type="button" class="btn btn-third-dark" value="삭제" id="p_rmv"
 											onClick="location.href='${contextPath}/removeProject?leader=${projectInfo.leader}&projectNO=${projectInfo.projectNO}'">
 									</c:when>
