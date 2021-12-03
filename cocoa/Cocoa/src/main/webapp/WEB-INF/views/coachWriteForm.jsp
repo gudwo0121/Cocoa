@@ -87,7 +87,9 @@
 
 								<!-- coach -->
 								<input type="text" name="coach" value="coach" readonly
-									style="text-align: center; border: 0; font-weight: 700; background-color: #FFCCCC;"><br>
+									style="text-align: center; border: 0; font-weight: 700; background-color: #FFCCCC;">
+								
+									<br>
 								<br>
 							</div>
 						</div>

@@ -69,7 +69,7 @@
 					</tr>
 					<tr>
 						<td align="center" colspan="2"><button type="submit"
-								id="validate" class="btn btn-success mt-5">회원가입(Sign
+								id="validate" class="btn btn-success mt-5" style="display: none;">회원가입(Sign
 								Up)</button></td>
 					</tr>
 				</table>

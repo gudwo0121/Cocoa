@@ -16,4 +16,6 @@ public interface CoachDAO {
 	public CoachVO selectCoach(int coachNO) throws DataAccessException;
 
 	public void updateCoach(Map coachMap) throws DataAccessException;
+	
+	public void deleteCoach(int coachNO) throws DataAccessException;
 }

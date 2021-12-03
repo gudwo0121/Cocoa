@@ -19,4 +19,7 @@ public interface CoachController {
 
 	public ModelAndView viewCoach(@RequestParam("coachNO") int coachNO, HttpServletRequest request,
 			HttpServletResponse response) throws Exception;
+
+	public ResponseEntity removeCoach(@RequestParam("coachNO") int coachNO, @RequestParam("coach") String coach,
+			HttpServletRequest request, HttpServletResponse response) throws Exception;
 }

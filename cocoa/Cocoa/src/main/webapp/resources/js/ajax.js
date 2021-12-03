@@ -60,7 +60,7 @@
 		
 		$('#idCheck').click(function(){
 			var _id = $("#id").val();
-			if (_id == null) {
+			if (_id == "") {
 				alert("ID를 입력하세요");
 				return;
 			}
@@ -76,8 +76,11 @@
 
 					if (data == 1) {
 						alert("사용할 수 없는 ID입니다.");
+						$("#validate").css('display', 'none');
 					} else {
 						alert("사용할 수 있는 ID입니다.");
+						$("#validate").css('display', 'inline-block');
+						
 					}
 				},
 				error : function(data) {

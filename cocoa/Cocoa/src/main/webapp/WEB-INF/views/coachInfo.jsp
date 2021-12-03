@@ -52,6 +52,11 @@
 		obj.action = "${contextPath}/modCoach";
 		obj.submit();
 	}
+	
+	function fn_remove_coach(obj) {
+		obj.action = "${contextPath}/removeCoach";
+		obj.submit();
+	}
 </script>
 <title>CoCoa</title>
 </head>
@@ -145,7 +150,7 @@
 									<input type="button" class="btn btn-third-dark" value="수정"
 										onClick="fn_enable(frmCoach)" id="c_mod"> &nbsp;
 								<input type="button" class="btn btn-third-dark" value="삭제"
-										onClick="fn_remove_coach('${contextPath}/removeCoach', ${coach.coachNO})"
+										onClick="fn_remove_coach(frmCoach)"
 										id="c_rmv">
 								</c:if>
 								<br> <br>
