@@ -4,13 +4,20 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.OutputStream;
 import java.io.UnsupportedEncodingException;
+import java.util.Enumeration;
+import java.util.HashMap;
 import java.util.Iterator;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -166,6 +173,60 @@ public class MemberControllerImpl implements MemberController {
 		}
 		in.close();
 		out.close();
+	}
+	
+	@RequestMapping(value = "/modProfile", method = RequestMethod.POST)
+	@ResponseBody
+	public ResponseEntity modProfile(MultipartHttpServletRequest multipartRequest, HttpServletResponse response)
+			throws Exception {
+		multipartRequest.setCharacterEncoding("utf-8");
+		Map<String, Object> profileMap = new HashMap<String, Object>();
+		Enumeration enu = multipartRequest.getParameterNames();
+		while (enu.hasMoreElements()) {
+			String name = (String) enu.nextElement();
+			String value = multipartRequest.getParameter(name);
+			profileMap.put(name, value);
+		}
+		HttpSession session = multipartRequest.getSession();
+
+		String proImg = upload(multipartRequest);
+		profileMap.put("proImg", proImg);
+
+		String id = (String) profileMap.get("id");
+		String message;
+		ResponseEntity resEnt = null;
+		HttpHeaders responseHeaders = new HttpHeaders();
+		responseHeaders.add("Content-Type", "text/html; charset=utf-8");
+		try {
+			memberService.modProfile(profileMap);
+			if (proImg != null && proImg.length() != 0) {
+				File srcFile = new File(profile_IMAGE_REPO + "\\" + "temp" + "\\" + proImg);
+				File destDir = new File(profile_IMAGE_REPO + "\\" + id );
+				FileUtils.moveFileToDirectory(srcFile, destDir, true);
+
+				String originalFileName = (String) profileMap.get("originalFileName");
+				File oldFile = new File(
+						profile_IMAGE_REPO + "\\" + id + "\\" + originalFileName);
+				oldFile.delete();
+			}
+			message = "<script>";
+			message += " alert('수정이 완료되었습니다.');";
+			message += " location.href='" + multipartRequest.getContextPath() + "/'; ";
+			message += " </script>";
+			resEnt = new ResponseEntity(message, responseHeaders, HttpStatus.CREATED);
+		} catch (Exception e) {
+			// TODO: handle exception
+			// 예외발생시 취소 및 삭제
+			File srcFile = new File(profile_IMAGE_REPO + "\\" + "temp" + "\\" + proImg);
+			srcFile.delete();
+
+			message = " <script>";
+			message += " alert('오류가 발생했습니다. 다시 시도해주세요.');');";
+			message += " location.href='" + multipartRequest.getContextPath() + "/'; ";
+			message += " </script>";
+			resEnt = new ResponseEntity(message, responseHeaders, HttpStatus.CREATED);
+		}
+		return resEnt;
 	}
 	
 	//마이페이지 이동

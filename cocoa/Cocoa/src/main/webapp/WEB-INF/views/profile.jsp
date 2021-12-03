@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"   isELIgnored="false"  %>
  <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"  %>
-
+<c:set var="contextPath" value="${pageContext.request.contextPath}" />
 
 <%
   request.setCharacterEncoding("UTF-8");
@@ -31,21 +31,15 @@
 
 	$(document).ready(function() {
 		$('#mod_profile').hide(); //페이지를 로드할 때 숨길 요소
-		$('#p_modBtn').hide();
-		$('#mod_kakaoLink').hide();
+		$('#cancel').hide();
+		$('#proImgMod').hide()
 		$('#mod_start').show();
-		$('#p_rmv').show();
-		$('#p_mod').click(function() {
-			$('#p_mod').hide(); //클릭 시 첫 번째 요소 숨김
-			$('#p_rmv').hide(); //클릭 시 첫 번째 요소 숨김
-			$('#p_pImgMod').show(); //클릭 시 두 번째 요소 표시
-			$('#mod_kakaoLink').show();
-			$('#kakaoLink').hide();
-			$('#p_modBtn').show();
-			$('#p_pTitle').prop('disabled', false);
-			$('#p_pLevel').prop('disabled', false);
-			$('#p_pMemberCount').prop('disabled', false);
-			$('#p_pContents').prop('disabled', false);
+		$('#mod_start').click(function() {
+			$('#mod_start').hide(); //클릭 시 첫 번째 요소 숨김
+			$('#mod_profile').show(); //클릭 시 두 번째 요소 표시
+			$('#cancel').show();
+			$('#proImgMod').show();
+			$('#proContents').prop('disabled', false);
 			return false;
 		});
 	});
@@ -58,7 +52,7 @@
 
 	<!-- proFileInfo -->
 	<form name="proFileInfo" method="post"
-		action="${contextPath}/proFileInfo" enctype="multipart/form-data">
+		action="${contextPath}/modProfile" enctype="multipart/form-data">
 		<section class="py-5">
 			<div class="container main-secction">
 				<div class="row">
@@ -70,15 +64,27 @@
 								class="col-md-12 col-md-12-sm-12 col-xs-12 user-image text-center"
 								style="width: 80%; height: 100%; border: 2px solid; background-color: #FFCCCC;">
 
-								<!-- 프로필 조회 이동 -->
-								<br> <br>  <img
-									name="proImg" src="resources/image/kakao.png"
+								<!-- 프로필 이미지 -->
+								<br> <br>  
+								<input type="hidden" name="originalFileName" value="${member.proImg }" />
+								 <br> 
+								 <img id="preview"
+								 	src="${contextPath}/downProfileImg?id=${member.id }&proImg=${member.proImg }"
+								  style="border: 1px solid;" width="100%" height="200"
+								onerror="this.src='resources/image/sample.png'" />
+								<br> <br>
+							<label class="btn btn-outline-dark" for="proImg" id="proImgMod">대표
+								이미지 변경 </label> <input type="file" id="proImg" name="proImg"
+								onchange="readURL(this);" style="display: none;" />
+								<!-- 
+								<img name="proImg" src="resources/image/kakao.png"
 									style="border: 1px solid;" width="120px" height="120px"><br>
 									<br>
-								
+								 -->
 
 								<!-- nickName -->
-								<input type="text" name="nickName" value="${member.name }" readonly
+								<input type="hidden" name="id" value="${member.id}" />
+								<input type="text" name="nickName" value="${member.name }" disabled
 									style="text-align: center; border: 0; font-weight: 700; background-color: #FFCCCC;"><br>
 								<br>
 							</div>
@@ -87,23 +93,23 @@
 
 					<!-- 우측 내용 : profileContents -->
 					<div class="card"
-						style="width: 50rem; border: 1px solid; background-color: #FFCC99">
+						style="width: 40rem; border: 1px solid; background-color: #FFCC99">
 						<div class="proFile">
 
 							<!-- proFileContents 입력 -->
 							<!-- textarea 닫아주는거 붙여써야함 -->
 							소개 및 경력 : <br>
-							<textarea name="proFile" rows="10" cols="20"
-								placeholder="${member.proContents} "
-								style="border: 1; width: 100%;"></textarea>
+							<textarea name="proContents" rows="10" cols="20"
+								placeholder="${member.proContents} " id="proContents" disabled 
+								style="border: 1; background-color: #FFCC99; width: 100%;"></textarea>
 							<hr>
 						</div>
 
 						<!-- 작성(submit) + 취소(버튼) -->
 						<div class="card-body" style="text-align: center">
 							<input type="submit" id="mod_profile" class="btn btn-outline-dark" value="수정 확인" />
-							<a href="/cocoa" class="btn btn-outline-dark">수정하기</a>
-							&nbsp; <a href="/cocoa" class="btn btn-outline-dark">취소</a>
+							<a href="/cocoa" id="mod_start"class="btn btn-outline-dark">수정하기</a>
+							&nbsp; <input type="button" id="cancel"value="취소" onclick="history.go(0)" class="btn btn-outline-dark">
 						</div>
 					</div>
 

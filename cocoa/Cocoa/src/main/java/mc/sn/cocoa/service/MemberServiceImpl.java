@@ -1,5 +1,7 @@
 package mc.sn.cocoa.service;
 
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -33,5 +35,10 @@ public class MemberServiceImpl implements MemberService {
 	@Override
 	public MemberVO searchMember(String id) throws Exception {
 		return memberDAO.selectMemberById(id);
+	}
+	
+	@Override
+	public void modProfile(Map profileMap) throws Exception {
+		memberDAO.updateProfile(profileMap);
 	}
 }
