@@ -52,12 +52,24 @@
 				</ul>
 
 				<!-- 우측 상단 변경 -->
-				<form action="/cocoa/logout" method="get" class="d-flex">
-					<input name="My Page" class="btn btn-outline-dark" type="button"
-						value="My Page" onClick="location.href='/cocoa/myPage'" /> <input
-						name="logout" class="btn btn-outline-dark" type="submit"
-						value="logout" />
-				</form>
+				<c:choose>
+					<c:when test="${isLogOn == true && member != null}">
+						<form action="/cocoa/logout" method="get" class="d-flex">
+							<input name="My Page" class="btn btn-outline-dark" type="button"
+								value="My Page" onClick="location.href='/cocoa/myPage'" /> <input
+								name="logout" class="btn btn-outline-dark" type="submit"
+								value="logout" />
+						</form>
+					</c:when>
+					<c:otherwise>
+						<form action="/cocoa/view_login" method="get" class="d-flex">
+							<input name="login" class="btn btn-outline-dark" type="submit"
+								value="log in" /> <input name="join"
+								class="btn btn-outline-dark" type="button" value="Sign in"
+								onClick="location.href='/cocoa/view_join'" />
+						</form>
+					</c:otherwise>
+				</c:choose>
 			</div>
 		</div>
 	</nav>
@@ -78,7 +90,8 @@
 
 								<!-- 프로필 조회 이동 -->
 								<br> <br> <a href="/cocoa/view_profileInfo"> <img
-									name="proImg" src="resources/image/kakao.png"
+									name="proImg" src="${contextPath}/downProfileImg?id=${profileId.id }&proImg=${profileId.proImg }"
+									onerror="this.src='resources/image/kakao.png'"
 									style="border: 1px solid;" width="120px" height="120px"><br>
 									<br>
 								</a>
@@ -100,7 +113,7 @@
 							<!-- textarea 닫아주는거 붙여써야함 -->
 							<br><b>소개 및 경력 : </b><br><br>
 							<textarea name="proFile" rows="15" cols="20"
-								style="border: 1; width: 100%;">이곳에 프로필 세부내용</textarea><br><br>
+								style="border: 1; width: 100%;">${profileId.proContents }</textarea><br><br>
 						</div>
 					</div>
 				</div>

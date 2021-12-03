@@ -119,7 +119,7 @@
 								<!-- 프로필 조회 이동 -->
 								<br> <br> <a href="/cocoa/view_profileInfo?profileId=${projectInfo.leader}"> <img
 									name="proImg" src="resources/image/kakao.png"
-									style="border: 1px solid;" width="120px" height="120px"><br>
+									style="border: 1px solid;" width="60%" height="60%"><br>
 									<br>
 								</a>
 

@@ -126,7 +126,7 @@
 								</a> </span>
 
 								<!-- 프로필 조회 이동 -->
-								<br> <br> <a href="/cocoa/view_profileInfo"> <img
+								<br> <br> <a href="/cocoa/view_profileInfo?profileId=${coach.coach}"> <img
 									name="proImg" src="resources/image/kakao.png"
 									style="border: 1px solid;" width="120px" height="120px"><br>
 									<br>

@@ -46,7 +46,7 @@ public class HomeController {
 	public ModelAndView test(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		ModelAndView mav = new ModelAndView();
 
-		String url = "/myPageProfile";
+		String url = "/";
 		mav.setViewName(url);
 
 		return mav;
