@@ -238,11 +238,14 @@ public class ProjectControllerImpl implements ProjectController {
 		in.close();
 		out.close();
 	}
-	
+
+
 	// 프로젝트 글 수정
 	@RequestMapping(value = "/modProject", method = RequestMethod.POST)
 	@ResponseBody
-	public ResponseEntity modProject(MultipartHttpServletRequest multipartRequest, HttpServletResponse response) throws Exception {
+	public ResponseEntity modProject(MultipartHttpServletRequest multipartRequest, HttpServletResponse response)
+			throws Exception {
+
 		multipartRequest.setCharacterEncoding("utf-8");
 		Map<String, Object> projectMap = new HashMap<String, Object>();
 		Enumeration enu = multipartRequest.getParameterNames();
@@ -251,52 +254,48 @@ public class ProjectControllerImpl implements ProjectController {
 			String value = multipartRequest.getParameter(name);
 			projectMap.put(name, value);
 		}
-			HttpSession session = multipartRequest.getSession();
-			
-			String pImg = upload(multipartRequest);
-			projectMap.put("pImg", pImg);
-			
-			String projectNO = (String)projectMap.get("projectNO");
-			String leader = (String)projectMap.get("leader");
-			String message;
-			ResponseEntity resEnt = null;
-			HttpHeaders responseHeaders = new HttpHeaders();
-			responseHeaders.add("Content-Type", "text/html; charset=utf-8");
-			try {
-				projectService.modProject(projectMap);
-				if (pImg != null && pImg.length() != 0) {
-					File srcFile = new File(project_IMAGE_REPO + "\\" + "temp" + "\\" + pImg);
-					File destDir = new File(project_IMAGE_REPO + "\\" + leader + "\\" + projectNO);
-					FileUtils.moveFileToDirectory(srcFile, destDir, true);
 
-					String originalFileName = (String) projectMap.get("originalFileName");
-					File oldFile = new File(project_IMAGE_REPO + "\\" + leader + "\\" + projectNO + "\\" + originalFileName);
-					oldFile.delete();
-				}
-				message = "<script>";
-				message += " alert('수정이 완료되었습니다.');";
-				message += " location.href='" + multipartRequest.getContextPath() + "/'; ";
-				message += " </script>";
-				resEnt = new ResponseEntity(message, responseHeaders, HttpStatus.CREATED);
-			} catch (Exception e) {
-				// TODO: handle exception
-				// 예외발생시 취소 및 삭제
+		HttpSession session = multipartRequest.getSession();
+
+		String pImg = upload(multipartRequest);
+		projectMap.put("pImg", pImg);
+
+		String projectNO = (String) projectMap.get("projectNO");
+		String leader = (String) projectMap.get("leader");
+		String message;
+		ResponseEntity resEnt = null;
+		HttpHeaders responseHeaders = new HttpHeaders();
+		responseHeaders.add("Content-Type", "text/html; charset=utf-8");
+		try {
+			projectService.modProject(projectMap);
+			if (pImg != null && pImg.length() != 0) {
 				File srcFile = new File(project_IMAGE_REPO + "\\" + "temp" + "\\" + pImg);
-				srcFile.delete();
+				File destDir = new File(project_IMAGE_REPO + "\\" + leader + "\\" + projectNO);
+				FileUtils.moveFileToDirectory(srcFile, destDir, true);
 
-				message = " <script>";
-				message += " alert('오류가 발생했습니다. 다시 시도해주세요.');');";
-				message += " location.href='" + multipartRequest.getContextPath() + "/'; ";
-				message += " </script>";
-				resEnt = new ResponseEntity(message, responseHeaders, HttpStatus.CREATED);
+				String originalFileName = (String) projectMap.get("originalFileName");
+				File oldFile = new File(
+						project_IMAGE_REPO + "\\" + leader + "\\" + projectNO + "\\" + originalFileName);
+				oldFile.delete();
 			}
-			return resEnt;
+			message = "<script>";
+			message += " alert('수정이 완료되었습니다.');";
+			message += " location.href='" + multipartRequest.getContextPath() + "/'; ";
+			message += " </script>";
+			resEnt = new ResponseEntity(message, responseHeaders, HttpStatus.CREATED);
+		} catch (Exception e) {
+			// TODO: handle exception
+			// 예외발생시 취소 및 삭제
+			File srcFile = new File(project_IMAGE_REPO + "\\" + "temp" + "\\" + pImg);
+			srcFile.delete();
+
+			message = " <script>";
+			message += " alert('오류가 발생했습니다. 다시 시도해주세요.');');";
+			message += " location.href='" + multipartRequest.getContextPath() + "/'; ";
+			message += " </script>";
+			resEnt = new ResponseEntity(message, responseHeaders, HttpStatus.CREATED);
+		}
+		return resEnt;
 	}
-	
-	
-	
-	
-	
-	
-	
+
 }

@@ -27,7 +27,9 @@
 				.append("<br>" + "<input type='file' name='file"+cnt+"' />");
 		cnt++;
 	}
-	
+
+
+
 	$(document).ready(function() {
 		$('#p_pImgMod').hide(); //페이지를 로드할 때 숨길 요소
 		$('#p_modBtn').hide();
@@ -129,17 +131,20 @@
 								<input type="text" name="leader" value="${projectInfo.leader}"
 									readonly
 									style="text-align: center; border: 0; font-weight: 700; background-color: #FFCCCC;"><br>
-								<input type="hidden" name="projectNO" value="${projectInfo.projectNO}" />
-								<br>
+
+								<input type="hidden" name="projectNO"
+									value="${projectInfo.projectNO}" /><br> <br>
 
 								<!-- kakao -->
-								<a href="${projectInfo.kakao}" id="kakaoLink"> <input type="button"
-									name="kakaoLink" value="   대화하기   " class="btn btn-third-dark"
+								<a href="${projectInfo.kakao}"> <input type="button"
+									id="kakaoLink" name="kakaoLink" value="   대화하기   "
+									class="btn btn-third-dark"
 									style="text-align: center; border: 1; border-radius: 12px;">
-								</a>
-								<input type="text" name="kakao" id="mod_kakaoLink" name="kakao"
+								</a><input type="text" name="kakao" id="mod_kakaoLink" name="kakao"
 									value="${projectInfo.kakao}"
-									style="text-align: center; border: 1; background-color: #FFCCCC;"><br> <br>
+									style="text-align: center; border: 1; background-color: #FFCCCC;"><br>
+								<br>
+
 
 								<!-- 본인이면 수정(submit) / 삭제(버튼) 표시 -->
 								<!-- submit이 2개라서 formaction 사용 (post 방식) -->
@@ -147,8 +152,10 @@
 									<c:when
 										test="${isLogOn == true && member.id ==projectInfo.leader}">
 										<input type="submit" class="btn btn-third-dark" value="수정"
-											 id="p_mod"> &nbsp;
-								<input type="button" class="btn btn-third-dark" value="삭제" id="p_rmv"
+
+											id="p_mod"> &nbsp;
+								<input type="button" class="btn btn-third-dark" value="삭제"
+											id="p_rmv"
 											onClick="location.href='${contextPath}/removeProject?leader=${projectInfo.leader}&projectNO=${projectInfo.projectNO}'">
 									</c:when>
 								</c:choose>
@@ -164,13 +171,14 @@
 						<!-- pImg -->
 						<div align="center">
 							<input type="hidden" name="originalFileName"
-								value="${projectInfo.pImg }" />
-							<br> <img id="preview"
+
+								value="${projectInfo.pImg }" /> <br> <img id="preview"
 								src="${contextPath}/download?leader=${projectInfo.leader}&pImg=${projectInfo.pImg}&projectNO=${projectInfo.projectNO}"
 								width=90% height=300 style="border: 1px solid;" /><br> <br>
-							<label class="btn btn-outline-dark" for="p_pImg" id="p_pImgMod">대표 이미지 변경 </label>
-							<input type="file" id="p_pImg" name="pImg"onchange="readURL(this);" style="display: none;" /> 
-							<br> <br>
+							<label class="btn btn-outline-dark" for="p_pImg" id="p_pImgMod">대표
+								이미지 변경 </label> <input type="file" id="p_pImg" name="pImg"
+								onchange="readURL(this);" style="display: none;" /> <br> <br>
+
 						</div>
 
 						<!-- pTitle / memberCount / level / pContents 조회 -->
@@ -178,21 +186,25 @@
 
 							<!-- pTitle 표시 -->
 							<hr>
-							<input name="pTitle" type="text" value="${projectInfo.pTitle}" id="p_pTitle" disabled
+
+							<input name="pTitle" type="text" value="${projectInfo.pTitle}"
+								id="p_pTitle" disabled
 								style="border: 0; text-align: center; width: 100%; background-color: #FFCC99; font-weight: 700;">
 							<hr>
 
 							<!-- memberCount 표시 -->
-							인원 : <input name="memberCount" type="text" 
+
+							인원 : <input name="memberCount" type="text"
+
 								value="${projectInfo.memberCount}" id="p_pMemberCount" disabled
 								style="border: 0; width: 5%; text-align: center; background-color: #FFCC99; font-weight: 700;">
 							<b>명</b>
 							<hr>
 
 							<!-- level 표시 -->
-							난이도 : 
-							<select
-								style="border: 0; text-align: center; width: 15%; background-color: #FFCC99; font-weight: 700;"
+
+							난이도 : <select
+								style="border: 0; text-align: center; width: 7%; background-color: #FFCC99; font-weight: 700;"
 								name="level" disabled id="p_pLevel">
 								<option id="empty">${projectInfo.level}</option>
 								<option id="level1">하수</option>
@@ -204,15 +216,21 @@
 							<!-- pContents 표시 -->
 							<!-- textarea 닫아주는거 붙여써야함 -->
 							세부 내용 : <br> <br>
-							<textarea name="pContents" rows="10" cols="20" id="p_pContents" disabled
+
+							<textarea name="pContents" rows="10" cols="20" id="p_pContents"
+								disabled
 								style="border: 1; width: 100%; background-color: #FFCC99;">${projectInfo.pContents}</textarea>
 							<hr>
 
 							<!-- map (일단비워둠) -->
 							<div style="text-align: center;">이곳은 맵 공간입니다.</div>
 							<hr>
+
+
 							<div align="center">
-								<input type="submit" value="확 인" class="btn btn-outline-dark" id="p_modBtn">
+								<input type="submit" value="확 인" class="btn btn-outline-dark"
+									id="p_modBtn">
+
 							</div>
 							<hr>
 						</div>
