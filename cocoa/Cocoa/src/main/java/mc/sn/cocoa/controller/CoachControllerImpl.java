@@ -237,6 +237,38 @@ public class CoachControllerImpl implements CoachController {
 			resEnt = new ResponseEntity(message, responseHeaders, HttpStatus.CREATED);
 		}
 		return resEnt;
+	}
 
+	// 코치 글 삭제
+	@Override
+	@RequestMapping(value = "/removeCoach", method = RequestMethod.POST)
+	@ResponseBody
+	public ResponseEntity removeCoach(@RequestParam("coachNO") int coachNO, @RequestParam("coach") String coach,
+			HttpServletRequest request, HttpServletResponse response) throws Exception {
+		response.setContentType("text/html; charset=UTF-8");
+		String message;
+		ResponseEntity resEnt = null;
+		HttpHeaders responseHeaders = new HttpHeaders();
+		responseHeaders.add("Content-Type", "text/html; charset=utf-8");
+		try {
+			coachService.removeCoach(coachNO);
+			File destDir = new File(COACH_IMAGE_REPO + "\\" + coach + "\\" + coachNO);
+			FileUtils.deleteDirectory(destDir);
+
+			message = "<script>";
+			message += " alert('삭제가 완료되었습니다.');";
+			message += " location.href='" + request.getContextPath() + "/';";
+			message += " </script>";
+			resEnt = new ResponseEntity(message, responseHeaders, HttpStatus.CREATED);
+		} catch (Exception e) {
+			// TODO: handle exception
+			message = "<script>";
+			message += " alert('다시 시도해주세요.');";
+			message += " location.href='" + request.getContextPath() + "/';";
+			message += " </script>";
+			resEnt = new ResponseEntity(message, responseHeaders, HttpStatus.CREATED);
+			e.printStackTrace();
+		}
+		return resEnt;
 	}
 }

@@ -34,4 +34,12 @@
 		 where id = #{id}
 		]]>
 	</select>
+	
+	<select id="selectById" resultType="memberVO"
+		parameterType="String">
+		<![CDATA[
+		 select * from memberTBL
+		 where id = #{id}
+		]]>
+	</select>
 </mapper>

@@ -33,6 +33,7 @@
 		$('#c_modBtn').hide();
 		$('#c_mod').show();
 		$('#c_rmv').show();
+		$('#requestForm').hide();
 
 		$('#c_mod').click(function() {
 			$('#c_mod').hide(); //클릭 시 첫 번째 요소 숨김
@@ -50,6 +51,11 @@
 
 	function fn_modify_coach(obj) {
 		obj.action = "${contextPath}/modCoach";
+		obj.submit();
+	}
+
+	function fn_remove_coach(obj) {
+		obj.action = "${contextPath}/removeCoach";
 		obj.submit();
 	}
 </script>
@@ -130,23 +136,25 @@
 								<input type="text" name="coach" value="${coach.coach}" readonly
 									style="text-align: center; border: 0; font-weight: 700; background-color: #FFCCCC;">
 								<input type="hidden" name="coachNO" value="${coach.coachNO}" />
-								<br> <br>
+								<br>
 
 								<!-- 요청서 작성 -->
-								<a href="/cocoa/view_reqWriteForm"> <input type="button"
-									name="requestForm" value="   요청서 작성   "
-									class="btn btn-third-dark"
-									style="text-align: center; border: 1; border-radius: 12px;">
-								</a><br> <br>
+								<br>
+								<c:if test="${isLogOn == true && member.id !=coach.coach}">
+									<a href="/cocoa/view_reqWriteForm"> <input type="button"
+										name="requestForm" value="   요청서 작성   "
+										class="btn btn-third-dark"
+										style="text-align: center; border: 1; border-radius: 12px;">
+									</a>
+								</c:if>
+								<br> <br>
 
 								<!-- 본인이면 수정(submit) / 삭제(버튼) 표시 -->
-								<!-- submit이 2개라서 formaction 사용 (post 방식) -->
 								<c:if test="${member.id == coach.coach}">
 									<input type="button" class="btn btn-third-dark" value="수정"
 										onClick="fn_enable(frmCoach)" id="c_mod"> &nbsp;
 								<input type="button" class="btn btn-third-dark" value="삭제"
-										onClick="fn_remove_coach('${contextPath}/removeCoach', ${coach.coachNO})"
-										id="c_rmv">
+										onClick="fn_remove_coach(frmCoach)" id="c_rmv">
 								</c:if>
 								<br> <br>
 							</div>
@@ -162,12 +170,13 @@
 							<input type="hidden" name="originalFileName"
 								value="${coach.cImg }" /> <br> <img id="preview"
 								src="${contextPath}/coachImgDownload?coach=${coach.coach }&coachNO=${coach.coachNO}&cImg=${coach.cImg}"
-								width=100% height=300 style="border: 1px solid;" /> <br> <br>
+								width=100% height=300 style="border: 1px solid;"
+								onerror="this.src='resources/image/sample.png'" /> <br> <br>
 
-							<!-- 수정 누르면 활성화 (회의 후 결정) -->
+							<!-- 수정 누르면 활성화 -->
 							<label class="btn btn-outline-dark" for="c_cImg" id="c_cImgMod">
 								대표 이미지 변경 </label><input type="file" id="c_cImg" name="cImg"
-								onchange="readURL(this);" style="display: none;" /> <br> <br>
+								onchange="readURL(this);" style="display: none;" /> <br>
 						</div>
 
 						<!-- cTitle / basicPrice / lang / cContents 조회 -->
@@ -205,14 +214,14 @@
 							세부 내용 : <br> <br>
 							<textarea name="cContents" rows="10" cols="20" disabled
 								id="c_cContents"
-								style="border: 1; width: 100%; background-color: #FFCC99;">${coach.cContents}</textarea>
+								style="border: 1; width: 100%; background-color: #FFCC99; font-weight: 700; color: black;">${coach.cContents}</textarea>
 							<hr>
 
 							<div align="center">
 								<input type=button value="확 인"
-									onClick="fn_modify_coach(frmCoach)" id="c_modBtn">
+									onClick="fn_modify_coach(frmCoach)" id="c_modBtn"><br>
+								<br>
 							</div>
-							<hr>
 						</div>
 					</div>
 

@@ -25,5 +25,9 @@ public interface MemberController {
 			HttpServletRequest request, HttpServletResponse response);
 
 	public ModelAndView logout(HttpServletRequest request, HttpServletResponse response);
+	
+	public ModelAndView view_proFileInfo(@RequestParam("profileId") String id, HttpServletRequest request, HttpServletResponse response) throws Exception;
+	
+	
 
 }

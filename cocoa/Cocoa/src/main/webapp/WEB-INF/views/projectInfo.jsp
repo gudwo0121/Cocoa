@@ -117,7 +117,7 @@
 								</span>
 
 								<!-- 프로필 조회 이동 -->
-								<br> <br> <a href="/cocoa/view_profileInfo"> <img
+								<br> <br> <a href="/cocoa/view_profileInfo?profileId=${projectInfo.leader}"> <img
 									name="proImg" src="resources/image/kakao.png"
 									style="border: 1px solid;" width="120px" height="120px"><br>
 									<br>
@@ -128,17 +128,26 @@
 									readonly
 									style="text-align: center; border: 0; font-weight: 700; background-color: #FFCCCC;"><br>
 								<input type="hidden" name="projectNO"
-									value="${projectInfo.projectNO}" /><br> <br>
+									value="${projectInfo.projectNO}" /> <br>
 
 								<!-- kakao -->
-								<a href="${projectInfo.kakao}"> <input type="button"
-									id="kakaoLink" name="kakaoLink" value="   대화하기   "
-									class="btn btn-third-dark"
-									style="text-align: center; border: 1; border-radius: 12px;">
-								</a><input type="text" name="kakao" id="mod_kakaoLink" name="kakao"
-									value="${projectInfo.kakao}"
-									style="text-align: center; border: 1; background-color: #FFCCCC;"><br>
-								<br>
+								<!-- 본인 검증 -->
+								<c:if
+									test="${isLogOn == true && member.id !=projectInfo.leader}">
+									<a href="${projectInfo.kakao}"> <input type="button"
+										id="kakaoLink" name="kakaoLink" value="   대화하기   "
+										class="btn btn-third-dark"
+										style="text-align: center; border: 1; border-radius: 12px;">
+									</a>
+								</c:if>
+
+								<!-- 수정 -->
+								<div id="mod_kakaoLink">
+									<b>카카오톡 오픈채팅 :</b><br> <br> <input type="text"
+										name="kakao" id="mod_kakaoLink" name="kakao"
+										value="${projectInfo.kakao}"
+										style="text-align: center; border: 1; background-color: #FFCCCC;">
+								</div>
 
 								<!-- 본인이면 수정(submit) / 삭제(버튼) 표시 -->
 								<!-- submit이 2개라서 formaction 사용 (post 방식) -->
@@ -166,7 +175,8 @@
 							<input type="hidden" name="originalFileName"
 								value="${projectInfo.pImg }" /> <br> <img id="preview"
 								src="${contextPath}/download?leader=${projectInfo.leader}&pImg=${projectInfo.pImg}&projectNO=${projectInfo.projectNO}"
-								width=90% height=300 style="border: 1px solid;" /><br> <br>
+								width=90% height=300 style="border: 1px solid;"
+								onerror="this.src='resources/image/sample.png'" /><br> <br>
 							<label class="btn btn-outline-dark" for="p_pImg" id="p_pImgMod">대표
 								이미지 변경 </label> <input type="file" id="p_pImg" name="pImg"
 								onchange="readURL(this);" style="display: none;" /> <br> <br>
@@ -179,19 +189,19 @@
 							<hr>
 							<input name="pTitle" type="text" value="${projectInfo.pTitle}"
 								id="p_pTitle" disabled
-								style="border: 0; text-align: center; width: 100%; background-color: #FFCC99; font-weight: 700;">
+								style="border: 0; text-align: center; width: 100%; background-color: #FFCC99; font-weight: 700; color: black;">
 							<hr>
 
 							<!-- memberCount 표시 -->
-							인원 : <input name="memberCount" type="text"
+							인원 : <input name="memberCount" type="number"
 								value="${projectInfo.memberCount}" id="p_pMemberCount" disabled
-								style="border: 0; width: 5%; text-align: center; background-color: #FFCC99; font-weight: 700;">
+								style="border: 0; width: 5%; text-align: center; background-color: #FFCC99; font-weight: 700; color: black;">
 							<b>명</b>
 							<hr>
 
 							<!-- level 표시 -->
 							난이도 : <select
-								style="border: 0; text-align: center; width: 7%; background-color: #FFCC99; font-weight: 700;"
+								style="border: 0; text-align: center; width: 7%; background-color: #FFCC99; font-weight: 700; color: black;"
 								name="level" disabled id="p_pLevel">
 								<option id="empty">${projectInfo.level}</option>
 								<option id="level1">하수</option>
@@ -205,18 +215,18 @@
 							세부 내용 : <br> <br>
 							<textarea name="pContents" rows="10" cols="20" id="p_pContents"
 								disabled
-								style="border: 1; width: 100%; background-color: #FFCC99;">${projectInfo.pContents}</textarea>
+								style="border: 1; width: 100%; background-color: #FFCC99; font-weight: 700; color: black;">${projectInfo.pContents}</textarea>
 							<hr>
 
 							<!-- map (일단비워둠) -->
 							<div style="text-align: center;">이곳은 맵 공간입니다.</div>
 							<hr>
-
+							
+							<!-- 수정 확인 -->
 							<div align="center">
 								<input type="submit" value="확 인" class="btn btn-outline-dark"
-									id="p_modBtn">
+									id="p_modBtn"><br><br>
 							</div>
-							<hr>
 						</div>
 					</div>
 

@@ -62,14 +62,14 @@
 		</div>
 	</nav>
 
-	<!-- 코칭 글 작성바 -->
-	<form name="coachWriteForm" method="post"
-		action="${contextPath}/coachWrite" enctype="multipart/form-data">
+	<!-- 프로필 내용 바 -->
+	<form name="proFileInfo" method="post"
+		action="${contextPath}/proFileInfo" enctype="multipart/form-data">
 		<section class="py-5">
 			<div class="container main-secction">
 				<div class="row">
 
-					<!-- 좌측 프로필 : coach~proImg / coach~name -->
+					<!-- 좌측 프로필 : proImg / member.id -->
 					<div class="col-md-3 col-sm-3 col-xs-12 user-profil-part pull-left">
 						<div class="row">
 							<div
@@ -83,68 +83,26 @@
 									<br>
 								</a>
 
-								<!-- coach -->
-								<input type="text" name="coach" value="${member.id}" readonly
+								<!-- 해당 코치나 프로젝트 member.id -->
+								<input type="text" name="id" value="${profileId.id }" readonly
 									style="text-align: center; border: 0; font-weight: 700; background-color: #FFCCCC;"><br>
 								<br>
 							</div>
 						</div>
 					</div>
 
-					<!-- 우측 내용 : cImg / cTitle / basicPrice / cContents -->
+					<!-- 우측 내용 : profileContents -->
 					<div class="card"
 						style="width: 50rem; border: 1px solid; background-color: #FFCC99">
+						<div class="proFile">
 
-						<!-- cImg -->
-						<div align="center">
-							<br> <img id="preview" src="resources/image/sample.png"
-								width=100% height=300 style="border: 1px solid;" /><br> <br>
-							<label class="btn btn-outline-dark" for="cImg"> 대표 이미지 변경
-							</label><input type="file" id="cImg" name="cImg"
-								onchange="readURL(this);" style="display: none;" />
-						</div>
-
-						<!-- cTitle / basicPrice / cContents 입력 -->
-						<div class="coach">
-
-							<!-- cTitle 입력 -->
-							<hr>
-							<input name="cTitle" type="text" placeholder="제목을 입력하세요."
-								style="border: 1; text-align: center; width: 100%;">
-							<hr>
-
-							<!-- basicPrice 입력 -->
-							요금 : <input name="basicPrice" type="number"
-								placeholder="요금을 입력하세요." style="border: 1; width: 30%;">&nbsp;<b>원</b>
-							<hr>
-
-							<!-- lang 선택 -->
-							언어 : <select style="text-align: center; width: 30%;" name="lang">
-								<option id="empty">-- 선택 --</option>
-								<option id="lang1">lang1</option>
-								<option id="lang2">lang2</option>
-								<option id="lang3">lang3</option>
-								<option id="lang4">lang4</option>
-								<option id="lang5">lang5</option>
-							</select>
-							<hr>
-
-							<!-- cContents 입력 -->
+							<!-- proFileContents 입력 -->
 							<!-- textarea 닫아주는거 붙여써야함 -->
-							세부 내용 : <br>
-							<textarea name="cContents" rows="10" cols="20"
-								placeholder="요금 측정 기준 및 본인 PR을 해주세요."
-								style="border: 1; width: 100%;"></textarea>
-							<hr>
-						</div>
-
-						<!-- 작성(submit) + 취소(버튼) -->
-						<div class="card-body" style="text-align: center">
-							<input type="submit" class="btn btn-outline-dark" value="등록" />
-							&nbsp; <a href="/cocoa/" class="btn btn-outline-dark">취소</a>
+							<br><b>소개 및 경력 : </b><br><br>
+							<textarea name="proFile" rows="15" cols="20"
+								style="border: 1; width: 100%;">이곳에 프로필 세부내용</textarea><br><br>
 						</div>
 					</div>
-
 				</div>
 			</div>
 		</section>

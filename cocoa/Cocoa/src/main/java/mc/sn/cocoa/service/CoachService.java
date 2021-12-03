@@ -14,4 +14,6 @@ public interface CoachService {
 	public CoachVO viewCoach(int coachNO) throws Exception;
 
 	public void modCoach(Map coachMap) throws Exception;
+
+	public void removeCoach(int coachNO) throws Exception;
 }
