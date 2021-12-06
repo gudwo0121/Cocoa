@@ -52,7 +52,7 @@
 				<!-- 우측 상단 변경 -->
 				<form action="/cocoa/logout" method="get" class="d-flex">
 					<input name="My Page" class="btn btn-outline-dark" type="button"
-						value="My Page" onClick="location.href='/cocoa/myPage'" /> <input
+						value="My Page" onClick="location.href='/cocoa/view_myPageProfile'" /> <input
 						name="logout" class="btn btn-outline-dark" type="submit"
 						value="logout" />
 				</form>
@@ -66,7 +66,7 @@
 		enctype="multipart/form-data">
 		<section class="py-5">
 			<div class="container main-secction">
-				<div class="row">
+				<div class="row" style="flex-wrap: unset;">
 
 					<!-- 좌측 프로필 : leader~proImg / leader~name -->
 					<div class="col-md-3 col-sm-3 col-xs-12 user-profil-part pull-left">
@@ -78,19 +78,19 @@
 								<!-- 프로필 조회 이동 -->
 								<br> <br> <a href="/cocoa/view_profileInfo"> <img
 									name="proImg" src="resources/image/kakao.png"
-									style="border: 1px solid;" width="120px" height="120px"><br>
+									style="border: 1px solid;" width="50%" height="120px"><br>
 									<br>
 								</a>
 
 								<!-- leader -->
 								<input type="text" name="leader" value="${member.id}" readonly
-									style="text-align: center; border: 0; font-weight: 700; background-color: #FFCCCC;"><br>
+									style="text-align: center; border: 0; font-weight: 700; background-color: #FFCCCC; width: 70%;"><br>
 								<br>
 
 								<!-- kakao -->
 								<b>카카오톡 오픈채팅 :</b><br> <br> <input type="text"
 									name="kakao" placeholder="링크 입력"
-									style="text-align: center; border: 1; background-color: #FFCCCC;"><br>
+									style="text-align: center; border: 1; background-color: #FFCCCC; width: 80%;"><br>
 								<br>
 							</div>
 						</div>

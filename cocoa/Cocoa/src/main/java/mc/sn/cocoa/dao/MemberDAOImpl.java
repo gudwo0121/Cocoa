@@ -1,5 +1,7 @@
 package mc.sn.cocoa.dao;
 
+import java.util.Map;
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -28,5 +30,16 @@ public class MemberDAOImpl implements MemberDAO {
 	public int idChk(MemberVO vo) throws Exception {
 		int result = sqlSession.selectOne("mapper.member.idChk", vo);
 		return result;
+	}
+
+	@Override
+	public MemberVO selectMemberById(String id) throws Exception {
+		MemberVO vo = sqlSession.selectOne("mapper.member.selectById", id);
+		return vo;
+	}
+
+	@Override
+	public void updateProfile(Map profileMap) throws Exception {
+		sqlSession.update("mapper.member.updateProfile", profileMap);
 	}
 }

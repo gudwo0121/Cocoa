@@ -77,15 +77,15 @@
 			<div class="collapse navbar-collapse" id="navbarSupportedContent">
 
 				<!-- 상단 가운데공간 지우면 안됌 -->
-				<ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
-				</ul>
+				<div class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4"></div>
 
 				<!-- 우측 상단 변경 -->
 				<c:choose>
 					<c:when test="${isLogOn == true && member != null}">
 						<form action="/cocoa/logout" method="get" class="d-flex">
 							<input name="My Page" class="btn btn-outline-dark" type="button"
-								value="My Page" onClick="location.href='/cocoa/myPage'" /> <input
+								value="My Page"
+								onClick="location.href='/cocoa/view_myPageProfile'" /> <input
 								name="logout" class="btn btn-outline-dark" type="submit"
 								value="logout" />
 						</form>
@@ -109,7 +109,7 @@
 		action="${contextPath}">
 		<section class="py-5">
 			<div class="container main-secction">
-				<div class="row">
+				<div class="row" style="flex-wrap: unset;">
 
 					<!-- 좌측 프로필 : coach~proImg / coach~name-->
 					<div class="col-md-3 col-sm-3 col-xs-12 user-profil-part pull-left">
@@ -126,15 +126,18 @@
 								</a> </span>
 
 								<!-- 프로필 조회 이동 -->
-								<br> <br> <a href="/cocoa/view_profileInfo"> <img
-									name="proImg" src="resources/image/kakao.png"
-									style="border: 1px solid;" width="120px" height="120px"><br>
+								<br> <br> <a
+									href="/cocoa/view_profileInfo?profileId=${coach.coach}"> <img
+									name="proImg"
+									src="${contextPath}/downProfileImg?id=${coach.coach}"
+									onerror="this.src='resources/image/kakao.png'"
+									style="border: 1px solid;" width="50%" height="120px"><br>
 									<br>
 								</a>
 
 								<!-- coach -->
 								<input type="text" name="coach" value="${coach.coach}" readonly
-									style="text-align: center; border: 0; font-weight: 700; background-color: #FFCCCC;">
+									style="text-align: center; border: 0; font-weight: 700; background-color: #FFCCCC; width: 70%;">
 								<input type="hidden" name="coachNO" value="${coach.coachNO}" />
 								<br>
 
@@ -144,7 +147,7 @@
 									<a href="/cocoa/view_reqWriteForm"> <input type="button"
 										name="requestForm" value="   요청서 작성   "
 										class="btn btn-third-dark"
-										style="text-align: center; border: 1; border-radius: 12px;">
+										style="text-align: center; border: 1; border-radius: 12px; width: 70%;">
 									</a>
 								</c:if>
 								<br> <br>
@@ -200,12 +203,10 @@
 							언어 : <select
 								style="border: 0; text-align: center; width: 15%; background-color: #FFCC99; font-weight: 700; color: black;"
 								name="lang" disabled id="c_lang">
-								<option id="empty">${coach.lang }</option>
-								<option id="lang1">lang1</option>
-								<option id="lang2">lang2</option>
-								<option id="lang3">lang3</option>
-								<option id="lang4">lang4</option>
-								<option id="lang5">lang5</option>
+								<option id="empty">${coach.lang}</option>
+								<option id="lang1">C/C++</option>
+								<option id="lang2">Java</option>
+								<option id="lang3">Python</option>
 							</select>
 							<hr>
 

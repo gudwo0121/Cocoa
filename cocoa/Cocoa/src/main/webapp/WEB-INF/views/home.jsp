@@ -12,20 +12,68 @@
 <script type="text/javascript" src="resources/js/jquery-3.6.0.min.js"></script>
 <title>CoCoa</title>
 <script>
-	$(document).ready(function() {
+	$(document).ready(
+			function() {
 
-		// 코칭 카테고리 클릭시 [코칭 글 작성] 표시
-		$('#coaching').click(function() {
-			$('#cwrite_btn').removeAttr('hidden');
-			$('#pwrite_btn').attr('hidden', '');
-		});
+				$('#low').hide();
+				$('#middle').hide();
+				$('#high').hide();
 
-		// 프로젝트 카테고리 클릭시 [프로젝트 글 작성] 표시
-		$('#project').click(function() {
-			$('#cwrite_btn').attr('hidden', '');
-			$('#pwrite_btn').removeAttr('hidden');
-		});
-	});
+				$('#coaching').click(
+						function() {
+
+							// 코칭 카테고리 클릭시 [배경색] 변경
+							$('#coaching').attr('style',
+									"background-color:black;color:white;");
+							$('#project').removeAttr('style',
+									"background-color:black;color:white;");
+
+							// 코칭 카테고리 클릭시 [코칭 글 작성] 표시
+							$('#cwrite_btn').removeAttr('hidden');
+							$('#pwrite_btn').attr('hidden', '');
+
+							// 코칭 카테고리 클릭시 [언어]만 표시
+							$('#C').show();
+							$('#Java').show();
+							$('#Python').show();
+
+							$('#low').hide();
+							$('#middle').hide();
+							$('#high').hide();
+
+							// 코칭 카테고리 클릭시 [코칭 글]만 표시 = 쿼리문 필요할듯
+							
+						});
+
+				$('#project').click(
+						function() {
+
+							// 코칭 카테고리 클릭시 [배경색] 변경
+							$('#coaching').removeAttr('style',
+									"background-color:black;color:white;");
+							$('#project').attr('style',
+									"background-color:black;color:white;");
+
+							// 프로젝트 카테고리 클릭시 [프로젝트 글 작성] 표시
+							$('#cwrite_btn').attr('hidden', '');
+							$('#pwrite_btn').removeAttr('hidden');
+
+							// 프로젝트 카테고리 클릭시 [난이도]만 표시
+							$('#C').hide();
+							$('#Java').hide();
+							$('#Python').hide();
+
+							$('#low').show();
+							$('#middle').show();
+							$('#high').show();
+
+							// 프로젝트 카테고리 클릭시 [프로젝트 글]만 표시 = 쿼리문 필요할듯
+
+						});
+				
+				// 각 세부 cate에 대해 click 이벤트 필요 (배경색) 
+
+			});
 </script>
 </head>
 <body style="background-color: #FFEBCD">
@@ -52,7 +100,7 @@
 					<c:when test="${isLogOn == true && member != null}">
 						<form action="/cocoa/logout" method="get" class="d-flex">
 							<input name="My Page" class="btn btn-outline-dark" type="button"
-								value="My Page" onClick="location.href='/cocoa/myPage'" /> <input
+								value="My Page" onClick="location.href='/cocoa/view_myPageProfile'" /> <input
 								name="logout" class="btn btn-outline-dark" type="submit"
 								value="logout" />
 						</form>
@@ -74,21 +122,29 @@
 	<header class="py-5" style="background-color: #663333">
 		<div class="container px-4 px0lg05 my-5">
 
-			<!-- 코칭 / 프로젝트 -->
+			<!-- 코칭 / 프로젝트 cate -->
 			<div class="d-grid gap-3 d-sm-flex justify-content-sm-center">
 				<a id="coaching" class="btn btn-primary btn-lg px-4 me-sm-3">Coaching</a>
 				<a id="project" class="btn btn-primary btn-lg px-4 me-sm-3">Project</a>
 			</div>
 			<br>
 
-			<!-- 코칭 세부 -->
-			<div class="d-grid gap-3 d-sm-flex justify-content-sm-center">
-				<a class="btn btn-primary btn-lg px-4 me-sm-3" href="">C/C++</a> <a
-					class="btn btn-primary btn-lg px-4 me-sm-3" href="">Java</a> <a
-					class="btn btn-primary btn-lg px-4 me-sm-3" href="">Python</a>
+			<!-- 코칭 langs cate -->
+			<div id="langs"
+				class="d-grid gap-3 d-sm-flex justify-content-sm-center">
+				<a id="C" class="btn btn-primary btn-lg px-4 me-sm-3">C/C++</a> <a
+					id="Java" class="btn btn-primary btn-lg px-4 me-sm-3">Java</a> <a
+					id="Python" class="btn btn-primary btn-lg px-4 me-sm-3">Python</a>
 			</div>
 
-			<!-- 프로젝트 세부(미완) -->
+			<!-- 프로젝트 levels cate -->
+			<div id="levels"
+				class="d-grid gap-3 d-sm-flex justify-content-sm-center">
+				<a id="low" class="btn btn-primary btn-lg px-4 me-sm-3">Beginner</a>
+				<a id="middle" class="btn btn-primary btn-lg px-4 me-sm-3">Junior</a>
+				<a id="high" class="btn btn-primary btn-lg px-4 me-sm-3">Senior</a>
+			</div>
+
 		</div>
 	</header>
 
@@ -108,7 +164,7 @@
 			</c:choose>
 			<br> <br> <br>
 
-			<!-- 1. 생성된 카탈로그 표시 [Project] + 페이징 필요 -->
+			<!-- 생성된 카탈로그 표시 -->
 			<div
 				class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
 
@@ -151,8 +207,6 @@
 				</c:forEach>
 				<!-- Project 반복문 끝 -->
 
-
-				<!-- 2. 생성된 카탈로그 표시 [Coach] + 페이징 필요 -->
 				<!-- 반복문 시작 컨트롤러에서 addObject한 coachesList를 가져와서 coach라고 저장 -->
 				<c:forEach var="coach" items="${coachesList}">
 
@@ -196,6 +250,7 @@
 				</c:forEach>
 				<!-- Coach 반복문 끝 -->
 			</div>
+
 		</div>
 		<!-- 위의 카탈로그 틀이 반복 생성 및 표시 -->
 	</section>

@@ -12,9 +12,7 @@
 <script type="text/javascript" src="resources/js/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
 	function readURL(input) {
-
 		if (input.files && input.files[0]) {
-
 			var reader = new FileReader();
 			reader.onload = function(e) {
 				$('#preview').attr('src', e.target.result);
@@ -22,7 +20,6 @@
 			reader.readAsDataURL(input.files[0]);
 		}
 	}
-
 	var cnt = 1;
 	function fn_addFile() {
 		$("#d_file")
@@ -33,6 +30,7 @@
 <title>CoCoa</title>
 </head>
 <body style="background-color: #FFEBCD">
+
 	<!-- 상단바 -->
 	<nav class="navbar navbar-expand-lg" style="background-color: #663333;">
 
@@ -53,7 +51,8 @@
 				<!-- 우측 상단 변경 -->
 				<form action="/cocoa/logout" method="get" class="d-flex">
 					<input name="My Page" class="btn btn-outline-dark" type="button"
-						value="My Page" onClick="location.href='/cocoa/myPage'" /> <input
+						value="My Page"
+						onClick="location.href='/cocoa/view_myPageProfile'" /> <input
 						name="logout" class="btn btn-outline-dark" type="submit"
 						value="logout" />
 				</form>
