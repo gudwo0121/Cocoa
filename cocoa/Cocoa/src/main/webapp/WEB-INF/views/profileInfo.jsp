@@ -90,7 +90,7 @@
 
 								<!-- 프로필 조회 이동 -->
 								<br> <br> <a href="/cocoa/view_profileInfo"> <img
-									name="proImg" src="${contextPath}/downProfileImg?id=${profileId.id }&proImg=${profileId.proImg }"
+									name="proImg" src="${contextPath}/downProfileImg?id=${profileId.id }"
 									onerror="this.src='resources/image/kakao.png'"
 									style="border: 1px solid;" width="120px" height="120px"><br>
 									<br>

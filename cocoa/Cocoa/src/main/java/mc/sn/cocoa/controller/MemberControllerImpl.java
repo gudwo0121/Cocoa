@@ -155,9 +155,11 @@ public class MemberControllerImpl implements MemberController {
 		
 	// 프로필 이미지 가져오기
 	@RequestMapping("/downProfileImg")
-	protected void download(@RequestParam("id") String id, @RequestParam("proImg") String proImg,
+	protected void download(@RequestParam("id") String id,
 			HttpServletResponse response) throws Exception {
 		OutputStream out = response.getOutputStream();
+		MemberVO vo = memberService.searchMember(id);
+		String proImg = vo.getproImg();
 		String filePath = profile_IMAGE_REPO + "\\" + id + "\\" + proImg;
 		File image = new File(filePath);
 

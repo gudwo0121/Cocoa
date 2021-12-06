@@ -127,7 +127,8 @@
 
 								<!-- 프로필 조회 이동 -->
 								<br> <br> <a href="/cocoa/view_profileInfo?profileId=${coach.coach}"> <img
-									name="proImg" src="resources/image/kakao.png"
+									name="proImg" src="${contextPath}/downProfileImg?id=${coach.coach }"
+									onerror="this.src='resources/image/kakao.png'"
 									style="border: 1px solid;" width="120px" height="120px"><br>
 									<br>
 								</a>

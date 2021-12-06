@@ -69,7 +69,7 @@
 								<input type="hidden" name="originalFileName" value="${member.proImg }" />
 								 <br> 
 								 <img id="preview"
-								 	src="${contextPath}/downProfileImg?id=${member.id }&proImg=${member.proImg }"
+								 	src="${contextPath}/downProfileImg?id=${member.id }"
 								  style="border: 1px solid;" width="100%" height="200"
 								onerror="this.src='resources/image/sample.png'" />
 								<br> <br>
