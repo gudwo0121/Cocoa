@@ -50,6 +50,7 @@ public class ProjectControllerImpl implements ProjectController {
 		return mav;
 	}
 
+	
 	@Override
 	@RequestMapping(value = "/view_projectInfo", method = RequestMethod.GET)
 	public ModelAndView projectInfo(@RequestParam("id") String id, @RequestParam("projectNO") int projectNO,
@@ -138,6 +139,7 @@ public class ProjectControllerImpl implements ProjectController {
 		return resEnt;
 	}
 
+	// 프로젝트 글 삭제
 	@Override
 	@RequestMapping(value = "/removeProject", method = RequestMethod.GET)
 	@ResponseBody

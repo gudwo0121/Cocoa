@@ -75,7 +75,7 @@
 					<c:when test="${isLogOn == true && member != null}">
 						<form action="/cocoa/logout" method="get" class="d-flex">
 							<input name="My Page" class="btn btn-outline-dark" type="button"
-								value="My Page" onClick="location.href='/cocoa/myPage'" /> <input
+								value="My Page" onClick="location.href='/cocoa/view_myPageProfile'" /> <input
 								name="logout" class="btn btn-outline-dark" type="submit"
 								value="logout" />
 						</form>
@@ -117,8 +117,11 @@
 								</span>
 
 								<!-- 프로필 조회 이동 -->
-								<br> <br> <a href="/cocoa/view_profileInfo"> <img
-									name="proImg" src="resources/image/kakao.png"
+								<br> <br> <a
+									href="/cocoa/view_profileInfo?profileId=${projectInfo.leader}">
+									<img name="proImg"
+									src="${contextPath}/downProfileImg?id=${projectInfo.leader }"
+									onerror="this.src='resources/image/kakao.png'"
 									style="border: 1px solid;" width="50%" height="120px"><br>
 									<br>
 								</a>
@@ -150,7 +153,6 @@
 								</div>
 
 								<!-- 본인이면 수정(submit) / 삭제(버튼) 표시 -->
-								<!-- submit이 2개라서 formaction 사용 (post 방식) -->
 								<c:choose>
 									<c:when
 										test="${isLogOn == true && member.id ==projectInfo.leader}">

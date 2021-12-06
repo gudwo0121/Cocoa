@@ -49,6 +49,7 @@
 * 본인이면 대화하기 / 요청서 작성 숨김 구현
 * profileInfo.jsp / myPageProfile.jsp 생성
 * 앞의 coachInfo, projectInfo 처럼 수정 누르면 disabled가 풀리고 수정 가능한 형태로 구현
+* 수정시 타인 프로필 조회에선 반영되나, 마이페이지에서는 로그아웃했다가 다시 로그인해야 반영
 
 ***
 

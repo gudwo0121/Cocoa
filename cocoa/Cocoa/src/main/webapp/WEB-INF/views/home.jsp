@@ -100,7 +100,7 @@
 					<c:when test="${isLogOn == true && member != null}">
 						<form action="/cocoa/logout" method="get" class="d-flex">
 							<input name="My Page" class="btn btn-outline-dark" type="button"
-								value="My Page" onClick="location.href='/cocoa/myPage'" /> <input
+								value="My Page" onClick="location.href='/cocoa/view_myPageProfile'" /> <input
 								name="logout" class="btn btn-outline-dark" type="submit"
 								value="logout" />
 						</form>

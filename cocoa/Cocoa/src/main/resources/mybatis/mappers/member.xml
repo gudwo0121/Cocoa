@@ -27,11 +27,30 @@
 		 where id = #{id} and pwd = #{pwd}
 		]]>
 	</select>
-	
+
 	<select id="idChk" resultType="int" parameterType="memberVO">
 		<![CDATA[
 		 select count(*) from memberTBL
 		 where id = #{id}
 		]]>
 	</select>
+
+	<select id="selectById" resultType="memberVO"
+		parameterType="String">
+		<![CDATA[
+		 select * from memberTBL
+		 where id = #{id}
+		]]>
+	</select>
+
+	<!-- 프로필 수정 -->
+	<update id="updateProfile" parameterType="java.util.Map">
+		update memberTBL
+		set proContents=#{proContents}
+		<if test="proImg!='' and proImg!=null">
+			, proImg=#{proImg}
+		</if>
+		where id=#{id}
+	</update>
+	
 </mapper>

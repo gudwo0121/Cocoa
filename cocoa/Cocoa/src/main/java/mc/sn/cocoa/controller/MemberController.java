@@ -26,4 +26,6 @@ public interface MemberController {
 
 	public ModelAndView logout(HttpServletRequest request, HttpServletResponse response);
 
+	public ModelAndView view_myPageProfile(HttpServletRequest request, HttpServletResponse response);
+
 }

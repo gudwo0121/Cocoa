@@ -12,9 +12,7 @@
 <script type="text/javascript" src="resources/js/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
 	function readURL(input) {
-
 		if (input.files && input.files[0]) {
-
 			var reader = new FileReader();
 			reader.onload = function(e) {
 				$('#preview').attr('src', e.target.result);
@@ -22,7 +20,6 @@
 			reader.readAsDataURL(input.files[0]);
 		}
 	}
-
 	var cnt = 1;
 	function fn_addFile() {
 		$("#d_file")
@@ -52,12 +49,25 @@
 				</ul>
 
 				<!-- 우측 상단 변경 -->
-				<form action="/cocoa/logout" method="get" class="d-flex">
-					<input name="My Page" class="btn btn-outline-dark" type="button"
-						value="My Page" onClick="location.href='/cocoa/myPage'" /> <input
-						name="logout" class="btn btn-outline-dark" type="submit"
-						value="logout" />
-				</form>
+				<c:choose>
+					<c:when test="${isLogOn == true && member != null}">
+						<form action="/cocoa/logout" method="get" class="d-flex">
+							<input name="My Page" class="btn btn-outline-dark" type="button"
+								value="My Page"
+								onClick="location.href='/cocoa/view_myPageProfile'" /> <input
+								name="logout" class="btn btn-outline-dark" type="submit"
+								value="logout" />
+						</form>
+					</c:when>
+					<c:otherwise>
+						<form action="/cocoa/view_login" method="get" class="d-flex">
+							<input name="login" class="btn btn-outline-dark" type="submit"
+								value="log in" /> <input name="join"
+								class="btn btn-outline-dark" type="button" value="Sign in"
+								onClick="location.href='/cocoa/view_join'" />
+						</form>
+					</c:otherwise>
+				</c:choose>
 			</div>
 		</div>
 	</nav>
@@ -67,7 +77,7 @@
 		action="${contextPath}/proFileInfo" enctype="multipart/form-data">
 		<section class="py-5">
 			<div class="container main-secction">
-				<div class="row">
+				<div class="row" style="flex-wrap: unset;">
 
 					<!-- 좌측 프로필 : proImg / member.id -->
 					<div class="col-md-3 col-sm-3 col-xs-12 user-profil-part pull-left">
@@ -76,29 +86,35 @@
 								class="col-md-12 col-md-12-sm-12 col-xs-12 user-image text-center"
 								style="width: 80%; height: 100%; border: 2px solid; background-color: #FFCCCC;">
 
-								<!-- proImg -->
-								<br> <br> <img name="proImg" src="resources/image/kakao.png"
+								<!-- 프로필 조회 이동 -->
+								<br> <br> <img name="proImg"
+									src="${contextPath}/downProfileImg?id=${profileId.id }"
+									onerror="this.src='resources/image/kakao.png'"
 									style="border: 1px solid;" width="50%" height="120px"><br>
-									<br>
+								<br>
+
 
 								<!-- 해당 코치나 프로젝트 member.id -->
-								<input type="text" name="id" value="member.id" readonly
-									style="text-align: center; border: 0; font-weight: 700; background-color: #FFCCCC;"><br>
+								<input type="text" name="id" value="${profileId.id }" readonly
+									style="text-align: center; border: 0; font-weight: 700; background-color: #FFCCCC; width: 70%;"><br>
 								<br>
 							</div>
 						</div>
 					</div>
 
-					<!-- 우측 내용 : profileContents -->
+					<!-- 우측 내용 : pContents -->
 					<div class="card"
-						style="width: 50rem; border: 1px solid; background-color: #FFCC99">
+						style="width: 50rem; border: 1px solid; background-color: #FFCC99;">
 						<div class="proFile">
 
-							<!-- proFileContents 입력 -->
+							<!-- pContents 입력 -->
 							<!-- textarea 닫아주는거 붙여써야함 -->
-							<br><b>소개 및 경력 : </b><br><br>
+							<br>
+							<b> 소개 및 경력 : </b><br>
+							<br>
 							<textarea name="proFile" rows="15" cols="20"
-								style="border: 1; width: 100%;">이곳에 프로필 세부내용</textarea><br><br>
+								style="border: 1; width: 100%; background-color: #FFCC99;">${profileId.proContents}</textarea>
+							<br> <br>
 						</div>
 					</div>
 				</div>
