@@ -42,3 +42,13 @@
 
 ***
 
+21.12.3 추가
+
+* coachInfo 삭제 + projectInfo 수정 구현 완료 - 본인 검증 문제 해결 - UI에서 공간 벌어지는건 아직
+* c글작성 / p글작성 시 뜨는 좌측 프로필의 coach, leader를 member.id로 뜨게 구현
+* 본인이면 대화하기 / 요청서 작성 숨김 구현
+* profileInfo.jsp / myPageProfile.jsp 생성
+* 앞의 coachInfo, projectInfo 처럼 수정 누르면 disabled가 풀리고 수정 가능한 형태로 구현
+
+***
+

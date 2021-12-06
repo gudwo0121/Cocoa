@@ -99,7 +99,7 @@
 		action="${contextPath}/modProject">
 		<section class="py-5">
 			<div class="container main-secction">
-				<div class="row">
+				<div class="row" style="flex-wrap: unset;">
 
 					<!-- 좌측 프로필 : leader~proImg / leader~name -->
 					<div class="col-md-3 col-sm-3 col-xs-12 user-profil-part pull-left">
@@ -119,14 +119,14 @@
 								<!-- 프로필 조회 이동 -->
 								<br> <br> <a href="/cocoa/view_profileInfo"> <img
 									name="proImg" src="resources/image/kakao.png"
-									style="border: 1px solid;" width="120px" height="120px"><br>
+									style="border: 1px solid;" width="50%" height="120px"><br>
 									<br>
 								</a>
 
 								<!-- leader -->
 								<input type="text" name="leader" value="${projectInfo.leader}"
 									readonly
-									style="text-align: center; border: 0; font-weight: 700; background-color: #FFCCCC;"><br>
+									style="text-align: center; border: 0; font-weight: 700; background-color: #FFCCCC; width: 70%"><br>
 								<input type="hidden" name="projectNO"
 									value="${projectInfo.projectNO}" /> <br>
 
@@ -201,7 +201,7 @@
 
 							<!-- level 표시 -->
 							난이도 : <select
-								style="border: 0; text-align: center; width: 7%; background-color: #FFCC99; font-weight: 700; color: black;"
+								style="border: 0; text-align: center; width: 15%; background-color: #FFCC99; font-weight: 700; color: black;"
 								name="level" disabled id="p_pLevel">
 								<option id="empty">${projectInfo.level}</option>
 								<option id="level1">하수</option>
@@ -221,11 +221,11 @@
 							<!-- map (일단비워둠) -->
 							<div style="text-align: center;">이곳은 맵 공간입니다.</div>
 							<hr>
-							
+
 							<!-- 수정 확인 -->
 							<div align="center">
 								<input type="submit" value="확 인" class="btn btn-outline-dark"
-									id="p_modBtn"><br><br>
+									id="p_modBtn"><br> <br>
 							</div>
 						</div>
 					</div>

@@ -67,7 +67,7 @@
 		action="${contextPath}/coachWrite" enctype="multipart/form-data">
 		<section class="py-5">
 			<div class="container main-secction">
-				<div class="row">
+				<div class="row" style="flex-wrap: unset;">
 
 					<!-- 좌측 프로필 : coach~proImg / coach~name -->
 					<div class="col-md-3 col-sm-3 col-xs-12 user-profil-part pull-left">
@@ -79,13 +79,13 @@
 								<!-- 프로필 조회 이동 -->
 								<br> <br> <a href="/cocoa/view_profileInfo"> <img
 									name="proImg" src="resources/image/kakao.png"
-									style="border: 1px solid;" width="120px" height="120px"><br>
+									style="border: 1px solid;" width="50%" height="120px"><br>
 									<br>
 								</a>
 
 								<!-- coach -->
 								<input type="text" name="coach" value="${member.id}" readonly
-									style="text-align: center; border: 0; font-weight: 700; background-color: #FFCCCC;"><br>
+									style="text-align: center; border: 0; font-weight: 700; background-color: #FFCCCC; width: 70%;"><br>
 								<br>
 							</div>
 						</div>
@@ -121,11 +121,9 @@
 							<!-- lang 선택 -->
 							언어 : <select style="text-align: center; width: 30%;" name="lang">
 								<option id="empty">-- 선택 --</option>
-								<option id="lang1">lang1</option>
-								<option id="lang2">lang2</option>
-								<option id="lang3">lang3</option>
-								<option id="lang4">lang4</option>
-								<option id="lang5">lang5</option>
+								<option id="lang1">C/C++</option>
+								<option id="lang2">Java</option>
+								<option id="lang3">Python</option>
 							</select>
 							<hr>
 

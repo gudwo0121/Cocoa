@@ -32,14 +32,15 @@
 			</h2>
 			<h3 class="mb-2">회원가입</h3>
 			<form action="" method="post">
-				<table width=460px>
+				<table width=100%>
 					<tr>
 						<td><div class="fone">
 								<i class="fas fa-id-card"></i> <input type="text" name="id"
 									id="id" class="form-control" placeholder="아이디(ID)">
 							</div></td>
-						<td align="center"><input type="button" class="btn btn-check"
-							id="idCheck" value="ID 확인"></td>
+						<td align="center"><input type="button"
+							class="btn btn-success mt-1" id="idCheck" value="중복확인"
+							style="color: white;"></td>
 					</tr>
 					<tr>
 						<td colspan="2"><div class="fone mt-2">
