@@ -130,7 +130,7 @@
 							세부 내용 : <br>
 							<textarea name="cContents" rows="10" cols="20"
 								placeholder="요금 측정 기준 및 본인 PR을 해주세요."
-								style="border: 1; width: 100%;"></textarea>
+								style="border: 1; width: 100%; resize: none;"></textarea>
 							<hr>
 						</div>
 

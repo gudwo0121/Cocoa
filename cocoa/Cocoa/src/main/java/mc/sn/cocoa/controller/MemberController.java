@@ -5,6 +5,7 @@ import java.io.UnsupportedEncodingException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
@@ -13,7 +14,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import mc.sn.cocoa.vo.MemberVO;
 
 public interface MemberController {
-	
+
 	public ModelAndView view_join(HttpServletRequest request, HttpServletResponse response);
 
 	public int join(@ModelAttribute("member") MemberVO memberVO, HttpServletRequest request,

@@ -95,7 +95,7 @@ request.setCharacterEncoding("UTF-8");
 						<br> <b>소개 및 경력 :</b> <br> <br>
 						<textarea name="proContents" rows="20" cols="20" id="proContents"
 							disabled
-							style="border: 1px solid; background-color: #FFCC99; width: 100%; color: black;">${profileId.proContents}</textarea>
+							style="border: 1px solid; background-color: #FFCC99; width: 100%; color: black; resize: none;">${profileId.proContents}</textarea>
 						<hr>
 					</div>
 

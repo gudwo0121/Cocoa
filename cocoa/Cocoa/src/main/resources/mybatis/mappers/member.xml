@@ -52,5 +52,19 @@
 		</if>
 		where id=#{id}
 	</update>
-	
+
+	<!-- 회원정보 수정 -->
+	<update id="updateMember" parameterType="memberVO">
+		<![CDATA[
+		update memberTBL
+		set pwd=#{pwd}, name=#{name}, phone=#{phone} where id=#{id}
+		]]>
+	</update>
+
+	<!-- 회원정보 삭제 -->
+	<delete id="deleteMember" parameterType="String">
+		<![CDATA[
+		delete from memberTBL where id=#{id}
+		]]>
+	</delete>
 </mapper>

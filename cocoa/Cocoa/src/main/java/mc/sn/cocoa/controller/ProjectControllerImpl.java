@@ -283,7 +283,6 @@ public class ProjectControllerImpl implements ProjectController {
 			message += " </script>";
 			resEnt = new ResponseEntity(message, responseHeaders, HttpStatus.CREATED);
 		} catch (Exception e) {
-			// TODO: handle exception
 			// 예외발생시 취소 및 삭제
 			File srcFile = new File(project_IMAGE_REPO + "\\" + "temp" + "\\" + pImg);
 			srcFile.delete();

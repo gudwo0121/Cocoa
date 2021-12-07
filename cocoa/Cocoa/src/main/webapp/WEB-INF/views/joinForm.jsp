@@ -34,7 +34,7 @@
 				<b>회원가입</b>
 			</h5>
 			<br>
-			<form action="" method="post">
+			<form action="${contextPath}/join" method="post">
 				<table style="width: 100%;">
 					<tr>
 						<td><div class="fone">

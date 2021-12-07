@@ -29,6 +29,4 @@
 	</beans:bean>
 	<context:component-scan base-package="mc.sn.cocoa" />
 	
-	
-	
 </beans:beans>

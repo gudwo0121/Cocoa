@@ -15,7 +15,7 @@
 
 21.11.30 추가
 
-* 코치 글, 프로젝트 글 작성 *> db에 추가 구현
+* 코치 글, 프로젝트 글 작성 = db에 추가 구현
 (아직 validation 부족 & 파일업로드 너무 복잡)
 * 코치, 프로젝트 주제별 작성 버튼 show & hide
 * coachWriteForm / projectWriteForm 완성
@@ -60,6 +60,9 @@
 * 사이드바 클릭 이벤트 구현
 * loginForm.jsp / joinForm.jsp / 마이페이지 css 보완
 * home.jsp에서 코칭 / 프로젝트 클릭시 조건 조회 구현 = 카탈로그 부분은 쿼리문 필요할듯
+* textarea - resize:none; - 스크롤 고정 구현
+* 회원 정보 CASCADE로 연계 수정 및 삭제 = 테이블 생성시 쿼리문에 추가
+* jsp 파일에 태그 id, name 중복 안되게 조심!!
 
 ***
 

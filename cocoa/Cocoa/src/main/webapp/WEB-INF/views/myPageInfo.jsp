@@ -21,6 +21,15 @@
 	rel="stylesheet" />
 <link href="resources/css/join-styles.css" rel="stylesheet" />
 <script type="text/javascript" src="resources/js/ajax.js"></script>
+<script type="text/javascript">
+	function yesOrNo() {
+		if (confirm("탈퇴하시겠습니까?")) {
+			location.href = '/cocoa/dropMember?id=${member.id }'// Yes click
+		} else {
+			// no click
+		}
+	}
+</script>
 <title>CoCoa</title>
 </head>
 <body>
@@ -31,11 +40,11 @@
 
 			<h5 class="mb-2">
 				<b>회 원 정 보</b>
-			</h5><br>
-			<form action="" method="post">
+			</h5>
+			<br>
+			<form action="${contextPath}/updateInfo" method="post">
 				<table
 					style="width: 70%; background-color: #FFCC99; margin: 0 auto; color: black;">
-
 					<tr>
 						<td>
 							<div class="fone">
@@ -43,7 +52,7 @@
 									style="color: black; padding-left: 10px;"></i> <input
 									type="text" name="id" id="id" class="form-control"
 									style="border: 1px solid grey; padding-left: 30px; font-weight: 700; color: black;"
-									value=${member.id } disabled>
+									value=${member.id } readonly>
 							</div>
 						</td>
 					</tr>
@@ -99,9 +108,10 @@
 						</td>
 					</tr>
 					<tr>
-						<td align="center"><button type="submit" id="validate"
+						<td align="center"><button type="submit" id="modInfo"
 								class="btn btn-success mt-5">수정하기</button> <input type="button"
-							id="" class="btn btn-success mt-5" value="탈퇴하기" onClick=""></td>
+							id="delInfo" class="btn btn-success mt-5" value="탈퇴하기"
+							onClick="yesOrNo()"></td>
 					</tr>
 				</table>
 			</form>

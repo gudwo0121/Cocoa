@@ -79,9 +79,7 @@ public class MemberControllerImpl implements MemberController {
 	public ModelAndView view_proFileInfo(@RequestParam("profileId") String id, HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
 		ModelAndView mav = new ModelAndView();
-		System.out.println(id);
 		MemberVO memberVO = memberService.searchMember(id);
-		System.out.println(memberVO.getName());
 		mav.addObject("profileId", memberVO);
 		String url = "/profileInfo";
 		mav.setViewName(url);
@@ -178,8 +176,8 @@ public class MemberControllerImpl implements MemberController {
 	}
 
 	// 프로필 수정
-	@RequestMapping(value = "/modProfile", method = RequestMethod.POST)
 	@ResponseBody
+	@RequestMapping(value = "/modProfile", method = RequestMethod.POST)
 	public ResponseEntity modProfile(MultipartHttpServletRequest multipartRequest, HttpServletResponse response)
 			throws Exception {
 		multipartRequest.setCharacterEncoding("utf-8");
@@ -239,10 +237,70 @@ public class MemberControllerImpl implements MemberController {
 		MemberVO vo = (MemberVO) session.getAttribute("member");
 		String id = vo.getId();
 		MemberVO memberVO = memberService.searchMember(id);
-		System.out.println(memberVO.getName());
 		mav.addObject("profileId", memberVO);
 		String url = "/myPageProfile";
 		mav.setViewName(url);
 		return mav;
+	}
+
+	// 회원정보 수정
+	@ResponseBody
+	@RequestMapping(value = "/updateInfo", method = RequestMethod.POST)
+	public ResponseEntity updateMember(@ModelAttribute("member") MemberVO memberVO, HttpServletRequest request,
+			HttpServletResponse response) throws UnsupportedEncodingException {
+		request.setCharacterEncoding("utf-8");
+		int result = 0;
+		result = memberService.modifyMember(memberVO);
+		String message;
+		ResponseEntity resEnt = null;
+		HttpHeaders responseHeaders = new HttpHeaders();
+		responseHeaders.add("Content-Type", "text/html; charset=utf-8");
+		if (result != 0) {
+			message = "<script>";
+			message += " alert('수정이 완료되었습니다.');";
+			message += " location.href='" + request.getContextPath() + "/view_myPageProfile'; ";
+			message += " </script>";
+			resEnt = new ResponseEntity(message, responseHeaders, HttpStatus.CREATED);
+		} else {
+
+			message = " <script>";
+			message += " alert('오류가 발생했습니다. 다시 시도해주세요.');');";
+			message += " location.href='" + request.getContextPath() + "/view_myPageProfile'; ";
+			message += " </script>";
+			resEnt = new ResponseEntity(message, responseHeaders, HttpStatus.CREATED);
+		}
+		return resEnt;
+	}
+
+	// 회원 탈퇴
+	@ResponseBody
+	@RequestMapping(value = "/dropMember", method = RequestMethod.GET)
+	public ResponseEntity dropMember(@RequestParam("id") String id, HttpServletRequest request,
+			HttpServletResponse response) throws UnsupportedEncodingException {
+		request.setCharacterEncoding("utf-8");
+		int result = 0;
+		result = memberService.dropMember(id);
+		String message;
+		ResponseEntity resEnt = null;
+		HttpHeaders responseHeaders = new HttpHeaders();
+		responseHeaders.add("Content-Type", "text/html; charset=utf-8");
+		if (result != 0) {
+			HttpSession session = request.getSession();
+			session.removeAttribute("member");
+			session.removeAttribute("isLogOn"); // 삭제하고 isLogOn과 member를 세션에서 삭제
+			message = "<script>";
+			message += " alert('회원탈퇴가 완료되었습니다.');";
+			message += " location.href='" + request.getContextPath() + "/'; ";
+			message += " </script>";
+			resEnt = new ResponseEntity(message, responseHeaders, HttpStatus.CREATED);
+		} else {
+
+			message = " <script>";
+			message += " alert('오류가 발생했습니다. 다시 시도해주세요.');');";
+			message += " location.href='" + request.getContextPath() + "/view_myPageProfile'; ";
+			message += " </script>";
+			resEnt = new ResponseEntity(message, responseHeaders, HttpStatus.CREATED);
+		}
+		return resEnt;
 	}
 }

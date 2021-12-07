@@ -217,7 +217,7 @@
 							세부 내용 : <br> <br>
 							<textarea name="pContents" rows="10" cols="20" id="p_pContents"
 								disabled
-								style="border: 1; width: 100%; background-color: #FFCC99; font-weight: 700; color: black;">${projectInfo.pContents}</textarea>
+								style="border: 1; width: 100%; background-color: #FFCC99; font-weight: 700; color: black; resize: none;">${projectInfo.pContents}</textarea>
 							<hr>
 
 							<!-- map (일단비워둠) -->

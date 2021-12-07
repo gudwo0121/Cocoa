@@ -136,7 +136,7 @@
 							세부 내용 : <br>
 							<textarea name="pContents" rows="10" cols="20"
 								placeholder="프로젝트 개요 및 포지션 별 자격요건을 써주세요."
-								style="border: 1; width: 100%;"></textarea>
+								style="border: 1; width: 100%; resize: none;"></textarea>
 							<hr>
 
 							<!-- map (일단비워둠) -->

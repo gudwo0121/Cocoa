@@ -127,8 +127,8 @@
 
 								<!-- 프로필 조회 이동 -->
 								<br> <br> <a
-									href="/cocoa/view_profileInfo?profileId=${coach.coach}">
-									<img name="proImg"
+									href="/cocoa/view_profileInfo?profileId=${coach.coach}"> <img
+									name="proImg"
 									src="${contextPath}/downProfileImg?id=${coach.coach}"
 									onerror="this.src='resources/image/kakao.png'"
 									style="border: 1px solid black;" width="50%" height="120px"><br>
@@ -144,7 +144,7 @@
 								<!-- 요청서 작성 -->
 								<br>
 								<c:if test="${isLogOn == true && member.id !=coach.coach}">
-									<a href="/cocoa/view_reqWriteForm"> <input type="button"
+									<a href="/cocoa/view_reqWriteForm?coachId=${coach.coach}"> <input type="button"
 										name="requestForm" value="   요청서 작성   "
 										class="btn btn-third-dark"
 										style="text-align: center; border: 1; border-radius: 12px; width: 70%;">
@@ -215,7 +215,7 @@
 							세부 내용 : <br> <br>
 							<textarea name="cContents" rows="10" cols="20" disabled
 								id="c_cContents"
-								style="border: 1; width: 100%; background-color: #FFCC99; font-weight: 700; color: black;">${coach.cContents}</textarea>
+								style="border: 1; width: 100%; background-color: #FFCC99; font-weight: 700; color: black; resize: none;">${coach.cContents}</textarea>
 							<hr>
 
 							<div align="center">
