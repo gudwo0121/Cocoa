@@ -67,15 +67,15 @@
 			<div class="collapse navbar-collapse" id="navbarSupportedContent">
 
 				<!-- 상단 가운데공간 지우면 안됌 -->
-				<ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
-				</ul>
+				<div class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4"></div>
 
 				<!-- 우측 상단 변경 -->
 				<c:choose>
 					<c:when test="${isLogOn == true && member != null}">
 						<form action="/cocoa/logout" method="get" class="d-flex">
 							<input name="My Page" class="btn btn-outline-dark" type="button"
-								value="My Page" onClick="location.href='/cocoa/view_myPageProfile'" /> <input
+								value="My Page"
+								onClick="location.href='/cocoa/view_myPageProfile'" />&nbsp; <input
 								name="logout" class="btn btn-outline-dark" type="submit"
 								value="logout" />
 						</form>
@@ -83,7 +83,7 @@
 					<c:otherwise>
 						<form action="/cocoa/view_login" method="get" class="d-flex">
 							<input name="login" class="btn btn-outline-dark" type="submit"
-								value="log in" /> <input name="join"
+								value="log in" />&nbsp; <input name="join"
 								class="btn btn-outline-dark" type="button" value="Sign in"
 								onClick="location.href='/cocoa/view_join'" />
 						</form>
@@ -122,7 +122,7 @@
 									<img name="proImg"
 									src="${contextPath}/downProfileImg?id=${projectInfo.leader }"
 									onerror="this.src='resources/image/kakao.png'"
-									style="border: 1px solid;" width="50%" height="120px"><br>
+									style="border: 1px solid black;" width="50%" height="120px"><br>
 									<br>
 								</a>
 

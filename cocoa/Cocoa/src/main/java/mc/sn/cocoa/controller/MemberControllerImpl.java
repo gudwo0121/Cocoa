@@ -233,8 +233,14 @@ public class MemberControllerImpl implements MemberController {
 	// 마이페이지 이동
 	@Override
 	@RequestMapping(value = "/view_myPageProfile", method = RequestMethod.GET)
-	public ModelAndView view_myPageProfile(HttpServletRequest request, HttpServletResponse response) {
+	public ModelAndView view_myPageProfile(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		ModelAndView mav = new ModelAndView();
+		HttpSession session = request.getSession();
+		MemberVO vo = (MemberVO) session.getAttribute("member");
+		String id = vo.getId();
+		MemberVO memberVO = memberService.searchMember(id);
+		System.out.println(memberVO.getName());
+		mav.addObject("profileId", memberVO);
 		String url = "/myPageProfile";
 		mav.setViewName(url);
 		return mav;

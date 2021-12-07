@@ -47,9 +47,19 @@
 * coachInfo 삭제 + projectInfo 수정 구현 완료 - 본인 검증 문제 해결 - UI에서 공간 벌어지는건 아직
 * c글작성 / p글작성 시 뜨는 좌측 프로필의 coach, leader를 member.id로 뜨게 구현
 * 본인이면 대화하기 / 요청서 작성 숨김 구현
-* profileInfo.jsp / myPageProfile.jsp 생성
+* profileInfo.jsp / myPageProfile.jsp 생성 = jsp:include로 생성
 * 앞의 coachInfo, projectInfo 처럼 수정 누르면 disabled가 풀리고 수정 가능한 형태로 구현
-* 수정시 타인 프로필 조회에선 반영되나, 마이페이지에서는 로그아웃했다가 다시 로그인해야 반영
+* 수정시 마이페이지에서는 로그아웃했다가 다시 로그인해야 반영 = 해결
+
+***
+
+21.12.7 추가
+
+* myPageInfo.jsp 생성
+* 마이페이지 회원정보 수정, 삭제 구현
+* 사이드바 클릭 이벤트 구현
+* loginForm.jsp / joinForm.jsp / 마이페이지 css 보완
+* home.jsp에서 코칭 / 프로젝트 클릭시 조건 조회 구현 = 카탈로그 부분은 쿼리문 필요할듯
 
 ***
 

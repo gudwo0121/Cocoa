@@ -46,13 +46,13 @@
 			<div class="collapse navbar-collapse" id="navbarSupportedContent">
 
 				<!-- 상단 가운데공간 지우면 안됌 -->
-				<ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
-				</ul>
+				<div class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4"></div>
 
 				<!-- 우측 상단 변경 -->
 				<form action="/cocoa/logout" method="get" class="d-flex">
 					<input name="My Page" class="btn btn-outline-dark" type="button"
-						value="My Page" onClick="location.href='/cocoa/view_myPageProfile'" /> <input
+						value="My Page"
+						onClick="location.href='/cocoa/view_myPageProfile'" />&nbsp; <input
 						name="logout" class="btn btn-outline-dark" type="submit"
 						value="logout" />
 				</form>
@@ -76,11 +76,9 @@
 								style="width: 80%; height: 100%; border: 2px solid; background-color: #FFCCCC;">
 
 								<!-- 프로필 조회 이동 -->
-								<br> <br> <a href="/cocoa/view_profileInfo"> <img
-									name="proImg" src="resources/image/kakao.png"
-									style="border: 1px solid;" width="50%" height="120px"><br>
-									<br>
-								</a>
+								<br> <br> <img name="proImg"
+									src="resources/image/kakao.png" style="border: 1px solid;"
+									width="50%" height="120px"><br> <br>
 
 								<!-- leader -->
 								<input type="text" name="leader" value="${member.id}" readonly

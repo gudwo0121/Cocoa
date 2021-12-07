@@ -41,4 +41,12 @@ public class HomeController {
 
 		return mav;
 	}
+
+	@RequestMapping(value = "/test", method = { RequestMethod.GET, RequestMethod.POST })
+	public ModelAndView test(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		ModelAndView mav = new ModelAndView();
+		String url = "/myPageProfile";
+		mav.setViewName(url);
+		return mav;
+	}
 }

@@ -9,6 +9,13 @@
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" />
 <link href="resources/css/styles.css" rel="stylesheet" />
+<style type="text/css">
+.side {
+	float: left;
+	width: 10%;
+	height: 900px;
+}
+</style>
 <script type="text/javascript" src="resources/js/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
 	function readURL(input) {
@@ -26,15 +33,55 @@
 				.append("<br>" + "<input type='file' name='file"+cnt+"' />");
 		cnt++;
 	}
+
+	$(document).ready(function() {
+		//기본 화면
+		$('#profilePage').show();
+		$('#myPageSent').hide();
+		$('#myPageGot').hide();
+		$('#myPageInfo').hide();
+
+		//프로필 버튼 클릭 시
+		$('#profile').click(function() {
+			$('#profilePage').show();
+			$('#myPageSent').hide();
+			$('#myPageGot').hide();
+			$('#myPageInfo').hide();
+		});
+
+		//보낸 요청 버튼 클릭 시
+		$('#sendReq').click(function() {
+			$('#profilePage').hide();
+			$('#myPageSent').show();
+			$('#myPageGot').hide();
+			$('#myPageInfo').hide();
+		});
+
+		//프로필 버튼 클릭 시
+		$('#receiveReq').click(function() {
+			$('#profilePage').hide();
+			$('#myPageSent').hide();
+			$('#myPageGot').show();
+			$('#myPageInfo').hide();
+		});
+
+		//회원정보 버튼 클릭 시
+		$('#memberInfo').click(function() {
+			$('#profilePage').hide();
+			$('#myPageSent').hide();
+			$('#myPageGot').hide();
+			$('#myPageInfo').show();
+		});
+	});
 </script>
 <title>CoCoa</title>
 </head>
-<body style="background-color: #FFEBCD">
+<body style="background-color: #FFEBCD; font-family: none;">
 
 	<!-- 상단바 -->
 	<nav class="navbar navbar-expand-lg" style="background-color: #663333;">
 
-		<div class="container px-4 px-lg-5">
+		<div class="container px-5 px-lg-5" style="max-width:1830px;">
 
 			<!-- 로고 -->
 			<a class="navbar-brand" href="/cocoa/"
@@ -42,31 +89,42 @@
 				onmouseover="this.style.color='black';"
 				onmouseout="this.style.color='#CFFFE5';"><b>CoCoa</b></a>
 
-			<div class="collapse navbar-collapse" id="navbarSupportedContent">
+			<div class="collapse navbar-collapse">
 
 				<!-- 상단 가운데공간 지우면 안됌 -->
-				<ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
-				</ul>
+				<div class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-6"></div>
 
 				<!-- 우측 상단 변경 -->
-				<form action="/cocoa/logout" method="get" class="d-flex">
+				<form action="/cocoa/logout" method="get">
 					<input name="My Page" class="btn btn-outline-dark" type="button"
-						value="My Page" onClick="location.href='/cocoa/view_myPageProfile'" /> <input
-						name="logout" class="btn btn-outline-dark" type="submit"
-						value="logout" />
+						value="My Page" style="background-color: white; color: black;"
+						onmouseover="this.style.color='white'; this.style.backgroundColor='black';"
+						onmouseout="this.style.color='black'; this.style.backgroundColor='white';"
+						onClick="location.href='/cocoa/view_myPageProfile'" /> <input
+						name="logout" class="btn btn-outline-dark"
+						style="background-color: white; color: black;"
+						onmouseover="this.style.color='white'; this.style.backgroundColor='black';"
+						onmouseout="this.style.color='black'; this.style.backgroundColor='white';"
+						type="submit" value="logout" />
 				</form>
 			</div>
 		</div>
 	</nav>
 
-	<div class="row">
+	<div class="row" style="flex-wrap: unset; width: 15%;">
 		<!-- 좌측 메뉴 jsp 호출 -->
-		<div class="col-sm-2">
+		<div class="side"
+			style="background-color: #333333; text-align: center;">
 			<jsp:include page="side.jsp"></jsp:include>
 		</div>
 		<!-- 내용 jsp 호출 -->
-		<div class="col-sm-10">
-			<jsp:include page="profile.jsp"></jsp:include>
+		<div class="col-sm-9">
+			<div id="profilePage"><jsp:include page="profile.jsp"></jsp:include></div>
+			<!-- 2개는 나중에 추가 -->
+			<div id="myPageSent"><jsp:include page="profile.jsp"></jsp:include></div>
+			<div id="myPageGot"><jsp:include page="profile.jsp"></jsp:include></div>
+			<!-- 2개는 나중에 추가 -->
+			<div id="myPageInfo"><jsp:include page="myPageInfo.jsp"></jsp:include></div>
 		</div>
 	</div>
 
