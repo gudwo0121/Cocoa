@@ -112,7 +112,7 @@
 							<br>
 							<b> 소개 및 경력 : </b><br>
 							<br>
-							<textarea name="proFile" rows="15" cols="20"
+							<textarea name="proFile" rows="15" cols="20" disabled
 								style="border: 1; width: 100%; background-color: #FFCC99;">${profileId.proContents}</textarea>
 							<br> <br>
 						</div>

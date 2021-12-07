@@ -15,4 +15,8 @@ public interface MemberDAO {
 	public MemberVO selectMemberById(String id) throws Exception;
 
 	public void updateProfile(Map profileMap) throws Exception;
+	
+	public int updateMember(MemberVO memberVO);
+	
+	public int deleteMember(String id);
 }

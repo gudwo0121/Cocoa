@@ -15,4 +15,8 @@ public interface MemberService {
 	public MemberVO searchMember(String id) throws Exception;
 
 	public void modProfile(Map profileMap) throws Exception;
+	
+	public int modifyMember(MemberVO member);
+	
+	public int dropMember(String id);
 }

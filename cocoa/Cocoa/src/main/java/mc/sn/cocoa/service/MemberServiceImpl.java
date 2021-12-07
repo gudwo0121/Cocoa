@@ -40,4 +40,18 @@ public class MemberServiceImpl implements MemberService {
 	public void modProfile(Map profileMap) throws Exception {
 		memberDAO.updateProfile(profileMap);
 	}
+	
+	@Override
+	public int modifyMember(MemberVO member) {
+		int result = 0;
+		result = memberDAO.updateMember(member);
+		return result;
+	}
+	
+	@Override
+	public int dropMember(String id) {
+		int result = 0;
+		result = memberDAO.deleteMember(id);
+		return result;
+	}
 }

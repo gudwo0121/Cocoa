@@ -66,7 +66,7 @@
 		</div>
 		<!-- 내용 jsp 호출 -->
 		<div class="col-sm-10">
-			<jsp:include page="profile.jsp"></jsp:include>
+			<jsp:include page="myPageInfo.jsp"></jsp:include>
 		</div>
 	</div>
 

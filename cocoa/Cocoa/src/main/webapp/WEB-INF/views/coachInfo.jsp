@@ -143,7 +143,7 @@
 								<!-- 요청서 작성 -->
 								<br>
 								<c:if test="${isLogOn == true && member.id !=coach.coach}">
-									<a href="/cocoa/view_reqWriteForm"> <input type="button"
+									<a href="/cocoa/view_reqWriteForm?coachId=${coach.coach}"> <input type="button"
 										name="requestForm" value="   요청서 작성   "
 										class="btn btn-third-dark"
 										style="text-align: center; border: 1; border-radius: 12px; width: 70%;">

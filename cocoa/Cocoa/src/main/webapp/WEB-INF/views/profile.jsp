@@ -61,8 +61,8 @@ request.setCharacterEncoding("UTF-8");
 
 								<!-- 프로필 이미지 -->
 								<br> <br> <input type="hidden" name="originalFileName"
-									value="${member.proImg }" /> <br> <img id="preview"
-									src="${contextPath}/downProfileImg?id=${member.id }"
+									value="${profileId.proImg }" /> <br> <img id="preview"
+									src="${contextPath}/downProfileImg?id=${profileId.id }"
 									style="border: 1px solid;" width="100%" height="200"
 									onerror="this.src='resources/image/sample.png'" /> <br> <br>
 								<label class="btn btn-outline-dark" for="proImg" id="proImgMod">대표
@@ -75,8 +75,8 @@ request.setCharacterEncoding("UTF-8");
 								 -->
 
 								<!-- name -->
-								<input type="hidden" name="id" value="${member.id}" /> <input
-									type="text" name="nickName" value="${member.name }" disabled
+								<input type="hidden" name="id" value="${profileId.id}" /> <input
+									type="text" name="nickName" value="${profileId.name }" disabled
 									style="text-align: center; border: 0; font-weight: 700; background-color: #FFCCCC; color: black;"><br>
 								<br>
 							</div>
@@ -92,7 +92,7 @@ request.setCharacterEncoding("UTF-8");
 							<!-- textarea 닫아주는거 붙여써야함 -->
 							<br> <b>소개 및 경력 :</b> <br> <br>
 							<textarea name="proContents" rows="30" cols="20" id="proContents"
-								disabled style="border: 1px solid; background-color: #FFCC99; width: 100%; color: black;">${member.proContents}</textarea>
+								disabled style="border: 1px solid; background-color: #FFCC99; width: 100%; color: black;">${profileId.proContents}</textarea>
 							<hr>
 						</div>
 
