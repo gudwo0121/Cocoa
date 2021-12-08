@@ -85,7 +85,7 @@
 		<div class="container px-4 px-lg-5">
 
 			<!-- 로고 -->
-			<a class="navbar-brand" href="/cocoa/"
+			<a class="navbar-brand" href="/cocoa/index"
 				style="color: #CFFFE5; font-size: 30px;"
 				onmouseover="this.style.color='black';"
 				onmouseout="this.style.color='#CFFFE5';"><b>CoCoa</b></a>
@@ -255,6 +255,25 @@
 		</div>
 		<!-- 위의 카탈로그 틀이 반복 생성 및 표시 -->
 	</section>
+
+	<!-- 쪽 번호 구간 -->
+	<div class="btn-group pagination">
+		<c:if test="${pageMaker.prev }">
+			<li><a
+				href='<c:url value="/index?page=${pageMaker.startPage-1 }"/>'><i
+					class="fa fa-chevron-left"></i></a></li>
+		</c:if>
+		<c:forEach begin="${pageMaker.startPage }" end="${pageMaker.endPage }"
+			var="pageNum">
+			<li><a href='<c:url value="/index?page=${pageNum }"/>'><i
+					class="fa">${pageNum }</i></a></li>
+		</c:forEach>
+		<c:if test="${pageMaker.next && pageMaker.endPage >0 }">
+			<li><a
+				href='<c:url value="/index?page=${pageMaker.endPage+1 }"/>'><i
+					class="fa fa-chevron-right"></i></a></li>
+		</c:if>
+	</div>
 
 	<!-- 하단바 (마지막에 추가) -->
 	<footer class="py-5 bg-dark">

@@ -31,10 +31,12 @@
 	</select>
 
 	<!-- 코치 글 전체 조회 -->
+	<!-- 해당 페이지의 게시글만 조회되도록 조건 추가 -->
 	<select id="selectAllCoachesList" resultMap="coachResult">
 		<![CDATA[
 			SELECT *
 			from coachingTBL
+			limit #{pageStart}, #{perPageNum}
 		]]>
 	</select>
 
@@ -68,5 +70,14 @@
       where coachNO = #{coachNO}
     ]]>
 	</delete>
+	
+	<!-- 코칭 글의 수 -->
+	<select id="countCoach" resultType="int"
+		parameterType="int">
+		<![CDATA[
+			SELECT count(*)
+			from coachingTBL
+		]]>
+	</select>
 
 </mapper>
