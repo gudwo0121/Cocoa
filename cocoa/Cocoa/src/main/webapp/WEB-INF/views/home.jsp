@@ -41,8 +41,9 @@
 							$('#middle').hide();
 							$('#high').hide();
 
-							// 코칭 카테고리 클릭시 [코칭 글]만 표시 = 쿼리문 필요할듯
-							
+							// 코칭 카테고리 클릭시 [코칭 글]만 표시
+							$('#coachCate').show();
+							$('#proCate').hide();
 						});
 
 				$('#project').click(
@@ -67,13 +68,12 @@
 							$('#middle').show();
 							$('#high').show();
 
-							// 프로젝트 카테고리 클릭시 [프로젝트 글]만 표시 = 쿼리문 필요할듯
-
+							// 프로젝트 카테고리 클릭시 [프로젝트 글]만 표시
+							$('#proCate').show();
+							$('#coachCate').hide();
 						});
-				
-				// 각 세부 cate에 대해 click 이벤트 필요 (배경색) 
-			
-						
+
+				// 각 세부 cate에 대해 click 이벤트 필요 (배경색)
 			});
 </script>
 </head>
@@ -93,15 +93,15 @@
 			<div class="collapse navbar-collapse" id="navbarSupportedContent">
 
 				<!-- 상단 가운데공간 지우면 안됌 -->
-				<ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
-				</ul>
+				<div class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4"></div>
 
 				<!-- 우측 상단 변경 -->
 				<c:choose>
 					<c:when test="${isLogOn == true && member != null}">
 						<form action="/cocoa/logout" method="get" class="d-flex">
 							<input name="My Page" class="btn btn-outline-dark" type="button"
-								value="My Page" onClick="location.href='/cocoa/view_myPageProfile'" /> <input
+								value="My Page"
+								onClick="location.href='/cocoa/view_myPageProfile'" />&nbsp;<input
 								name="logout" class="btn btn-outline-dark" type="submit"
 								value="logout" />
 						</form>
@@ -109,7 +109,7 @@
 					<c:otherwise>
 						<form action="/cocoa/view_login" method="get" class="d-flex">
 							<input name="login" class="btn btn-outline-dark" type="submit"
-								value="log in" /> <input name="join"
+								value="log in" />&nbsp; <input name="join"
 								class="btn btn-outline-dark" type="button" value="Sign in"
 								onClick="location.href='/cocoa/view_join'" />
 						</form>
@@ -172,11 +172,11 @@
 				<!-- 반복문 시작 컨트롤러에서 addObject한 projectList를 가져와서 project라고 저장 -->
 				<c:forEach var="project" items="${projectList}">
 					<!-- 카탈로그 틀 -->
-					<div class="col mb-5" >
+					<div class="col mb-5" id="proCate">
 						<div class="card h-100">
 							<!-- 난이도 표시 -->
 							<div class="badge bg-dark text-white position-absolute"
-								style="top: 0.5rem; right: 0.5rem"  >${project.level}</div>
+								style="top: 0.5rem; right: 0.5rem">${project.level}</div>
 
 							<!-- 간판 이미지 (src=경로) thumbnails로 보내면서 쿼리스트링을 사용 -->
 							<img class="card-img-top" alt="" height=200
@@ -212,7 +212,7 @@
 				<c:forEach var="coach" items="${coachesList}">
 
 					<!-- 카탈로그 틀 -->
-					<div class="col mb-5">
+					<div class="col mb-5" id="coachCate">
 						<div class="card h-100">
 
 							<!-- 언어 표시 -->

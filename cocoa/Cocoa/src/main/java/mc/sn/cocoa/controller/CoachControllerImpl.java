@@ -270,6 +270,4 @@ public class CoachControllerImpl implements CoachController {
 		}
 		return resEnt;
 	}
-	
-	
 }

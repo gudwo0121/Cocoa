@@ -3038,6 +3038,16 @@ textarea.form-control-lg {
   background-color: #000;
   border-color: #000;
 }
+.btn-side {
+  color: #000;
+  background-color: #fff;
+  border-color: #000;
+}
+.btn-side:hover {
+  color: #fff;
+  background-color: #000;
+  border-color: #000;
+}
 .btn-check:focus + .btn-primary, .btn-primary:focus {
   color: #fff;
   background-color: #0b5ed7;

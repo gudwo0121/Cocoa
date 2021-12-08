@@ -5,7 +5,7 @@ import java.util.Map;
 import mc.sn.cocoa.vo.MemberVO;
 
 public interface MemberDAO {
-	
+
 	public int insertMember(MemberVO memberVO);
 
 	public MemberVO loginById(MemberVO memberVO);
@@ -15,8 +15,8 @@ public interface MemberDAO {
 	public MemberVO selectMemberById(String id) throws Exception;
 
 	public void updateProfile(Map profileMap) throws Exception;
-	
+
 	public int updateMember(MemberVO memberVO);
-	
+
 	public int deleteMember(String id);
 }

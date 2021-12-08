@@ -84,7 +84,8 @@
 					<c:when test="${isLogOn == true && member != null}">
 						<form action="/cocoa/logout" method="get" class="d-flex">
 							<input name="My Page" class="btn btn-outline-dark" type="button"
-								value="My Page" onClick="location.href='/cocoa/view_myPageProfile'" /> <input
+								value="My Page"
+								onClick="location.href='/cocoa/view_myPageProfile'" />&nbsp; <input
 								name="logout" class="btn btn-outline-dark" type="submit"
 								value="logout" />
 						</form>
@@ -92,7 +93,7 @@
 					<c:otherwise>
 						<form action="/cocoa/view_login" method="get" class="d-flex">
 							<input name="login" class="btn btn-outline-dark" type="submit"
-								value="log in" /> <input name="join"
+								value="log in" />&nbsp; <input name="join"
 								class="btn btn-outline-dark" type="button" value="Sign in"
 								onClick="location.href='/cocoa/view_join'" />
 						</form>
@@ -126,11 +127,11 @@
 
 								<!-- 프로필 조회 이동 -->
 								<br> <br> <a
-									href="/cocoa/view_profileInfo?profileId=${coach.coach}">
-									<img name="proImg"
+									href="/cocoa/view_profileInfo?profileId=${coach.coach}"> <img
+									name="proImg"
 									src="${contextPath}/downProfileImg?id=${coach.coach}"
 									onerror="this.src='resources/image/kakao.png'"
-									style="border: 1px solid;" width="50%" height="120px"><br>
+									style="border: 1px solid black;" width="50%" height="120px"><br>
 									<br>
 								</a>
 
@@ -143,6 +144,7 @@
 								<!-- 요청서 작성 -->
 								<br>
 								<c:if test="${isLogOn == true && member.id !=coach.coach}">
+								<!-- 요청서 작성 선택시 해당 코치의 id를 컨트롤러로 쿼리스트링으로 보냄 get방식 -->
 									<a href="/cocoa/view_reqWriteForm?coachId=${coach.coach}"> <input type="button"
 										name="requestForm" value="   요청서 작성   "
 										class="btn btn-third-dark"
@@ -214,7 +216,7 @@
 							세부 내용 : <br> <br>
 							<textarea name="cContents" rows="10" cols="20" disabled
 								id="c_cContents"
-								style="border: 1; width: 100%; background-color: #FFCC99; font-weight: 700; color: black;">${coach.cContents}</textarea>
+								style="border: 1; width: 100%; background-color: #FFCC99; font-weight: 700; color: black; resize: none;">${coach.cContents}</textarea>
 							<hr>
 
 							<div align="center">

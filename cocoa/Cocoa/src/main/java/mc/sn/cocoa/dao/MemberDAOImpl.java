@@ -42,14 +42,14 @@ public class MemberDAOImpl implements MemberDAO {
 	public void updateProfile(Map profileMap) throws Exception {
 		sqlSession.update("mapper.member.updateProfile", profileMap);
 	}
-	
+
 	@Override
 	public int updateMember(MemberVO memberVO) {
 		int result = 0;
 		result = sqlSession.update("mapper.member.updateMember", memberVO);
 		return result;
 	}
-	
+
 	@Override
 	public int deleteMember(String id) {
 		int result = 0;

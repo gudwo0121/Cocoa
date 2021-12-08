@@ -22,71 +22,96 @@
 <link href="resources/css/join-styles.css" rel="stylesheet" />
 <script type="text/javascript" src="resources/js/ajax.js"></script>
 <script type="text/javascript">
-	function yesOrNo(){
-        if (confirm("탈퇴하시겠습니까?")) {
-        	location.href='/cocoa/dropMember?id=${member.id }'// Yes click
-        } else {
-            // no click
+	function yesOrNo() {
+		if (confirm("탈퇴하시겠습니까?")) {
+			location.href = '/cocoa/dropMember?id=${member.id }'// Yes click
+		} else {
+			// no click
 		}
 	}
 </script>
-<title>회원정보 수정</title>
+<title>CoCoa</title>
 </head>
 <body>
-	<div class="container">
+	<div class="container"
+		style="text-align: center; padding-top: 90px; padding-left: 400px; width: 100%;">
+		<div class="card mt-3 px-2 pt-3 pb-3 mb-3"
+			style="width: 600px; height: 450px; background-color: #FFCC99; border: 1px solid black;">
 
-		<div class="card mt-3 px-2 pt-3 pb-3 mb-3" style="width: 500px;">
-			<h3 class="mb-2">회원정보 수정</h3>
+			<h5 class="mb-2">
+				<b>회 원 정 보</b>
+			</h5>
+			<br>
 			<form action="${contextPath}/updateInfo" method="post">
-				<table style="width: 100%;">
-					<tr>
-						<td><div class="fone">
-								<i class="fas fa-id-card"></i> <input type="text" name="id"
-									id="id" class="form-control" value=${member.id } readonly>
-							</div></td>
-					</tr>
-					<tr>
-						<td><div class="fone mt-2">
-								<i class="fas fa-lock"></i> <input type="password" name="pwd"
-									class="form-control" id="pwd1" placeholder="비밀번호(Password)">
-							</div></td>
-					</tr>
-					<tr>
-						<td><div class="fone mt-2">
-								<input type="password" class="form-control" id="pwd2"
-									placeholder="비밀번호 확인(Password Check)">
-							</div></td>
-					</tr>
+				<table
+					style="width: 70%; background-color: #FFCC99; margin: 0 auto; color: black;">
 					<tr>
 						<td>
-							<div class="ml-3">
-								<span id="alert-success" style="display: none;">비밀번호가일치합니다.</span>
-								<span id="alert-danger"
-									style="display: none; color: #d92742; font-weight: bold;">비밀번호가
-									일치하지 않습니다.</span>
+							<div class="fone">
+								<i class="fas fa-id-card"
+									style="color: black; padding-left: 10px;"></i> <input
+									type="text" name="id" id="id" class="form-control"
+									style="border: 1px solid grey; padding-left: 30px; font-weight: 700; color: black;"
+									value=${member.id } readonly>
 							</div>
 						</td>
 					</tr>
 					<tr>
-						<td><div class="fone mt-2">
-								<i class="fas fa-user"></i> <input type="text" name="name"
-									id="name" class="form-control"
-									placeholder="이름(Name) 또는 별명(Nickname)">
-							</div></td>
-					</tr>
-					<tr>
-						<td><div class="fone mt-2">
-								<i class="fas fa-phone"></i> <input type="text" name="phone"
-									id="phone" class="form-control"
-									placeholder="전화번호(Phone Number)">
-							</div></td>
-					</tr>
-					<tr>
-						<td align="center"><button type="submit"
-								 class="btn btn-success mt-5">수정하기</button>
-						<input type="button" id="" class="btn btn-success mt-5" value="탈퇴하기" onClick="yesOrNo()">
+						<td>
+							<div class="fone mt-2">
+								<i class="fas fa-lock" style="color: black; padding-left: 10px;"></i>
+								<input type="password" name="pwd" class="form-control" id="pwd1"
+									style="border: 1px solid grey; padding-left: 30px; color: black;"
+									placeholder="비밀번호(Password)">
+							</div>
 						</td>
-						
+					</tr>
+					<tr>
+						<td>
+							<div class="fone mt-2">
+								<i class="fas fa-lock" style="color: black; padding-left: 10px;"></i><input
+									type="password" class="form-control" id="pwd2"
+									style="border: 1px solid grey; padding-left: 30px; color: black;"
+									placeholder="비밀번호 확인(Password Check)">
+							</div>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<div class="ml-3" style="float: left;">
+								<span id="alert-success" style="display: none; font-size: 13px;"><b>비밀번호가
+										일치합니다.</b></span> <span id="alert-danger"
+									style="display: none; color: #d92742; font-size: 13px;"><b>비밀번호가
+										일치하지 않습니다.</b></span>
+							</div>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<div class="fone mt-2">
+								<i class="fas fa-user" style="color: black; padding-left: 10px;"></i>
+								<input type="text" name="name" id="name" class="form-control"
+									style="border: 1px solid grey; padding-left: 30px; color: black;"
+									placeholder="이름(Name) 또는 닉네임(Nickname)">
+							</div>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<div class="fone mt-2">
+								<i class="fas fa-phone"
+									style="color: black; padding-left: 10px;"></i> <input
+									type="text" name="phone" id="phone" class="form-control"
+									style="border: 1px solid grey; padding-left: 30px; color: black;"
+									placeholder="전화번호(Phone Number)">
+							</div>
+						</td>
+					</tr>
+					<tr>
+						<td align="center"><button type="submit" id="modInfo"
+								class="btn btn-success mt-5">수정하기</button> <input type="button"
+							id="delInfo" class="btn btn-success mt-5" value="탈퇴하기"
+							onClick="yesOrNo()"></td>
 					</tr>
 				</table>
 			</form>
