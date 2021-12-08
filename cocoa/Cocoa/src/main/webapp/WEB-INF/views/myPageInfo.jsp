@@ -33,18 +33,18 @@
 <title>CoCoa</title>
 </head>
 <body>
-	<div class="container"
-		style="text-align: center; padding-top: 90px; padding-left: 400px; width: 100%;">
-		<div class="card mt-3 px-2 pt-3 pb-3 mb-3"
-			style="width: 600px; height: 450px; background-color: #FFCC99; border: 1px solid black;">
 
-			<h5 class="mb-2">
-				<b>회 원 정 보</b>
-			</h5>
-			<br>
-			<form action="${contextPath}/updateInfo" method="post">
+	<div class="row" style="width: 80vw;">
+		<div class="card rcol my-5"
+			style="background-color: #FFEBCD; border: none; padding-top: 5%;">
+			<form action="${contextPath}/updateInfo" method="post"
+				style="border: 1px solid black; background-color: #FFCC99;">
 				<table
-					style="width: 70%; background-color: #FFCC99; margin: 0 auto; color: black;">
+					style="width: 90%; background-color: #FFCC99; margin: 0 auto; color: black;">
+					<tr>
+						<th style="font-size: 20px; text-align: center;"><b>회 원 정
+								보</b><br></th>
+					</tr>
 					<tr>
 						<td>
 							<div class="fone">
@@ -108,14 +108,17 @@
 						</td>
 					</tr>
 					<tr>
-						<td align="center"><button type="submit" id="modInfo"
-								class="btn btn-success mt-5">수정하기</button> <input type="button"
-							id="delInfo" class="btn btn-success mt-5" value="탈퇴하기"
-							onClick="yesOrNo()"></td>
+						<td align="center"
+							style="padding-top: 20px; padding-bottom: 20px;">
+							<button type="submit" id="modInfo" class="btn btn-success">수정하기</button>
+							<input type="button" id="delInfo" class="btn btn-success"
+							value="탈퇴하기" onClick="yesOrNo()">
+						</td>
 					</tr>
 				</table>
 			</form>
 		</div>
 	</div>
+
 </body>
 </html>

@@ -15,9 +15,30 @@ th, td {
 	padding: 10px;
 }
 </style>
+<script type="text/javascript">
+	// 사진 미리보기 설정
+	function readURL(input) {
+
+		if (input.files && input.files[0]) {
+
+			var reader = new FileReader();
+			reader.onload = function(e) {
+				$('#preview').attr('src', e.target.result);
+			}
+			reader.readAsDataURL(input.files[0]);
+		}
+	}
+
+	var cnt = 1;
+	function fn_addFile() {
+		$("#d_file")
+				.append("<br>" + "<input type='file' name='file"+cnt+"' />");
+		cnt++;
+	}
+</script>
 <title>CoCoa</title>
 </head>
-<body style="background-color: #FFEBCD">
+<body style="background-color: #FFEBCD;">
 
 	<!-- 상단바 -->
 	<nav class="navbar navbar-expand-lg" style="background-color: #663333;">
@@ -50,47 +71,60 @@ th, td {
 	<!-- 요청서 작성바 -->
 	<div class="card rcol my-4"
 		style="margin: 0 auto; width: 60%; background-color: #FFEBCD; border: none;">
-		<form action="" method="post">
-			<table style="width: 80%; margin: 0 auto; border: 1px solid grey;">
+		<form name="coachWriteForm" action="${contextPath}/requestWrite"
+			enctype="multipart/form-data" method="post">
+			<table
+				style="width: 80%; margin: 0 auto; border: 1px solid grey; background-color: #FFCC99;">
 				<tr>
-					<th colspan="2" style="text-align: center; font-size: 20px;">요청서
-						작성</th>
+					<!-- 요청성 작성할 때 코치의 id가 있으면 좋을거 같아서 to.${res}로 나타냄 -->
+					<th colspan="2" style="text-align: center; font-size: 20px;">${res}
+						코치에게 요청서 작성</th>
+
+					<!-- form을 submit 할 때 요청자의 아이디(${member.id})와 
+					응답하는 코치(${res})의 아이디가 있어야해서 hidden으로 함 -->
+					<td><input type="hidden" name="res" value="${res}" /> <input
+						type="hidden" name="req" value="${member.id}" /></td>
 				</tr>
+
+				<!-- rTitle -->
 				<tr>
 					<td style="text-align: center; width: 15%;"><b>제 목</b></td>
-					<td style=""><input type="text" id="" name=""
-						class="form-control" style="width:95%;" placeholder="코칭 받고 싶은 내용의 제목을 적어주세요."></td>
+					<td style=""><input type="text" id="" name="rTitle"
+						class="form-control" style="width: 95%; border: 1px solid;"
+						placeholder="에러의 유형을 제목으로 적어주세요."></td>
 				</tr>
-				<tr>
-					<td style="text-align: center;"><b>개발환경</b></td>
-					<td><input type="text" id="" name="" class="form-control" style="width:95%;"
-						placeholder="현재 사용하고 있는 개발 환경을 적어주세요.(예 : Eclipse, STS, Oracle 등)"></td>
-				</tr>
+
+				<!-- rContents -->
 				<tr>
 					<td style="text-align: center; vertical-align: top;" class="pt-1"><br>
 						<b>내 용</b></td>
 					<td style="text-align: left; vertical-align: top;"><textarea
-							rows="10" cols="20" class="form-control"  id="" name=""
-							placeholder="코칭 받고 싶은 내용을 최대한 자세하게 적어주세요."
-							style="width: 95%; resize: none;"></textarea></td>
+							rows="10" cols="20" class="form-control" id="" name="rContents"
+							placeholder="현재 본인의 개발환경과 에러 내용을 최대한 자세하게 적어주세요."
+							style="width: 95%; resize: none; border: 1px solid;"></textarea></td>
 				</tr>
+
+				<!-- rImg -->
 				<tr>
 					<td style="text-align: center;"><b>파일첨부</b></td>
 					<td><label class="btn btn-outline-dark" for="file">
-							찾아보기 </label><input type="file" id="file" name=""
+							찾아보기 </label><input type="file" id="file" name="rImg"
 						onchange="readURL(this);" style="display: none;" /></td>
 				</tr>
+
+				<!-- 사진 미리보기 -->
 				<tr>
-					<!-- 사진 미리보기 -->
 					<td style="text-align: center;"></td>
 					<td><img id="preview" src="resources/image/sample.png"
 						width=95% height=300 style="border: 1px solid;" /></td>
 				</tr>
+
+				<!-- submit, 취소 -->
 				<tr>
 					<td align="center" colspan="2"><br> <input type="submit"
 						id="" class="btn btn-outline-dark" value="요 청" />&nbsp;&nbsp;&nbsp;<input
-						type="button" id="cancel" onclick="history.go(0)"
-						class="btn btn-outline-dark" value="취 소" /><br><br></td>
+						type="button" id="cancel" onclick="history.go(-1)"
+						class="btn btn-outline-dark" value="취 소" /><br> <br></td>
 				</tr>
 			</table>
 		</form>

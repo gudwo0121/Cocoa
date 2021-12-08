@@ -81,7 +81,7 @@
 	<!-- 상단바 -->
 	<nav class="navbar navbar-expand-lg" style="background-color: #663333;">
 
-		<div class="container px-5 px-lg-5" style="max-width:1830px;">
+		<div class="container px-5 px-lg-5" style="max-width: 1830px;">
 
 			<!-- 로고 -->
 			<a class="navbar-brand" href="/cocoa/"
@@ -120,10 +120,8 @@
 		<!-- 내용 jsp 호출 -->
 		<div class="col-sm-9">
 			<div id="profilePage"><jsp:include page="profile.jsp"></jsp:include></div>
-			<!-- 2개는 나중에 추가 -->
-			<div id="myPageSent"><jsp:include page="profile.jsp"></jsp:include></div>
-			<div id="myPageGot"><jsp:include page="profile.jsp"></jsp:include></div>
-			<!-- 2개는 나중에 추가 -->
+			<div id="myPageSent"><jsp:include page="sentReqWait.jsp"></jsp:include></div>
+			<div id="myPageGot"><jsp:include page="gotReqWait.jsp"></jsp:include></div>
 			<div id="myPageInfo"><jsp:include page="myPageInfo.jsp"></jsp:include></div>
 		</div>
 	</div>
