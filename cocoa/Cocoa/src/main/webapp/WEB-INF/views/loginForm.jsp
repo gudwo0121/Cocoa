@@ -20,7 +20,7 @@
 	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css"
 	rel="stylesheet" />
 <link href="resources/css/login-styles.css" rel="stylesheet" />
-<title>Sign In</title>
+<title>CoCoa</title>
 <c:choose>
 	<c:when test="${result=='loginFailed'}">
 		<script>
@@ -39,18 +39,26 @@
 				<h2 class="heading mt-5 mb-4" align="center">
 					<a href="/cocoa">CoCoa</a>
 				</h2>
-				<h3 class="mb-2">로그인</h3>
+				<h5 class="mb-2">
+					<b>로그인</b>
+				</h5>
 
 				<div class="fone mt-3">
-					<i class="fas fa-id-card"></i> <input type="text" name="id"
-						class="form-control ml-3" placeholder="ID">
+					<i class="fas fa-id-card"
+						style="color: black; padding-left: 10px; padding-top: 4px;"></i> <input
+						type="text" name="id" class="form-control"
+						style="padding-left: 50px;" placeholder="ID">
 				</div>
 				<div class="fone mt-5">
-					<i class="fas fa-lock"></i> <input type="password" name="pwd"
-						class="form-control ml-3" placeholder="Password">
+					<i class="fas fa-lock"
+						style="color: black; padding-left: 10px; padding-top: 4px;"></i> <input
+						type="password" name="pwd" class="form-control"
+						style="padding-left: 50px;" placeholder="Password">
 				</div>
-				<button type="submit" class="btn btn-success mt-5">Log In</button>
+				<button type="submit" class="btn btn-success mt-5"
+					style="margin: 0 auto; width: 50%;">Log In</button>
 
+				<br>
 				<p class="exist mt-2">
 					Don't have an account? <a class="warning" href="view_join">Register</a>
 				</p>

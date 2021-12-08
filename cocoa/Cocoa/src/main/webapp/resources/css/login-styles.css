@@ -140,11 +140,11 @@ h2.heading {
 }
 
 .btn-success {
-    padding: 7px 40px;
-    background: #11C892;
-    border: none;
-    border-radius: 30px;
-    font-size: 15px
+	padding: 7px 40px;
+	background: rgb(128, 64, 64);
+	border: none;
+	border-radius: 30px;
+	font-size: 13px
 }
 
 .btn-success:hover {
