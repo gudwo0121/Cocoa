@@ -66,3 +66,13 @@
 
 ***
 
+21.12.8 추가
+
+* requestTBL 테이블 생성 = req res FK 없애고, reqNO PK로 추가
+* reqWriteForm.jsp / myPageSent.jsp / myPageGot.jsp 생성
+* 요청서 작성 구현
+* 보낸 요청, 받은 요청 조회 구현 = myPageProfile로 정보 전달 방식
+* home.jsp 페이징 구현 = 코칭만 가능, 아직 조건 조회가 없어서 뒤섞이는 문제 = Criteria, PageMaker VO로 작성
+
+***
+

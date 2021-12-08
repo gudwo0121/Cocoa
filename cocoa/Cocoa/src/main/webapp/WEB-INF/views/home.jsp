@@ -15,9 +15,9 @@
 	$(document).ready(
 			function() {
 
-				$('#low').hide();
-				$('#middle').hide();
-				$('#high').hide();
+				$('#C').hide();
+				$('#Java').hide();
+				$('#Python').hide();
 
 				$('#coaching').click(
 						function() {
@@ -85,7 +85,7 @@
 		<div class="container px-4 px-lg-5">
 
 			<!-- 로고 -->
-			<a class="navbar-brand" href="/cocoa/"
+			<a class="navbar-brand" href="/cocoa/index"
 				style="color: #CFFFE5; font-size: 30px;"
 				onmouseover="this.style.color='black';"
 				onmouseout="this.style.color='#CFFFE5';"><b>CoCoa</b></a>
@@ -125,8 +125,8 @@
 
 			<!-- 코칭 / 프로젝트 cate -->
 			<div class="d-grid gap-3 d-sm-flex justify-content-sm-center">
-				<a id="coaching" class="btn btn-primary btn-lg px-4 me-sm-3">Coaching</a>
 				<a id="project" class="btn btn-primary btn-lg px-4 me-sm-3">Project</a>
+				<a id="coaching" class="btn btn-primary btn-lg px-4 me-sm-3">Coaching</a>
 			</div>
 			<br>
 
@@ -255,6 +255,26 @@
 		</div>
 		<!-- 위의 카탈로그 틀이 반복 생성 및 표시 -->
 	</section>
+
+	<!-- 쪽 번호 구간 -->
+	<div style="margin: 0 auto; font-size: 30px;">
+
+		<c:if test="${pageMaker.prev }">
+			<a href='<c:url value="/index?page=${pageMaker.startPage-1 }"/>'><i
+				class=""></i></a>
+		</c:if>
+
+		<c:forEach begin="${pageMaker.startPage }" end="${pageMaker.endPage }"
+			var="pageNum">
+			<a href='<c:url value="/index?page=${pageNum }"/>'><i class="">${pageNum }</i></a>
+		</c:forEach>
+
+		<c:if test="${pageMaker.next && pageMaker.endPage >0 }">
+			<a href='<c:url value="/index?page=${pageMaker.endPage+1 }"/>'><i
+				class=""></i></a>
+		</c:if>
+
+	</div>
 
 	<!-- 하단바 (마지막에 추가) -->
 	<footer class="py-5 bg-dark">

@@ -102,7 +102,7 @@ request.setCharacterEncoding("UTF-8");
 					<!-- 작성(submit) + 취소(버튼) -->
 					<div class="card-body" style="text-align: center">
 						<input type="submit" id="mod_profile" class="btn btn-outline-dark"
-							value="수정 확인" /> <a href="/cocoa" id="mod_start"
+							value="수정 확인" /> <a href="/cocoa/" id="mod_start"
 							class="btn btn-outline-dark">수정하기</a> &nbsp; <input type="button"
 							id="cancel" value="취소" onclick="history.go(0)"
 							class="btn btn-outline-dark">

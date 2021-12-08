@@ -84,7 +84,7 @@
 		<div class="container px-5 px-lg-5" style="max-width: 1830px;">
 
 			<!-- 로고 -->
-			<a class="navbar-brand" href="/cocoa/"
+			<a class="navbar-brand" href="/cocoa/index"
 				style="color: #CFFFE5; font-size: 30px;"
 				onmouseover="this.style.color='black';"
 				onmouseout="this.style.color='#CFFFE5';"><b>CoCoa</b></a>
@@ -120,8 +120,8 @@
 		<!-- 내용 jsp 호출 -->
 		<div class="col-sm-9">
 			<div id="profilePage"><jsp:include page="profile.jsp"></jsp:include></div>
-			<div id="myPageSent"><jsp:include page="sentReqWait.jsp"></jsp:include></div>
-			<div id="myPageGot"><jsp:include page="gotReqWait.jsp"></jsp:include></div>
+			<div id="myPageSent"><jsp:include page="myPageSent.jsp"></jsp:include></div>
+			<div id="myPageGot"><jsp:include page="myPageGot.jsp"></jsp:include></div>
 			<div id="myPageInfo"><jsp:include page="myPageInfo.jsp"></jsp:include></div>
 		</div>
 	</div>

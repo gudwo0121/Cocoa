@@ -16,6 +16,27 @@ th, td {
 	color: black;
 }
 </style>
+<script type="text/javascript">
+	// 사진 미리보기 설정
+	function readURL(input) {
+
+		if (input.files && input.files[0]) {
+
+			var reader = new FileReader();
+			reader.onload = function(e) {
+				$('#preview').attr('src', e.target.result);
+			}
+			reader.readAsDataURL(input.files[0]);
+		}
+	}
+
+	var cnt = 1;
+	function fn_addFile() {
+		$("#d_file")
+				.append("<br>" + "<input type='file' name='file"+cnt+"' />");
+		cnt++;
+	}
+</script>
 <title>CoCoa</title>
 </head>
 <body style="background-color: #FFEBCD">
@@ -30,44 +51,62 @@ th, td {
 					<th colspan="2"
 						style="vertical-align: middle; text-align: center; font-size: 20px;">요청서</th>
 				</tr>
+
+				<!-- rTitle -->
 				<tr>
-					<!-- rTitle -->
 					<td style="text-align: center; width: 15%;"><b>제 목</b></td>
-					<td style=""><input type="text" id="rTitle" name="rTitle"
+					<td style=""><input type="text" id="" name="rTitle"
 						class="form-control"
 						style="width: 95%; background-color: #FFCC99; border: 1px solid grey; color: black;"></td>
 				</tr>
-				<tr>
-					<td style="text-align: center;"><b>개발환경</b></td>
-					<td><input type="text" id="r" name="" class="form-control"
-						style="width: 95%; background-color: #FFCC99; border: 1px solid grey; color: black;"></td>
-				</tr>
+
+				<!-- rContents -->
 				<tr>
 					<td style="text-align: center; vertical-align: top;" class="pt-1"><br>
 						<b>내 용</b></td>
 					<td style="text-align: left; vertical-align: top;"><textarea
-							rows="10" cols="20" class="form-control" id="" name=""
+							rows="10" cols="20" class="form-control" id="" name="rContents"
 							style="width: 95%; resize: none; background-color: #FFCC99; border: 1px solid grey; color: black;"></textarea></td>
 				</tr>
+
+				<!-- rImg -->
 				<tr>
 					<td style="text-align: center;"><b>파일첨부</b></td>
 					<td style="text-align: left;"><label
-						class="btn btn-outline-dark" for="file"> 찾아보기 </label><input
-						type="file" id="file" name="" onchange="readURL(this);"
-						style="display: none;" /></td>
+						class="btn btn-outline-dark"
+						style="background-color: white; color: black;"
+						onmouseover="this.style.color='white'; this.style.backgroundColor='black';"
+						onmouseout="this.style.color='black'; this.style.backgroundColor='white';"
+						for="file"> 찾아보기 </label><input type="file" id="file" name="rImg"
+						onchange="readURL(this);" style="display: none;" /></td>
 				</tr>
+
+				<!-- 사진 미리보기 (이거 안됌, 이름 충돌?) -->
 				<tr>
-					<!-- 사진 미리보기 -->
 					<td style="text-align: center;"></td>
 					<td style="text-align: left;"><img id="preview"
 						src="resources/image/sample.png" width=95% height=200
 						style="border: 1px solid;" /></td>
 				</tr>
+
+				<!-- 수정, 철회, 목록으로 -->
 				<tr>
-					<td align="center" colspan="2"><br> <input type="submit"
-						id="" class="btn btn-outline-dark" value="요 청" />&nbsp;&nbsp;&nbsp;<input
-						type="button" id="cancel" onclick="history.go(0)"
-						class="btn btn-outline-dark" value="취 소" /><br> <br></td>
+					<td align="center" colspan="2"><br> <input type="button"
+						id="" class="btn btn-outline-dark"
+						style="background-color: white; color: black;"
+						onmouseover="this.style.color='white'; this.style.backgroundColor='black';"
+						onmouseout="this.style.color='black'; this.style.backgroundColor='white';"
+						value="수 정" />&nbsp;&nbsp;&nbsp; <input type="button" id=""
+						class="btn btn-outline-dark"
+						style="background-color: white; color: black;"
+						onmouseover="this.style.color='white'; this.style.backgroundColor='black';"
+						onmouseout="this.style.color='black'; this.style.backgroundColor='white';"
+						value="철 회" />&nbsp;&nbsp;&nbsp; <input type="button" id=""
+						class="btn btn-outline-dark"
+						style="background-color: white; color: black;"
+						onmouseover="this.style.color='white'; this.style.backgroundColor='black';"
+						onmouseout="this.style.color='black'; this.style.backgroundColor='white';"
+						value="목록으로" onclick="history.go(0)" /> <br> <br></td>
 				</tr>
 			</table>
 		</form>
