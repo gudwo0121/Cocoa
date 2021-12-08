@@ -57,7 +57,7 @@
 			$('#myPageInfo').hide();
 		});
 
-		//프로필 버튼 클릭 시
+		//받은 요청 클릭 시
 		$('#receiveReq').click(function() {
 			$('#profilePage').hide();
 			$('#myPageSent').hide();
@@ -121,8 +121,8 @@
 		<div class="col-sm-9">
 			<div id="profilePage"><jsp:include page="profile.jsp"></jsp:include></div>
 			<!-- 2개는 나중에 추가 -->
-			<div id="myPageSent"><jsp:include page="profile.jsp"></jsp:include></div>
-			<div id="myPageGot"><jsp:include page="profile.jsp"></jsp:include></div>
+			<div id="myPageSent"><jsp:include page="myPageSent.jsp"></jsp:include></div>
+			<div id="myPageGot"><jsp:include page="myPageGot.jsp"></jsp:include></div>
 			<!-- 2개는 나중에 추가 -->
 			<div id="myPageInfo"><jsp:include page="myPageInfo.jsp"></jsp:include></div>
 		</div>
