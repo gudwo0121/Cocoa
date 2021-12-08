@@ -90,7 +90,7 @@ public class RequestControllerImpl implements RequestController {
 			// insert 성공시 메시지창 뜨고 홈화면으로 이동
 			message = "<script>";
 			message += " alert('요청 신청이 완료되었습니다.');";
-			message += " location.href='" + multipartRequest.getContextPath() + "/'; ";
+			message += " location.href='" + multipartRequest.getContextPath() + "/index'; ";
 			message += " </script>";
 			resEnt = new ResponseEntity(message, responseHeaders, HttpStatus.CREATED);
 
@@ -102,7 +102,7 @@ public class RequestControllerImpl implements RequestController {
 
 			message = " <script>";
 			message += " alert('오류가 발생했습니다. 다시 시도해주세요.');');";
-			message += " location.href='" + multipartRequest.getContextPath() + "/'; ";
+			message += " location.href='" + multipartRequest.getContextPath() + "/index'; ";
 			message += " </script>";
 			resEnt = new ResponseEntity(message, responseHeaders, HttpStatus.CREATED);
 			e.printStackTrace();
@@ -136,4 +136,20 @@ public class RequestControllerImpl implements RequestController {
 		}
 		return rImg;
 	}
+
+//	// 보낸 요청 대기 상태 글 클릭시 이동
+//	// RequestParam으로 쿼리스트링으로 받아온 "reqno"를 res로 저장
+//	@Override
+//	@RequestMapping(value = "/view_sentReqWait", method = RequestMethod.GET)
+//	public ModelAndView view_sentReqWait(@RequestParam("reqNO") int reqno, HttpServletRequest request,
+//			HttpServletResponse response) {
+//		ModelAndView mav = new ModelAndView();
+//		String url = "/sentReqWait";
+//		// 위의 reqno를 키값 'reqno'로 addobject
+//		mav.addObject("reqno", reqno);
+//		mav.setViewName(url);
+//		// sentReqWait.jsp를 열었을 때 reqno object도 같이 보내짐
+//		return mav;
+//	}
+	
 }

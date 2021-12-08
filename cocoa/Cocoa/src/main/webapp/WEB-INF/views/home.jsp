@@ -73,7 +73,7 @@
 							$('#coachCate').hide();
 						});
 
-				// 각 세부 cate에 대해 click 이벤트 필요 (배경색)
+				// 각 세부 cate에 대해 click 이벤트 필요
 			});
 </script>
 </head>

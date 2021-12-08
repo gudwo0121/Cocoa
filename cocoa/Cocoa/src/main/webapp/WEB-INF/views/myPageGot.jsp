@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" isELIgnored="false"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
 <%
 request.setCharacterEncoding("UTF-8");
@@ -45,21 +46,24 @@ request.setCharacterEncoding("UTF-8");
 					</tr>
 					<tr>
 						<th scope="col">요청자</th>
-						<th scope="col">요청 내용</th>
+						<th scope="col">요청 제목</th>
 						<th scope="col">요청 시간</th>
 						<th scope="col">상태</th>
 					</tr>
 				</thead>
 				<tbody>
-					<!-- 이부분에 조회 -->
-					<%-- <c:foreach var="" items=""> --%>
-					<tr>
-						<td>ex.유재석</td>
-						<td><a href="#">ex.에러</a></td>
-						<td>ex.x분전</td>
-						<td>ex.대기</td>
-					</tr>
-					<%-- </c:foreach> --%>
+					<c:forEach var="gotList" items="${reqGotList}">
+						<tr>
+							<td>${gotList.req}</td>
+							<td><a href="/cocoa/view_gotReqWait">${gotList.rTitle}</a></td>
+							<fmt:parseDate var="dateFmt" pattern="yyyy-MM-dd HH:mm:ss.SSS"
+								value="${gotList.rDate}" />
+							<fmt:formatDate var="dateTempParse" pattern="yyyy-MM-dd"
+								value="${dateFmt}" />
+							<td>${dateTempParse }</td>
+							<td>${gotList.status }</td>
+						</tr>
+					</c:forEach>
 				</tbody>
 			</table>
 		</div>

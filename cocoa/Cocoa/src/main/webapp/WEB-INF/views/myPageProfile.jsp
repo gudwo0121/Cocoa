@@ -41,7 +41,7 @@
 		$('#myPageGot').hide();
 		$('#myPageInfo').hide();
 
-		//프로필 버튼 클릭 시
+ 		//프로필 버튼 클릭 시
 		$('#profile').click(function() {
 			$('#profilePage').show();
 			$('#myPageSent').hide();
@@ -57,7 +57,7 @@
 			$('#myPageInfo').hide();
 		});
 
-		//프로필 버튼 클릭 시
+		//받은 요청 버튼 클릭 시
 		$('#receiveReq').click(function() {
 			$('#profilePage').hide();
 			$('#myPageSent').hide();
@@ -120,7 +120,7 @@
 		<!-- 내용 jsp 호출 -->
 		<div class="col-sm-9">
 			<div id="profilePage"><jsp:include page="profile.jsp"></jsp:include></div>
-			<div id="myPageSent"><jsp:include page="myPageSent.jsp"></jsp:include></div>
+ 			<div id="myPageSent"><jsp:include page="myPageSent.jsp"></jsp:include></div>
 			<div id="myPageGot"><jsp:include page="myPageGot.jsp"></jsp:include></div>
 			<div id="myPageInfo"><jsp:include page="myPageInfo.jsp"></jsp:include></div>
 		</div>
