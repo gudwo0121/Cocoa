@@ -6,7 +6,6 @@
 <html>
 <head>
 <meta charset='utf-8'>
-<meta name='viewport' content='width=device-width, initial-scale=1'>
 <link
 	href='https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css'
 	rel='stylesheet'>
@@ -24,8 +23,9 @@
 <title>CoCoa</title>
 </head>
 <body>
-	<div class="container">
 
+	<!-- 회원 가입 -->
+	<div class="container">
 		<div class="card rcol">
 			<h2 class="heading mt-3 mb-4" align="center">
 				<a href="/cocoa/index">CoCoa</a>
@@ -44,9 +44,9 @@
 									style="padding-left: 30px;" placeholder="아이디(ID)">
 							</div></td>
 
-						<td align="center"><input type="button"
-							class="btn btn-success mt-1" id="idCheck" value="중복확인"
-							style="color: white;"></td>
+						<td align="center"><input type="button" id="idCheck"
+							style="color: white; padding: 7px; font-size: 12px;"
+							class="btn btn-success" value="중복확인"></td>
 					</tr>
 					<tr>
 						<td colspan="2"><div class="fone mt-2">
@@ -102,5 +102,6 @@
 			</p>
 		</div>
 	</div>
+
 </body>
 </html>

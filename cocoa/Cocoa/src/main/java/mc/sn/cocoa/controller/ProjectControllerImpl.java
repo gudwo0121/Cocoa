@@ -119,7 +119,7 @@ public class ProjectControllerImpl implements ProjectController {
 
 			message = "<script>";
 			message += " alert('등록이 완료되었습니다.');";
-			message += " location.href='" + multipartRequest.getContextPath() + "/'; ";
+			message += " location.href='" + multipartRequest.getContextPath() + "/index'; ";
 			message += " </script>";
 			resEnt = new ResponseEntity(message, responseHeaders, HttpStatus.CREATED);
 
@@ -131,7 +131,7 @@ public class ProjectControllerImpl implements ProjectController {
 
 			message = " <script>";
 			message += " alert('오류가 발생했습니다. 다시 시도해주세요.');');";
-			message += " location.href='" + multipartRequest.getContextPath() + "/'; ";
+			message += " location.href='" + multipartRequest.getContextPath() + "/index'; ";
 			message += " </script>";
 			resEnt = new ResponseEntity(message, responseHeaders, HttpStatus.CREATED);
 			e.printStackTrace();
@@ -158,14 +158,14 @@ public class ProjectControllerImpl implements ProjectController {
 
 			message = "<script>";
 			message += " alert('프로젝트 게시글을 삭제하였습니다');";
-			message += " location.href='" + request.getContextPath() + "/';";
+			message += " location.href='" + request.getContextPath() + "/index';";
 			message += " </script>";
 			resEnt = new ResponseEntity(message, responseHeaders, HttpStatus.CREATED);
 
 		} catch (Exception e) {
 			message = "<script>";
 			message += " alert('삭제에 실패했습니다');";
-			message += " location.href='" + request.getContextPath() + "/';";
+			message += " location.href='" + request.getContextPath() + "/index';";
 			message += " </script>";
 			resEnt = new ResponseEntity(message, responseHeaders, HttpStatus.CREATED);
 			e.printStackTrace();
@@ -279,7 +279,7 @@ public class ProjectControllerImpl implements ProjectController {
 			}
 			message = "<script>";
 			message += " alert('수정이 완료되었습니다.');";
-			message += " location.href='" + multipartRequest.getContextPath() + "/'; ";
+			message += " location.href='" + multipartRequest.getContextPath() + "/index'; ";
 			message += " </script>";
 			resEnt = new ResponseEntity(message, responseHeaders, HttpStatus.CREATED);
 		} catch (Exception e) {
@@ -289,7 +289,7 @@ public class ProjectControllerImpl implements ProjectController {
 
 			message = " <script>";
 			message += " alert('오류가 발생했습니다. 다시 시도해주세요.');');";
-			message += " location.href='" + multipartRequest.getContextPath() + "/'; ";
+			message += " location.href='" + multipartRequest.getContextPath() + "/index'; ";
 			message += " </script>";
 			resEnt = new ResponseEntity(message, responseHeaders, HttpStatus.CREATED);
 		}

@@ -10,8 +10,8 @@ import org.springframework.web.servlet.ModelAndView;
 
 public interface RequestController {
 
-	public ModelAndView view_reqWriteForm(@RequestParam("coachId") String res, HttpServletRequest request,
-			HttpServletResponse response);
+	public ModelAndView view_reqWriteForm(@RequestParam("coachId") String res, @RequestParam("reqId") String req,
+			HttpServletRequest request, HttpServletResponse response);
 
 	public ResponseEntity sendRequest(MultipartHttpServletRequest multipartRequest, HttpServletResponse response)
 			throws Exception;

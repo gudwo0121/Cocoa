@@ -6,8 +6,6 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet"
-	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" />
 <link href="resources/css/styles.css" rel="stylesheet" />
 <script type="text/javascript" src="resources/js/jquery-3.6.0.min.js"></script>
 <style type="text/css">
@@ -17,7 +15,6 @@ th, td {
 }
 </style>
 <script type="text/javascript">
-	// 사진 미리보기 설정
 	function readURL(input) {
 
 		if (input.files && input.files[0]) {
@@ -29,18 +26,12 @@ th, td {
 			reader.readAsDataURL(input.files[0]);
 		}
 	}
-
-	var cnt = 1;
-	function fn_addFile() {
-		$("#d_file")
-				.append("<br>" + "<input type='file' name='file"+cnt+"' />");
-		cnt++;
-	}
 </script>
 <title>CoCoa</title>
 </head>
 <body style="background-color: #FFEBCD">
 
+	<!-- UI 조정 필요 -->
 	<!-- 보낸 요청 (대기) -->
 	<div class="card rcol my-3"
 		style="text-align: center; background-color: #FFEBCD; border: none; width: 80vw; height: 90vh;">
@@ -49,8 +40,8 @@ th, td {
 				style="width: 80%; margin: 0 auto; border: 1px solid grey; background-color: #FFCC99; color: black;">
 				<tr>
 					<th colspan="2"
-						style="vertical-align: middle; text-align: center; font-size: 20px;">${res}
-						코치에게 요청서</th>
+						style="vertical-align: middle; text-align: center; font-size: 20px;">${res}에게
+						요청서</th>
 				</tr>
 
 				<!-- rTitle -->

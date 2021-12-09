@@ -13,6 +13,8 @@
 <title>CoCoa</title>
 <script>
 	$(document).ready(
+
+			// 카테고리 클릭 이벤트
 			function() {
 
 				$('#C').hide();
@@ -80,46 +82,9 @@
 <body style="background-color: #FFEBCD">
 
 	<!-- 상단바 -->
-	<nav class="navbar navbar-expand-lg" style="background-color: #663333;">
+	<jsp:include page="header.jsp"></jsp:include>
 
-		<div class="container px-4 px-lg-5">
-
-			<!-- 로고 -->
-			<a class="navbar-brand" href="/cocoa/index"
-				style="color: #CFFFE5; font-size: 30px;"
-				onmouseover="this.style.color='black';"
-				onmouseout="this.style.color='#CFFFE5';"><b>CoCoa</b></a>
-
-			<div class="collapse navbar-collapse" id="navbarSupportedContent">
-
-				<!-- 상단 가운데공간 지우면 안됌 -->
-				<div class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4"></div>
-
-				<!-- 우측 상단 변경 -->
-				<c:choose>
-					<c:when test="${isLogOn == true && member != null}">
-						<form action="/cocoa/logout" method="get" class="d-flex">
-							<input name="My Page" class="btn btn-outline-dark" type="button"
-								value="My Page"
-								onClick="location.href='/cocoa/view_myPageProfile'" />&nbsp;<input
-								name="logout" class="btn btn-outline-dark" type="submit"
-								value="logout" />
-						</form>
-					</c:when>
-					<c:otherwise>
-						<form action="/cocoa/view_login" method="get" class="d-flex">
-							<input name="login" class="btn btn-outline-dark" type="submit"
-								value="log in" />&nbsp; <input name="join"
-								class="btn btn-outline-dark" type="button" value="Sign in"
-								onClick="location.href='/cocoa/view_join'" />
-						</form>
-					</c:otherwise>
-				</c:choose>
-			</div>
-		</div>
-	</nav>
-
-	<!-- 카테고리바 -->
+	<!-- 카테고리 구간 -->
 	<header class="py-5" style="background-color: #663333">
 		<div class="container px-4 px0lg05 my-5">
 
@@ -149,7 +114,7 @@
 		</div>
 	</header>
 
-	<!-- 카탈로그바 (coach & project 공존 방법 필요) -->
+	<!-- 카탈로그바 (project 디폴트) -->
 	<section class="py-5">
 		<div class="container px-4 px-lg-5 mt-5">
 
@@ -158,9 +123,9 @@
 			<c:choose>
 				<c:when test="${isLogOn == true && member != null}">
 					<a id="pwrite_btn" class="btn btn-primary px-4 me-sm-3"
-						href="/cocoa/view_projectWrite" style="float: right" hidden="">p글작성</a>
+						href="/cocoa/view_projectWrite" style="float: right">p글작성</a>
 					<a id="cwrite_btn" class="btn btn-primary px-4 me-sm-3"
-						href="/cocoa/view_coachWrite" style="float: right">c글작성</a>
+						href="/cocoa/view_coachWrite" style="float: right" hidden="">c글작성</a>
 				</c:when>
 			</c:choose>
 			<br> <br> <br>
@@ -276,11 +241,8 @@
 
 	</div>
 
-	<!-- 하단바 (마지막에 추가) -->
-	<footer class="py-5 bg-dark">
-		<div class="container">
-			<p class="m-0 text-center text-white">Copyright &copy; CoCoa 2021</p>
-		</div>
-	</footer>
+	<!-- 하단바 -->
+	<jsp:include page="footer.jsp"></jsp:include>
+
 </body>
 </html>

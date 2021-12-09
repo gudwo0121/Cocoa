@@ -6,8 +6,6 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet"
-	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" />
 <link href="resources/css/styles.css" rel="stylesheet" />
 <script type="text/javascript" src="resources/js/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
@@ -19,13 +17,6 @@
 			}
 			reader.readAsDataURL(input.files[0]);
 		}
-	}
-
-	var cnt = 1;
-	function fn_addFile() {
-		$("#d_file")
-				.append("<br>" + "<input type='file' name='file"+cnt+"' />");
-		cnt++;
 	}
 
 	$(document).ready(function() {
@@ -46,7 +37,6 @@
 			$('#c_cContents').prop('disabled', false);
 			return false;
 		});
-
 	});
 
 	function fn_modify_coach(obj) {
@@ -64,47 +54,9 @@
 <body style="background-color: #FFEBCD">
 
 	<!-- 상단바 -->
-	<nav class="navbar navbar-expand-lg" style="background-color: #663333;">
+	<jsp:include page="header.jsp"></jsp:include>
 
-		<div class="container px-4 px-lg-5">
-
-			<!-- 로고 -->
-			<a class="navbar-brand" href="/cocoa/index"
-				style="color: #CFFFE5; font-size: 30px;"
-				onmouseover="this.style.color='black';"
-				onmouseout="this.style.color='#CFFFE5';"><b>CoCoa</b></a>
-
-			<div class="collapse navbar-collapse" id="navbarSupportedContent">
-
-				<!-- 상단 가운데공간 지우면 안됌 -->
-				<div class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4"></div>
-
-				<!-- 우측 상단 변경 -->
-				<c:choose>
-					<c:when test="${isLogOn == true && member != null}">
-						<form action="/cocoa/logout" method="get" class="d-flex">
-							<input name="My Page" class="btn btn-outline-dark" type="button"
-								value="My Page"
-								onClick="location.href='/cocoa/view_myPageProfile'" />&nbsp; <input
-								name="logout" class="btn btn-outline-dark" type="submit"
-								value="logout" />
-						</form>
-					</c:when>
-					<c:otherwise>
-						<form action="/cocoa/view_login" method="get" class="d-flex">
-							<input name="login" class="btn btn-outline-dark" type="submit"
-								value="log in" />&nbsp; <input name="join"
-								class="btn btn-outline-dark" type="button" value="Sign in"
-								onClick="location.href='/cocoa/view_join'" />
-						</form>
-					</c:otherwise>
-				</c:choose>
-
-			</div>
-		</div>
-	</nav>
-
-	<!-- 코치 글 [조회, 수정, 삭제] 바 -->
+	<!-- 코치 글 구간 -->
 	<form method="post" enctype="multipart/form-data" name="frmCoach"
 		action="${contextPath}">
 		<section class="py-5">
@@ -144,7 +96,7 @@
 								<!-- 요청서 작성 -->
 								<br>
 								<c:if test="${isLogOn == true && member.id !=coach.coach}">
-									<a href="/cocoa/view_reqWriteForm?coachId=${coach.coach}">
+									<a href="/cocoa/view_reqWriteForm?coachId=${coach.coach}&reqId=${member.id}">
 										<input type="button" name="requestForm" value="   요청서 작성   "
 										class="btn btn-third-dark"
 										style="text-align: center; border: 1; border-radius: 12px; width: 70%;">
@@ -219,7 +171,7 @@
 							<hr>
 
 							<div align="center">
-								<input type=button value="확 인"
+								<input type=button value="확 인" class="btn btn-outline-dark"
 									onClick="fn_modify_coach(frmCoach)" id="c_modBtn"><br>
 								<br>
 							</div>
@@ -231,11 +183,8 @@
 		</section>
 	</form>
 
-	<!-- 하단바 (마지막에 추가) -->
-	<footer class="py-5 bg-dark">
-		<div class="container">
-			<p class="m-0 text-center text-white">Copyright &copy; CoCoa 2021</p>
-		</div>
-	</footer>
+	<!-- 하단바 -->
+	<jsp:include page="footer.jsp"></jsp:include>
+
 </body>
 </html>

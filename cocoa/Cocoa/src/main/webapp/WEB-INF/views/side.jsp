@@ -11,14 +11,14 @@ request.setCharacterEncoding("UTF-8");
 <head>
 <meta charset="UTF-8">
 <title>CoCoa</title>
-<link rel="stylesheet"
-	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" />
 <link href="resources/css/styles.css" rel="stylesheet" />
 </head>
 <body>
+
 	<br>
 	<br>
 	<br>
+	<!-- 사이드 메뉴 -->
 	<h2>
 		<input type="button" class="btn btn-primary" name="side_profile"
 			id="profile" value="프로필"

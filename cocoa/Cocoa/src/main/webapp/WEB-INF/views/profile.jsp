@@ -19,12 +19,7 @@ request.setCharacterEncoding("UTF-8");
 			reader.readAsDataURL(input.files[0]);
 		}
 	}
-	var cnt = 1;
-	function fn_addFile() {
-		$("#d_file")
-				.append("<br>" + "<input type='file' name='file"+cnt+"' />");
-		cnt++;
-	}
+
 	$(document).ready(function() {
 		$('#mod_profile').hide(); //페이지를 로드할 때 숨길 요소
 		$('#cancel').hide();
@@ -43,16 +38,15 @@ request.setCharacterEncoding("UTF-8");
 </script>
 <title>CoCoa</title>
 <script src="http://code.jquery.com/jquery-latest.js"></script>
-<link rel="stylesheet"
-	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" />
 <link href="resources/css/styles.css" rel="stylesheet" />
 </head>
 <body>
-	<!-- profile -->
+
+	<!-- 본인 프로필 조회 및 수정 -->
 	<form name="proFileInfo" method="post"
 		action="${contextPath}/modProfile" enctype="multipart/form-data">
-		<section class="py-5">
-			<div class="row" style="flex-wrap: unset;">
+		<section class="py-5" style="">
+			<div class="row" style="flex-wrap: unset;width:500px;">
 				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 				<div class="col-md-4 col-sm-4" style="width: 100%;">
 
@@ -70,11 +64,6 @@ request.setCharacterEncoding("UTF-8");
 							<label class="btn btn-outline-dark" for="proImg" id="proImgMod">대표
 								이미지 변경 </label> <input type="file" id="proImg" name="proImg"
 								onchange="readURL(this);" style="display: none;" />
-							<!-- 
-								<img name="proImg" src="resources/image/kakao.png"
-									style="border: 1px solid;" width="120px" height="120px"><br>
-									<br>
-								 -->
 
 							<!-- name -->
 							<input type="hidden" name="id" value="${profileId.id}" /> <input
@@ -87,7 +76,7 @@ request.setCharacterEncoding("UTF-8");
 
 				<!-- 우측 내용 : pContents -->
 				<div
-					style="width: 90%; border: 1px solid; background-color: #FFCC99; color: black; border-radius: 5px;">
+					style="width: 600px; border: 1px solid; background-color: #FFCC99; color: black; border-radius: 5px;">
 					<div class="proFile">
 
 						<!-- pContents 입력 -->
@@ -111,5 +100,6 @@ request.setCharacterEncoding("UTF-8");
 			</div>
 		</section>
 	</form>
+	
 </body>
 </html>

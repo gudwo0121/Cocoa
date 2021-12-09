@@ -41,12 +41,14 @@ public class RequestControllerImpl implements RequestController {
 	// RequestParam으로 쿼리스트링으로 받아온 "coachId"를 res로 저장
 	@Override
 	@RequestMapping(value = "/view_reqWriteForm", method = RequestMethod.GET)
-	public ModelAndView view_reqWriteForm(@RequestParam("coachId") String res, HttpServletRequest request,
-			HttpServletResponse response) {
+	public ModelAndView view_reqWriteForm(@RequestParam("coachId") String res, @RequestParam("reqId") String req,
+			HttpServletRequest request, HttpServletResponse response) {
 		ModelAndView mav = new ModelAndView();
 		String url = "/reqWriteForm";
 		// 위의 res를 키값 'res'로 addobject
+		// 위의 req를 키값 'req'로 addobject
 		mav.addObject("res", res);
+		mav.addObject("req", req);
 		mav.setViewName(url);
 		// reqWriteForm.jsp를 열었을 때 res object도 같이 보내짐
 		return mav;

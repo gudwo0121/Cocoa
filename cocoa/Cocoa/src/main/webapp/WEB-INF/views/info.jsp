@@ -6,19 +6,7 @@
 <html>
 <head>
 <meta charset='utf-8'>
-<meta name='viewport' content='width=device-width, initial-scale=1'>
-<link
-	href='https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css'
-	rel='stylesheet'>
-<link href='https://use.fontawesome.com/releases/v5.7.2/css/all.css'
-	rel='stylesheet'>
-<script type='text/javascript'
-	src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
-<script type='text/javascript'
-	src='https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js'></script>
-<link
-	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css"
-	rel="stylesheet" />
+<link href='https://use.fontawesome.com/releases/v5.7.2/css/all.css' rel='stylesheet'>
 <link href="resources/css/join-styles.css" rel="stylesheet" />
 <script type="text/javascript" src="resources/js/ajax.js"></script>
 <script type="text/javascript">
@@ -33,6 +21,8 @@
 <title>CoCoa</title>
 </head>
 <body>
+
+	<!-- 회원 정보 수정 -->
 	<div class="container"
 		style="text-align: center; padding-top: 90px; padding-left: 400px; width: 100%;">
 		<div class="card mt-3 px-2 pt-3 pb-3 mb-3"
@@ -109,13 +99,14 @@
 					</tr>
 					<tr>
 						<td align="center"><button type="submit" id="modInfo"
-								class="btn btn-success mt-5">수정하기</button> <input type="button"
-							id="delInfo" class="btn btn-success mt-5" value="탈퇴하기"
-							onClick="yesOrNo()"></td>
+								class="btn btn-outline-dark mt-5">수정하기</button>&nbsp;&nbsp;&nbsp;&nbsp;<input
+							type="button" id="delInfo" class="btn btn-outline-dark mt-5"
+							value="탈퇴하기" onClick="yesOrNo()"></td>
 					</tr>
 				</table>
 			</form>
 		</div>
 	</div>
+
 </body>
 </html>
