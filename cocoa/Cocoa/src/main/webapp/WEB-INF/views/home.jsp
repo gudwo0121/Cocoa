@@ -15,9 +15,9 @@
 	$(document).ready(
 			function() {
 
-				$('#low').hide();
-				$('#middle').hide();
-				$('#high').hide();
+				$('#C').hide();
+				$('#Java').hide();
+				$('#Python').hide();
 
 				$('#coaching').click(
 						function() {
@@ -73,7 +73,7 @@
 							$('#coachCate').hide();
 						});
 
-				// 각 세부 cate에 대해 click 이벤트 필요 (배경색)
+				// 각 세부 cate에 대해 click 이벤트 필요
 			});
 </script>
 </head>
@@ -125,8 +125,8 @@
 
 			<!-- 코칭 / 프로젝트 cate -->
 			<div class="d-grid gap-3 d-sm-flex justify-content-sm-center">
-				<a id="coaching" class="btn btn-primary btn-lg px-4 me-sm-3">Coaching</a>
 				<a id="project" class="btn btn-primary btn-lg px-4 me-sm-3">Project</a>
+				<a id="coaching" class="btn btn-primary btn-lg px-4 me-sm-3">Coaching</a>
 			</div>
 			<br>
 
@@ -257,22 +257,23 @@
 	</section>
 
 	<!-- 쪽 번호 구간 -->
-	<div class="btn-group pagination">
+	<div style="margin: 0 auto; font-size: 30px;">
+
 		<c:if test="${pageMaker.prev }">
-			<li><a
-				href='<c:url value="/index?page=${pageMaker.startPage-1 }"/>'><i
-					class="fa fa-chevron-left"></i></a></li>
+			<a href='<c:url value="/index?page=${pageMaker.startPage-1 }"/>'><i
+				class=""></i></a>
 		</c:if>
+
 		<c:forEach begin="${pageMaker.startPage }" end="${pageMaker.endPage }"
 			var="pageNum">
-			<li><a href='<c:url value="/index?page=${pageNum }"/>'><i
-					class="fa">${pageNum }</i></a></li>
+			<a href='<c:url value="/index?page=${pageNum }"/>'><i class="">${pageNum }</i></a>
 		</c:forEach>
+
 		<c:if test="${pageMaker.next && pageMaker.endPage >0 }">
-			<li><a
-				href='<c:url value="/index?page=${pageMaker.endPage+1 }"/>'><i
-					class="fa fa-chevron-right"></i></a></li>
+			<a href='<c:url value="/index?page=${pageMaker.endPage+1 }"/>'><i
+				class=""></i></a>
 		</c:if>
+
 	</div>
 
 	<!-- 하단바 (마지막에 추가) -->

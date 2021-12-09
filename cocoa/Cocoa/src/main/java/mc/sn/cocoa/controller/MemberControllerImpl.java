@@ -7,6 +7,7 @@ import java.io.UnsupportedEncodingException;
 import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -30,6 +31,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import mc.sn.cocoa.service.MemberService;
+import mc.sn.cocoa.service.RequestService;
 import mc.sn.cocoa.vo.MemberVO;
 
 @Controller("memberController")
@@ -39,6 +41,8 @@ public class MemberControllerImpl implements MemberController {
 	private static final String profile_IMAGE_REPO = "C:\\cocoa\\profile_image";
 	@Autowired
 	private MemberService memberService;
+	@Autowired
+	private RequestService requestService;
 
 	// 회원가입 화면으로 이동
 	@Override
@@ -211,7 +215,7 @@ public class MemberControllerImpl implements MemberController {
 			}
 			message = "<script>";
 			message += " alert('수정이 완료되었습니다.');";
-			message += " location.href='" + multipartRequest.getContextPath() + "/index'; ";
+			message += " location.href='" + multipartRequest.getContextPath() + "/view_myPageProfile'; ";
 			message += " </script>";
 			resEnt = new ResponseEntity(message, responseHeaders, HttpStatus.CREATED);
 		} catch (Exception e) {
@@ -236,9 +240,22 @@ public class MemberControllerImpl implements MemberController {
 		HttpSession session = request.getSession();
 		MemberVO vo = (MemberVO) session.getAttribute("member");
 		String id = vo.getId();
+
+		// 프로필 정보 가져오기
 		MemberVO memberVO = memberService.searchMember(id);
 		mav.addObject("profileId", memberVO);
+
 		String url = "/myPageProfile";
+		mav.setViewName(url);
+		return mav;
+	}
+
+	// 회원정보 수정 이동
+	@Override
+	@RequestMapping(value = "/view_memberInfo", method = RequestMethod.GET)
+	public ModelAndView view_memberInfo(HttpServletRequest request, HttpServletResponse response) {
+		ModelAndView mav = new ModelAndView();
+		String url = "/myPageInfo";
 		mav.setViewName(url);
 		return mav;
 	}

@@ -48,11 +48,11 @@ public class CoachServiceImpl implements CoachService {
 	public void removeCoach(int coachNO) throws Exception {
 		coachDAO.deleteCoach(coachNO);
 	}
-	
+
 	// 코칭 글 개수
 	@Override
-	public int countCoach() throws Exception{
+	public int countCoach() throws Exception {
 		return coachDAO.countCoach();
 	}
-	
+
 }

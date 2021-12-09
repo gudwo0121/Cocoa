@@ -70,10 +70,9 @@
       where coachNO = #{coachNO}
     ]]>
 	</delete>
-	
+
 	<!-- 코칭 글의 수 -->
-	<select id="countCoach" resultType="int"
-		parameterType="int">
+	<select id="countCoach" resultType="int" parameterType="int">
 		<![CDATA[
 			SELECT count(*)
 			from coachingTBL

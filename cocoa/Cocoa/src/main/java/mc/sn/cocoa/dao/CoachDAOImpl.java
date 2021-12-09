@@ -54,11 +54,11 @@ public class CoachDAOImpl implements CoachDAO {
 	public void deleteCoach(int coachNO) throws DataAccessException {
 		sqlSession.delete("mapper.coach.deleteCoach", coachNO);
 	}
-	
+
 	// 코칭 글 개수
 	@Override
-	public int countCoach() throws DataAccessException{
+	public int countCoach() throws DataAccessException {
 		return (Integer) sqlSession.selectOne("mapper.coach.countCoach");
 	}
-	
+
 }

@@ -27,19 +27,19 @@ public class HomeController {
 	@RequestMapping(value = "/index", method = { RequestMethod.GET, RequestMethod.POST })
 	public ModelAndView home(HttpServletRequest request, HttpServletResponse response, Criteria cri) throws Exception {
 		ModelAndView mav = new ModelAndView();
-		
-		//쪽 번호 생성 메서드 객체 생성
+
+		// 쪽 번호 생성 메서드 객체 생성
 		PageMaker pageMaker = new PageMaker();
-		
-		//쪽 번호와 한 페이지에 게시할 글의 수 세팅
+
+		// 쪽 번호와 한 페이지에 게시할 글의 수 세팅
 		pageMaker.setCri(cri);
-		
+
 		// 총 게시글의 수
 		pageMaker.setTotalCount(coachService.countCoach());
 
 		// 서비스에서 listProjects() 메소드 실행하여 리턴 값을 List타입의 projectList에 저장
 		List projectList = projectService.listProjects();
-		
+
 		// 서비스에서 listCoaches() 메소드 실행하여 리턴 값을 List타입의 coachesList에 저장
 		List coachesList = coachService.listCoaches(cri);
 
@@ -47,20 +47,12 @@ public class HomeController {
 		mav.addObject("projectList", projectList);
 		// mav에 "coachesList" 키값으로 coachesList 밸류 값을 저장
 		mav.addObject("coachesList", coachesList);
-		
+
 		mav.addObject("pageMaker", pageMaker);
 
 		String url = "/home";
 		mav.setViewName(url);
 
-		return mav;
-	}
-
-	@RequestMapping(value = "/test", method = { RequestMethod.GET, RequestMethod.POST })
-	public ModelAndView test(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		ModelAndView mav = new ModelAndView();
-		String url = "/myPageSent";
-		mav.setViewName(url);
 		return mav;
 	}
 }
