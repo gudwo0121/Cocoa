@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import mc.sn.cocoa.service.CoachService;
@@ -24,7 +25,7 @@ public class HomeController {
 	private CoachService coachService;
 
 	// 홈화면 이동하면서 프로젝트 카탈로그 리스트 가져오기
-	@RequestMapping(value = "/index", method = { RequestMethod.GET, RequestMethod.POST })
+	@RequestMapping(value = "/", method = { RequestMethod.GET, RequestMethod.POST })
 	public ModelAndView home(HttpServletRequest request, HttpServletResponse response, Criteria cri) throws Exception {
 		ModelAndView mav = new ModelAndView();
 
@@ -35,18 +36,13 @@ public class HomeController {
 		pageMaker.setCri(cri);
 
 		// 총 게시글의 수
-		pageMaker.setTotalCount(coachService.countCoach());
+		pageMaker.setTotalCount(projectService.countProject());
 
 		// 서비스에서 listProjects() 메소드 실행하여 리턴 값을 List타입의 projectList에 저장
-		List projectList = projectService.listProjects();
-
-		// 서비스에서 listCoaches() 메소드 실행하여 리턴 값을 List타입의 coachesList에 저장
-		List coachesList = coachService.listCoaches(cri);
+		List projectList = projectService.listProjects(cri);
 
 		// mav에 "projectList" 키값으로 projectList 밸류 값을 저장
 		mav.addObject("projectList", projectList);
-		// mav에 "coachesList" 키값으로 coachesList 밸류 값을 저장
-		mav.addObject("coachesList", coachesList);
 
 		mav.addObject("pageMaker", pageMaker);
 

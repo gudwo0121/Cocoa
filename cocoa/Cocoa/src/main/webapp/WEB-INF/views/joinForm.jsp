@@ -28,7 +28,7 @@
 
 		<div class="card rcol">
 			<h2 class="heading mt-3 mb-4" align="center">
-				<a href="/cocoa/index">CoCoa</a>
+				<a href="/cocoa/">CoCoa</a>
 			</h2>
 			<h5 class="mb-2">
 				<b>회원가입</b>

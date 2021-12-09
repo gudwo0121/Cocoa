@@ -44,7 +44,7 @@
 		<div class="container px-5 px-lg-5" style="max-width: 1830px;">
 
 			<!-- 로고 -->
-			<a class="navbar-brand" href="/cocoa/index"
+			<a class="navbar-brand" href="/cocoa/"
 				style="color: #CFFFE5; font-size: 30px;"
 				onmouseover="this.style.color='black';"
 				onmouseout="this.style.color='#CFFFE5';"><b>CoCoa</b></a>

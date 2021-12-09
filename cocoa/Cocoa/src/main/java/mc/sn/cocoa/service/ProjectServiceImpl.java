@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import mc.sn.cocoa.dao.ProjectDAO;
+import mc.sn.cocoa.vo.Criteria;
 import mc.sn.cocoa.vo.ProjectVO;
 
 @Service("projectService")
@@ -25,9 +26,9 @@ public class ProjectServiceImpl implements ProjectService {
 
 	// 프로젝트 리스트 가져오기
 	@Override
-	public List listProjects() {
+	public List listProjects(Criteria cri) {
 		List projectsList = null;
-		projectsList = projectDAO.selectAllProjectList();
+		projectsList = projectDAO.selectAllProjectList(cri);
 		return projectsList;
 	}
 
@@ -48,5 +49,11 @@ public class ProjectServiceImpl implements ProjectService {
 	@Override
 	public void modProject(Map projectMap) throws Exception {
 		projectDAO.updateProject(projectMap);
+	}
+	
+	// 프로젝트 글 개수
+	@Override
+	public int countProject() throws Exception {
+		return projectDAO.countProject();
 	}
 }

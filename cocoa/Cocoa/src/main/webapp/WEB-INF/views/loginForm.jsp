@@ -37,7 +37,7 @@
 
 			<div class="card rcol py">
 				<h2 class="heading mt-5 mb-4" align="center">
-					<a href="/cocoa/index">CoCoa</a>
+					<a href="/cocoa/">CoCoa</a>
 				</h2>
 				<h5 class="mb-2">
 					<b>로그인</b>

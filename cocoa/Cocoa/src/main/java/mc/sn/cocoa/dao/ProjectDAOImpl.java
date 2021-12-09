@@ -5,8 +5,10 @@ import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Repository;
 
+import mc.sn.cocoa.vo.Criteria;
 import mc.sn.cocoa.vo.ProjectVO;
 
 @Repository("projectDAO")
@@ -30,9 +32,9 @@ public class ProjectDAOImpl implements ProjectDAO {
 
 	// 프로젝트 카탈로그 리스트 셀렉
 	@Override
-	public List selectAllProjectList() {
+	public List selectAllProjectList(Criteria cri) {
 		List<ProjectVO> projectsList = null;
-		projectsList = sqlSession.selectList("mapper.project.selectAllProjectList");
+		projectsList = sqlSession.selectList("mapper.project.selectAllProjectList", cri);
 		return projectsList;
 	}
 
@@ -53,5 +55,11 @@ public class ProjectDAOImpl implements ProjectDAO {
 	@Override
 	public void updateProject(Map projectMap) {
 		sqlSession.update("mapper.project.updateProject", projectMap);
+	}
+	
+	// 프로젝트 글 개수
+	@Override
+	public int countProject() throws DataAccessException {
+		return (Integer) sqlSession.selectOne("mapper.project.countProject");
 	}
 }
