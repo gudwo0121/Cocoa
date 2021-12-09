@@ -33,46 +33,6 @@
 				.append("<br>" + "<input type='file' name='file"+cnt+"' />");
 		cnt++;
 	}
-
-	$(document).ready(function() {
-		//기본 화면
-		$('#profilePage').show();
-		$('#myPageSent').hide();
-		$('#myPageGot').hide();
-		$('#myPageInfo').hide();
-
-		//프로필 버튼 클릭 시
-		$('#profile').click(function() {
-			$('#profilePage').show();
-			$('#myPageSent').hide();
-			$('#myPageGot').hide();
-			$('#myPageInfo').hide();
-		});
-
-		//보낸 요청 버튼 클릭 시
-		$('#sendReq').click(function() {
-			$('#profilePage').hide();
-			$('#myPageSent').show();
-			$('#myPageGot').hide();
-			$('#myPageInfo').hide();
-		});
-
-		//받은 요청 클릭 시
-		$('#receiveReq').click(function() {
-			$('#profilePage').hide();
-			$('#myPageSent').hide();
-			$('#myPageGot').show();
-			$('#myPageInfo').hide();
-		});
-
-		//회원정보 버튼 클릭 시
-		$('#memberInfo').click(function() {
-			$('#profilePage').hide();
-			$('#myPageSent').hide();
-			$('#myPageGot').hide();
-			$('#myPageInfo').show();
-		});
-	});
 </script>
 <title>CoCoa</title>
 </head>
@@ -120,11 +80,6 @@
 		<!-- 내용 jsp 호출 -->
 		<div class="col-sm-9">
 			<div id="profilePage"><jsp:include page="profile.jsp"></jsp:include></div>
-			<!-- 2개는 나중에 추가 -->
-			<div id="myPageSent"><jsp:include page="myPageSent.jsp"></jsp:include></div>
-			<div id="myPageGot"><jsp:include page="myPageGot.jsp"></jsp:include></div>
-			<!-- 2개는 나중에 추가 -->
-			<div id="myPageInfo"><jsp:include page="myPageInfo.jsp"></jsp:include></div>
 		</div>
 	</div>
 

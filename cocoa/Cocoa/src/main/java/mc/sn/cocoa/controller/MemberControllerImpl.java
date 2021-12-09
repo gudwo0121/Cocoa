@@ -53,7 +53,35 @@ public class MemberControllerImpl implements MemberController {
 		mav.setViewName(url);
 		return mav;
 	}
+	
+	// 마이페이지 이동
+		@Override
+		@RequestMapping(value = "/view_myPageProfile", method = RequestMethod.GET)
+		public ModelAndView view_myPageProfile(HttpServletRequest request, HttpServletResponse response) throws Exception {
+			ModelAndView mav = new ModelAndView();
+			HttpSession session = request.getSession();
+			MemberVO vo = (MemberVO) session.getAttribute("member");
+			String id = vo.getId();
+			
+			// 프로필 정보 가져오기
+			MemberVO memberVO = memberService.searchMember(id);
+			mav.addObject("profileId", memberVO);
+			
+			String url = "/myPageProfile";
+			mav.setViewName(url);
+			return mav;
+		}
 
+	@Override
+	@RequestMapping(value = "/view_memberInfo", method = RequestMethod.GET)
+	public ModelAndView view_memberInfo(HttpServletRequest request, HttpServletResponse response) {
+		ModelAndView mav = new ModelAndView();
+		String url = "/myPageInfo";
+		mav.setViewName(url);
+		return mav;
+	}
+	
+	
 	// 로그인 화면으로 이동
 	@Override
 	@RequestMapping(value = "/view_login", method = RequestMethod.GET)
@@ -232,30 +260,7 @@ public class MemberControllerImpl implements MemberController {
 		return resEnt;
 	}
 
-	// 마이페이지 이동
-	@Override
-	@RequestMapping(value = "/view_myPageProfile", method = RequestMethod.GET)
-	public ModelAndView view_myPageProfile(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		ModelAndView mav = new ModelAndView();
-		HttpSession session = request.getSession();
-		MemberVO vo = (MemberVO) session.getAttribute("member");
-		String id = vo.getId();
-		
-		// 프로필 정보 가져오기
-		MemberVO memberVO = memberService.searchMember(id);
-		mav.addObject("profileId", memberVO);
-		
-		// 받은 요청 리스트 가져오기
-		List reqGotList = requestService.listReqGot(id);
-		mav.addObject("reqGotList", reqGotList);
-		
-		// 보낸 요청 리스트 가져오기
-		List reqSentList = requestService.listReqSent(id);
-		mav.addObject("reqSentList", reqSentList);
-		String url = "/myPageProfile";
-		mav.setViewName(url);
-		return mav;
-	}
+	
 
 	// 회원정보 수정
 	@ResponseBody

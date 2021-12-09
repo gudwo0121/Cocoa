@@ -1,15 +1,22 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" isELIgnored="false"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
-<%
-request.setCharacterEncoding("UTF-8");
-%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
+<link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" />
+<link href="resources/css/styles.css" rel="stylesheet" />
+<style type="text/css">
+.side {
+	float: left;
+	width: 10%;
+	height: 900px;
+}
+</style>
+<script type="text/javascript" src="resources/js/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
 	function readURL(input) {
 		if (input.files && input.files[0]) {
@@ -28,45 +35,59 @@ request.setCharacterEncoding("UTF-8");
 	}
 </script>
 <title>CoCoa</title>
-<script src="http://code.jquery.com/jquery-latest.js"></script>
-<link rel="stylesheet"
-	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" />
-<link href="resources/css/styles.css" rel="stylesheet" />
 </head>
-<body>
+<body style="background-color: #FFEBCD; font-family: none;">
 
-	<!-- 보낸 요청 리스트바 -->
-	<div class="card rcol my-5"
-		style="text-align: center; background-color: #FFEBCD; border: none; width: 80vw;">
-		<div class="table-responsive" style="border: 1px solid grey;">
-			<table class="table table-striped table-sm">
-				<thead>
-					<tr>
-						<th colspan="4" style="text-align: center;"><b>보낸 요청 리스트</b></th>
-					</tr>
-					<tr>
-						<th scope="col">코치</th>
-						<th scope="col">요청 제목</th>
-						<th scope="col">요청 날짜</th>
-						<th scope="col">상태</th>
-					</tr>
-				</thead>
-				<tbody>
-					<!-- 이부분에 조회 -->
-					<c:forEach var="sentList" items="${reqSentList}">
-					<tr>
-						<td>${sentList.req }</td>
-						<td><a href="#">${sentList.rTitle }</a></td>
-						<fmt:parseDate var = "dateFmt" pattern="yyyy-MM-dd HH:mm:ss.SSS" value="${sentList.rDate}"/>
-						<fmt:formatDate var = "dateTempParse" pattern = "yyyy-MM-dd" value = "${dateFmt}"/>
-						<td>${dateTempParse}</td>
-						<td>${sentList.status }</td>
-					</tr>
-					</c:forEach>
-				</tbody>
-			</table>
+	<!-- 상단바 -->
+	<nav class="navbar navbar-expand-lg" style="background-color: #663333;">
+
+		<div class="container px-5 px-lg-5" style="max-width:1830px;">
+
+			<!-- 로고 -->
+			<a class="navbar-brand" href="/cocoa/"
+				style="color: #CFFFE5; font-size: 30px;"
+				onmouseover="this.style.color='black';"
+				onmouseout="this.style.color='#CFFFE5';"><b>CoCoa</b></a>
+
+			<div class="collapse navbar-collapse">
+
+				<!-- 상단 가운데공간 지우면 안됌 -->
+				<div class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-6"></div>
+
+				<!-- 우측 상단 변경 -->
+				<form action="/cocoa/logout" method="get">
+					<input name="My Page" class="btn btn-outline-dark" type="button"
+						value="My Page" style="background-color: white; color: black;"
+						onmouseover="this.style.color='white'; this.style.backgroundColor='black';"
+						onmouseout="this.style.color='black'; this.style.backgroundColor='white';"
+						onClick="location.href='/cocoa/view_myPageProfile'" /> <input
+						name="logout" class="btn btn-outline-dark"
+						style="background-color: white; color: black;"
+						onmouseover="this.style.color='white'; this.style.backgroundColor='black';"
+						onmouseout="this.style.color='black'; this.style.backgroundColor='white';"
+						type="submit" value="logout" />
+				</form>
+			</div>
+		</div>
+	</nav>
+
+	<div class="row" style="flex-wrap: unset; width: 15%;">
+		<!-- 좌측 메뉴 jsp 호출 -->
+		<div class="side"
+			style="background-color: #333333; text-align: center;">
+			<jsp:include page="side.jsp"></jsp:include>
+		</div>
+		<!-- 내용 jsp 호출 -->
+		<div class="col-sm-9">
+			<div id="profilePage"><jsp:include page="sent.jsp"></jsp:include></div>
 		</div>
 	</div>
-	
+
+	<!-- 하단바 (마지막에 추가) -->
+	<footer class="py-5 bg-dark">
+		<div class="container">
+			<p class="m-0 text-center text-white">Copyright &copy; CoCoa 2021</p>
+		</div>
+	</footer>
 </body>
 </html>

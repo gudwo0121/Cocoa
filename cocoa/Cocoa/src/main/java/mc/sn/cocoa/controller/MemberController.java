@@ -17,6 +17,8 @@ public interface MemberController {
 
 	public ModelAndView view_join(HttpServletRequest request, HttpServletResponse response);
 
+	public ModelAndView view_memberInfo(HttpServletRequest request, HttpServletResponse response);
+	
 	public int join(@ModelAttribute("member") MemberVO memberVO, HttpServletRequest request,
 			HttpServletResponse response) throws UnsupportedEncodingException;
 

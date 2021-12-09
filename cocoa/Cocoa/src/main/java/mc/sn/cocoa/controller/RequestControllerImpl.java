@@ -9,6 +9,7 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +27,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
 import mc.sn.cocoa.service.RequestService;
+import mc.sn.cocoa.vo.MemberVO;
 
 @Controller("requestController")
 public class RequestControllerImpl implements RequestController {
@@ -136,5 +138,41 @@ public class RequestControllerImpl implements RequestController {
 		}
 		return rImg;
 	}
+	
+	// 보낸요청 리스트 화면 이동
+	@Override
+	@RequestMapping(value = "/view_sendReq", method = RequestMethod.GET)
+	public ModelAndView view_sendReq(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		ModelAndView mav = new ModelAndView();
+		HttpSession session = request.getSession();
+		MemberVO vo = (MemberVO) session.getAttribute("member");
+		String id = vo.getId();
+		
+		// 보낸 요청 리스트 가져오기
+		List reqSentList = requestService.listReqSent(id);
+		mav.addObject("reqSentList", reqSentList);
+		
+		String url = "/myPageSent";
+		mav.setViewName(url);
+		return mav;
+	}
+	
+	// 받은요청 리스트 화면 이동
+	@Override
+	@RequestMapping(value = "/view_receiveReq", method = RequestMethod.GET)
+	public ModelAndView view_receiveReq(HttpServletRequest request, HttpServletResponse response) throws Exception {
+			ModelAndView mav = new ModelAndView();
+			HttpSession session = request.getSession();
+			MemberVO vo = (MemberVO) session.getAttribute("member");
+			String id = vo.getId();
+			
+			// 받은 요청 리스트 가져오기
+			List reqGotList = requestService.listReqGot(id);
+			mav.addObject("reqGotList", reqGotList);
+			
+			String url = "/myPageGot";
+			mav.setViewName(url);
+			return mav;
+		}
 	
 }
