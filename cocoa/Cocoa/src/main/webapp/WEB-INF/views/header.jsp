@@ -16,19 +16,36 @@
 
 	<!-- 상단바 -->
 	<nav class="navbar navbar-expand-lg"
-		style="background-color: #663333; height: 8vh;">
+		style="background-color: #663333; height: 8vh; width: 100%;">
 
 		<!-- 로고 -->
-		<span style="margin: 0 auto;">
-			<a class="navbar-brand" href="/cocoa/index"
-				style="color: #CFFFE5; font-size: 30px;"
-				onmouseover="this.style.color='black';"
-				onmouseout="this.style.color='#CFFFE5';"><b>CoCoa</b></a>
+		<span style="margin: 0 auto; padding-left: 430px;"> <a
+			class="navbar-brand" href="/cocoa/"
+			style="color: #CFFFE5; font-size: 40px;"
+			onmouseover="this.style.color='black';"
+			onmouseout="this.style.color='#CFFFE5';"><b>CoCoa</b></a>
 		</span>
 
+		<!-- 사용자 환영합니다. -->
+		<c:choose>
+			<c:when test="${isLogOn == true && member != null}">
+				<div style="font-size: 15px; color: #CFFFE5;">
+					<b>${member.id}님 환영합니다.</b>&nbsp;&nbsp;&nbsp;
+				</div>
+			</c:when>
+			<c:otherwise>
+				<div style="font-size: 15px; color: white;">
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				</div>
+			</c:otherwise>
+		</c:choose>
+
 		<!-- 우측 상단 변경 -->
-		<span>
-			<c:choose>
+		<span style="padding-right: 80px;"> <c:choose>
 				<c:when test="${isLogOn == true && member != null}">
 					<form action="/cocoa/logout" method="get" class="d-flex">
 						<input name="My Page" class="btn btn-outline-dark" type="button"

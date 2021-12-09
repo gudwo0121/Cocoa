@@ -6,6 +6,7 @@ import java.io.OutputStream;
 import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -28,7 +29,9 @@ import org.springframework.web.servlet.ModelAndView;
 
 import mc.sn.cocoa.service.CoachService;
 import mc.sn.cocoa.vo.CoachVO;
+import mc.sn.cocoa.vo.Criteria;
 import mc.sn.cocoa.vo.MemberVO;
+import mc.sn.cocoa.vo.PageMaker;
 
 @Controller("coachController")
 public class CoachControllerImpl implements CoachController {
@@ -39,6 +42,36 @@ public class CoachControllerImpl implements CoachController {
 	private CoachService coachService;
 	@Autowired
 	private CoachVO coachVO;
+
+	// 코치 글 조회
+	@Override
+	@RequestMapping(value = "/view_coachCate", method = { RequestMethod.GET, RequestMethod.POST })
+	public ModelAndView view_CoachCate(HttpServletRequest request, HttpServletResponse response, Criteria cri)
+			throws Exception {
+		ModelAndView mav = new ModelAndView();
+
+		// 쪽 번호 생성 메서드 객체 생성
+		PageMaker pageMaker = new PageMaker();
+
+		// 쪽 번호와 한 페이지에 게시할 글의 수 세팅
+		pageMaker.setCri(cri);
+
+		// 총 게시글의 수
+		pageMaker.setTotalCount(coachService.countCoach());
+
+		// 서비스에서 listCoaches() 메소드 실행하여 리턴 값을 List타입의 coachesList에 저장
+		List coachesList = coachService.listCoaches(cri);
+
+		// mav에 "coachesList" 키값으로 coachesList 밸류 값을 저장
+		mav.addObject("coachesList", coachesList);
+
+		mav.addObject("pageMaker", pageMaker);
+
+		String url = "/coachCate";
+		mav.setViewName(url);
+
+		return mav;
+	}
 
 	// 코치 글 작성 창으로 이동
 	@Override
@@ -102,7 +135,7 @@ public class CoachControllerImpl implements CoachController {
 
 			message = "<script>";
 			message += " alert('등록이 완료되었습니다.');";
-			message += " location.href='" + multipartRequest.getContextPath() + "/index'; ";
+			message += " location.href='" + multipartRequest.getContextPath() + "/view_coachCate'; ";
 			message += " </script>";
 			resEnt = new ResponseEntity(message, responseHeaders, HttpStatus.CREATED);
 
@@ -114,7 +147,7 @@ public class CoachControllerImpl implements CoachController {
 
 			message = " <script>";
 			message += " alert('오류가 발생했습니다. 다시 시도해주세요.');');";
-			message += " location.href='" + multipartRequest.getContextPath() + "/index'; ";
+			message += " location.href='" + multipartRequest.getContextPath() + "/'; ";
 			message += " </script>";
 			resEnt = new ResponseEntity(message, responseHeaders, HttpStatus.CREATED);
 
@@ -220,7 +253,7 @@ public class CoachControllerImpl implements CoachController {
 			}
 			message = "<script>";
 			message += " alert('수정이 완료되었습니다.');";
-			message += " location.href='" + multipartRequest.getContextPath() + "/index'; ";
+			message += " location.href='" + multipartRequest.getContextPath() + "/view_coachCate'; ";
 			message += " </script>";
 			resEnt = new ResponseEntity(message, responseHeaders, HttpStatus.CREATED);
 
@@ -231,7 +264,7 @@ public class CoachControllerImpl implements CoachController {
 
 			message = " <script>";
 			message += " alert('오류가 발생했습니다. 다시 시도해주세요.');');";
-			message += " location.href='" + multipartRequest.getContextPath() + "/index'; ";
+			message += " location.href='" + multipartRequest.getContextPath() + "/'; ";
 			message += " </script>";
 			resEnt = new ResponseEntity(message, responseHeaders, HttpStatus.CREATED);
 		}
@@ -256,14 +289,13 @@ public class CoachControllerImpl implements CoachController {
 
 			message = "<script>";
 			message += " alert('삭제가 완료되었습니다.');";
-			message += " location.href='" + request.getContextPath() + "/index';";
+			message += " location.href='" + request.getContextPath() + "/view_coachCate';";
 			message += " </script>";
 			resEnt = new ResponseEntity(message, responseHeaders, HttpStatus.CREATED);
 		} catch (Exception e) {
-			// TODO: handle exception
 			message = "<script>";
 			message += " alert('다시 시도해주세요.');";
-			message += " location.href='" + request.getContextPath() + "/index';";
+			message += " location.href='" + request.getContextPath() + "/';";
 			message += " </script>";
 			resEnt = new ResponseEntity(message, responseHeaders, HttpStatus.CREATED);
 			e.printStackTrace();

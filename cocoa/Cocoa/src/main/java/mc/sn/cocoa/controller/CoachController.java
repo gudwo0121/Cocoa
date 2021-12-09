@@ -8,7 +8,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
+import mc.sn.cocoa.vo.Criteria;
+
 public interface CoachController {
+
+	public ModelAndView view_CoachCate(HttpServletRequest request, HttpServletResponse response, Criteria cri)
+			throws Exception;
+
 	public ModelAndView view_coachWrite(HttpServletRequest request, HttpServletResponse response) throws Exception;
 
 	public ResponseEntity addNewCoach(MultipartHttpServletRequest multipartRequest, HttpServletResponse response)

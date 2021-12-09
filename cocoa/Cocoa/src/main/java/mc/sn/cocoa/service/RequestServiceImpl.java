@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import mc.sn.cocoa.dao.RequestDAO;
+import mc.sn.cocoa.vo.RequestVO;
 
 @Service("requestService")
 @Transactional(propagation = Propagation.REQUIRED)
@@ -31,11 +32,31 @@ public class RequestServiceImpl implements RequestService {
 		return reqGotList;
 	}
 
-	// 보낸요청 가져오기
+	// 보낸 요청 리스트 가져오기
 	@Override
 	public List listReqSent(String req) {
 		List reqSentList = null;
 		reqSentList = requestDAO.selectAllReqSent(req);
 		return reqSentList;
+	}
+
+	// 받은 요청글 상세보기
+	@Override
+	public RequestVO searchRequest(int reqNO) {
+		RequestVO vo = null;
+		vo = requestDAO.selectByReqNO(reqNO);
+		return vo;
+	}
+
+	// 보낸 요청글 수정
+	@Override
+	public void modRequest(Map requestMap) {
+		requestDAO.updateRequest(requestMap);
+	}
+
+	// 보낸 요청글 삭제
+	@Override
+	public void removeRequest(int reqNO) {
+		requestDAO.deleteRequest(reqNO);
 	}
 }

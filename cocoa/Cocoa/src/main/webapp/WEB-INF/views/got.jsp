@@ -37,8 +37,9 @@ request.setCharacterEncoding("UTF-8");
 					<c:forEach var="gotList" items="${reqGotList}">
 						<tr>
 							<td>${gotList.req}</td>
-							<!-- gotReqWait로 이동하는 이벤트 필요 -->
-							<td><a href="#">${gotList.rTitle}</a></td>
+							<!-- gotReqWait로 이동 -->
+							<td><a
+								href="${contextPath}/view_gotReqWait?reqNO=${gotList.reqNO}">${gotList.rTitle}</a></td>
 							<fmt:parseDate var="dateFmt" pattern="yyyy-MM-dd HH:mm:ss.SSS"
 								value="${gotList.rDate}" />
 							<fmt:formatDate var="dateTempParse" pattern="yyyy-MM-dd"
@@ -51,6 +52,6 @@ request.setCharacterEncoding("UTF-8");
 			</table>
 		</div>
 	</div>
-	
+
 </body>
 </html>

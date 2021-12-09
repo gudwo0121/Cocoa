@@ -6,8 +6,6 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet"
-	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" />
 <link href="resources/css/styles.css" rel="stylesheet" />
 <script type="text/javascript" src="resources/js/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
@@ -105,7 +103,7 @@
 						<!-- 작성(submit) + 취소(버튼) -->
 						<div class="card-body" style="text-align: center">
 							<input type="submit" class="btn btn-outline-dark" value="등록" />
-							&nbsp; <a href="/cocoa/" class="btn btn-outline-dark">취소</a>
+							&nbsp; <a href="/cocoa/view_coachCate" class="btn btn-outline-dark">취소</a>
 						</div>
 					</div>
 

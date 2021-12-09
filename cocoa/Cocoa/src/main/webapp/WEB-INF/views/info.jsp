@@ -6,7 +6,8 @@
 <html>
 <head>
 <meta charset='utf-8'>
-<link href='https://use.fontawesome.com/releases/v5.7.2/css/all.css' rel='stylesheet'>
+<link href='https://use.fontawesome.com/releases/v5.7.2/css/all.css'
+	rel='stylesheet'>
 <link href="resources/css/join-styles.css" rel="stylesheet" />
 <script type="text/javascript" src="resources/js/ajax.js"></script>
 <script type="text/javascript">
@@ -15,6 +16,26 @@
 			location.href = '/cocoa/dropMember?id=${member.id }'// Yes click
 		} else {
 			// no click
+		}
+	}
+
+	function nullCheck() {
+		var _pwd1 = $("#pwd1").val();
+		var _pwd2 = $("#pwd2").val();
+		var _name = $("#name").val();
+		var _phone = $("#phone").val();
+
+		if (_pwd1 == "" || _pwd2 == "") {
+			alert("비밀번호를 입력하세요");
+			$('#updateInfo').attr('onSubmit', "return false;");
+		} else if (_name == "") {
+			alert("이름(별명)을 입력하세요");
+			$('#updateInfo').attr('onSubmit', "return false;");
+		} else if (_phone == "") {
+			alert("전화번호를 입력하세요");
+			$('#updateInfo').attr('onSubmit', "return false;");
+		} else {
+			$('#updateInfo').removeAttr('onSubmit');
 		}
 	}
 </script>
@@ -32,7 +53,8 @@
 				<b>회 원 정 보</b>
 			</h5>
 			<br>
-			<form action="${contextPath}/updateInfo" method="post">
+			<form id="updateInfo" action="${contextPath}/updateInfo"
+				method="post">
 				<table
 					style="width: 70%; background-color: #FFCC99; margin: 0 auto; color: black;">
 					<tr>
@@ -82,7 +104,7 @@
 								<i class="fas fa-user" style="color: black; padding-left: 10px;"></i>
 								<input type="text" name="name" id="name" class="form-control"
 									style="border: 1px solid grey; padding-left: 30px; color: black;"
-									placeholder="이름(Name) 또는 닉네임(Nickname)">
+									placeholder="이름(Name) 또는 별명(Nickname)">
 							</div>
 						</td>
 					</tr>
@@ -99,7 +121,7 @@
 					</tr>
 					<tr>
 						<td align="center"><button type="submit" id="modInfo"
-								class="btn btn-outline-dark mt-5">수정하기</button>&nbsp;&nbsp;&nbsp;&nbsp;<input
+								onclick="nullCheck()" class="btn btn-outline-dark mt-5">수정하기</button>&nbsp;&nbsp;&nbsp;&nbsp;<input
 							type="button" id="delInfo" class="btn btn-outline-dark mt-5"
 							value="탈퇴하기" onClick="yesOrNo()"></td>
 					</tr>

@@ -40,7 +40,7 @@ th, td {
 				style="width: 80%; margin: 0 auto; border: 1px solid grey; background-color: #FFCC99; color: black;">
 				<tr>
 					<th colspan="2"
-						style="vertical-align: middle; text-align: center; font-size: 20px;">${req}의
+						style="vertical-align: middle; text-align: center; font-size: 20px;">${requestInfo.req}의
 						요청서</th>
 				</tr>
 
@@ -48,8 +48,13 @@ th, td {
 				<tr>
 					<td style="text-align: center; width: 15%;"><b>제 목</b></td>
 					<td style=""><input type="text" id="" name="rTitle"
-						class="form-control"
-						style="width: 95%; background-color: #FFCC99; border: 1px solid grey; color: black;"></td>
+						class="form-control" value="${requestInfo.rTitle}" readonly
+						style="width: 95%; background-color: #FFCC99; border: 1px solid grey; color: black;">
+						<input type="hidden" name="req" value="${requestInfo.req}">
+						<input type="hidden" name="res" value="${requestInfo.res}">
+						<input type="hidden" name="reqNO" value="${requestInfo.reqNO}">
+					</td>
+
 				</tr>
 
 				<!-- rContents -->
@@ -58,14 +63,24 @@ th, td {
 						<b>내 용</b></td>
 					<td style="text-align: left; vertical-align: top;"><textarea
 							rows="10" cols="20" class="form-control" id="" name="rContents"
-							style="width: 95%; resize: none; background-color: #FFCC99; border: 1px solid grey; color: black;"></textarea></td>
+							readonly
+							style="width: 95%; resize: none; background-color: #FFCC99; border: 1px solid grey; color: black;">${requestInfo.rContents}</textarea></td>
 				</tr>
 
 				<!-- rImg -->
 				<tr>
 					<td style="text-align: center;"><b>첨부파일</b></td>
-					<td style="text-align: left;"><a href="#"
-						style="border: 1px solid black;">에러.jpg</a></td>
+					<td style="text-align: left;"><img id="preview"
+						src="${contextPath}/downRImg?reqNO=${requestInfo.reqNO}&rImg=${requestInfo.rImg}"
+						width=90% height=300 style="border: 1px solid;"
+						onerror="this.style.display='none'" /></td>
+				</tr>
+
+				<!-- 첨부파일 다운로드 -->
+				<tr>
+					<td style="text-align: center;"><b>다운로드</b></td>
+					<td><a
+						href="${contextPath}/downloadGotImg?reqNO=${requestInfo.reqNO}">${requestInfo.rImg}</a></td>
 				</tr>
 
 				<!-- 수락, 거절, 목록으로 -->
@@ -85,7 +100,8 @@ th, td {
 						style="background-color: white; color: black;"
 						onmouseover="this.style.color='white'; this.style.backgroundColor='black';"
 						onmouseout="this.style.color='black'; this.style.backgroundColor='white';"
-						value="목록으로" onclick="history.go(0)" /> <br> <br></td>
+						value="목록으로" onclick="location.href='/cocoa/view_receiveReq'" />
+						<br> <br></td>
 				</tr>
 			</table>
 		</form>

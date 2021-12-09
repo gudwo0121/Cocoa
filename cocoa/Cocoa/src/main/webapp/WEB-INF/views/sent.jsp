@@ -37,8 +37,9 @@ request.setCharacterEncoding("UTF-8");
 					<c:forEach var="sentList" items="${reqSentList}">
 						<tr>
 							<td>${sentList.res }</td>
-							<!-- sentReqWait로 이동하는 이벤트 필요 -->
-							<td><a href="#">${sentList.rTitle }</a></td>
+							<!-- sentReqWait로 이동 -->
+							<td><a
+								href="${contextPath}/view_sentReqWait?reqNO=${sentList.reqNO}">${sentList.rTitle }</a></td>
 							<fmt:parseDate var="dateFmt" pattern="yyyy-MM-dd HH:mm:ss.SSS"
 								value="${sentList.rDate}" />
 							<fmt:formatDate var="dateTempParse" pattern="yyyy-MM-dd"

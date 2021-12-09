@@ -7,7 +7,6 @@ import java.io.UnsupportedEncodingException;
 import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.Iterator;
-import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -101,7 +100,7 @@ public class MemberControllerImpl implements MemberController {
 			HttpSession session = request.getSession();
 			session.setAttribute("member", memberVO);
 			session.setAttribute("isLogOn", true);
-			mav.setViewName("redirect:/index");
+			mav.setViewName("redirect:/");
 		} else {
 			rAttr.addAttribute("result", "loginFailed");
 			mav.setViewName("redirect:/view_login");
@@ -117,7 +116,7 @@ public class MemberControllerImpl implements MemberController {
 		session.removeAttribute("member");
 		session.removeAttribute("isLogOn");
 		ModelAndView mav = new ModelAndView();
-		mav.setViewName("redirect:/index");
+		mav.setViewName("redirect:/");
 		return mav;
 	}
 
@@ -225,7 +224,7 @@ public class MemberControllerImpl implements MemberController {
 
 			message = " <script>";
 			message += " alert('오류가 발생했습니다. 다시 시도해주세요.');');";
-			message += " location.href='" + multipartRequest.getContextPath() + "/index'; ";
+			message += " location.href='" + multipartRequest.getContextPath() + "/'; ";
 			message += " </script>";
 			resEnt = new ResponseEntity(message, responseHeaders, HttpStatus.CREATED);
 		}
@@ -275,14 +274,14 @@ public class MemberControllerImpl implements MemberController {
 		if (result != 0) {
 			message = "<script>";
 			message += " alert('수정이 완료되었습니다.');";
-			message += " location.href='" + request.getContextPath() + "/view_myPageProfile'; ";
+			message += " location.href='" + request.getContextPath() + "/view_memberInfo'; ";
 			message += " </script>";
 			resEnt = new ResponseEntity(message, responseHeaders, HttpStatus.CREATED);
 		} else {
 
 			message = " <script>";
 			message += " alert('오류가 발생했습니다. 다시 시도해주세요.');');";
-			message += " location.href='" + request.getContextPath() + "/view_myPageProfile'; ";
+			message += " location.href='" + request.getContextPath() + "/view_memberInfo'; ";
 			message += " </script>";
 			resEnt = new ResponseEntity(message, responseHeaders, HttpStatus.CREATED);
 		}
@@ -307,14 +306,14 @@ public class MemberControllerImpl implements MemberController {
 			session.removeAttribute("isLogOn"); // 삭제하고 isLogOn과 member를 세션에서 삭제
 			message = "<script>";
 			message += " alert('회원탈퇴가 완료되었습니다.');";
-			message += " location.href='" + request.getContextPath() + "/index'; ";
+			message += " location.href='" + request.getContextPath() + "/'; ";
 			message += " </script>";
 			resEnt = new ResponseEntity(message, responseHeaders, HttpStatus.CREATED);
 		} else {
 
 			message = " <script>";
 			message += " alert('오류가 발생했습니다. 다시 시도해주세요.');');";
-			message += " location.href='" + request.getContextPath() + "/view_myPageProfile'; ";
+			message += " location.href='" + request.getContextPath() + "/view_memberInfo'; ";
 			message += " </script>";
 			resEnt = new ResponseEntity(message, responseHeaders, HttpStatus.CREATED);
 		}
