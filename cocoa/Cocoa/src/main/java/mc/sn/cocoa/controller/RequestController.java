@@ -16,6 +16,7 @@ public interface RequestController {
 	public ResponseEntity sendRequest(MultipartHttpServletRequest multipartRequest, HttpServletResponse response)
 			throws Exception;
 
-//	public ModelAndView view_sentReqWait(@RequestParam("reqNO") int reqno, HttpServletRequest request,
-//			HttpServletResponse response);
+	public ModelAndView view_sendReq(HttpServletRequest request, HttpServletResponse response) throws Exception;
+
+	public ModelAndView view_receiveReq(HttpServletRequest request, HttpServletResponse response) throws Exception;
 }

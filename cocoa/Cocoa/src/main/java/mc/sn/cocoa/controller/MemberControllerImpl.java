@@ -245,14 +245,17 @@ public class MemberControllerImpl implements MemberController {
 		MemberVO memberVO = memberService.searchMember(id);
 		mav.addObject("profileId", memberVO);
 
-		// 받은 요청 리스트 가져오기
-		List reqGotList = requestService.listReqGot(id);
-		mav.addObject("reqGotList", reqGotList);
-
-		// 보낸 요청 리스트 가져오기
-		List reqSentList = requestService.listReqSent(id);
-		mav.addObject("reqSentList", reqSentList);
 		String url = "/myPageProfile";
+		mav.setViewName(url);
+		return mav;
+	}
+
+	// 회원정보 수정 이동
+	@Override
+	@RequestMapping(value = "/view_memberInfo", method = RequestMethod.GET)
+	public ModelAndView view_memberInfo(HttpServletRequest request, HttpServletResponse response) {
+		ModelAndView mav = new ModelAndView();
+		String url = "/myPageInfo";
 		mav.setViewName(url);
 		return mav;
 	}

@@ -4,10 +4,12 @@ import java.io.File;
 import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +26,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
 import mc.sn.cocoa.service.RequestService;
+import mc.sn.cocoa.vo.MemberVO;
 
 @Controller("requestController")
 public class RequestControllerImpl implements RequestController {
@@ -137,19 +140,40 @@ public class RequestControllerImpl implements RequestController {
 		return rImg;
 	}
 
-//	// 보낸 요청 대기 상태 글 클릭시 이동
-//	// RequestParam으로 쿼리스트링으로 받아온 "reqno"를 res로 저장
-//	@Override
-//	@RequestMapping(value = "/view_sentReqWait", method = RequestMethod.GET)
-//	public ModelAndView view_sentReqWait(@RequestParam("reqNO") int reqno, HttpServletRequest request,
-//			HttpServletResponse response) {
-//		ModelAndView mav = new ModelAndView();
-//		String url = "/sentReqWait";
-//		// 위의 reqno를 키값 'reqno'로 addobject
-//		mav.addObject("reqno", reqno);
-//		mav.setViewName(url);
-//		// sentReqWait.jsp를 열었을 때 reqno object도 같이 보내짐
-//		return mav;
-//	}
-	
+	// 보낸요청 리스트 화면 이동
+	@Override
+	@RequestMapping(value = "/view_sendReq", method = RequestMethod.GET)
+	public ModelAndView view_sendReq(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		ModelAndView mav = new ModelAndView();
+		HttpSession session = request.getSession();
+		MemberVO vo = (MemberVO) session.getAttribute("member");
+		String id = vo.getId();
+
+		// 보낸 요청 리스트 가져오기
+		List reqSentList = requestService.listReqSent(id);
+		mav.addObject("reqSentList", reqSentList);
+
+		String url = "/myPageSent";
+		mav.setViewName(url);
+		return mav;
+	}
+
+	// 받은요청 리스트 화면 이동
+	@Override
+	@RequestMapping(value = "/view_receiveReq", method = RequestMethod.GET)
+	public ModelAndView view_receiveReq(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		ModelAndView mav = new ModelAndView();
+		HttpSession session = request.getSession();
+		MemberVO vo = (MemberVO) session.getAttribute("member");
+		String id = vo.getId();
+
+		// 받은 요청 리스트 가져오기
+		List reqGotList = requestService.listReqGot(id);
+		mav.addObject("reqGotList", reqGotList);
+
+		String url = "/myPageGot";
+		mav.setViewName(url);
+		return mav;
+	}
+
 }

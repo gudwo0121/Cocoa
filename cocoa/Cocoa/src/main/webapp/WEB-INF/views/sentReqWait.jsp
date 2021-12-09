@@ -9,19 +9,17 @@
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" />
 <link href="resources/css/styles.css" rel="stylesheet" />
-<script type="text/javascript" src="resources/js/jquery-3.6.0.min.js"></script>
 <style type="text/css">
-th, td {
-	padding: 6px;
-	color: black;
+.side {
+	float: left;
+	width: 10%;
+	height: 900px;
 }
 </style>
+<script type="text/javascript" src="resources/js/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
-	// 사진 미리보기 설정
 	function readURL(input) {
-
 		if (input.files && input.files[0]) {
-
 			var reader = new FileReader();
 			reader.onload = function(e) {
 				$('#preview').attr('src', e.target.result);
@@ -29,7 +27,6 @@ th, td {
 			reader.readAsDataURL(input.files[0]);
 		}
 	}
-
 	var cnt = 1;
 	function fn_addFile() {
 		$("#d_file")
@@ -39,79 +36,58 @@ th, td {
 </script>
 <title>CoCoa</title>
 </head>
-<body style="background-color: #FFEBCD">
+<body style="background-color: #FFEBCD; font-family: none;">
 
-	<!-- 보낸 요청 (대기) -->
-	<div class="card rcol my-3"
-		style="text-align: center; background-color: #FFEBCD; border: none; width: 80vw; height: 90vh;">
-		<form action="" method="post">
-			<table
-				style="width: 80%; margin: 0 auto; border: 1px solid grey; background-color: #FFCC99; color: black;">
-				<tr>
-					<th colspan="2"
-						style="vertical-align: middle; text-align: center; font-size: 20px;">${res}
-						코치에게 요청서</th>
-				</tr>
+	<!-- 상단바 -->
+	<nav class="navbar navbar-expand-lg" style="background-color: #663333;">
 
-				<!-- rTitle -->
-				<tr>
-					<td style="text-align: center; width: 15%;"><b>제 목</b></td>
-					<td style=""><input type="text" id="" name="rTitle"
-						class="form-control"
-						style="width: 95%; background-color: #FFCC99; border: 1px solid grey; color: black;"></td>
-				</tr>
+		<div class="container px-5 px-lg-5" style="max-width: 1830px;">
 
-				<!-- rContents -->
-				<tr>
-					<td style="text-align: center; vertical-align: top;" class="pt-1"><br>
-						<b>내 용</b></td>
-					<td style="text-align: left; vertical-align: top;"><textarea
-							rows="10" cols="20" class="form-control" id="" name="rContents"
-							style="width: 95%; resize: none; background-color: #FFCC99; border: 1px solid grey; color: black;"></textarea></td>
-				</tr>
+			<!-- 로고 -->
+			<a class="navbar-brand" href="/cocoa/index"
+				style="color: #CFFFE5; font-size: 30px;"
+				onmouseover="this.style.color='black';"
+				onmouseout="this.style.color='#CFFFE5';"><b>CoCoa</b></a>
 
-				<!-- rImg -->
-				<tr>
-					<td style="text-align: center;"><b>파일첨부</b></td>
-					<td style="text-align: left;"><label
-						class="btn btn-outline-dark"
+			<div class="collapse navbar-collapse">
+
+				<!-- 상단 가운데공간 지우면 안됌 -->
+				<div class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-6"></div>
+
+				<!-- 우측 상단 변경 -->
+				<form action="/cocoa/logout" method="get">
+					<input name="My Page" class="btn btn-outline-dark" type="button"
+						value="My Page" style="background-color: white; color: black;"
+						onmouseover="this.style.color='white'; this.style.backgroundColor='black';"
+						onmouseout="this.style.color='black'; this.style.backgroundColor='white';"
+						onClick="location.href='/cocoa/view_myPageProfile'" /> <input
+						name="logout" class="btn btn-outline-dark"
 						style="background-color: white; color: black;"
 						onmouseover="this.style.color='white'; this.style.backgroundColor='black';"
 						onmouseout="this.style.color='black'; this.style.backgroundColor='white';"
-						for="file"> 찾아보기 </label><input type="file" id="file" name="rImg"
-						onchange="readURL(this);" style="display: none;" /></td>
-				</tr>
+						type="submit" value="logout" />
+				</form>
+			</div>
+		</div>
+	</nav>
 
-				<!-- 사진 미리보기 (이거 안됌, 이름 충돌?) -->
-				<tr>
-					<td style="text-align: center;"></td>
-					<td style="text-align: left;"><img id="preview"
-						src="resources/image/sample.png" width=95% height=200
-						style="border: 1px solid;" /></td>
-				</tr>
-
-				<!-- 수정, 철회, 목록으로 -->
-				<tr>
-					<td align="center" colspan="2"><br> <input type="button"
-						id="" class="btn btn-outline-dark"
-						style="background-color: white; color: black;"
-						onmouseover="this.style.color='white'; this.style.backgroundColor='black';"
-						onmouseout="this.style.color='black'; this.style.backgroundColor='white';"
-						value="수 정" />&nbsp;&nbsp;&nbsp; <input type="button" id=""
-						class="btn btn-outline-dark"
-						style="background-color: white; color: black;"
-						onmouseover="this.style.color='white'; this.style.backgroundColor='black';"
-						onmouseout="this.style.color='black'; this.style.backgroundColor='white';"
-						value="철 회" />&nbsp;&nbsp;&nbsp; <input type="button" id=""
-						class="btn btn-outline-dark"
-						style="background-color: white; color: black;"
-						onmouseover="this.style.color='white'; this.style.backgroundColor='black';"
-						onmouseout="this.style.color='black'; this.style.backgroundColor='white';"
-						value="목록으로" onclick="history.go(-1)" /> <br> <br></td>
-				</tr>
-			</table>
-		</form>
+	<div class="row" style="flex-wrap: unset; width: 15%;">
+		<!-- 좌측 메뉴 jsp 호출 -->
+		<div class="side"
+			style="background-color: #333333; text-align: center;">
+			<jsp:include page="side.jsp"></jsp:include>
+		</div>
+		<!-- 내용 jsp 호출 -->
+		<div class="col-sm-9">
+			<div id="main"><jsp:include page="sentWait.jsp"></jsp:include></div>
+		</div>
 	</div>
 
+	<!-- 하단바 (마지막에 추가) -->
+	<footer class="py-5 bg-dark">
+		<div class="container">
+			<p class="m-0 text-center text-white">Copyright &copy; CoCoa 2021</p>
+		</div>
+	</footer>
 </body>
 </html>

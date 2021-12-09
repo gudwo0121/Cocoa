@@ -29,4 +29,6 @@ public interface MemberController {
 
 	public ModelAndView view_myPageProfile(HttpServletRequest request, HttpServletResponse response) throws Exception;
 
+	public ModelAndView view_memberInfo(HttpServletRequest request, HttpServletResponse response);
+
 }
