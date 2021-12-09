@@ -43,7 +43,7 @@ public class MemberControllerImpl implements MemberController {
 	private MemberService memberService;
 	@Autowired
 	private RequestService requestService;
-	
+
 	// 회원가입 화면으로 이동
 	@Override
 	@RequestMapping(value = "/view_join", method = RequestMethod.GET)
@@ -53,35 +53,7 @@ public class MemberControllerImpl implements MemberController {
 		mav.setViewName(url);
 		return mav;
 	}
-	
-	// 마이페이지 이동
-		@Override
-		@RequestMapping(value = "/view_myPageProfile", method = RequestMethod.GET)
-		public ModelAndView view_myPageProfile(HttpServletRequest request, HttpServletResponse response) throws Exception {
-			ModelAndView mav = new ModelAndView();
-			HttpSession session = request.getSession();
-			MemberVO vo = (MemberVO) session.getAttribute("member");
-			String id = vo.getId();
-			
-			// 프로필 정보 가져오기
-			MemberVO memberVO = memberService.searchMember(id);
-			mav.addObject("profileId", memberVO);
-			
-			String url = "/myPageProfile";
-			mav.setViewName(url);
-			return mav;
-		}
 
-	@Override
-	@RequestMapping(value = "/view_memberInfo", method = RequestMethod.GET)
-	public ModelAndView view_memberInfo(HttpServletRequest request, HttpServletResponse response) {
-		ModelAndView mav = new ModelAndView();
-		String url = "/myPageInfo";
-		mav.setViewName(url);
-		return mav;
-	}
-	
-	
 	// 로그인 화면으로 이동
 	@Override
 	@RequestMapping(value = "/view_login", method = RequestMethod.GET)
@@ -129,7 +101,7 @@ public class MemberControllerImpl implements MemberController {
 			HttpSession session = request.getSession();
 			session.setAttribute("member", memberVO);
 			session.setAttribute("isLogOn", true);
-			mav.setViewName("redirect:/");
+			mav.setViewName("redirect:/index");
 		} else {
 			rAttr.addAttribute("result", "loginFailed");
 			mav.setViewName("redirect:/view_login");
@@ -145,7 +117,7 @@ public class MemberControllerImpl implements MemberController {
 		session.removeAttribute("member");
 		session.removeAttribute("isLogOn");
 		ModelAndView mav = new ModelAndView();
-		mav.setViewName("redirect:/");
+		mav.setViewName("redirect:/index");
 		return mav;
 	}
 
@@ -243,7 +215,7 @@ public class MemberControllerImpl implements MemberController {
 			}
 			message = "<script>";
 			message += " alert('수정이 완료되었습니다.');";
-			message += " location.href='" + multipartRequest.getContextPath() + "/'; ";
+			message += " location.href='" + multipartRequest.getContextPath() + "/view_myPageProfile'; ";
 			message += " </script>";
 			resEnt = new ResponseEntity(message, responseHeaders, HttpStatus.CREATED);
 		} catch (Exception e) {
@@ -253,14 +225,40 @@ public class MemberControllerImpl implements MemberController {
 
 			message = " <script>";
 			message += " alert('오류가 발생했습니다. 다시 시도해주세요.');');";
-			message += " location.href='" + multipartRequest.getContextPath() + "/'; ";
+			message += " location.href='" + multipartRequest.getContextPath() + "/index'; ";
 			message += " </script>";
 			resEnt = new ResponseEntity(message, responseHeaders, HttpStatus.CREATED);
 		}
 		return resEnt;
 	}
 
-	
+	// 마이페이지 이동
+	@Override
+	@RequestMapping(value = "/view_myPageProfile", method = RequestMethod.GET)
+	public ModelAndView view_myPageProfile(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		ModelAndView mav = new ModelAndView();
+		HttpSession session = request.getSession();
+		MemberVO vo = (MemberVO) session.getAttribute("member");
+		String id = vo.getId();
+
+		// 프로필 정보 가져오기
+		MemberVO memberVO = memberService.searchMember(id);
+		mav.addObject("profileId", memberVO);
+
+		String url = "/myPageProfile";
+		mav.setViewName(url);
+		return mav;
+	}
+
+	// 회원정보 수정 이동
+	@Override
+	@RequestMapping(value = "/view_memberInfo", method = RequestMethod.GET)
+	public ModelAndView view_memberInfo(HttpServletRequest request, HttpServletResponse response) {
+		ModelAndView mav = new ModelAndView();
+		String url = "/myPageInfo";
+		mav.setViewName(url);
+		return mav;
+	}
 
 	// 회원정보 수정
 	@ResponseBody
@@ -309,7 +307,7 @@ public class MemberControllerImpl implements MemberController {
 			session.removeAttribute("isLogOn"); // 삭제하고 isLogOn과 member를 세션에서 삭제
 			message = "<script>";
 			message += " alert('회원탈퇴가 완료되었습니다.');";
-			message += " location.href='" + request.getContextPath() + "/'; ";
+			message += " location.href='" + request.getContextPath() + "/index'; ";
 			message += " </script>";
 			resEnt = new ResponseEntity(message, responseHeaders, HttpStatus.CREATED);
 		} else {

@@ -9,6 +9,7 @@ import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Repository;
 
 import mc.sn.cocoa.vo.CoachVO;
+import mc.sn.cocoa.vo.Criteria;
 
 @Repository("coachDAO")
 public class CoachDAOImpl implements CoachDAO {
@@ -31,8 +32,8 @@ public class CoachDAOImpl implements CoachDAO {
 
 	// 코칭 글 전제 조회
 	@Override
-	public List selectAllCoachesList() throws DataAccessException {
-		List<CoachVO> coachesList = sqlSession.selectList("mapper.coach.selectAllCoachesList");
+	public List selectAllCoachesList(Criteria cri) throws DataAccessException {
+		List<CoachVO> coachesList = sqlSession.selectList("mapper.coach.selectAllCoachesList", cri);
 		return coachesList;
 	}
 
@@ -53,5 +54,11 @@ public class CoachDAOImpl implements CoachDAO {
 	public void deleteCoach(int coachNO) throws DataAccessException {
 		sqlSession.delete("mapper.coach.deleteCoach", coachNO);
 	}
-	
+
+	// 코칭 글 개수
+	@Override
+	public int countCoach() throws DataAccessException {
+		return (Integer) sqlSession.selectOne("mapper.coach.countCoach");
+	}
+
 }

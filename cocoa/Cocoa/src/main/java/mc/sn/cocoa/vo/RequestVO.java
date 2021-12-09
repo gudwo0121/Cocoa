@@ -6,7 +6,7 @@ import org.springframework.stereotype.Component;
 
 @Component("requestVO")
 public class RequestVO {
-	
+
 	private int reqNO;
 	private String req;
 	private String res;
@@ -19,9 +19,9 @@ public class RequestVO {
 	private String contact;
 	private String pay;
 	private String reason;
-	
+
 	public RequestVO() {
-		
+
 	}
 
 	public RequestVO(int reqNO, String req, String res, String rTitle, String rContents, Timestamp rDate, String rImg,
@@ -136,6 +136,4 @@ public class RequestVO {
 	public void setReason(String reason) {
 		this.reason = reason;
 	}
-	
-	
 }

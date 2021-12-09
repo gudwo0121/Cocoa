@@ -1,126 +1,127 @@
-<%@ page language="java" contentType="text/html; charset=utf-8"
-	pageEncoding="utf-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8" isELIgnored="false"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset='utf-8'>
-<meta name='viewport' content='width=device-width, initial-scale=1'>
-<link
-	href='https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css'
-	rel='stylesheet'>
-<link href='https://use.fontawesome.com/releases/v5.7.2/css/all.css'
-	rel='stylesheet'>
-<script type='text/javascript'
-	src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
-<script type='text/javascript'
-	src='https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js'></script>
-<link
-	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css"
-	rel="stylesheet" />
-<link href="resources/css/join-styles.css" rel="stylesheet" />
-<script type="text/javascript" src="resources/js/ajax.js"></script>
+<meta charset="UTF-8">
+<link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" />
+<link href="resources/css/styles.css" rel="stylesheet" />
+<script type="text/javascript" src="resources/js/jquery-3.6.0.min.js"></script>
+<style type="text/css">
+th, td {
+	padding: 10px;
+}
+</style>
 <script type="text/javascript">
+	// 사진 미리보기 설정
 	function readURL(input) {
 
-	if (input.files && input.files[0]) {
+		if (input.files && input.files[0]) {
 
-		var reader = new FileReader();
-		reader.onload = function(e) {
-			$('#preview').attr('src', e.target.result);
+			var reader = new FileReader();
+			reader.onload = function(e) {
+				$('#preview').attr('src', e.target.result);
+			}
+			reader.readAsDataURL(input.files[0]);
 		}
-		reader.readAsDataURL(input.files[0]);
 	}
-}
 </script>
-<title>코칭 요청</title>
+<title>CoCoa</title>
 </head>
-<body style="background-color: #FFEBCD">
+<body style="background-color: #FFEBCD;">
 
 	<!-- 상단바 -->
 	<nav class="navbar navbar-expand-lg" style="background-color: #663333;">
 
-		<div class="row" style="width: 100%;">
-			<div class="col-sm-2 m-auto" style="text-align: center;">
-				<!-- 로고 -->
-				<a class="navbar-brand" href="/cocoa/"
-					style="color: #CFFFE5; font-size: 30px;"
-					onmouseover="this.style.color='black';"
-					onmouseout="this.style.color='#CFFFE5';"><b>CoCoa</b></a>
-			</div>
+		<div class="container px-4 px-lg-5">
 
-			<div class="col-sm-8"></div>
+			<!-- 로고 -->
+			<a class="navbar-brand" href="/cocoa/index"
+				style="color: #CFFFE5; font-size: 30px;"
+				onmouseover="this.style.color='black';"
+				onmouseout="this.style.color='#CFFFE5';"><b>CoCoa</b></a>
 
-			<div class="col-sm-2 m-auto">
+			<div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+				<!-- 상단 가운데공간 지우면 안됌 -->
+				<div class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4"></div>
+
 				<!-- 우측 상단 변경 -->
 				<form action="/cocoa/logout" method="get" class="d-flex">
 					<input name="My Page" class="btn btn-outline-dark" type="button"
 						value="My Page"
-						onClick="location.href='/cocoa/view_myPageProfile'" /> <input
+						onClick="location.href='/cocoa/view_myPageProfile'" />&nbsp; <input
 						name="logout" class="btn btn-outline-dark" type="submit"
 						value="logout" />
 				</form>
 			</div>
-
-
 		</div>
 	</nav>
 
-	<div class="row" style="width: 100%; height: 100%;">
+	<!-- 요청서 작성바 -->
+	<div class="card rcol my-4"
+		style="margin: 0 auto; width: 60%; background-color: #FFEBCD; border: none;">
+		<form name="coachWriteForm" action="${contextPath}/requestWrite"
+			enctype="multipart/form-data" method="post">
+			<table
+				style="width: 80%; margin: 0 auto; border: 1px solid grey; background-color: #FFCC99;">
+				<tr>
+					<!-- 요청성 작성할 때 코치의 id가 있으면 좋을거 같아서 to.${res}로 나타냄 -->
+					<th colspan="2" style="text-align: center; font-size: 20px;">${res}
+						코치에게 요청서 작성</th>
 
-		<div class="card rcol my-5" style="width: 70%; height: auto;">
-			<!-- 요청성 작성할 때 코치의 id가 있으면 좋을거 같아서 to.${res}로 나타냄 -->
-			<h3 class="mb-2" style="text-align : center;">요청서 작성 - To.${res }</h3>
-			<form name="coachWriteForm" method="post"
-				action="${contextPath}/requestWrite" enctype="multipart/form-data">
-				<table style="width: 100%;">
-				
-				<!-- form을 submit 할 때 요청자의 아이디(${member.id})와 
+					<!-- form을 submit 할 때 요청자의 아이디(${member.id})와 
 					응답하는 코치(${res})의 아이디가 있어야해서 hidden으로 함 -->
-					<tr><td><input type="hidden" name="res" value="${res}" />
-					<input type="hidden" name="req" value="${member.id}" /></td></tr>
-				
+					<td><input type="hidden" name="res" value="${res}" /> <input
+						type="hidden" name="req" value="${member.id}" /></td>
+				</tr>
+
 				<!-- rTitle -->
-					<tr>
-						<td style="text-align: right;">제목 :</td>
-						<td style="width: 85%;"><input type="text" id="" name="rTitle"
-							class="form-control" placeholder="코치 받고 싶은 내용의 제목을 적어주세요."></td>
-					</tr>
-				
+				<tr>
+					<td style="text-align: center; width: 15%;"><b>제 목</b></td>
+					<td style=""><input type="text" id="" name="rTitle"
+						class="form-control" style="width: 95%; border: 1px solid;"
+						placeholder="에러의 유형을 제목으로 적어주세요."></td>
+				</tr>
+
 				<!-- rContents -->
-					<tr>
-						<td style="text-align: right; vertical-align: top;" class="pt-1">내용
-							:</td>
-						<td style="text-align: left; vertical-align: top;"><textarea
-								rows="10" cols="20" class="form-control" id="" name="rContents"
-								placeholder="코칭 받고 싶은 내용을 자세하게 적어주세요.(개발환경 포함 필수!)"
-								style="width: 100%; resize: none;"></textarea></td>
-					</tr>
-				
+				<tr>
+					<td style="text-align: center; vertical-align: top;" class="pt-1"><br>
+						<b>내 용</b></td>
+					<td style="text-align: left; vertical-align: top;"><textarea
+							rows="10" cols="20" class="form-control" id="" name="rContents"
+							placeholder="현재 본인의 개발환경과 에러 내용을 최대한 자세하게 적어주세요."
+							style="width: 95%; resize: none; border: 1px solid;"></textarea></td>
+				</tr>
+
 				<!-- rImg -->
-					<tr>
-						<td style="text-align: right;">사진 첨부 :</td>
-						<td><label class="btn btn-outline-dark" for="errorCapture">
-								찾아보기 </label><input type="file" id="errorCapture" name="rImg"
-							onchange="readURL(this);" style="display: none;" /></td>
-					</tr>
-					<tr>
-						<td style="text-align: right; vertical-align:top;">미리보기 :</td>
-						<td><img id="preview" src="resources/image/sample.png"
-							width=100% height=300 style="border: 1px solid;" /></td>
-					</tr>
-				
-				<!-- submit,취소 -->	
-					<tr>
-						<td align="center" colspan="2"><input type="submit" id=""
-							class="btn btn-success mt-5" value="신청하기" /> <input
-							type="button" id="cancel" onclick="history.go(0)"
-							class="btn btn-success mt-5" value="취소" /></td>
-					</tr>
-				</table>
-			</form>
-		</div>
+				<tr>
+					<td style="text-align: center;"><b>파일첨부</b></td>
+					<td><label class="btn btn-outline-dark" for="file">
+							찾아보기 </label><input type="file" id="file" name="rImg"
+						onchange="readURL(this);" style="display: none;" /></td>
+				</tr>
+
+				<!-- 사진 미리보기 -->
+				<tr>
+					<td style="text-align: center;"></td>
+					<td><img id="preview" src="resources/image/sample.png"
+						width=95% height=300 style="border: 1px solid;" /></td>
+				</tr>
+
+				<!-- submit, 취소 -->
+				<tr>
+					<td align="center" colspan="2"><br> <input type="submit"
+						id="" class="btn btn-outline-dark" value="요 청" />&nbsp;&nbsp;&nbsp;<input
+						type="button" id="cancel" onclick="history.go(-1)"
+						class="btn btn-outline-dark" value="취 소" /><br> <br></td>
+				</tr>
+			</table>
+		</form>
 	</div>
+
 </body>
 </html>

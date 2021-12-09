@@ -69,7 +69,7 @@
 		<div class="container px-4 px-lg-5">
 
 			<!-- 로고 -->
-			<a class="navbar-brand" href="/cocoa/"
+			<a class="navbar-brand" href="/cocoa/index"
 				style="color: #CFFFE5; font-size: 30px;"
 				onmouseover="this.style.color='black';"
 				onmouseout="this.style.color='#CFFFE5';"><b>CoCoa</b></a>
@@ -144,9 +144,8 @@
 								<!-- 요청서 작성 -->
 								<br>
 								<c:if test="${isLogOn == true && member.id !=coach.coach}">
-								<!-- 요청서 작성 선택시 해당 코치의 id를 컨트롤러로 쿼리스트링으로 보냄 get방식 -->
-									<a href="/cocoa/view_reqWriteForm?coachId=${coach.coach}"> <input type="button"
-										name="requestForm" value="   요청서 작성   "
+									<a href="/cocoa/view_reqWriteForm?coachId=${coach.coach}">
+										<input type="button" name="requestForm" value="   요청서 작성   "
 										class="btn btn-third-dark"
 										style="text-align: center; border: 1; border-radius: 12px; width: 70%;">
 									</a>

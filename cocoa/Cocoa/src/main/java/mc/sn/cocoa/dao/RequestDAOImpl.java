@@ -13,12 +13,12 @@ import mc.sn.cocoa.vo.RequestVO;
 public class RequestDAOImpl implements RequestDAO {
 	@Autowired
 	private SqlSession sqlSession;
-	
+
 	// 요청글 넘버링
 	private int selectNewProjectNO() {
 		return sqlSession.selectOne("mapper.request.selectNewReqNO");
 	}
-	
+
 	// selectNewProjectNO 메소드를 통해 얻은 reqNO를 reqMap에 put해서 sql 실행하여 insert실행
 	// reqNO를 리턴
 	@Override
@@ -28,7 +28,7 @@ public class RequestDAOImpl implements RequestDAO {
 		sqlSession.insert("mapper.request.insertRequest", reqMap);
 		return reqNO;
 	}
-	
+
 	// 받은 요청 리스트 가져와서 리턴
 	@Override
 	public List selectAllReqGot(String res) {
@@ -36,12 +36,29 @@ public class RequestDAOImpl implements RequestDAO {
 		reqGotList = sqlSession.selectList("mapper.request.selectAllReqGot", res);
 		return reqGotList;
 	}
-	
+
 	// 보낸 요청 리스트 가져와서 리턴
 	@Override
 	public List selectAllReqSent(String req) {
 		List<RequestVO> reqSentList = null;
 		reqSentList = sqlSession.selectList("mapper.request.selectAllReqSent", req);
 		return reqSentList;
+	}
+	
+	@Override
+	public RequestVO selectByReqNO(int reqNO) {
+		RequestVO vo = null;
+		vo = sqlSession.selectOne("mapper.request.selectByReqNO", reqNO);
+		return vo;
+	}
+	
+	@Override
+	public void updateRequest(Map requestMap) {
+		sqlSession.update("mapper.request.updateRequest", requestMap);
+	}
+	
+	@Override
+	public void deleteRequest(int reqNO) {
+		sqlSession.delete("mapper.request.deleteRequest", reqNO);
 	}
 }

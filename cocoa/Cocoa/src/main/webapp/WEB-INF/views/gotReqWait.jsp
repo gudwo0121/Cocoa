@@ -79,7 +79,7 @@
 		</div>
 		<!-- 내용 jsp 호출 -->
 		<div class="col-sm-9">
-			<div id="main"><jsp:include page="info.jsp"></jsp:include></div>
+			<div id="main"><jsp:include page="gotWait.jsp"></jsp:include></div>
 		</div>
 	</div>
 

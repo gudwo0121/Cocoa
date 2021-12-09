@@ -41,10 +41,10 @@
 	<!-- 상단바 -->
 	<nav class="navbar navbar-expand-lg" style="background-color: #663333;">
 
-		<div class="container px-5 px-lg-5" style="max-width:1830px;">
+		<div class="container px-5 px-lg-5" style="max-width: 1830px;">
 
 			<!-- 로고 -->
-			<a class="navbar-brand" href="/cocoa/"
+			<a class="navbar-brand" href="/cocoa/index"
 				style="color: #CFFFE5; font-size: 30px;"
 				onmouseover="this.style.color='black';"
 				onmouseout="this.style.color='#CFFFE5';"><b>CoCoa</b></a>
@@ -79,7 +79,7 @@
 		</div>
 		<!-- 내용 jsp 호출 -->
 		<div class="col-sm-9">
-			<div id="profilePage"><jsp:include page="got.jsp"></jsp:include></div>
+			<div id="main"><jsp:include page="got.jsp"></jsp:include></div>
 		</div>
 	</div>
 

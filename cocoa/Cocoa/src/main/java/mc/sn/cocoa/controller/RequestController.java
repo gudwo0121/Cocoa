@@ -1,23 +1,31 @@
 package mc.sn.cocoa.controller;
 
-import java.util.List;
+import java.io.UnsupportedEncodingException;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.http.ResponseEntity;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
 public interface RequestController {
-	public ModelAndView view_reqWriteForm(@RequestParam("coachId") String res, HttpServletRequest request, HttpServletResponse response);
+
+	public ModelAndView view_reqWriteForm(@RequestParam("coachId") String res, HttpServletRequest request,
+			HttpServletResponse response);
 
 	public ResponseEntity sendRequest(MultipartHttpServletRequest multipartRequest, HttpServletResponse response)
 			throws Exception;
-	
+
 	public ModelAndView view_sendReq(HttpServletRequest request, HttpServletResponse response) throws Exception;
-	
+
 	public ModelAndView view_receiveReq(HttpServletRequest request, HttpServletResponse response) throws Exception;
+	
+	public ModelAndView view_gotReqWait(@RequestParam("reqNO") int reqNO, HttpServletRequest request, HttpServletResponse response) throws UnsupportedEncodingException;
+
+	public ModelAndView view_sentReqWait(@RequestParam("reqNO") int reqNO, HttpServletRequest request, HttpServletResponse response) throws UnsupportedEncodingException;
+
+	public ResponseEntity removeRequest(@RequestParam("reqNO") int reqNO,
+			HttpServletRequest request, HttpServletResponse response);
 }

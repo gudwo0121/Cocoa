@@ -33,7 +33,7 @@
 			from requestTBL
 		]]>
 	</select>
-	
+
 	<!-- 받은 요청 리스트 -->
 	<select id="selectAllReqGot" resultMap="requestResult">
       <![CDATA[
@@ -47,4 +47,28 @@
          select * from requestTBL where req=#{req}
       ]]>
 	</select>
+
+	<select id="selectByReqNO" resultType="requestVO">
+      <![CDATA[
+         select * from requestTBL where reqNO=#{reqNO}
+      ]]>
+	</select>
+	
+	<!-- 수정 -->
+	<update id="updateRequest" parameterType="java.util.Map">
+		update requestTBL
+		set rTitle=#{rTitle},
+		rContents=#{rContents}
+		<if test="rImg!='' and rImg!=null">
+			, rImg=#{rImg}
+		</if>
+		where reqNO=#{reqNO}
+	</update>
+	
+	<delete id="deleteRequest" parameterType="int">
+    <![CDATA[
+      delete from requestTBL
+      where reqNO=#{reqNO}
+    ]]>
+	</delete>
 </mapper>

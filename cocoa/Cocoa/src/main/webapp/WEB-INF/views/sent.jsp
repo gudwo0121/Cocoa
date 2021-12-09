@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" isELIgnored="false"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
 <%
 request.setCharacterEncoding("UTF-8");
@@ -54,19 +54,22 @@ request.setCharacterEncoding("UTF-8");
 				<tbody>
 					<!-- 이부분에 조회 -->
 					<c:forEach var="sentList" items="${reqSentList}">
-					<tr>
-						<td>${sentList.res }</td>
-						<td><a href="#">${sentList.rTitle }</a></td>
-						<fmt:parseDate var = "dateFmt" pattern="yyyy-MM-dd HH:mm:ss.SSS" value="${sentList.rDate}"/>
-						<fmt:formatDate var = "dateTempParse" pattern = "yyyy-MM-dd" value = "${dateFmt}"/>
-						<td>${dateTempParse}</td>
-						<td>${sentList.status }</td>
-					</tr>
+						<tr>
+							<td>${sentList.res }</td>
+							<!-- sentReqWait로 이동하는 이벤트 필요 -->
+							<td><a href="${contextPath}/view_sentReqWait?reqNO=${sentList.reqNO}">${sentList.rTitle }</a></td>
+							<fmt:parseDate var="dateFmt" pattern="yyyy-MM-dd HH:mm:ss.SSS"
+								value="${sentList.rDate}" />
+							<fmt:formatDate var="dateTempParse" pattern="yyyy-MM-dd"
+								value="${dateFmt}" />
+							<td>${dateTempParse}</td>
+							<td>${sentList.status }</td>
+						</tr>
 					</c:forEach>
 				</tbody>
 			</table>
 		</div>
 	</div>
-	
+
 </body>
 </html>
