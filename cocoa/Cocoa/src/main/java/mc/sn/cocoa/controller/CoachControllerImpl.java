@@ -78,7 +78,7 @@ public class CoachControllerImpl implements CoachController {
 	@RequestMapping(value = "/view_coachWrite", method = RequestMethod.GET)
 	public ModelAndView view_coachWrite(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		ModelAndView mav = new ModelAndView();
-		String url = "/coachWriteForm";
+		String url = "/coach/coachWriteForm";
 		mav.setViewName(url);
 		return mav;
 	}
@@ -206,7 +206,7 @@ public class CoachControllerImpl implements CoachController {
 	public ModelAndView viewCoach(@RequestParam("coachNO") int coachNO, HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
 		ModelAndView mav = new ModelAndView();
-		String url = "/coachInfo";
+		String url = "/coach/coachInfo";
 		mav.setViewName(url);
 
 		coachVO = coachService.viewCoach(coachNO);
