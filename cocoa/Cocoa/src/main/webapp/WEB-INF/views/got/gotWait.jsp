@@ -86,12 +86,12 @@ th, td {
 				<!-- 수락, 거절, 목록으로 -->
 				<tr>
 					<td align="center" colspan="2"><br> <input type="button"
-						id="" class="btn btn-outline-dark"
+						id="" class="btn btn-outline-dark" onclick="location.href='/cocoa/gotWaitYes?reqNO=${requestInfo.reqNO}'"
 						style="background-color: white; color: black;"
 						onmouseover="this.style.color='white'; this.style.backgroundColor='black';"
 						onmouseout="this.style.color='black'; this.style.backgroundColor='white';"
 						value="수 락" />&nbsp;&nbsp;&nbsp; <input type="button" id=""
-						class="btn btn-outline-dark"
+						class="btn btn-outline-dark" onclick="location.href='/cocoa/gotWaitNo?reqNO=${requestInfo.reqNO}'"
 						style="background-color: white; color: black;"
 						onmouseover="this.style.color='white'; this.style.backgroundColor='black';"
 						onmouseout="this.style.color='black'; this.style.backgroundColor='white';"

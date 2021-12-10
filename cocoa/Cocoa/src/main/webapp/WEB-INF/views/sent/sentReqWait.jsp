@@ -44,7 +44,15 @@
 		
 		<!-- 우측 내용 -->
 		<div class="col-sm-9">
-			<div id="main"><jsp:include page="sentWait.jsp"></jsp:include></div>
+			<c:if test="${requestInfo.status eq '수락'}">
+				<div id="main"><jsp:include page="sentWait.jsp"></jsp:include></div>
+			</c:if>
+			<c:if test="${requestInfo.status eq '대기'}">
+				<div id="main"><jsp:include page="sentWait.jsp"></jsp:include></div>
+			</c:if>
+			<c:if test="${requestInfo.status eq '거절'}">
+				<div id="main"><jsp:include page="sentWait.jsp"></jsp:include></div>
+			</c:if>
 		</div>
 		
 	</div>

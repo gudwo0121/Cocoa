@@ -343,4 +343,28 @@ public class RequestControllerImpl implements RequestController {
 		in.close();
 		out.close();
 	}
+	
+	@Override
+	@RequestMapping(value = "/gotWaitYes", method = RequestMethod.GET)
+	public ModelAndView view_gotReqYes(@RequestParam("reqNO") int reqNO, HttpServletRequest request,
+			HttpServletResponse response) throws UnsupportedEncodingException {
+		request.setCharacterEncoding("utf-8");
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("reqNO", reqNO);
+		String url = "/got/gotWaitYes";
+		mav.setViewName(url);
+		return mav;
+	}
+	
+	@Override
+	@RequestMapping(value = "/gotWaitNo", method = RequestMethod.GET)
+	public ModelAndView view_gotReqNo(@RequestParam("reqNO") int reqNO, HttpServletRequest request,
+			HttpServletResponse response) throws UnsupportedEncodingException {
+		request.setCharacterEncoding("utf-8");
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("reqNO", reqNO);
+		String url = "/got/gotWaitNo";
+		mav.setViewName(url);
+		return mav;
+	}
 }
