@@ -22,7 +22,7 @@
 <body style="background-color: #FFEBCD; font-family: none;">
 
 	<!-- 상단바 -->
-	<jsp:include page="header.jsp"></jsp:include>
+	<jsp:include page="../header.jsp"></jsp:include>
 
 	<!-- 메뉴와 내용 -->
 	<div class="row" style="flex-wrap: unset; width: 15%;">
@@ -41,6 +41,6 @@
 	</div>
 
 	<!-- 하단바 -->
-	<jsp:include page="footer.jsp"></jsp:include>
+	<jsp:include page="../footer.jsp"></jsp:include>
 </body>
 </html>

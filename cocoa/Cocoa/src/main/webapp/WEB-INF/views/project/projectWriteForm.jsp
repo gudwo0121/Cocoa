@@ -24,7 +24,7 @@
 <body style="background-color: #FFEBCD">
 
 	<!-- 상단바 -->
-	<jsp:include page="header.jsp"></jsp:include>
+	<jsp:include page="../header.jsp"></jsp:include>
 
 	<!-- 프로젝트 글 작성 -->
 	<form action="${contextPath}/projectWrite" method="post"
@@ -124,7 +124,7 @@
 	</form>
 
 	<!-- 하단바 -->
-	<jsp:include page="footer.jsp"></jsp:include>
+	<jsp:include page="../footer.jsp"></jsp:include>
 	
 </body>
 </html>

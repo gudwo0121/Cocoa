@@ -31,7 +31,7 @@
 <body style="background-color: #FFEBCD; font-family: none;">
 
 	<!-- 상단바 -->
-	<jsp:include page="header.jsp"></jsp:include>
+	<jsp:include page="../header.jsp"></jsp:include>
 
 	<!-- 메뉴와 내용 -->
 	<div class="row" style="flex-wrap: unset; width: 15%;">
@@ -39,7 +39,7 @@
 		<!-- 좌측 메뉴 -->
 		<div class="side"
 			style="background-color: #333333; text-align: center;">
-			<jsp:include page="side.jsp"></jsp:include>
+			<jsp:include page="../myPage/side.jsp"></jsp:include>
 		</div>
 		
 		<!-- 우측 내용 -->
@@ -50,7 +50,7 @@
 	</div>
 
 	<!-- 하단바 -->
-	<jsp:include page="footer.jsp"></jsp:include>
+	<jsp:include page="../footer.jsp"></jsp:include>
 	
 </body>
 </html>
