@@ -48,7 +48,7 @@ public class MemberControllerImpl implements MemberController {
 	@RequestMapping(value = "/view_join", method = RequestMethod.GET)
 	public ModelAndView view_join(HttpServletRequest request, HttpServletResponse response) {
 		ModelAndView mav = new ModelAndView();
-		String url = "/joinForm";
+		String url = "/account/joinForm";
 		mav.setViewName(url);
 		return mav;
 	}
@@ -59,7 +59,7 @@ public class MemberControllerImpl implements MemberController {
 	public ModelAndView view_login(@RequestParam(value = "result", required = false) String result,
 			HttpServletRequest request, HttpServletResponse response) {
 		ModelAndView mav = new ModelAndView();
-		String url = "/loginForm";
+		String url = "/account/loginForm";
 		mav.addObject("result", result);
 		mav.setViewName(url);
 		return mav;
@@ -84,7 +84,7 @@ public class MemberControllerImpl implements MemberController {
 		ModelAndView mav = new ModelAndView();
 		MemberVO memberVO = memberService.searchMember(id);
 		mav.addObject("profileId", memberVO);
-		String url = "/profileInfo";
+		String url = "/account/profileInfo";
 		mav.setViewName(url);
 		return mav;
 	}
@@ -244,7 +244,7 @@ public class MemberControllerImpl implements MemberController {
 		MemberVO memberVO = memberService.searchMember(id);
 		mav.addObject("profileId", memberVO);
 
-		String url = "/myPageProfile";
+		String url = "/myPage/myPageProfile";
 		mav.setViewName(url);
 		return mav;
 	}
@@ -254,7 +254,7 @@ public class MemberControllerImpl implements MemberController {
 	@RequestMapping(value = "/view_memberInfo", method = RequestMethod.GET)
 	public ModelAndView view_memberInfo(HttpServletRequest request, HttpServletResponse response) {
 		ModelAndView mav = new ModelAndView();
-		String url = "/myPageInfo";
+		String url = "/myPage/myPageInfo";
 		mav.setViewName(url);
 		return mav;
 	}
