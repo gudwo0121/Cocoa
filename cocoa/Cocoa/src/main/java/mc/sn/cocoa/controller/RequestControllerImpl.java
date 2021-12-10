@@ -49,7 +49,7 @@ public class RequestControllerImpl implements RequestController {
 	public ModelAndView view_reqWriteForm(@RequestParam("coachId") String res, HttpServletRequest request,
 			HttpServletResponse response) {
 		ModelAndView mav = new ModelAndView();
-		String url = "/reqWriteForm";
+		String url = "/coach/reqWriteForm";
 		// 위의 res를 키값 'res'로 addobject
 		mav.addObject("res", res);
 		mav.setViewName(url);
@@ -158,7 +158,7 @@ public class RequestControllerImpl implements RequestController {
 		List reqSentList = requestService.listReqSent(id);
 		mav.addObject("reqSentList", reqSentList);
 
-		String url = "/myPageSent";
+		String url = "/myPage/myPageSent";
 		mav.setViewName(url);
 		return mav;
 	}
@@ -176,7 +176,7 @@ public class RequestControllerImpl implements RequestController {
 		List reqGotList = requestService.listReqGot(id);
 		mav.addObject("reqGotList", reqGotList);
 
-		String url = "/myPageGot";
+		String url = "/myPage/myPageGot";
 		mav.setViewName(url);
 		return mav;
 	}
@@ -190,7 +190,7 @@ public class RequestControllerImpl implements RequestController {
 		ModelAndView mav = new ModelAndView();
 		RequestVO vo = requestService.searchRequest(reqNO);
 		mav.addObject("requestInfo", vo);
-		String url = "/gotReqWait";
+		String url = "/got/gotReqWait";
 		mav.setViewName(url);
 		return mav;
 	}
@@ -204,7 +204,7 @@ public class RequestControllerImpl implements RequestController {
 		ModelAndView mav = new ModelAndView();
 		RequestVO vo = requestService.searchRequest(reqNO);
 		mav.addObject("requestInfo", vo);
-		String url = "/sentReqWait";
+		String url = "/sent/sentReqWait";
 		mav.setViewName(url);
 		return mav;
 	}

@@ -6,6 +6,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" />
 <link href="resources/css/styles.css" rel="stylesheet" />
 <style type="text/css">
 .side {
@@ -15,23 +17,12 @@
 }
 </style>
 <script type="text/javascript" src="resources/js/jquery-3.6.0.min.js"></script>
-<script type="text/javascript">
-	function readURL(input) {
-		if (input.files && input.files[0]) {
-			var reader = new FileReader();
-			reader.onload = function(e) {
-				$('#preview').attr('src', e.target.result);
-			}
-			reader.readAsDataURL(input.files[0]);
-		}
-	}
-</script>
 <title>CoCoa</title>
 </head>
 <body style="background-color: #FFEBCD; font-family: none;">
 
 	<!-- 상단바 -->
-	<jsp:include page="header.jsp"></jsp:include>
+	<jsp:include page="../header.jsp"></jsp:include>
 
 	<!-- 메뉴와 내용 -->
 	<div class="row" style="flex-wrap: unset; width: 15%;">
@@ -44,13 +35,13 @@
 		
 		<!-- 우측 내용 -->
 		<div class="col-sm-9">
-			<div id="main"><jsp:include page="sentWait.jsp"></jsp:include></div>
+			<div id="main"><jsp:include page="../got/got.jsp"></jsp:include></div>
 		</div>
 		
 	</div>
 
 	<!-- 하단바 -->
-	<jsp:include page="footer.jsp"></jsp:include>
-	
+	<jsp:include page="../footer.jsp"></jsp:include>
+
 </body>
 </html>

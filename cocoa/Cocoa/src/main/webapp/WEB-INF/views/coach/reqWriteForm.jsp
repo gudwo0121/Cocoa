@@ -31,7 +31,7 @@ th, td {
 <body style="background-color: #FFEBCD;">
 
 	<!-- 상단바 -->
-	<jsp:include page="header.jsp"></jsp:include>
+	<jsp:include page="../header.jsp"></jsp:include>
 
 	<!-- 요청서 작성 -->
 	<div class="card rcol my-4"
@@ -96,7 +96,7 @@ th, td {
 	</div>
 
 	<!-- 하단바 -->
-	<jsp:include page="footer.jsp"></jsp:include>
+	<jsp:include page="../footer.jsp"></jsp:include>
 	
 </body>
 </html>

@@ -45,7 +45,7 @@ public class ProjectControllerImpl implements ProjectController {
 	@RequestMapping(value = "/view_projectWrite", method = RequestMethod.GET)
 	public ModelAndView view_projectWrite(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		ModelAndView mav = new ModelAndView();
-		String url = "/projectWriteForm";
+		String url = "/project/projectWriteForm";
 		mav.setViewName(url);
 		return mav;
 	}
@@ -62,7 +62,7 @@ public class ProjectControllerImpl implements ProjectController {
 		projectVO.setProjectNO(projectNO);
 		ProjectVO vo = projectService.searchProject(projectVO);
 		mav.addObject("projectInfo", vo);
-		String url = "/projectInfo";
+		String url = "/project/projectInfo";
 		mav.setViewName(url);
 		return mav;
 	}

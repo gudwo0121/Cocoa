@@ -45,7 +45,7 @@
 <body style="background-color: #FFEBCD">
 
 	<!-- 상단바 -->
-	<jsp:include page="header.jsp"></jsp:include>
+	<jsp:include page="../header.jsp"></jsp:include>
 
 	<!-- 프로젝트 글 구간 -->
 	<form method="post" enctype="multipart/form-data" name="frmProject"
@@ -191,7 +191,7 @@
 	</form>
 
 	<!-- 하단바 -->
-	<jsp:include page="footer.jsp"></jsp:include>
+	<jsp:include page="../footer.jsp"></jsp:include>
 
 </body>
 </html>
