@@ -42,11 +42,12 @@ public class CoachControllerImpl implements CoachController {
 	private CoachService coachService;
 	@Autowired
 	private CoachVO coachVO;
-	
+
 	// 코치 글 조회
 	@Override
-	@RequestMapping(value = "/view_coach", method = { RequestMethod.GET, RequestMethod.POST })
-	public ModelAndView viewCoach(HttpServletRequest request, HttpServletResponse response, Criteria cri) throws Exception {
+	@RequestMapping(value = "/view_coachCate", method = { RequestMethod.GET, RequestMethod.POST })
+	public ModelAndView view_CoachCate(HttpServletRequest request, HttpServletResponse response, Criteria cri)
+			throws Exception {
 		ModelAndView mav = new ModelAndView();
 
 		// 쪽 번호 생성 메서드 객체 생성
@@ -66,7 +67,7 @@ public class CoachControllerImpl implements CoachController {
 
 		mav.addObject("pageMaker", pageMaker);
 
-		String url = "/coachList";
+		String url = "/coachCate";
 		mav.setViewName(url);
 
 		return mav;
@@ -134,7 +135,7 @@ public class CoachControllerImpl implements CoachController {
 
 			message = "<script>";
 			message += " alert('등록이 완료되었습니다.');";
-			message += " location.href='" + multipartRequest.getContextPath() + "/'; ";
+			message += " location.href='" + multipartRequest.getContextPath() + "/view_coachCate'; ";
 			message += " </script>";
 			resEnt = new ResponseEntity(message, responseHeaders, HttpStatus.CREATED);
 
@@ -252,7 +253,7 @@ public class CoachControllerImpl implements CoachController {
 			}
 			message = "<script>";
 			message += " alert('수정이 완료되었습니다.');";
-			message += " location.href='" + multipartRequest.getContextPath() + "/'; ";
+			message += " location.href='" + multipartRequest.getContextPath() + "/view_coachCate'; ";
 			message += " </script>";
 			resEnt = new ResponseEntity(message, responseHeaders, HttpStatus.CREATED);
 
@@ -288,11 +289,10 @@ public class CoachControllerImpl implements CoachController {
 
 			message = "<script>";
 			message += " alert('삭제가 완료되었습니다.');";
-			message += " location.href='" + request.getContextPath() + "/';";
+			message += " location.href='" + request.getContextPath() + "/view_coachCate';";
 			message += " </script>";
 			resEnt = new ResponseEntity(message, responseHeaders, HttpStatus.CREATED);
 		} catch (Exception e) {
-			// TODO: handle exception
 			message = "<script>";
 			message += " alert('다시 시도해주세요.');";
 			message += " location.href='" + request.getContextPath() + "/';";

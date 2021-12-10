@@ -15,8 +15,8 @@ public interface ProjectService {
 	public ProjectVO searchProject(ProjectVO projectVO);
 
 	public void removeProject(int projectNO);
-	
+
 	public void modProject(Map projectMap) throws Exception;
-	
+
 	public int countProject() throws Exception;
 }

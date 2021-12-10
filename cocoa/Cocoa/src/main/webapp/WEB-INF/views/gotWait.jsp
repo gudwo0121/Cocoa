@@ -6,8 +6,6 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet"
-	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" />
 <link href="resources/css/styles.css" rel="stylesheet" />
 <script type="text/javascript" src="resources/js/jquery-3.6.0.min.js"></script>
 <style type="text/css">
@@ -17,7 +15,6 @@ th, td {
 }
 </style>
 <script type="text/javascript">
-	// 사진 미리보기 설정
 	function readURL(input) {
 
 		if (input.files && input.files[0]) {
@@ -29,18 +26,12 @@ th, td {
 			reader.readAsDataURL(input.files[0]);
 		}
 	}
-
-	var cnt = 1;
-	function fn_addFile() {
-		$("#d_file")
-				.append("<br>" + "<input type='file' name='file"+cnt+"' />");
-		cnt++;
-	}
 </script>
 <title>CoCoa</title>
 </head>
 <body style="background-color: #FFEBCD">
 
+	<!-- UI 조정 필요 -->
 	<!-- 받은 요청 (대기) -->
 	<div class="card rcol my-3"
 		style="text-align: center; background-color: #FFEBCD; border: none; width: 80vw; height: 90vh;">
@@ -49,15 +40,21 @@ th, td {
 				style="width: 80%; margin: 0 auto; border: 1px solid grey; background-color: #FFCC99; color: black;">
 				<tr>
 					<th colspan="2"
-						style="vertical-align: middle; text-align: center; font-size: 20px;">요청서</th>
+						style="vertical-align: middle; text-align: center; font-size: 20px;">${requestInfo.req}의
+						요청서</th>
 				</tr>
 
 				<!-- rTitle -->
 				<tr>
 					<td style="text-align: center; width: 15%;"><b>제 목</b></td>
 					<td style=""><input type="text" id="" name="rTitle"
-						class="form-control"
-						style="width: 95%; background-color: #FFCC99; border: 1px solid grey; color: black;"></td>
+						class="form-control" value="${requestInfo.rTitle}" readonly
+						style="width: 95%; background-color: #FFCC99; border: 1px solid grey; color: black;">
+						<input type="hidden" name="req" value="${requestInfo.req}">
+						<input type="hidden" name="res" value="${requestInfo.res}">
+						<input type="hidden" name="reqNO" value="${requestInfo.reqNO}">
+					</td>
+
 				</tr>
 
 				<!-- rContents -->
@@ -66,14 +63,24 @@ th, td {
 						<b>내 용</b></td>
 					<td style="text-align: left; vertical-align: top;"><textarea
 							rows="10" cols="20" class="form-control" id="" name="rContents"
-							style="width: 95%; resize: none; background-color: #FFCC99; border: 1px solid grey; color: black;"></textarea></td>
+							readonly
+							style="width: 95%; resize: none; background-color: #FFCC99; border: 1px solid grey; color: black;">${requestInfo.rContents}</textarea></td>
 				</tr>
 
 				<!-- rImg -->
 				<tr>
 					<td style="text-align: center;"><b>첨부파일</b></td>
-					<td style="text-align: left;"><a href="#"
-						style="border: 1px solid black;">에러.jpg</a></td>
+					<td style="text-align: left;"><img id="preview"
+						src="${contextPath}/downRImg?reqNO=${requestInfo.reqNO}&rImg=${requestInfo.rImg}"
+						width=90% height=300 style="border: 1px solid;"
+						onerror="this.style.display='none'" /></td>
+				</tr>
+
+				<!-- 첨부파일 다운로드 -->
+				<tr>
+					<td style="text-align: center;"><b>다운로드</b></td>
+					<td><a
+						href="${contextPath}/downloadGotImg?reqNO=${requestInfo.reqNO}">${requestInfo.rImg}</a></td>
 				</tr>
 
 				<!-- 수락, 거절, 목록으로 -->
@@ -93,7 +100,8 @@ th, td {
 						style="background-color: white; color: black;"
 						onmouseover="this.style.color='white'; this.style.backgroundColor='black';"
 						onmouseout="this.style.color='black'; this.style.backgroundColor='white';"
-						value="목록으로" onclick="history.go(0)" /> <br> <br></td>
+						value="목록으로" onclick="location.href='/cocoa/view_receiveReq'" />
+						<br> <br></td>
 				</tr>
 			</table>
 		</form>

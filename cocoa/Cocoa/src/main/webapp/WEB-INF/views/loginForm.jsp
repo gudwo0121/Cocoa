@@ -6,21 +6,13 @@
 <html>
 <head>
 <meta charset='utf-8'>
-<meta name='viewport' content='width=device-width, initial-scale=1'>
 <link
 	href='https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css'
 	rel='stylesheet'>
 <link href='https://use.fontawesome.com/releases/v5.7.2/css/all.css'
 	rel='stylesheet'>
-<script type='text/javascript'
-	src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
-<script type='text/javascript'
-	src='https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js'></script>
-<link
-	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css"
-	rel="stylesheet" />
 <link href="resources/css/login-styles.css" rel="stylesheet" />
-<title>CoCoa</title>
+<!-- 로그인 실패시 알림 -->
 <c:choose>
 	<c:when test="${result=='loginFailed'}">
 		<script>
@@ -30,11 +22,13 @@
 		</script>
 	</c:when>
 </c:choose>
+<title>CoCoa</title>
 </head>
 <body>
+
+	<!-- 로그인 -->
 	<form action="/cocoa/login" method="post">
 		<div class="container">
-
 			<div class="card rcol py">
 				<h2 class="heading mt-5 mb-4" align="center">
 					<a href="/cocoa/">CoCoa</a>
@@ -65,5 +59,6 @@
 			</div>
 		</div>
 	</form>
+
 </body>
 </html>

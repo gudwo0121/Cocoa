@@ -19,6 +19,6 @@ public interface ProjectDAO {
 	public void deleteProject(int projectNO);
 
 	public void updateProject(Map projectMap);
-	
+
 	public int countProject() throws DataAccessException;
 }

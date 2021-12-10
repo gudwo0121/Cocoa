@@ -48,4 +48,30 @@
       ]]>
 	</select>
 
+	<!-- 보낸 / 받은 요청서 조회 -->
+	<select id="selectByReqNO" resultType="requestVO">
+      <![CDATA[
+         select * from requestTBL where reqNO=#{reqNO}
+      ]]>
+	</select>
+
+	<!-- 보낸 요청서 수정 -->
+	<update id="updateRequest" parameterType="java.util.Map">
+		update requestTBL
+		set rTitle=#{rTitle},
+		rContents=#{rContents}
+		<if test="rImg!='' and rImg!=null">
+			, rImg=#{rImg}
+		</if>
+		where reqNO=#{reqNO}
+	</update>
+
+	<!-- 보낸 요청서 삭제 -->
+	<delete id="deleteRequest" parameterType="int">
+		<![CDATA[
+	      delete from requestTBL
+	      where reqNO=#{reqNO}
+      	]]>
+	</delete>
+
 </mapper>

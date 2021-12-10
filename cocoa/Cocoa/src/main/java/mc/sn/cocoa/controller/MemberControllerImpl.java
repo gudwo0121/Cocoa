@@ -7,7 +7,6 @@ import java.io.UnsupportedEncodingException;
 import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.Iterator;
-import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -275,14 +274,14 @@ public class MemberControllerImpl implements MemberController {
 		if (result != 0) {
 			message = "<script>";
 			message += " alert('수정이 완료되었습니다.');";
-			message += " location.href='" + request.getContextPath() + "/view_myPageProfile'; ";
+			message += " location.href='" + request.getContextPath() + "/view_memberInfo'; ";
 			message += " </script>";
 			resEnt = new ResponseEntity(message, responseHeaders, HttpStatus.CREATED);
 		} else {
 
 			message = " <script>";
 			message += " alert('오류가 발생했습니다. 다시 시도해주세요.');');";
-			message += " location.href='" + request.getContextPath() + "/view_myPageProfile'; ";
+			message += " location.href='" + request.getContextPath() + "/view_memberInfo'; ";
 			message += " </script>";
 			resEnt = new ResponseEntity(message, responseHeaders, HttpStatus.CREATED);
 		}
@@ -314,7 +313,7 @@ public class MemberControllerImpl implements MemberController {
 
 			message = " <script>";
 			message += " alert('오류가 발생했습니다. 다시 시도해주세요.');');";
-			message += " location.href='" + request.getContextPath() + "/view_myPageProfile'; ";
+			message += " location.href='" + request.getContextPath() + "/view_memberInfo'; ";
 			message += " </script>";
 			resEnt = new ResponseEntity(message, responseHeaders, HttpStatus.CREATED);
 		}

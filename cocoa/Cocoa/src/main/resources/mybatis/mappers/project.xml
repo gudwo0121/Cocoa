@@ -34,7 +34,7 @@
 	<!-- 프로젝트 리스트 전체 가져오기 -->
 	<select id="selectAllProjectList" resultMap="projectResult">
       <![CDATA[
-         select * from projectTBL	
+         select * from projectTBL
          limit #{pageStart}, #{perPageNum} 	
       ]]>
 	</select>

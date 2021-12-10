@@ -11,8 +11,10 @@ import org.springframework.web.servlet.ModelAndView;
 import mc.sn.cocoa.vo.Criteria;
 
 public interface CoachController {
-	public ModelAndView viewCoach(HttpServletRequest request, HttpServletResponse response, Criteria cri) throws Exception;
-	
+
+	public ModelAndView view_CoachCate(HttpServletRequest request, HttpServletResponse response, Criteria cri)
+			throws Exception;
+
 	public ModelAndView view_coachWrite(HttpServletRequest request, HttpServletResponse response) throws Exception;
 
 	public ResponseEntity addNewCoach(MultipartHttpServletRequest multipartRequest, HttpServletResponse response)

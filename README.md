@@ -77,3 +77,20 @@
 
 ***
 
+21.12.9 추가
+
+* myPageSent.jsp에서 [대기] 상태의 요청 클릭 시 sentReqWait.jsp 이동 후 해당 요청서 조회 구현
+* sentReqWait.jsp 이동 후 하단 3개 버튼(수정, 철회, 목록으로) 구현
+* myPageGot.jsp에서 [대기] 상태의 요청 클릭 시 gotReqWait.jsp 이동 후 해당 요청서 조회 구현
+* gotReqWait.jsp 이동 후 하단 3개 버튼(수락, 거절, 목록으로) UI만 구현
+* jsp:include 처리 방식 수정 = 별개로 나눔
+* 회원정보 수정시 유효성 검증 JS 추가
+* 모든 jsp 파일 코드 리팩토링 = 쓸모없는 라인 삭제 + 상단 / 하단바 jsp:include 처리
+* home.jsp 와 coachCate.jsp로 카테고리별 이동 결정 = 각 화면 페이징까지 구현
+* 미완 ) 세부 카테고리 이동 및 페이징은 아직 구현 x
+* 미완 ) 보낸 요청 리스트 / 받은 요청 리스트에도 아직 페이징 구현 x
+* sentWait.jsp / gotWait.jsp / profile.jsp UI 보완 필요
+* 모든 jsp 파일 폴더로 정리 분담 예정
+
+***
+

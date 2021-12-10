@@ -6,8 +6,6 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet"
-	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" />
 <link href="resources/css/styles.css" rel="stylesheet" />
 <script type="text/javascript" src="resources/js/jquery-3.6.0.min.js"></script>
 <title>CoCoa</title>
@@ -15,46 +13,9 @@
 <body style="background-color: #FFEBCD">
 
 	<!-- 상단바 -->
-	<nav class="navbar navbar-expand-lg" style="background-color: #663333;">
+	<jsp:include page="header.jsp"></jsp:include>
 
-		<div class="container px-4 px-lg-5">
-
-			<!-- 로고 -->
-			<a class="navbar-brand" href="/cocoa/"
-				style="color: #CFFFE5; font-size: 30px;"
-				onmouseover="this.style.color='black';"
-				onmouseout="this.style.color='#CFFFE5';"><b>CoCoa</b></a>
-
-			<div class="collapse navbar-collapse" id="navbarSupportedContent">
-
-				<!-- 상단 가운데공간 지우면 안됌 -->
-				<div class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4"></div>
-
-				<!-- 우측 상단 변경 -->
-				<c:choose>
-					<c:when test="${isLogOn == true && member != null}">
-						<form action="/cocoa/logout" method="get" class="d-flex">
-							<input name="My Page" class="btn btn-outline-dark" type="button"
-								value="My Page"
-								onClick="location.href='/cocoa/view_myPageProfile'" />&nbsp;<input
-								name="logout" class="btn btn-outline-dark" type="submit"
-								value="logout" />
-						</form>
-					</c:when>
-					<c:otherwise>
-						<form action="/cocoa/view_login" method="get" class="d-flex">
-							<input name="login" class="btn btn-outline-dark" type="submit"
-								value="log in" />&nbsp; <input name="join"
-								class="btn btn-outline-dark" type="button" value="Sign in"
-								onClick="location.href='/cocoa/view_join'" />
-						</form>
-					</c:otherwise>
-				</c:choose>
-			</div>
-		</div>
-	</nav>
-
-	<!-- 카테고리바 -->
+	<!-- 카테고리 구간 -->
 	<header class="py-5" style="background-color: #663333">
 		<div class="container px-4 px0lg05 my-5">
 
@@ -65,7 +26,7 @@
 					onClick="location.href='/cocoa/'" value="Project"> <input
 					id="project" type="button"
 					class="btn btn-primary btn-lg px-4 me-sm-3"
-					onClick="location.href='/cocoa/view_coach'" value="Coaching">
+					onClick="location.href='/cocoa/view_coachCate'" value="Coaching">
 			</div>
 			<br>
 
@@ -80,7 +41,7 @@
 		</div>
 	</header>
 
-	<!-- 카탈로그바 (coach & project 공존 방법 필요) -->
+	<!-- 프로젝트 카탈로그 구간 (default) -->
 	<section class="py-5">
 		<div class="container px-4 px-lg-5 mt-5">
 
@@ -94,15 +55,17 @@
 			</c:choose>
 			<br> <br> <br>
 
-			<!-- 생성된 카탈로그 표시 -->
+			<!-- 생성된 프로젝트 카탈로그 표시 -->
 			<div
 				class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
 
 				<!-- 반복문 시작 컨트롤러에서 addObject한 projectList를 가져와서 project라고 저장 -->
 				<c:forEach var="project" items="${projectList}">
+
 					<!-- 카탈로그 틀 -->
 					<div class="col mb-5" id="proCate">
 						<div class="card h-100">
+
 							<!-- 난이도 표시 -->
 							<div class="badge bg-dark text-white position-absolute"
 								style="top: 0.5rem; right: 0.5rem">${project.level}</div>
@@ -136,8 +99,8 @@
 					</div>
 				</c:forEach>
 				<!-- Project 반복문 끝 -->
-			</div>
 
+			</div>
 		</div>
 		<!-- 위의 카탈로그 틀이 반복 생성 및 표시 -->
 	</section>
@@ -162,11 +125,8 @@
 
 	</div>
 
-	<!-- 하단바 (마지막에 추가) -->
-	<footer class="py-5 bg-dark">
-		<div class="container">
-			<p class="m-0 text-center text-white">Copyright &copy; CoCoa 2021</p>
-		</div>
-	</footer>
+	<!-- 하단바 -->
+	<jsp:include page="footer.jsp"></jsp:include>
+
 </body>
 </html>

@@ -38,6 +38,7 @@ public class ProjectDAOImpl implements ProjectDAO {
 		return projectsList;
 	}
 
+	// 프로젝트 글 상세 조회
 	@Override
 	public ProjectVO selectProjectById(ProjectVO projectVO) {
 		ProjectVO vo = null;
@@ -56,7 +57,7 @@ public class ProjectDAOImpl implements ProjectDAO {
 	public void updateProject(Map projectMap) {
 		sqlSession.update("mapper.project.updateProject", projectMap);
 	}
-	
+
 	// 프로젝트 글 개수
 	@Override
 	public int countProject() throws DataAccessException {

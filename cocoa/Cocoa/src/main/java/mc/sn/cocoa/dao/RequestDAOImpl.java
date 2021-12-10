@@ -44,4 +44,24 @@ public class RequestDAOImpl implements RequestDAO {
 		reqSentList = sqlSession.selectList("mapper.request.selectAllReqSent", req);
 		return reqSentList;
 	}
+
+	// 보낸 & 받은 요청서 조회
+	@Override
+	public RequestVO selectByReqNO(int reqNO) {
+		RequestVO vo = null;
+		vo = sqlSession.selectOne("mapper.request.selectByReqNO", reqNO);
+		return vo;
+	}
+
+	// 보낸 요청글 수정
+	@Override
+	public void updateRequest(Map requestMap) {
+		sqlSession.update("mapper.request.updateRequest", requestMap);
+	}
+
+	// 보낸 요청글 삭제
+	@Override
+	public void deleteRequest(int reqNO) {
+		sqlSession.delete("mapper.request.deleteRequest", reqNO);
+	}
 }

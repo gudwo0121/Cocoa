@@ -50,7 +50,7 @@ public class ProjectControllerImpl implements ProjectController {
 		return mav;
 	}
 
-	
+	// 프로젝트 상세 이동
 	@Override
 	@RequestMapping(value = "/view_projectInfo", method = RequestMethod.GET)
 	public ModelAndView projectInfo(@RequestParam("id") String id, @RequestParam("projectNO") int projectNO,
@@ -220,6 +220,7 @@ public class ProjectControllerImpl implements ProjectController {
 		out.close();
 	}
 
+	// 프로젝트 이미지 다운로드
 	@RequestMapping("/download")
 	protected void download(@RequestParam("pImg") String pImg, @RequestParam("leader") String leader,
 			@RequestParam("projectNO") String projectNO, HttpServletResponse response) throws Exception {

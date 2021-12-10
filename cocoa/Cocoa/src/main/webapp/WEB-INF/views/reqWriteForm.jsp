@@ -6,8 +6,6 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet"
-	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" />
 <link href="resources/css/styles.css" rel="stylesheet" />
 <script type="text/javascript" src="resources/js/jquery-3.6.0.min.js"></script>
 <style type="text/css">
@@ -16,7 +14,6 @@ th, td {
 }
 </style>
 <script type="text/javascript">
-	// 사진 미리보기 설정
 	function readURL(input) {
 
 		if (input.files && input.files[0]) {
@@ -34,34 +31,9 @@ th, td {
 <body style="background-color: #FFEBCD;">
 
 	<!-- 상단바 -->
-	<nav class="navbar navbar-expand-lg" style="background-color: #663333;">
+	<jsp:include page="header.jsp"></jsp:include>
 
-		<div class="container px-4 px-lg-5">
-
-			<!-- 로고 -->
-			<a class="navbar-brand" href="/cocoa/"
-				style="color: #CFFFE5; font-size: 30px;"
-				onmouseover="this.style.color='black';"
-				onmouseout="this.style.color='#CFFFE5';"><b>CoCoa</b></a>
-
-			<div class="collapse navbar-collapse" id="navbarSupportedContent">
-
-				<!-- 상단 가운데공간 지우면 안됌 -->
-				<div class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4"></div>
-
-				<!-- 우측 상단 변경 -->
-				<form action="/cocoa/logout" method="get" class="d-flex">
-					<input name="My Page" class="btn btn-outline-dark" type="button"
-						value="My Page"
-						onClick="location.href='/cocoa/view_myPageProfile'" />&nbsp; <input
-						name="logout" class="btn btn-outline-dark" type="submit"
-						value="logout" />
-				</form>
-			</div>
-		</div>
-	</nav>
-
-	<!-- 요청서 작성바 -->
+	<!-- 요청서 작성 -->
 	<div class="card rcol my-4"
 		style="margin: 0 auto; width: 60%; background-color: #FFEBCD; border: none;">
 		<form name="coachWriteForm" action="${contextPath}/requestWrite"
@@ -123,5 +95,8 @@ th, td {
 		</form>
 	</div>
 
+	<!-- 하단바 -->
+	<jsp:include page="footer.jsp"></jsp:include>
+	
 </body>
 </html>
