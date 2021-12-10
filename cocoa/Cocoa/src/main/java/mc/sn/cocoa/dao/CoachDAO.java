@@ -20,5 +20,5 @@ public interface CoachDAO {
 
 	public void deleteCoach(int coachNO) throws DataAccessException;
 	
-	public int countCoach() throws DataAccessException;
+	public int countCoach(Criteria cri) throws DataAccessException;
 }

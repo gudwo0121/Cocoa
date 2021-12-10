@@ -35,6 +35,7 @@
 	<select id="selectAllProjectList" resultMap="projectResult">
       <![CDATA[
          select * from projectTBL
+         where level like #{level}
          limit #{pageStart}, #{perPageNum} 	
       ]]>
 	</select>
@@ -73,6 +74,7 @@
 		<![CDATA[
 			SELECT count(*)
 			from projectTBL
+			where level = #{level}
 		]]>
 	</select>
 

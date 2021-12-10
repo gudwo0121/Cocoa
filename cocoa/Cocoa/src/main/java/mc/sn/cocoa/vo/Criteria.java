@@ -4,6 +4,8 @@ public class Criteria {
 
 	private int page; // 현재 페이지 번호
 	private int perPageNum; // 한 페이지에 게시할 글의 수
+	private String lang = "C";
+	private String level = "하수";
 
 	// 특정 페이지의 게시글 시작 번호, 게시글 시작 행 번호
 	public int getPageStart() {
@@ -42,4 +44,23 @@ public class Criteria {
 			this.perPageNum = pageCount;
 		}
 	}
+
+	public String getLang() {
+		return lang;
+	}
+
+	public void setLang(String lang) {
+		this.lang = lang;
+	}
+
+	public String getLevel() {
+		return level;
+	}
+
+	public void setLevel(String level) {
+		this.level = level;
+	}
+	
+	
+	
 }

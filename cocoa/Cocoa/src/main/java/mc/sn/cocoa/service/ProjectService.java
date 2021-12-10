@@ -18,5 +18,5 @@ public interface ProjectService {
 
 	public void modProject(Map projectMap) throws Exception;
 
-	public int countProject() throws Exception;
+	public int countProject(Criteria cri) throws Exception;
 }

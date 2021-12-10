@@ -33,9 +33,15 @@
 			<!-- 프로젝트 levels cate -->
 			<div id="levels"
 				class="d-grid gap-3 d-sm-flex justify-content-sm-center">
-				<a id="low" class="btn btn-primary btn-lg px-4 me-sm-3">Beginner</a>
-				<a id="middle" class="btn btn-primary btn-lg px-4 me-sm-3">Junior</a>
-				<a id="high" class="btn btn-primary btn-lg px-4 me-sm-3">Senior</a>
+				<input id="Beginner" type="button"
+					class="btn btn-primary btn-lg px-4 me-sm-3"
+					onClick="location.href='/cocoa/?level=하수'" value="Beginner"> 
+				<input id="Junior" type="button"
+					class="btn btn-primary btn-lg px-4 me-sm-3"
+					onClick="location.href='/cocoa/?level=중수'" value="Junior">
+				<input id="Senior" type="button"
+					class="btn btn-primary btn-lg px-4 me-sm-3"
+					onClick="location.href='/cocoa/?level=고수'" value="Senior">
 			</div>
 
 		</div>
@@ -109,17 +115,17 @@
 	<div style="margin: 0 auto; font-size: 30px;">
 
 		<c:if test="${pageMaker.prev }">
-			<a href='<c:url value="/?page=${pageMaker.startPage-1 }"/>'><i
+			<a href='<c:url value="/?level=${cri.level }&page=${pageMaker.startPage-1 }"/>'><i
 				class=""></i></a>
 		</c:if>
 
 		<c:forEach begin="${pageMaker.startPage }" end="${pageMaker.endPage }"
 			var="pageNum">
-			<a href='<c:url value="/?page=${pageNum }"/>'><i class="">${pageNum }</i></a>
+			<a href='<c:url value="/?level=${cri.level }&page=${pageNum }"/>'><i class="">${pageNum }</i></a>
 		</c:forEach>
 
 		<c:if test="${pageMaker.next && pageMaker.endPage >0 }">
-			<a href='<c:url value="/?page=${pageMaker.endPage+1 }"/>'><i
+			<a href='<c:url value="/?level=${cri.level }&page=${pageMaker.endPage+1 }"/>'><i
 				class=""></i></a>
 		</c:if>
 

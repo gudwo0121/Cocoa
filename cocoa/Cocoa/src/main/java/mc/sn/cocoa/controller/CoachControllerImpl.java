@@ -57,7 +57,7 @@ public class CoachControllerImpl implements CoachController {
 		pageMaker.setCri(cri);
 
 		// 총 게시글의 수
-		pageMaker.setTotalCount(coachService.countCoach());
+		pageMaker.setTotalCount(coachService.countCoach(cri));
 
 		// 서비스에서 listCoaches() 메소드 실행하여 리턴 값을 List타입의 coachesList에 저장
 		List coachesList = coachService.listCoaches(cri);
@@ -66,6 +66,8 @@ public class CoachControllerImpl implements CoachController {
 		mav.addObject("coachesList", coachesList);
 
 		mav.addObject("pageMaker", pageMaker);
+		
+		mav.addObject("cri", cri);
 
 		String url = "/coachCate";
 		mav.setViewName(url);
