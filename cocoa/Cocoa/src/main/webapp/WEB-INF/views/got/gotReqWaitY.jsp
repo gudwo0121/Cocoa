@@ -24,18 +24,18 @@
 	<!-- 상단바 -->
 	<jsp:include page="../header.jsp"></jsp:include>
 
-	<!-- 메뉴와 내용 -->
+	<!-- 받은 요청 클릭 (대기-수락전송) -->
 	<div class="row" style="flex-wrap: unset; width: 15%;">
 	
 		<!-- 좌측 메뉴 -->
 		<div class="side"
 			style="background-color: #333333; text-align: center;">
-			<jsp:include page="side.jsp"></jsp:include>
+			<jsp:include page="../myPage/side.jsp"></jsp:include>
 		</div>
 		
 		<!-- 우측 내용 -->
 		<div class="col-sm-9">
-			<div id="main"><jsp:include page="sent.jsp"></jsp:include></div>
+			<div id="main"><jsp:include page="gotWaitYes.jsp"></jsp:include></div>
 		</div>
 		
 	</div>

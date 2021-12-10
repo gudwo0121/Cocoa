@@ -32,6 +32,7 @@ import org.springframework.web.servlet.ModelAndView;
 import mc.sn.cocoa.service.RequestService;
 import mc.sn.cocoa.vo.MemberVO;
 import mc.sn.cocoa.vo.RequestVO;
+import net.coobird.thumbnailator.Thumbnails;
 
 @Controller("requestController")
 public class RequestControllerImpl implements RequestController {
@@ -181,7 +182,7 @@ public class RequestControllerImpl implements RequestController {
 		return mav;
 	}
 
-	// 받은 요청글 상세보기
+	// 받은 요청 대기글 이동
 	@Override
 	@RequestMapping(value = "/view_gotReqWait", method = RequestMethod.GET)
 	public ModelAndView view_gotReqWait(@RequestParam("reqNO") int reqNO, HttpServletRequest request,
@@ -195,7 +196,7 @@ public class RequestControllerImpl implements RequestController {
 		return mav;
 	}
 
-	// 보낸 요청글 상세보기
+	// 보낸 요청 대기글 이동
 	@Override
 	@RequestMapping(value = "/view_sentReqWait", method = RequestMethod.GET)
 	public ModelAndView view_sentReqWait(@RequestParam("reqNO") int reqNO, HttpServletRequest request,
@@ -218,17 +219,13 @@ public class RequestControllerImpl implements RequestController {
 		String filePath = request_IMAGE_REPO + "\\" + reqNO + "\\" + rImg;
 		File image = new File(filePath);
 
-		response.setHeader("Cache-Control", "no-cache");
-		response.addHeader("Content-disposition", "attachment; fileName=" + rImg);
-		FileInputStream in = new FileInputStream(image);
-		byte[] buffer = new byte[1024 * 8];
-		while (true) {
-			int count = in.read(buffer);
-			if (count == -1)
-				break;
-			out.write(buffer, 0, count);
+		if (image.exists()) {
+			// 원본 이미지에 대한 썸네일 이미지를 생성한 후 OutputStream 객체에 할당
+			Thumbnails.of(image).size(1024, 1024).outputFormat("png").toOutputStream(out);
 		}
-		in.close();
+		// 썸네일 이미지를 OutputStream 객체를 이용해 브라우저로 전송
+		byte[] buffer = new byte[1024 * 8];
+		out.write(buffer);
 		out.close();
 	}
 
@@ -330,17 +327,40 @@ public class RequestControllerImpl implements RequestController {
 		String downFile = request_IMAGE_REPO + "\\" + reqNO + "\\" + rImg;
 		File file = new File(downFile);
 		rImg = URLEncoder.encode(rImg, "UTF-8");
-		response.setHeader("Cache-Control", "no-cache");
-		response.addHeader("Content-disposition", "attachment; fileName=" + rImg);
-		FileInputStream in = new FileInputStream(file);
-		byte[] buffer = new byte[1024 * 8];
-		while (true) {
-			int count = in.read(buffer);
-			if (count == -1)
-				break;
-			out.write(buffer, 0, count);
+
+		if (file.exists()) {
+			// 원본 이미지에 대한 썸네일 이미지를 생성한 후 OutputStream 객체에 할당
+			Thumbnails.of(file).size(1024, 1024).outputFormat("png").toOutputStream(out);
 		}
-		in.close();
+		// 썸네일 이미지를 OutputStream 객체를 이용해 브라우저로 전송
+		byte[] buffer = new byte[1024 * 8];
+		out.write(buffer);
 		out.close();
+	}
+
+	// 받은 요청 수락 전송 화면 이동
+	@Override
+	@RequestMapping(value = "/gotWaitYes", method = RequestMethod.GET)
+	public ModelAndView view_gotReqYes(@RequestParam("reqNO") int reqNO, HttpServletRequest request,
+			HttpServletResponse response) throws UnsupportedEncodingException {
+		request.setCharacterEncoding("utf-8");
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("reqNO", reqNO);
+		String url = "/got/gotReqWaitY";
+		mav.setViewName(url);
+		return mav;
+	}
+
+	// 받은 요청 거절 전송 화면 이동
+	@Override
+	@RequestMapping(value = "/gotWaitNo", method = RequestMethod.GET)
+	public ModelAndView view_gotReqNo(@RequestParam("reqNO") int reqNO, HttpServletRequest request,
+			HttpServletResponse response) throws UnsupportedEncodingException {
+		request.setCharacterEncoding("utf-8");
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("reqNO", reqNO);
+		String url = "/got/gotReqWaitN";
+		mav.setViewName(url);
+		return mav;
 	}
 }

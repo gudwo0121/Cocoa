@@ -40,7 +40,7 @@ request.setCharacterEncoding("UTF-8");
 							<!-- sentReqWait로 이동 -->
 							<td><a
 								href="${contextPath}/view_sentReqWait?reqNO=${sentList.reqNO}">${sentList.rTitle }</a></td>
-							<fmt:parseDate var="dateFmt" pattern="yyyy-MM-dd HH:mm:ss.SSS"
+							<fmt:parseDate var="dateFmt" pattern="yyyy-MM-dd HH:mm:ss"
 								value="${sentList.rDate}" />
 							<fmt:formatDate var="dateTempParse" pattern="yyyy-MM-dd"
 								value="${dateFmt}" />
