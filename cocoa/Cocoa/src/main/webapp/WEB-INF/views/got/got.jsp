@@ -51,6 +51,28 @@ request.setCharacterEncoding("UTF-8");
 				</tbody>
 			</table>
 		</div>
+		<!-- 쪽 번호 구간 -->
+		<div style="margin: 0 auto; font-size: 30px;">
+
+			<c:if test="${pageMaker.prev }">
+				<a
+					href='<c:url value="/view_receiveReq?page=${pageMaker.startPage-1 }"/>'><i
+					class=""></i></a>
+			</c:if>
+
+			<c:forEach begin="${pageMaker.startPage }"
+				end="${pageMaker.endPage }" var="pageNum">
+				<a href='<c:url value="/view_receiveReq?page=${pageNum }"/>'><i
+					class="">${pageNum }</i></a>
+			</c:forEach>
+
+			<c:if test="${pageMaker.next && pageMaker.endPage >0 }">
+				<a
+					href='<c:url value="/view_receiveReq?page=${pageMaker.endPage+1 }"/>'><i
+					class=""></i></a>
+			</c:if>
+
+		</div>
 	</div>
 
 </body>

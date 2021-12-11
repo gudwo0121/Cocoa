@@ -5,8 +5,10 @@ import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Repository;
 
+import mc.sn.cocoa.vo.Criteria;
 import mc.sn.cocoa.vo.RequestVO;
 
 @Repository("requestDAO")
@@ -31,17 +33,17 @@ public class RequestDAOImpl implements RequestDAO {
 
 	// 받은 요청 리스트 가져와서 리턴
 	@Override
-	public List selectAllReqGot(String res) {
+	public List selectAllReqGot(Criteria cri) {
 		List<RequestVO> reqGotList = null;
-		reqGotList = sqlSession.selectList("mapper.request.selectAllReqGot", res);
+		reqGotList = sqlSession.selectList("mapper.request.selectAllReqGot", cri);
 		return reqGotList;
 	}
 
 	// 보낸 요청 리스트 가져와서 리턴
 	@Override
-	public List selectAllReqSent(String req) {
+	public List selectAllReqSent(Criteria cri) {
 		List<RequestVO> reqSentList = null;
-		reqSentList = sqlSession.selectList("mapper.request.selectAllReqSent", req);
+		reqSentList = sqlSession.selectList("mapper.request.selectAllReqSent", cri);
 		return reqSentList;
 	}
 
@@ -63,5 +65,17 @@ public class RequestDAOImpl implements RequestDAO {
 	@Override
 	public void deleteRequest(int reqNO) {
 		sqlSession.delete("mapper.request.deleteRequest", reqNO);
+	}
+	
+	// 보낸 요청글 개수
+	@Override
+	public int countSendRequest(String req) throws DataAccessException {
+		return (Integer) sqlSession.selectOne("mapper.request.countSendRequest", req);
+	}
+	
+	// 빋은 요청글 개수
+	@Override
+	public int countReceiveRequest(String res) throws DataAccessException {
+		return (Integer) sqlSession.selectOne("mapper.request.countReceiveRequest", res);
 	}
 }

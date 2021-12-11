@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import mc.sn.cocoa.dao.RequestDAO;
+import mc.sn.cocoa.vo.Criteria;
 import mc.sn.cocoa.vo.RequestVO;
 
 @Service("requestService")
@@ -26,17 +27,17 @@ public class RequestServiceImpl implements RequestService {
 
 	// 받은 요청 리스트 가져오기
 	@Override
-	public List listReqGot(String res) {
+	public List listReqGot(Criteria cri) {
 		List reqGotList = null;
-		reqGotList = requestDAO.selectAllReqGot(res);
+		reqGotList = requestDAO.selectAllReqGot(cri);
 		return reqGotList;
 	}
 
 	// 보낸 요청 리스트 가져오기
 	@Override
-	public List listReqSent(String req) {
+	public List listReqSent(Criteria cri) {
 		List reqSentList = null;
-		reqSentList = requestDAO.selectAllReqSent(req);
+		reqSentList = requestDAO.selectAllReqSent(cri);
 		return reqSentList;
 	}
 
@@ -58,5 +59,17 @@ public class RequestServiceImpl implements RequestService {
 	@Override
 	public void removeRequest(int reqNO) {
 		requestDAO.deleteRequest(reqNO);
+	}
+	
+	// 보낸 요청글 개수
+	@Override
+	public int countSendRequest(String req) throws Exception {
+		return requestDAO.countSendRequest(req);
+	}
+	
+	// 받은 요청글 개수
+	@Override
+	public int countReceiveRequest(String res) throws Exception {
+		return requestDAO.countReceiveRequest(res);
 	}
 }

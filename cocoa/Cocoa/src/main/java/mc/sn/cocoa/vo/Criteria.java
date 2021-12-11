@@ -6,6 +6,8 @@ public class Criteria {
 	private int perPageNum; // 한 페이지에 게시할 글의 수
 	private String lang = "C";
 	private String level = "하수";
+	private String reqId;
+	private String resId;
 
 	// 특정 페이지의 게시글 시작 번호, 게시글 시작 행 번호
 	public int getPageStart() {
@@ -60,7 +62,21 @@ public class Criteria {
 	public void setLevel(String level) {
 		this.level = level;
 	}
-	
-	
+
+	public String getReqId() {
+		return reqId;
+	}
+
+	public void setReqId(String reqId) {
+		this.reqId = reqId;
+	}
+
+	public String getResId() {
+		return resId;
+	}
+
+	public void setResId(String resId) {
+		this.resId = resId;
+	}
 	
 }
