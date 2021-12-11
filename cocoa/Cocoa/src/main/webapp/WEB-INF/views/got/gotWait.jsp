@@ -69,10 +69,11 @@ th, td {
 
 				<!-- rImg -->
 				<tr>
-					<td style="text-align: center; vertical-align: top;"><b>첨부파일</b></td>
+					<td style="text-align: center;"><b>첨부파일</b></td>
 					<td style="text-align: left;"><img id="preview"
 						src="${contextPath}/downRImg?reqNO=${requestInfo.reqNO}&rImg=${requestInfo.rImg}"
-						width=95% height=300 style="border: 1px solid;" onerror="" /></td>
+						width=90% height=300 style="border: 1px solid;"
+						onerror="this.style.display='none'" /></td>
 				</tr>
 
 				<!-- 첨부파일 다운로드 -->
@@ -89,19 +90,17 @@ th, td {
 						style="background-color: white; color: black;"
 						onmouseover="this.style.color='white'; this.style.backgroundColor='black';"
 						onmouseout="this.style.color='black'; this.style.backgroundColor='white';"
-						onclick="location.href='/cocoa/gotWaitYes?reqNO=${requestInfo.reqNO}'"
 						value="수 락" />&nbsp;&nbsp;&nbsp; <input type="button" id=""
 						class="btn btn-outline-dark"
 						style="background-color: white; color: black;"
 						onmouseover="this.style.color='white'; this.style.backgroundColor='black';"
 						onmouseout="this.style.color='black'; this.style.backgroundColor='white';"
-						onclick="location.href='/cocoa/gotWaitNo?reqNO=${requestInfo.reqNO}'"
 						value="거 절" />&nbsp;&nbsp;&nbsp; <input type="button" id=""
 						class="btn btn-outline-dark"
 						style="background-color: white; color: black;"
 						onmouseover="this.style.color='white'; this.style.backgroundColor='black';"
 						onmouseout="this.style.color='black'; this.style.backgroundColor='white';"
-						onclick="location.href='/cocoa/view_receiveReq'" value="목록으로" />
+						value="목록으로" onclick="location.href='/cocoa/view_receiveReq'" />
 						<br> <br></td>
 				</tr>
 			</table>

@@ -33,9 +33,15 @@
 			<!-- 코칭 langs cate -->
 			<div id="langs"
 				class="d-grid gap-3 d-sm-flex justify-content-sm-center">
-				<a id="C" class="btn btn-primary btn-lg px-4 me-sm-3">C/C++</a> <a
-					id="Java" class="btn btn-primary btn-lg px-4 me-sm-3">Java</a> <a
-					id="Python" class="btn btn-primary btn-lg px-4 me-sm-3">Python</a>
+				<input id="C/C++" type="button"
+					class="btn btn-primary btn-lg px-4 me-sm-3"
+					onClick="location.href='/cocoa/view_coachCate?lang=C'" value="C/C++"> 
+				<input id="Java" type="button"
+					class="btn btn-primary btn-lg px-4 me-sm-3"
+					onClick="location.href='/cocoa/view_coachCate?lang=Java'" value="Java">
+				 <input id="Python" type="button"
+					class="btn btn-primary btn-lg px-4 me-sm-3"
+					onClick="location.href='/cocoa/view_coachCate?lang=Python'" value="Python">
 			</div>
 
 		</div>
@@ -111,19 +117,19 @@
 
 		<c:if test="${pageMaker.prev }">
 			<a
-				href='<c:url value="/view_coachCate?page=${pageMaker.startPage-1 }"/>'><i
+				href='<c:url value="/view_coachCate?lang=${cri.lang }&page=${pageMaker.startPage-1 }"/>'><i
 				class=""></i></a>
 		</c:if>
 
 		<c:forEach begin="${pageMaker.startPage }" end="${pageMaker.endPage }"
 			var="pageNum">
-			<a href='<c:url value="/view_coachCate?page=${pageNum }"/>'><i
+			<a href='<c:url value="/view_coachCate?lang=${cri.lang }&page=${pageNum }"/>'><i
 				class="">${pageNum }</i></a>
 		</c:forEach>
 
 		<c:if test="${pageMaker.next && pageMaker.endPage >0 }">
 			<a
-				href='<c:url value="/view_coachCate?page=${pageMaker.endPage+1 }"/>'><i
+				href='<c:url value="/view_coachCate?lang=${cri.lang }&page=${pageMaker.endPage+1 }"/>'><i
 				class=""></i></a>
 		</c:if>
 

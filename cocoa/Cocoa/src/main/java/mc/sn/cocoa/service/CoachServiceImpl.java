@@ -51,8 +51,8 @@ public class CoachServiceImpl implements CoachService {
 
 	// 코칭 글 개수
 	@Override
-	public int countCoach() throws Exception {
-		return coachDAO.countCoach();
+	public int countCoach(Criteria cri) throws Exception {
+		return coachDAO.countCoach(cri);
 	}
 
 }

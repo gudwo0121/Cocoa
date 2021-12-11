@@ -60,7 +60,7 @@ public class ProjectDAOImpl implements ProjectDAO {
 
 	// 프로젝트 글 개수
 	@Override
-	public int countProject() throws DataAccessException {
-		return (Integer) sqlSession.selectOne("mapper.project.countProject");
+	public int countProject(Criteria cri) throws DataAccessException {
+		return (Integer) sqlSession.selectOne("mapper.project.countProject", cri);
 	}
 }

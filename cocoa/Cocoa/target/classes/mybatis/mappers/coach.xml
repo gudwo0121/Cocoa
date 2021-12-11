@@ -36,6 +36,7 @@
 		<![CDATA[
 			SELECT *
 			from coachingTBL
+			where lang like concat(#{lang},"%")
 			limit #{pageStart}, #{perPageNum}
 		]]>
 	</select>
@@ -74,8 +75,9 @@
 	<!-- 코칭 글의 수 -->
 	<select id="countCoach" resultType="int" parameterType="int">
 		<![CDATA[
-			SELECT count(*)
+			SELECT count(*) 
 			from coachingTBL
+			where lang = #{lang}
 		]]>
 	</select>
 

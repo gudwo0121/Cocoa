@@ -53,7 +53,7 @@ public class ProjectServiceImpl implements ProjectService {
 
 	// 프로젝트 글 개수
 	@Override
-	public int countProject() throws Exception {
-		return projectDAO.countProject();
+	public int countProject(Criteria cri) throws Exception {
+		return projectDAO.countProject(cri);
 	}
 }

@@ -32,10 +32,4 @@ public interface RequestController {
 			HttpServletResponse response);
 
 	public void downloadGotImg(@RequestParam("reqNO") int reqNO, HttpServletResponse response) throws Exception;
-
-	public ModelAndView view_gotReqYes(@RequestParam("reqNO") int reqNO, HttpServletRequest request,
-			HttpServletResponse response) throws UnsupportedEncodingException;
-
-	public ModelAndView view_gotReqNo(@RequestParam("reqNO") int reqNO, HttpServletRequest request,
-			HttpServletResponse response) throws UnsupportedEncodingException;
 }

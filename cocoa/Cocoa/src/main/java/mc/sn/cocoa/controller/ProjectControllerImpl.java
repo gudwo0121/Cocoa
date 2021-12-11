@@ -228,13 +228,17 @@ public class ProjectControllerImpl implements ProjectController {
 		String filePath = project_IMAGE_REPO + "\\" + leader + "\\" + projectNO + "\\" + pImg;
 		File image = new File(filePath);
 
-		if (image.exists()) {
-			// 원본 이미지에 대한 썸네일 이미지를 생성한 후 OutputStream 객체에 할당
-			Thumbnails.of(image).size(1024, 1024).outputFormat("png").toOutputStream(out);
-		}
-		// 썸네일 이미지를 OutputStream 객체를 이용해 브라우저로 전송
+		response.setHeader("Cache-Control", "no-cache");
+		response.addHeader("Content-disposition", "attachment; fileName=" + pImg);
+		FileInputStream in = new FileInputStream(image);
 		byte[] buffer = new byte[1024 * 8];
-		out.write(buffer);
+		while (true) {
+			int count = in.read(buffer);
+			if (count == -1)
+				break;
+			out.write(buffer, 0, count);
+		}
+		in.close();
 		out.close();
 	}
 
