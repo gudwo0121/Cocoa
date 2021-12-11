@@ -90,7 +90,21 @@
 * 미완 ) 세부 카테고리 이동 및 페이징은 아직 구현 x
 * 미완 ) 보낸 요청 리스트 / 받은 요청 리스트에도 아직 페이징 구현 x
 * sentWait.jsp / gotWait.jsp / profile.jsp UI 보완 필요
+* 받은 요청 하단 다운로드 링크 구현
 * 모든 jsp 파일 폴더로 정리 분담 예정
+
+***
+
+21.12.10 추가
+
+* jsp 그룹화 완료
+* gotWaitNo.jsp / gotWaitYes.jsp / sentNo.jsp / sentYes.jsp 생성
+* 받은 요청 대기글에서 수락 클릭시 수락 전송 화면 이동 구현
+* 받은 요청 대기글에서 거절 클릭시 거절 전송 화면 이동 구현
+* 보낸 요청 거절글, 수락글 이동 구현
+* Coaching / Project 카테고리 하위 3개씩 조건조회 및 페이징 구현
+* 상위 주제 디폴트는 Project / 하위 주제 디폴트는 C, Beginner = 표시만 C/C++로 설정
+* 보낸 요청 / 받은 요청 제목이 공란이면 링크도 안뜨는 현상 해결 = JS) nullCheck 추가
 
 ***
 

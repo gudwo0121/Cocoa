@@ -35,7 +35,7 @@
 		
 		<!-- 우측 내용 -->
 		<div class="col-sm-9">
-			<div id="main"><jsp:include page="../sent/sent.jsp"></jsp:include></div>
+			<div id="main"><jsp:include page="sent.jsp"></jsp:include></div>
 		</div>
 		
 	</div>

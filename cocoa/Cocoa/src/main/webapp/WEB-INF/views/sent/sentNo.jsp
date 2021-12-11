@@ -112,20 +112,11 @@ th, td {
 						height=300 style="border: 1px solid;" onerror="" /></td>
 				</tr>
 
-				<!-- 수정, 철회, 목록으로 -->
+				<!-- 철회, 목록으로 -->
 				<tr>
-					<td align="center" colspan="2"><br> <input type="button"
-						id="mod_start" class="btn btn-outline-dark"
-						style="background-color: white; color: black;"
-						onmouseover="this.style.color='white'; this.style.backgroundColor='black';"
-						onmouseout="this.style.color='black'; this.style.backgroundColor='white';"
-						value="수 정" />&nbsp;&nbsp;&nbsp; <input type="submit"
-						id="mod_finish" class="btn btn-outline-dark"
-						style="background-color: white; color: black;"
-						onmouseover="this.style.color='white'; this.style.backgroundColor='black';"
-						onmouseout="this.style.color='black'; this.style.backgroundColor='white';"
-						value="확 인" /> <input type="button" onclick="yesOrNo()"
-						id="del" class="btn btn-outline-dark"
+					<td align="center" colspan="2"><br>
+					<input type="button" onclick="yesOrNo()" id="del"
+						class="btn btn-outline-dark"
 						style="background-color: white; color: black;"
 						onmouseover="this.style.color='white'; this.style.backgroundColor='black';"
 						onmouseout="this.style.color='black'; this.style.backgroundColor='white';"

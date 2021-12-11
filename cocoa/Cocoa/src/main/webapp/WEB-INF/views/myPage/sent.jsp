@@ -23,29 +23,29 @@ request.setCharacterEncoding("UTF-8");
 			<table class="table table-striped table-sm">
 				<thead>
 					<tr>
-						<th colspan="4" style="text-align: center;"><b>받은 요청 리스트</b></th>
+						<th colspan="4" style="text-align: center;"><b>보낸 요청 리스트</b></th>
 					</tr>
 					<tr>
-						<th scope="col">요청자</th>
+						<th scope="col">코치</th>
 						<th scope="col">요청 제목</th>
 						<th scope="col">요청 날짜</th>
-						<th scope="col">요청 상태</th>
+						<th scope="col">상태</th>
 					</tr>
 				</thead>
 				<tbody>
 					<!-- 리스트 한 줄 -->
-					<c:forEach var="gotList" items="${reqGotList}">
+					<c:forEach var="sentList" items="${reqSentList}">
 						<tr>
-							<td>${gotList.req}</td>
-							<!-- gotReqWait로 이동 -->
+							<td>${sentList.res }</td>
+							<!-- sentReqWait로 이동 -->
 							<td><a
-								href="${contextPath}/view_gotReqWait?reqNO=${gotList.reqNO}">${gotList.rTitle}</a></td>
+								href="${contextPath}/view_sentReqWait?reqNO=${sentList.reqNO}">${sentList.rTitle }</a></td>
 							<fmt:parseDate var="dateFmt" pattern="yyyy-MM-dd HH:mm:ss"
-								value="${gotList.rDate}" />
+								value="${sentList.rDate}" />
 							<fmt:formatDate var="dateTempParse" pattern="yyyy-MM-dd"
 								value="${dateFmt}" />
-							<td>${dateTempParse }</td>
-							<td>${gotList.status }</td>
+							<td>${dateTempParse}</td>
+							<td>${sentList.status }</td>
 						</tr>
 					</c:forEach>
 				</tbody>

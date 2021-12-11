@@ -64,4 +64,20 @@ public class RequestDAOImpl implements RequestDAO {
 	public void deleteRequest(int reqNO) {
 		sqlSession.delete("mapper.request.deleteRequest", reqNO);
 	}
+	
+	// 거절 사유 전송(업데이트)
+	@Override
+	public int updateReason(RequestVO requestVO) {
+		int result = 0;
+		result = sqlSession.update("mapper.request.updateReason", requestVO);
+		return result;
+	}
+	
+	// 수락 정보 전송(업데이트)
+		@Override
+		public int updateYes(RequestVO requestVO) {
+			int result = 0;
+			result = sqlSession.update("mapper.request.updateYes", requestVO);
+			return result;
+		}
 }

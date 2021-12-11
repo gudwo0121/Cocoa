@@ -22,12 +22,12 @@ th, td {
 	<!-- 받은 요청 대기 (수락 전송) -->
 	<div class="card rcol my-5"
 		style="text-align: center; background-color: #FFEBCD; border: none; width: 80vw; height: 90vh;">
-		<form action="" method="post">
+		<form action="${contextPath}/submitReqYes" method="post">
 			<table
 				style="width: 80%; margin: 0 auto; border: 1px solid grey; background-color: #FFCC99; color: black;">
 				<tr>
 					<th colspan="2"
-						style="vertical-align: middle; text-align: center; font-size: 20px;">${requestInfo.req}의
+						style="vertical-align: middle; text-align: center; font-size: 20px;">
 						요청서 수락</th>
 				</tr>
 
@@ -43,7 +43,7 @@ th, td {
 				<!-- realPrice -->
 				<tr>
 					<td style="text-align: center; width: 15%;"><b>요 금</b></td>
-					<td style=""><input type="text" id="" name="contact"
+					<td style=""><input type="text" id="" name="realPrice"
 						class="form-control" value="" placeholder="측정된 요금을 입력하세요."
 						style="width: 95%; background-color: #FFCC99; border: 1px solid grey; color: black;">
 					</td>
@@ -52,13 +52,13 @@ th, td {
 				<!-- pay (아임포트) -->
 				<tr>
 					<td style="text-align: center; width: 15%;"><b>결제수단</b></td>
-					<td style=""><input type="text" id="" name="contact"
-						class="form-control" value="" placeholder="결제 수단을 입력하세요."
+					<td style=""><input type="text" id="" name="pay"
+						class="form-control" value="결제수단" readonly
 						style="width: 95%; background-color: #FFCC99; border: 1px solid grey; color: black;">
 					</td>
 				</tr>
 
-				<!-- pay -->
+				<!-- pay (아임포트) -->
 				<tr>
 					<td style="text-align: center; vertical-align: top;" class="pt-1"><b>QR
 							코드</b></td>
@@ -67,17 +67,24 @@ th, td {
 						onerror="this.src='resources/image/qr.png'" />
 						<div style="padding-left: 3px; padding-top: 5px;">
 							<input type="button" value="QR 코드 생성" style="width: 100;">
+							<input type="hidden" name="reqNO" value="${reqNO}" />
+							<input type="hidden" name="status" value="수락">
 						</div></td>
 				</tr>
 
 				<!-- 전송 -->
 				<tr>
-					<td align="center" colspan="2"><input type="button"
+					<td align="center" colspan="2"><input type="submit"
 						id="" class="btn btn-outline-dark mt-1"
 						style="background-color: white; color: black;"
 						onmouseover="this.style.color='white'; this.style.backgroundColor='black';"
 						onmouseout="this.style.color='black'; this.style.backgroundColor='white';"
 						value="전 송" />
+						<input type="button" value="뒤로 가기" onclick="history.back()"
+						class="btn btn-outline-dark mt-1"
+						style="background-color: white; color: black;"
+						onmouseover="this.style.color='white'; this.style.backgroundColor='black';"
+						onmouseout="this.style.color='black'; this.style.backgroundColor='white';">
 				</tr>
 			</table>
 		</form>

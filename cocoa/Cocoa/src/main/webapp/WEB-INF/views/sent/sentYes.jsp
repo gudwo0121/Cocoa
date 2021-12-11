@@ -65,7 +65,7 @@ th, td {
 				<tr>
 					<th colspan="2"
 						style="vertical-align: middle; text-align: center; font-size: 20px;">${requestInfo.res}
-						코치에게 보낸 요청서</th>
+						코치에게 보낸 요청서 수락상태</th>
 				</tr>
 
 				<!-- rTitle -->
@@ -112,24 +112,14 @@ th, td {
 						height=300 style="border: 1px solid;" onerror="" /></td>
 				</tr>
 
-				<!-- 수정, 철회, 목록으로 -->
+				<!-- 후기작성, 목록으로 -->
 				<tr>
 					<td align="center" colspan="2"><br> <input type="button"
-						id="mod_start" class="btn btn-outline-dark"
+						onclick="yesOrNo()" id="del" class="btn btn-outline-dark"
 						style="background-color: white; color: black;"
 						onmouseover="this.style.color='white'; this.style.backgroundColor='black';"
 						onmouseout="this.style.color='black'; this.style.backgroundColor='white';"
-						value="수 정" />&nbsp;&nbsp;&nbsp; <input type="submit"
-						id="mod_finish" class="btn btn-outline-dark"
-						style="background-color: white; color: black;"
-						onmouseover="this.style.color='white'; this.style.backgroundColor='black';"
-						onmouseout="this.style.color='black'; this.style.backgroundColor='white';"
-						value="확 인" /> <input type="button" onclick="yesOrNo()"
-						id="del" class="btn btn-outline-dark"
-						style="background-color: white; color: black;"
-						onmouseover="this.style.color='white'; this.style.backgroundColor='black';"
-						onmouseout="this.style.color='black'; this.style.backgroundColor='white';"
-						value="철 회" />&nbsp;&nbsp;&nbsp; <input type="button"
+						value="후기작성" />&nbsp;&nbsp;&nbsp; <input type="button"
 						id="to_list" class="btn btn-outline-dark"
 						style="background-color: white; color: black;"
 						onmouseover="this.style.color='white'; this.style.backgroundColor='black';"

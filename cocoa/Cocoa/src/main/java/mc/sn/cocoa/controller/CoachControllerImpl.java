@@ -1,7 +1,6 @@
 package mc.sn.cocoa.controller;
 
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.OutputStream;
 import java.util.Enumeration;
 import java.util.HashMap;
@@ -32,6 +31,7 @@ import mc.sn.cocoa.vo.CoachVO;
 import mc.sn.cocoa.vo.Criteria;
 import mc.sn.cocoa.vo.MemberVO;
 import mc.sn.cocoa.vo.PageMaker;
+import net.coobird.thumbnailator.Thumbnails;
 
 @Controller("coachController")
 public class CoachControllerImpl implements CoachController {
@@ -186,19 +186,14 @@ public class CoachControllerImpl implements CoachController {
 		String downFile = COACH_IMAGE_REPO + "\\" + coach + "\\" + coachNO + "\\" + cImg;
 		File file = new File(downFile);
 
-		response.setHeader("Cache-Control", "no-cache");
-		response.addHeader("Content-disposition", "attachment; fileName=" + cImg);
-		FileInputStream in = new FileInputStream(file);
-		byte[] buffer = new byte[1024 * 8];
-		while (true) {
-			int count = in.read(buffer);
-			if (count == -1)
-				break;
-			out.write(buffer, 0, count);
+		if (file.exists()) {
+			// 원본 이미지에 대한 썸네일 이미지를 생성한 후 OutputStream 객체에 할당
+			Thumbnails.of(file).size(1024, 1024).outputFormat("png").toOutputStream(out);
 		}
-		in.close();
+		// 썸네일 이미지를 OutputStream 객체를 이용해 브라우저로 전송
+		byte[] buffer = new byte[1024 * 8];
+		out.write(buffer);
 		out.close();
-
 	}
 
 	// 전달된 글 번호를 이용해서 해당 글 정보 조회

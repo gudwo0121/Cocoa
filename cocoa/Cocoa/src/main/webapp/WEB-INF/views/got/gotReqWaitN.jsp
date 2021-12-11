@@ -24,7 +24,7 @@
 	<!-- 상단바 -->
 	<jsp:include page="../header.jsp"></jsp:include>
 
-	<!-- 받은 요청 클릭 (대기) -->
+	<!-- 받은 요청 클릭 (대기-거절전송) -->
 	<div class="row" style="flex-wrap: unset; width: 15%;">
 	
 		<!-- 좌측 메뉴 -->
@@ -35,7 +35,7 @@
 		
 		<!-- 우측 내용 -->
 		<div class="col-sm-9">
-			<div id="main"><jsp:include page="gotWait.jsp"></jsp:include></div>
+			<div id="main"><jsp:include page="gotWaitNo.jsp"></jsp:include></div>
 		</div>
 		
 	</div>
