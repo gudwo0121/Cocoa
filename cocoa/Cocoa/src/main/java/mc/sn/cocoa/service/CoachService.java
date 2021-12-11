@@ -18,5 +18,5 @@ public interface CoachService {
 
 	public void removeCoach(int coachNO) throws Exception;
 
-	public int countCoach() throws Exception;
+	public int countCoach(Criteria cri) throws Exception;
 }

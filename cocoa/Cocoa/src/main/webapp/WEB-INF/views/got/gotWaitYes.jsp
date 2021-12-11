@@ -72,12 +72,18 @@ th, td {
 
 				<!-- 전송 -->
 				<tr>
-					<td align="center" colspan="2"><input type="button"
-						id="" class="btn btn-outline-dark mt-1"
+					<td align="center" colspan="2"><input type="button" id=""
+						class="btn btn-outline-dark mt-1"
 						style="background-color: white; color: black;"
 						onmouseover="this.style.color='white'; this.style.backgroundColor='black';"
 						onmouseout="this.style.color='black'; this.style.backgroundColor='white';"
-						value="전 송" />
+						value="전 송" />&nbsp;&nbsp;&nbsp; <input type="button" id=""
+						class="btn btn-outline-dark mt-1"
+						style="background-color: white; color: black;"
+						onmouseover="this.style.color='white'; this.style.backgroundColor='black';"
+						onmouseout="this.style.color='black'; this.style.backgroundColor='white';"
+						onclick="his"
+						value="취 소" />
 				</tr>
 			</table>
 		</form>

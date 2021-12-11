@@ -32,10 +32,12 @@
 	</select>
 
 	<!-- 프로젝트 리스트 전체 가져오기 -->
+	<!-- if로 조건걸면 가능할수있음 -->
 	<select id="selectAllProjectList" resultMap="projectResult">
       <![CDATA[
          select * from projectTBL
-         limit #{pageStart}, #{perPageNum} 	
+         where level like #{level}
+         limit #{pageStart}, #{perPageNum}
       ]]>
 	</select>
 
@@ -73,6 +75,7 @@
 		<![CDATA[
 			SELECT count(*)
 			from projectTBL
+			where level = #{level}
 		]]>
 	</select>
 

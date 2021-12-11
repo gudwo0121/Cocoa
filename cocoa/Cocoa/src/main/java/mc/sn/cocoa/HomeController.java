@@ -20,8 +20,6 @@ import mc.sn.cocoa.vo.PageMaker;
 public class HomeController {
 	@Autowired
 	private ProjectService projectService;
-	@Autowired
-	private CoachService coachService;
 
 	// 홈화면 이동하면서 프로젝트 카탈로그 리스트 가져오기
 	@RequestMapping(value = "/", method = { RequestMethod.GET, RequestMethod.POST })
@@ -35,15 +33,15 @@ public class HomeController {
 		pageMaker.setCri(cri);
 
 		// 총 게시글의 수
-		pageMaker.setTotalCount(projectService.countProject());
+		pageMaker.setTotalCount(projectService.countProject(cri));
 
 		// 서비스에서 listProjects() 메소드 실행하여 리턴 값을 List타입의 projectList에 저장
 		List projectList = projectService.listProjects(cri);
 
 		// mav에 "projectList" 키값으로 projectList 밸류 값을 저장
 		mav.addObject("projectList", projectList);
-
 		mav.addObject("pageMaker", pageMaker);
+		mav.addObject("cri", cri);
 
 		String url = "/home";
 		mav.setViewName(url);

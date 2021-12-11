@@ -36,6 +36,7 @@
 		<![CDATA[
 			SELECT *
 			from coachingTBL
+			where lang like concat(#{lang},"%")
 			limit #{pageStart}, #{perPageNum}
 		]]>
 	</select>
@@ -76,6 +77,7 @@
 		<![CDATA[
 			SELECT count(*)
 			from coachingTBL
+			where lang = #{lang}
 		]]>
 	</select>
 

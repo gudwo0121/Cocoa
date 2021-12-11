@@ -20,5 +20,5 @@ public interface ProjectDAO {
 
 	public void updateProject(Map projectMap);
 
-	public int countProject() throws DataAccessException;
+	public int countProject(Criteria cri) throws DataAccessException;
 }

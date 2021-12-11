@@ -57,8 +57,8 @@ public class CoachDAOImpl implements CoachDAO {
 
 	// 코칭 글 개수
 	@Override
-	public int countCoach() throws DataAccessException {
-		return (Integer) sqlSession.selectOne("mapper.coach.countCoach");
+	public int countCoach(Criteria cri) throws DataAccessException {
+		return (Integer) sqlSession.selectOne("mapper.coach.countCoach", cri);
 	}
 
 }

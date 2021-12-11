@@ -85,7 +85,7 @@
 							<!-- lang 선택 -->
 							언어 : <select style="text-align: center; width: 30%;" name="lang">
 								<option id="empty">-- 선택 --</option>
-								<option id="lang1">C/C++</option>
+								<option id="lang1">C</option>
 								<option id="lang2">Java</option>
 								<option id="lang3">Python</option>
 							</select>
