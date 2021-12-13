@@ -22,4 +22,7 @@ public interface ProjectController {
 
 	public ResponseEntity removeProject(@RequestParam("projectNO") int projectNO, @RequestParam("leader") String id,
 			HttpServletRequest request, HttpServletResponse response);
+
+	public ResponseEntity modProject(MultipartHttpServletRequest multipartRequest, HttpServletResponse response)
+			throws Exception;
 }

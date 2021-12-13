@@ -21,6 +21,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -328,13 +329,17 @@ public class RequestControllerImpl implements RequestController {
 		File file = new File(downFile);
 		rImg = URLEncoder.encode(rImg, "UTF-8");
 
-		if (file.exists()) {
-			// 원본 이미지에 대한 썸네일 이미지를 생성한 후 OutputStream 객체에 할당
-			Thumbnails.of(file).size(1024, 1024).outputFormat("png").toOutputStream(out);
-		}
-		// 썸네일 이미지를 OutputStream 객체를 이용해 브라우저로 전송
+		response.setHeader("Cache-Control", "no-cache");
+		response.addHeader("Content-disposition", "attachment; fileName=" + rImg);
+		FileInputStream in = new FileInputStream(file);
 		byte[] buffer = new byte[1024 * 8];
-		out.write(buffer);
+		while (true) {
+			int count = in.read(buffer);
+			if (count == -1)
+				break;
+			out.write(buffer, 0, count);
+		}
+		in.close();
 		out.close();
 	}
 
@@ -362,5 +367,69 @@ public class RequestControllerImpl implements RequestController {
 		String url = "/got/gotReqWaitN";
 		mav.setViewName(url);
 		return mav;
+	}
+
+	// 거절 사유 전송
+	@Override
+	@ResponseBody
+	@RequestMapping(value = "/submitNoReason", method = RequestMethod.POST)
+	public ResponseEntity submitNoReason(@ModelAttribute("request") RequestVO requestVO, HttpServletRequest request,
+			HttpServletResponse response) throws UnsupportedEncodingException {
+		request.setCharacterEncoding("utf-8");
+		int result = 0;
+		result = requestService.submitReason(requestVO);
+		String message;
+		int reqNO = requestVO.getReqNO();
+		ResponseEntity resEnt = null;
+		HttpHeaders responseHeaders = new HttpHeaders();
+		responseHeaders.add("Content-Type", "text/html; charset=utf-8");
+		if (result != 0) {
+			HttpSession session = request.getSession();
+			message = "<script>";
+			message += " alert('거절사유를 전송하였습니다.');";
+			message += " location.href='" + request.getContextPath() + "/view_receiveReq'; ";
+			message += " </script>";
+			resEnt = new ResponseEntity(message, responseHeaders, HttpStatus.CREATED);
+		} else {
+
+			message = " <script>";
+			message += " alert('오류가 발생했습니다. 다시 시도해주세요.');');";
+			message += " location.href='" + request.getContextPath() + "/gotWaitNo?reqNO=" + reqNO + "'; ";
+			message += " </script>";
+			resEnt = new ResponseEntity(message, responseHeaders, HttpStatus.CREATED);
+		}
+		return resEnt;
+	}
+
+	// 수락 정보 전송
+	@Override
+	@ResponseBody
+	@RequestMapping(value = "/submitReqYes", method = RequestMethod.POST)
+	public ResponseEntity submitReqYes(@ModelAttribute("request") RequestVO requestVO, HttpServletRequest request,
+			HttpServletResponse response) throws UnsupportedEncodingException {
+		request.setCharacterEncoding("utf-8");
+		int result = 0;
+		result = requestService.submitReqYes(requestVO);
+		String message;
+		int reqNO = requestVO.getReqNO();
+		ResponseEntity resEnt = null;
+		HttpHeaders responseHeaders = new HttpHeaders();
+		responseHeaders.add("Content-Type", "text/html; charset=utf-8");
+		if (result != 0) {
+			HttpSession session = request.getSession();
+			message = "<script>";
+			message += " alert('요청을 수락하였습니다.');";
+			message += " location.href='" + request.getContextPath() + "/view_receiveReq'; ";
+			message += " </script>";
+			resEnt = new ResponseEntity(message, responseHeaders, HttpStatus.CREATED);
+		} else {
+
+			message = " <script>";
+			message += " alert('오류가 발생했습니다. 다시 시도해주세요.');');";
+			message += " location.href='" + request.getContextPath() + "/gotWaitYes?reqNO=" + reqNO + "'; ";
+			message += " </script>";
+			resEnt = new ResponseEntity(message, responseHeaders, HttpStatus.CREATED);
+		}
+		return resEnt;
 	}
 }

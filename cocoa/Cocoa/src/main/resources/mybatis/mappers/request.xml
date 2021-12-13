@@ -18,7 +18,7 @@
 		<result property="reason" column="reason" />
 	</resultMap>
 
-	<!-- 요청글 입력 쿼리 -->
+	<!-- 요청서 추가 -->
 	<insert id="insertRequest" parameterType="java.util.Map">
 		<![CDATA[
 		 insert into requestTBL (reqNO, req, res, rTitle, rContents, rImg)
@@ -26,7 +26,7 @@
 		]]>
 	</insert>
 
-	<!-- 요청글 넘버링 -->
+	<!-- 요청서 넘버링 -->
 	<select id="selectNewReqNO" resultType="int">
 		<![CDATA[
 			SELECT ifnull(max(reqNO), 0) + 1
@@ -34,21 +34,21 @@
 		]]>
 	</select>
 
-	<!-- 받은 요청 리스트 -->
+	<!-- 받은 요청서 조회 -->
 	<select id="selectAllReqGot" resultMap="requestResult">
       <![CDATA[
          select * from requestTBL where res=#{res}
       ]]>
 	</select>
 
-	<!-- 보낸 요청 리스트 -->
+	<!-- 보낸 요청서 조회 -->
 	<select id="selectAllReqSent" resultMap="requestResult">
       <![CDATA[
          select * from requestTBL where req=#{req}
       ]]>
 	</select>
 
-	<!-- 보낸 / 받은 요청서 조회 -->
+	<!-- 보낸 / 받은 요청서 상세 조회 -->
 	<select id="selectByReqNO" resultType="requestVO">
       <![CDATA[
          select * from requestTBL where reqNO=#{reqNO}
@@ -74,4 +74,21 @@
       	]]>
 	</delete>
 
+	<!-- 요청서 거절 사유 전송 / 재전송 -->
+	<update id="updateReason" parameterType="requestVO">
+		<![CDATA[
+		update requestTBL
+		set reason=#{reason}, status=#{status} where reqNO=#{reqNO}
+		]]>
+	</update>
+
+	<!-- 요청글 수락 정보 전송 / 재전송 -->
+	<update id="updateYes" parameterType="requestVO">
+		<![CDATA[
+		update requestTBL
+		set realPrice=#{realPrice}, contact=#{contact}, pay=#{pay}, status=#{status}
+		where reqNO=#{reqNO}
+		]]>
+	</update>
+	
 </mapper>

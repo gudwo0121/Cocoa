@@ -7,6 +7,7 @@ import java.io.UnsupportedEncodingException;
 import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -124,7 +125,6 @@ public class ProjectControllerImpl implements ProjectController {
 			resEnt = new ResponseEntity(message, responseHeaders, HttpStatus.CREATED);
 
 		} catch (Exception e) {
-
 			// 예외발생시 취소 및 삭제
 			File srcFile = new File(project_IMAGE_REPO + "\\" + "temp" + "\\" + pImg);
 			srcFile.delete();
@@ -201,9 +201,9 @@ public class ProjectControllerImpl implements ProjectController {
 	}
 
 	// 이미지파일 썸네일로 다운로드
-	@RequestMapping("/thumbnails")
+	@RequestMapping("/pthumbnails")
 	// RequestParam으로 key&value 값을 가져와 변수에 저장
-	protected void thumbnails(@RequestParam("pImg") String pImg, @RequestParam("leader") String leader,
+	protected void pthumbnails(@RequestParam("pImg") String pImg, @RequestParam("leader") String leader,
 			@RequestParam("projectNO") String projectNO, HttpServletResponse response) throws Exception {
 		OutputStream out = response.getOutputStream();
 		// 파일 경로
@@ -239,6 +239,7 @@ public class ProjectControllerImpl implements ProjectController {
 	}
 
 	// 프로젝트 글 수정
+	@Override
 	@RequestMapping(value = "/modProject", method = RequestMethod.POST)
 	@ResponseBody
 	public ResponseEntity modProject(MultipartHttpServletRequest multipartRequest, HttpServletResponse response)

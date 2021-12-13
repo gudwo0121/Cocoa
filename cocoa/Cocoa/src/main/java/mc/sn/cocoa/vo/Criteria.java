@@ -4,8 +4,8 @@ public class Criteria {
 
 	private int page; // 현재 페이지 번호
 	private int perPageNum; // 한 페이지에 게시할 글의 수
-	private String lang = "";
-	private String level = "";
+	private String cField = "cField";
+	private String tool = "tool";
 
 	// 특정 페이지의 게시글 시작 번호, 게시글 시작 행 번호
 	public int getPageStart() {
@@ -45,20 +45,20 @@ public class Criteria {
 		}
 	}
 
-	public String getLang() {
-		return lang;
+	public String getcField() {
+		return cField;
 	}
 
-	public void setLang(String lang) {
-		this.lang = lang;
+	public void setcField(String cField) {
+		this.cField = cField;
 	}
 
-	public String getLevel() {
-		return level;
+	public String getTool() {
+		return tool;
 	}
 
-	public void setLevel(String level) {
-		this.level = level;
+	public void setTool(String tool) {
+		this.tool = tool;
 	}
-
+	
 }

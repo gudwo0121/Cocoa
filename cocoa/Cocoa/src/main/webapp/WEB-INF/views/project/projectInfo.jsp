@@ -35,6 +35,7 @@
 			$('#p_pTitle').prop('disabled', false);
 			$('#p_pLevel').prop('disabled', false);
 			$('#p_pMemberCount').prop('disabled', false);
+			$('#p_field').prop('disabled', false);
 			$('#p_pContents').prop('disabled', false);
 			return false;
 		});
@@ -153,15 +154,25 @@
 								style="border: 0; width: 5%; text-align: center; background-color: #FFCC99; font-weight: 700; color: black;">
 							<b>명</b>
 							<hr>
+							
+							<!-- 분야 표시 -->
+							분야 : <select
+								style="border: 0; text-align: center; width: 15%; background-color: #FFCC99; font-weight: 700; color: black;"
+								name="pfield" disabled id="p_field">
+								<option id="pfield1" value="pField1">Web</option>
+								<option id="pfield2" value="pField2">Mobile App</option>
+								<option id="pfield3" value="pField3">Embedded</option>
+							</select>
+							<hr>
 
 							<!-- level 표시 -->
 							난이도 : <select
 								style="border: 0; text-align: center; width: 15%; background-color: #FFCC99; font-weight: 700; color: black;"
 								name="level" disabled id="p_pLevel">
 								<option id="empty">${projectInfo.level}</option>
-								<option id="level1">하수</option>
-								<option id="level2">중수</option>
-								<option id="level3">고수</option>
+								<option id="level1">Beginner</option>
+								<option id="level2">Junior</option>
+								<option id="level3">Senior</option>
 							</select>
 							<hr>
 

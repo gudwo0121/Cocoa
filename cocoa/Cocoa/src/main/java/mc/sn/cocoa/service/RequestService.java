@@ -18,4 +18,8 @@ public interface RequestService {
 	public void modRequest(Map requestMap);
 
 	public void removeRequest(int reqNO);
+
+	public int submitReason(RequestVO requestVO);
+
+	public int submitReqYes(RequestVO requestVO);
 }

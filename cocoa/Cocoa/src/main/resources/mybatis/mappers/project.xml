@@ -9,17 +9,18 @@
 		<result property="pImg" column="pImg" />
 		<result property="pTitle" column="pTitle" />
 		<result property="memberCount" column="memberCount" />
+		<result property="pField" column="pField" />
 		<result property="level" column="level" />
 		<result property="pContents" column="pContents" />
 		<result property="map" column="map" />
 		<result property="kakao" column="kakao" />
 	</resultMap>
 
-	<!-- 프로젝트 입력 쿼리 -->
+	<!-- 프로젝트 글 추가 -->
 	<insert id="insertNewProject" parameterType="java.util.Map">
 		<![CDATA[
 		 insert into projectTBL
-		 values(#{projectNO}, #{leader}, #{pImg}, #{pTitle}, #{memberCount}, #{level}, #{pContents}, "default", #{kakao})
+		 values(#{projectNO}, #{leader}, #{pImg}, #{pTitle}, #{memberCount}, #{pField}, #{level}, #{pContents}, "default", #{kakao})
 		]]>
 	</insert>
 
@@ -31,24 +32,39 @@
 		]]>
 	</select>
 
-	<!-- 프로젝트 리스트 전체 가져오기 -->
-	<!-- if로 조건걸면 가능할수있음 -->
-	<select id="selectAllProjectList" resultMap="projectResult">
+	<!-- 프로젝트 글 1계층 조회 -->
+	<select id="selectAllProjectList1" resultType="projectVO">
       <![CDATA[
          select * from projectTBL
-         where level like #{level}
-         limit #{pageStart}, #{perPageNum}
       ]]>
 	</select>
 
-	<!-- 프로젝트 게시글 조회를 위한 select문 -->
+	<!-- 프로젝트 글 2계층 조회 -->
+	<select id="selectAllProjectList2" resultType="projectVO"
+		parameterType="projectVO">
+      <![CDATA[
+         select * from projectTBL
+         where pField=#{pField}
+      ]]>
+	</select>
+
+	<!-- 프로젝트 글 3계층 조회 -->
+	<select id="selectAllProjectList3" resultType="projectVO"
+		parameterType="projectVO">
+      <![CDATA[
+         select * from projectTBL
+         where pField=#{pField} and level=#{level}
+      ]]>
+	</select>
+
+	<!-- 프로젝트 글 상세 조회 -->
 	<select id="selectById" resultType="projectVO">
       <![CDATA[
          select * from projectTBL where leader=#{leader} and projectNO=#{projectNO}
       ]]>
 	</select>
 
-	<!-- 프로젝트 게시글 삭제 -->
+	<!-- 프로젝트 글 삭제 -->
 	<delete id="deleteProject" parameterType="int">
     <![CDATA[
       delete from projectTBL
@@ -56,11 +72,12 @@
     ]]>
 	</delete>
 
-	<!-- 프로젝트 게시글 수정 -->
+	<!-- 프로젝트 글 수정 -->
 	<update id="updateProject" parameterType="java.util.Map">
 		update projectTBL
 		set pTitle=#{pTitle},
 		pContents=#{pContents},
+		pField=#{pField},
 		level=#{level},
 		kakao=#{kakao},
 		memberCount=#{memberCount}
@@ -69,14 +86,5 @@
 		</if>
 		where projectNO=#{projectNO}
 	</update>
-
-	<!-- 프로젝트 글의 수 -->
-	<select id="countProject" resultType="int" parameterType="int">
-		<![CDATA[
-			SELECT count(*)
-			from projectTBL
-			where level = #{level}
-		]]>
-	</select>
 
 </mapper>

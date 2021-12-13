@@ -17,34 +17,60 @@
 
 	<!-- 카테고리 구간 -->
 	<header class="py-5" style="background-color: #663333">
-		<div class="container px-4 px0lg05 my-5">
+		<div class="row">
+			<div class='col-sm-2'></div>
+			<div class='col-sm-8' style="align: left;">
+				<!-- 코칭 / 프로젝트 cate -->
+				<div class="d-grid gap-3 d-sm-flex">
+					<h3 style="color: #FFF;" class="my-auto">분류</h3>
+					<input id="project" type="button"
+						class="btn btn-primary btn-lg px-4 me-sm-3"
+						onClick="location.href='/cocoa/'" value="Project"> <input
+						id="project" type="button"
+						class="btn btn-primary btn-lg px-4 me-sm-3"
+						onClick="location.href='/cocoa/view_coachCate'" value="Coaching">
+				</div>
+				<br>
+				<!-- 코칭 Field -->
+				<div id="cFields" class="d-grid gap-3 d-sm-flex">
+					<h3 style="color: #FFF;" class="my-auto">영역</h3>
+					<input id="Web" type="button"
+						class="btn btn-primary btn-lg px-4 me-sm-3"
+						onClick="location.href='/cocoa/view_coachCate?cField=cField1'"
+						value="Web"> <input id="Mobile App" type="button"
+						class="btn btn-primary btn-lg px-4 me-sm-3"
+						onClick="location.href='/cocoa/view_coachCate?cField=cField2'"
+						value="Mobile App"> <input id="Embedded" type="button"
+						class="btn btn-primary btn-lg px-4 me-sm-3"
+						onClick="location.href='/cocoa/view_coachCate?cField=cField3'"
+						value="Embedded">
+				</div>
+				<br>
+				<div id="cFields" class="d-grid gap-3 d-sm-flex">
+					<h3 style="color: #FFF;" class="my-auto">도구</h3>
+					<input id="Spring" type="button"
+						class="btn btn-primary btn-lg px-4 me-sm-3"
+						onClick="location.href='/cocoa/view_coachCate?cField=${cri.cField }&tool=tool1'"
+						value="Spring" /> <input id="Django" type="button"
+						class="btn btn-primary btn-lg px-4 me-sm-3"
+						onClick="location.href='/cocoa/view_coachCate?cField=${cri.cField }&tool=tool2'"
+						value="Django" /> <input id="AndroidStudio" type="button"
+						class="btn btn-primary btn-lg px-4 me-sm-3"
+						onClick="location.href='/cocoa/view_coachCate?cField=${cri.cField }&tool=tool3'"
+						value="Android Studio" /> <input id="Xcode" type="button"
+						class="btn btn-primary btn-lg px-4 me-sm-3"
+						onClick="location.href='/cocoa/view_coachCate?cField=${cri.cField }&tool=tool4'"
+						value="Xcode" /> <input id="Arduino" type="button"
+						class="btn btn-primary btn-lg px-4 me-sm-3"
+						onClick="location.href='/cocoa/view_coachCate?cField=${cri.cField }&tool=tool5'"
+						value="Arduino" /> <input id="RaspberryPi" type="button"
+						class="btn btn-primary btn-lg px-4 me-sm-3"
+						onClick="location.href='/cocoa/view_coachCate?cField=${cri.cField }&tool=tool6'"
+						value="Rasberry Pi" />
 
-			<!-- 코칭 / 프로젝트 cate -->
-			<div class="d-grid gap-3 d-sm-flex justify-content-sm-center">
-				<input id="project" type="button"
-					class="btn btn-primary btn-lg px-4 me-sm-3"
-					onClick="location.href='/cocoa/'" value="Project"> <input
-					id="project" type="button"
-					class="btn btn-primary btn-lg px-4 me-sm-3"
-					onClick="location.href='/cocoa/view_coachCate'" value="Coaching">
+				</div>
 			</div>
-			<br>
-
-			<!-- 코칭 langs cate -->
-			<div id="langs"
-				class="d-grid gap-3 d-sm-flex justify-content-sm-center">
-				<input id="C/C++" type="button"
-					class="btn btn-primary btn-lg px-4 me-sm-3"
-					onClick="location.href='/cocoa/view_coachCate?lang=C'"
-					value="C"> <input id="Java" type="button"
-					class="btn btn-primary btn-lg px-4 me-sm-3"
-					onClick="location.href='/cocoa/view_coachCate?lang=Java'"
-					value="Java"> <input id="Python" type="button"
-					class="btn btn-primary btn-lg px-4 me-sm-3"
-					onClick="location.href='/cocoa/view_coachCate?lang=Python'"
-					value="Python">
-			</div>
-
+			<div class='col-sm-2'></div>
 		</div>
 	</header>
 
@@ -66,40 +92,48 @@
 			<div
 				class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
 
-				<!-- 반복문 시작 컨트롤러에서 addObject한 coachesList를 가져와서 coach라고 저장 -->
+				<!-- 반복문 시작 컨트롤러에서 addObject한 coachList를 가져와서 coach라고 저장 -->
 				<c:forEach var="coach" items="${coachesList}">
 
 					<!-- 카탈로그 틀 -->
-					<div class="col mb-5" id="coachCate">
+					<div class="col mb-5">
 						<div class="card h-100">
 
-							<!-- 언어 표시 -->
+							<!-- 개발툴 표시 -->
 							<div class="badge bg-dark text-white position-absolute"
-								style="top: 0.5rem; right: 0.5rem">${coach.lang}</div>
+								style="top: 0.5rem; right: 0.5rem">
+								<c:choose>
+									<c:when test="${coach.tool == 'tool1'}">Spring</c:when>
+									<c:when test="${coach.tool == 'tool2'}">Django</c:when>
+									<c:when test="${coach.tool == 'tool3'}">Android Studio</c:when>
+									<c:when test="${coach.tool == 'tool4'}">Xcode</c:when>
+									<c:when test="${coach.tool == 'tool5'}">Arduino</c:when>
+									<c:when test="${coach.tool == 'tool6'}">Raspberry Pi</c:when>
+								</c:choose>
+							</div>
 
-							<!-- 간판 이미지 (src=경로) -->
-							<img class="card-img-top"
-								src="${contextPath}/coachImgDownload?coach=${coach.coach }&coachNO=${coach.coachNO}&cImg=${coach.cImg}"
-								height="200px" alt="..."
-								onerror="this.src='resources/image/sample.png'" />
+							<!-- 간판 이미지 (src=경로) thumbnails로 보내면서 쿼리스트링을 사용 -->
+							<img class="card-img-top" alt="" height=200
+								onerror=" this.src='resources/image/sample.png'"
+								src="${contextPath}/cthumbnails?coach=${coach.coach}&cImg=${coach.cImg}&coachNO=${coach.coachNO}" />
 
 							<!-- 간판이미지 아래 정보 -->
 							<div class="card-body p-4">
 								<div class="text-center">
 									<!-- 제목 -->
-									<h5 class="fw-bolder">${coach.cTitle }</h5>
+									<h5 class="fw-bolder">${coach.cTitle}</h5>
 									<!-- 코치 -->
 									${coach.coach}<br>
-									<!-- 기본요금 -->
+									<!-- 기본 요금 -->
 									${coach.basicPrice} 원
 								</div>
 							</div>
 
-							<!-- coachInfo / projectInfo 이동 -->
+							<!-- coachInfo 이동 -->
 							<div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
 								<div class="text-center">
 									<a class="btn btn-outline-dark mt-auto"
-										href="${contextPath}/viewCoach?coachNO=${coach.coachNO}">Get
+										href="${contextPath}/view_coachInfo?coachNO=${coach.coachNO}">Get
 										in</a>
 								</div>
 							</div>
@@ -118,20 +152,20 @@
 
 		<c:if test="${pageMaker.prev }">
 			<a
-				href='<c:url value="/view_coachCate?lang=${cri.lang }&page=${pageMaker.startPage-1 }"/>'><i
+				href='<c:url value="/view_coachCate?cField=${cri.cField }&tool=${cri.tool }&page=${pageMaker.startPage-1 }"/>'><i
 				class=""></i></a>
 		</c:if>
 
 		<c:forEach begin="${pageMaker.startPage }" end="${pageMaker.endPage }"
 			var="pageNum">
 			<a
-				href='<c:url value="/view_coachCate?lang=${cri.lang }&page=${pageNum }"/>'><i
+				href='<c:url value="/view_coachCate?cField=${cri.cField }&tool=${cri.tool }&page=${pageNum }"/>'><i
 				class="">${pageNum }</i></a>
 		</c:forEach>
 
 		<c:if test="${pageMaker.next && pageMaker.endPage >0 }">
 			<a
-				href='<c:url value="/view_coachCate?lang=${cri.lang }&page=${pageMaker.endPage+1 }"/>'><i
+				href='<c:url value="/view_coachCate?cField=${cri.cField }&tool=${cri.tool }&page=${pageMaker.endPage+1 }"/>'><i
 				class=""></i></a>
 		</c:if>
 

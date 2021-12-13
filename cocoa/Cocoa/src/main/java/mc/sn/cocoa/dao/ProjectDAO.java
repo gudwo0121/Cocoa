@@ -3,16 +3,17 @@ package mc.sn.cocoa.dao;
 import java.util.List;
 import java.util.Map;
 
-import org.springframework.dao.DataAccessException;
-
-import mc.sn.cocoa.vo.Criteria;
 import mc.sn.cocoa.vo.ProjectVO;
 
 public interface ProjectDAO {
 
 	public int insertNewProject(Map projectMap);
 
-	public List selectAllProjectList(Criteria cri);
+	public List selectAllProjectList1();
+
+	public List selectAllProjectList2(ProjectVO projectVO);
+
+	public List selectAllProjectList3(ProjectVO projectVO);
 
 	public ProjectVO selectProjectById(ProjectVO projectVO);
 
@@ -20,5 +21,4 @@ public interface ProjectDAO {
 
 	public void updateProject(Map projectMap);
 
-	public int countProject(Criteria cri) throws DataAccessException;
 }
