@@ -12,13 +12,14 @@ public interface ProjectDAO {
 
 	public int insertNewProject(Map projectMap);
 
-	public List selectAllProjectList(Criteria cri);
+	public List selectAllProjectList(Criteria cri) throws DataAccessException;
 
 	public ProjectVO selectProjectById(ProjectVO projectVO);
 
 	public void deleteProject(int projectNO);
 
 	public void updateProject(Map projectMap);
-
+	
 	public int countProject(Criteria cri) throws DataAccessException;
+
 }

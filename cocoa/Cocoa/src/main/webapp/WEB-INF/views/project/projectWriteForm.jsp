@@ -10,7 +10,9 @@
 <script type="text/javascript" src="resources/js/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
 	function readURL(input) {
+		
 		if (input.files && input.files[0]) {
+			
 			var reader = new FileReader();
 			reader.onload = function(e) {
 				$('#preview').attr('src', e.target.result);
@@ -19,7 +21,7 @@
 		}
 	}
 </script>
-<title>CoCoa</title>
+<title>프로젝트 등록</title>
 </head>
 <body style="background-color: #FFEBCD">
 
@@ -42,8 +44,10 @@
 
 								<!-- 프로필 조회 이동 -->
 								<br> <br> <img name="proImg"
-									src="resources/image/kakao.png" style="border: 1px solid;"
-									width="50%" height="120px"><br> <br>
+									src="${contextPath}/downProfileImg?id=${member.id}"
+									style="border: 1px solid;" width="50%" height="120px"
+									onerror="this.src='resources/image/kakao.png'"><br>
+								<br>
 
 								<!-- leader -->
 								<input type="text" name="leader" value="${member.id}" readonly
@@ -77,7 +81,7 @@
 
 							<!-- pTitle 입력 -->
 							<hr>
-							<input name="pTitle" type="text" placeholder="프로젝트명을 입력하세요."
+							<input name="pTitle" type="text" placeholder="제목을 입력하세요."
 								style="border: 1; text-align: center; width: 100%;">
 							<hr>
 
@@ -86,13 +90,23 @@
 								placeholder="인원수를 입력하세요." style="border: 1; width: 30%;">&nbsp;<b>명</b>
 							<hr>
 
+							<!-- pField 선택 -->
+							분야 : <select style="text-align: center; width: 30%;"
+								name="pField">
+								<option id="empty">-- 선택 --</option>
+								<option id="pField1" value="pField1">Web</option>
+								<option id="pField2" value="pField2">Mobile App</option>
+								<option id="pField3" value="pField3">Embedded</option>
+							</select>
+							<hr>
+
 							<!-- level 선택 -->
 							난이도 : <select style="text-align: center; width: 30%;"
 								name="level">
 								<option id="empty">-- 선택 --</option>
-								<option id="level1">하수</option>
-								<option id="level2">중수</option>
-								<option id="level3">고수</option>
+								<option id="level1" value="level1">Basic</option>
+								<option id="level2" value="level2">Intermediate</option>
+								<option id="level3" value="level3">Advanced</option>
 							</select>
 							<hr>
 
@@ -125,6 +139,6 @@
 
 	<!-- 하단바 -->
 	<jsp:include page="../footer.jsp"></jsp:include>
-	
+
 </body>
 </html>

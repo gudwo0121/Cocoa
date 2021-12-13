@@ -22,7 +22,7 @@ th, td {
 	<!-- 받은 요청 대기 (거절 전송) -->
 	<div class="card rcol my-5"
 		style="text-align: center; background-color: #FFEBCD; border: none; width: 80vw; height: 90vh;">
-		<form action="" method="post">
+		<form action="${contextPath}/submitNoReason" method="post">
 			<table
 				style="width: 80%; margin: 0 auto; border: 1px solid grey; background-color: #FFCC99; color: black;">
 				<tr>
@@ -34,20 +34,25 @@ th, td {
 				<!-- reason -->
 				<tr>
 					<td style="text-align: center; width: 15%;"><b>거절사유</b></td>
-					<td style=""><input type="text" id="" name="contact"
+					<td style=""><input type="text" id="" name="reason"
 						class="form-control" value="" placeholder="거절사유를 입력하세요."
 						style="width: 95%; background-color: #FFCC99; border: 1px solid grey; color: black;">
-					</td>
+						<input type="hidden" name="reqNO" value="${reqNO}" /> <input
+						type="hidden" name="status" value="거절"></td>
 				</tr>
 
-				<!-- 전송 -->
+				<!-- 전송, 취소 -->
 				<tr>
-					<td align="center" colspan="2"><input type="button" id=""
+					<td align="center" colspan="2"><input type="submit" id=""
 						class="btn btn-outline-dark mt-1"
 						style="background-color: white; color: black;"
 						onmouseover="this.style.color='white'; this.style.backgroundColor='black';"
 						onmouseout="this.style.color='black'; this.style.backgroundColor='white';"
-						value="전 송" />
+						value="전 송" /> <input type="button" value="취 소"
+						onclick="history.back()" class="btn btn-outline-dark mt-1"
+						style="background-color: white; color: black;"
+						onmouseover="this.style.color='white'; this.style.backgroundColor='black';"
+						onmouseout="this.style.color='black'; this.style.backgroundColor='white';">
 				</tr>
 			</table>
 		</form>

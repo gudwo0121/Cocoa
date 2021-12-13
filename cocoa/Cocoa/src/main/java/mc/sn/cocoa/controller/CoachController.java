@@ -11,9 +11,8 @@ import org.springframework.web.servlet.ModelAndView;
 import mc.sn.cocoa.vo.Criteria;
 
 public interface CoachController {
-
-	public ModelAndView view_CoachCate(HttpServletRequest request, HttpServletResponse response, Criteria cri)
-			throws Exception;
+	
+	public ModelAndView view_CoachCate(HttpServletRequest request, HttpServletResponse response, Criteria cri) throws Exception;
 
 	public ModelAndView view_coachWrite(HttpServletRequest request, HttpServletResponse response) throws Exception;
 
@@ -23,7 +22,7 @@ public interface CoachController {
 	public void download(@RequestParam("cImg") String cImg, @RequestParam("coach") String coach,
 			@RequestParam("coachNO") int coachNO, HttpServletResponse response) throws Exception;
 
-	public ModelAndView viewCoach(@RequestParam("coachNO") int coachNO, HttpServletRequest request,
+	public ModelAndView coachInfo(@RequestParam("coachNO") int coachNO, HttpServletRequest request,
 			HttpServletResponse response) throws Exception;
 
 	public ResponseEntity removeCoach(@RequestParam("coachNO") int coachNO, @RequestParam("coach") String coach,

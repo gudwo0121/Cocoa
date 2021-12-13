@@ -30,9 +30,9 @@ public class ProjectDAOImpl implements ProjectDAO {
 		return sqlSession.selectOne("mapper.project.selectNewProjectNO");
 	}
 
-	// 프로젝트 카탈로그 리스트 셀렉
+	// 프로젝트 전체 & 조건 조회
 	@Override
-	public List selectAllProjectList(Criteria cri) {
+	public List selectAllProjectList(Criteria cri) throws DataAccessException {
 		List<ProjectVO> projectsList = null;
 		projectsList = sqlSession.selectList("mapper.project.selectAllProjectList", cri);
 		return projectsList;
@@ -57,10 +57,11 @@ public class ProjectDAOImpl implements ProjectDAO {
 	public void updateProject(Map projectMap) {
 		sqlSession.update("mapper.project.updateProject", projectMap);
 	}
-
+	
 	// 프로젝트 글 개수
 	@Override
 	public int countProject(Criteria cri) throws DataAccessException {
 		return (Integer) sqlSession.selectOne("mapper.project.countProject", cri);
 	}
+
 }

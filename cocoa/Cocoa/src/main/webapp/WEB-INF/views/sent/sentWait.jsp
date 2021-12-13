@@ -124,7 +124,7 @@ th, td {
 						style="background-color: white; color: black;"
 						onmouseover="this.style.color='white'; this.style.backgroundColor='black';"
 						onmouseout="this.style.color='black'; this.style.backgroundColor='white';"
-						value="수 정 확 인" /> <input type="button" onclick="yesOrNo()"
+						value="확 인" /> <input type="button" onclick="yesOrNo()"
 						id="del" class="btn btn-outline-dark"
 						style="background-color: white; color: black;"
 						onmouseover="this.style.color='white'; this.style.backgroundColor='black';"

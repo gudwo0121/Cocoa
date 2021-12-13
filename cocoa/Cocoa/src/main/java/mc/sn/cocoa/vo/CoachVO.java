@@ -7,7 +7,8 @@ public class CoachVO {
 
 	private int coachNO;
 	private String coach;
-	private String lang;
+	private String cField;
+	private String tool;
 	private String cImg;
 	private String cTitle;
 	private int basicPrice;
@@ -17,11 +18,12 @@ public class CoachVO {
 
 	}
 
-	public CoachVO(int coachNO, String coach, String lang, String cImg, String cTitle, int basicPrice,
+	public CoachVO(int coachNO, String coach, String cField, String tool, String cImg, String cTitle, int basicPrice,
 			String cContents) {
 		this.coachNO = coachNO;
 		this.coach = coach;
-		this.lang = lang;
+		this.cField = cField;
+		this.tool = tool;
 		this.cImg = cImg;
 		this.cTitle = cTitle;
 		this.basicPrice = basicPrice;
@@ -44,12 +46,20 @@ public class CoachVO {
 		this.coach = coach;
 	}
 
-	public String getLang() {
-		return lang;
+	public String getcField() {
+		return cField;
 	}
 
-	public void setLang(String lang) {
-		this.lang = lang;
+	public void setcField(String cField) {
+		this.cField = cField;
+	}
+
+	public String getTool() {
+		return tool;
+	}
+
+	public void setTool(String tool) {
+		this.tool = tool;
 	}
 
 	public String getcImg() {

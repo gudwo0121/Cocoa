@@ -33,7 +33,8 @@
 			$('#c_modBtn').show();
 			$('#c_cTitle').prop('disabled', false);
 			$('#c_basicPrice').prop('disabled', false);
-			$('#c_lang').prop('disabled', false);
+			$('#c_field').prop('disabled', false);
+			$('#c_tool').prop('disabled', false);
 			$('#c_cContents').prop('disabled', false);
 			return false;
 		});
@@ -49,7 +50,7 @@
 		obj.submit();
 	}
 </script>
-<title>CoCoa</title>
+<title>코치 정보</title>
 </head>
 <body style="background-color: #FFEBCD">
 
@@ -116,7 +117,7 @@
 						</div>
 					</div>
 
-					<!-- 우측 내용 : cImg / cTitle / basicPrice / lang / cContents -->
+					<!-- 우측 내용 : cImg / cTitle / basicPrice / tool / cContents -->
 					<div class="card"
 						style="width: 50rem; border: 1px solid; background-color: #FFCC99">
 
@@ -134,8 +135,8 @@
 								onchange="readURL(this);" style="display: none;" /> <br>
 						</div>
 
-						<!-- cTitle / basicPrice / lang / cContents 조회 -->
-						<div class="project">
+						<!-- cTitle / basicPrice / tool / cContents 조회 -->
+						<div class="coach">
 
 							<!-- cTitle 표시 -->
 							<hr>
@@ -145,20 +146,49 @@
 							<hr>
 
 							<!-- basicPrice 표시 -->
-							기본요금 : <input name="basicPrice" type="text"
+							요금 : <input name="basicPrice" type="text"
 								value="${coach.basicPrice}" id="c_basicPrice" disabled
 								style="border: 0; width: 10%; text-align: center; background-color: #FFCC99; font-weight: 700; color: black;">
 							<b>원</b>
 							<hr>
-
-							<!-- lang 표시 -->
-							언어 : <select
+							
+							<!-- cField 표시 -->
+							분야 : <select
 								style="border: 0; text-align: center; width: 15%; background-color: #FFCC99; font-weight: 700; color: black;"
-								name="lang" disabled id="c_lang">
-								<option id="empty">${coach.lang}</option>
-								<option id="lang1">C/C++</option>
-								<option id="lang2">Java</option>
-								<option id="lang3">Python</option>
+								name="cField" disabled id="c_field">
+								<option id="empty" value="">
+									<c:choose>
+										<c:when test="${coach.cField == 'cField1'}">Web</c:when>
+										<c:when test="${coach.cField == 'cField2'}">Mobile App</c:when>
+										<c:when test="${coach.cField == 'cField3'}">Embedded</c:when>
+									</c:choose>
+								</option>
+								<option id="cfield1" value="cField1">Web</option>
+								<option id="cfield2" value="cField2">Mobile App</option>
+								<option id="cfield3" value="cField3">Embedded</option>
+							</select>
+							<hr>
+
+							<!-- tool 표시 -->
+							툴 : <select
+								style="border: 0; text-align: center; width: 15%; background-color: #FFCC99; font-weight: 700; color: black;"
+								name="tool" disabled id="c_tool">
+								<option id="empty" value="">
+									<c:choose>
+										<c:when test="${coach.tool == 'tool1'}">Spring</c:when>
+										<c:when test="${coach.tool == 'tool2'}">Django</c:when>
+										<c:when test="${coach.tool == 'tool3'}">Android Studio</c:when>
+										<c:when test="${coach.tool == 'tool4'}">Xcode</c:when>
+										<c:when test="${coach.tool == 'tool5'}">Arduino</c:when>
+										<c:when test="${coach.tool == 'tool6'}">Raspberry Pi</c:when>
+									</c:choose>
+								</option>
+								<option id="tool1" value="tool1">Spring</option>
+								<option id="tool2" value="tool2">Django</option>
+								<option id="tool3" value="tool3">Android Studio</option>
+								<option id="tool4" value="tool4">Xcode</option>
+								<option id="tool5" value="tool5">Arduino</option>
+								<option id="tool6" value="tool6">Raspberry Pi</option>
 							</select>
 							<hr>
 

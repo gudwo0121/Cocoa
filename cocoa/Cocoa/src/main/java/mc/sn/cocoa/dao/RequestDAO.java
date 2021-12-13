@@ -21,6 +21,10 @@ public interface RequestDAO {
 	public void updateRequest(Map requestMap);
 
 	public void deleteRequest(int reqNO);
+
+	public int updateReason(RequestVO requestVO);
+
+	public int updateYes(RequestVO requestVO);
 	
 	public int countSendRequest(String req) throws DataAccessException;
 	

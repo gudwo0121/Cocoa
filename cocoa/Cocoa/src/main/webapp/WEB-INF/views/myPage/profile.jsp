@@ -46,12 +46,12 @@ request.setCharacterEncoding("UTF-8");
 	<form name="proFileInfo" method="post"
 		action="${contextPath}/modProfile" enctype="multipart/form-data">
 		<section class="py-5" style="">
-			<div class="row" style="flex-wrap: unset;width:500px;">
+			<div class="row" style="flex-wrap: unset;width:400%;">
 				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-				<div class="col-md-4 col-sm-4" style="width: 100%;">
+				<div class="col-sm-4">
 
 					<!-- 좌측 프로필 : proImg / name -->
-					<div style="flex-wrap: unset; width: 80%;">
+					<div style="flex-wrap: unset; width: 100%;">
 						<div
 							style="text-align: center; width: 100%; height: 60%; border: 2px solid; background-color: #FFCCCC;">
 
@@ -76,7 +76,7 @@ request.setCharacterEncoding("UTF-8");
 
 				<!-- 우측 내용 : pContents -->
 				<div
-					style="width: 600px; border: 1px solid; background-color: #FFCC99; color: black; border-radius: 5px;">
+					style="border: 1px solid; background-color: #FFCC99; color: black; border-radius: 5px;" class="col-sm-8">
 					<div class="proFile">
 
 						<!-- pContents 입력 -->

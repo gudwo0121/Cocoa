@@ -30,7 +30,7 @@ public class CoachDAOImpl implements CoachDAO {
 		return sqlSession.selectOne("mapper.coach.selectNewCoachNO");
 	}
 
-	// 코칭 글 전제 조회
+	// 코칭 글 전체 조회
 	@Override
 	public List selectAllCoachesList(Criteria cri) throws DataAccessException {
 		List<CoachVO> coachesList = sqlSession.selectList("mapper.coach.selectAllCoachesList", cri);
@@ -54,7 +54,7 @@ public class CoachDAOImpl implements CoachDAO {
 	public void deleteCoach(int coachNO) throws DataAccessException {
 		sqlSession.delete("mapper.coach.deleteCoach", coachNO);
 	}
-
+	
 	// 코칭 글 개수
 	@Override
 	public int countCoach(Criteria cri) throws DataAccessException {

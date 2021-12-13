@@ -60,6 +60,18 @@ public class RequestServiceImpl implements RequestService {
 	public void removeRequest(int reqNO) {
 		requestDAO.deleteRequest(reqNO);
 	}
+
+	// 거절 사유 작성
+	@Override
+	public int submitReason(RequestVO requestVO) {
+		return requestDAO.updateReason(requestVO);
+	}
+
+	// 수락 정보 작성
+	@Override
+	public int submitReqYes(RequestVO requestVO) {
+		return requestDAO.updateYes(requestVO);
+	}
 	
 	// 보낸 요청글 개수
 	@Override

@@ -52,13 +52,13 @@
 							value="My Page"
 							onClick="location.href='/cocoa/view_myPageProfile'" />&nbsp;<input
 							name="logout" class="btn btn-outline-dark" type="submit"
-							value="logout" />
+							value="Logout" />
 					</form>
 				</c:when>
 				<c:otherwise>
 					<form action="/cocoa/view_login" method="get" class="d-flex">
 						<input name="login" class="btn btn-outline-dark" type="submit"
-							value="log in" />&nbsp; <input name="join"
+							value="Login" />&nbsp; <input name="join"
 							class="btn btn-outline-dark" type="button" value="Sign in"
 							onClick="location.href='/cocoa/view_join'" />
 					</form>

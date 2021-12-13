@@ -25,6 +25,21 @@ th, td {
 			reader.readAsDataURL(input.files[0]);
 		}
 	}
+
+	function nullCheck() {
+		var _rTitle = $("#rTitle").val().replace(/\s/g, "");
+		var _rContents = $("#rContents").val().replace(/\s/g, "");
+
+		if (_rTitle == "" || _rTitle == "") {
+			alert("제목을 입력하세요");
+			$('#requestWrite').attr('onSubmit', "return false;");
+		} else if (_rContents == "") {
+			alert("내용을 입력하세요");
+			$('#requestWrite').attr('onSubmit', "return false;");
+		} else {
+			$('#requestWrite').removeAttr('onSubmit');
+		}
+	}
 </script>
 <title>CoCoa</title>
 </head>
@@ -36,8 +51,9 @@ th, td {
 	<!-- 요청서 작성 -->
 	<div class="card rcol my-4"
 		style="margin: 0 auto; width: 60%; background-color: #FFEBCD; border: none;">
-		<form name="coachWriteForm" action="${contextPath}/requestWrite"
-			enctype="multipart/form-data" method="post">
+		<form id="requestWrite" name="coachWriteForm"
+			action="${contextPath}/requestWrite" enctype="multipart/form-data"
+			method="post">
 			<table
 				style="width: 80%; margin: 0 auto; border: 1px solid grey; background-color: #FFCC99;">
 				<tr>
@@ -54,7 +70,7 @@ th, td {
 				<!-- rTitle -->
 				<tr>
 					<td style="text-align: center; width: 15%;"><b>제 목</b></td>
-					<td style=""><input type="text" id="" name="rTitle"
+					<td style=""><input type="text" id="rTitle" name="rTitle"
 						class="form-control" style="width: 95%; border: 1px solid;"
 						placeholder="에러의 유형을 제목으로 적어주세요."></td>
 				</tr>
@@ -64,7 +80,8 @@ th, td {
 					<td style="text-align: center; vertical-align: top;" class="pt-1"><br>
 						<b>내 용</b></td>
 					<td style="text-align: left; vertical-align: top;"><textarea
-							rows="10" cols="20" class="form-control" id="" name="rContents"
+							rows="10" cols="20" class="form-control" id="rContents"
+							name="rContents"
 							placeholder="현재 본인의 개발환경과 에러 내용을 최대한 자세하게 적어주세요."
 							style="width: 95%; resize: none; border: 1px solid;"></textarea></td>
 				</tr>
@@ -87,9 +104,10 @@ th, td {
 				<!-- submit, 취소 -->
 				<tr>
 					<td align="center" colspan="2"><br> <input type="submit"
-						id="" class="btn btn-outline-dark" value="요 청" />&nbsp;&nbsp;&nbsp;<input
-						type="button" id="cancel" onclick="history.go(-1)"
-						class="btn btn-outline-dark" value="취 소" /><br> <br></td>
+						id="" onclick="nullCheck()" class="btn btn-outline-dark"
+						value="요 청" />&nbsp;&nbsp;&nbsp;<input type="button" id="cancel"
+						onclick="history.go(-1)" class="btn btn-outline-dark" value="취 소" /><br>
+						<br></td>
 				</tr>
 			</table>
 		</form>
@@ -97,6 +115,6 @@ th, td {
 
 	<!-- 하단바 -->
 	<jsp:include page="../footer.jsp"></jsp:include>
-	
+
 </body>
 </html>

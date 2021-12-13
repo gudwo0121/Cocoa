@@ -7,22 +7,23 @@
 	<resultMap id="coachResult" type="coachVO">
 		<result property="coachNO" column="coachNO" />
 		<result property="coach" column="coach" />
-		<result property="lang" column="lang" />
+		<result property="cField" column="cField" />
+		<result property="tool" column="tool" />
 		<result property="cImg" column="cImg" />
 		<result property="cTitle" column="cTitle" />
 		<result property="basicPrice" column="basicPrice" />
 		<result property="cContents" column="cContents" />
 	</resultMap>
 
-	<!-- 새 코칭 글 추가 기능 -->
+	<!-- 코치 글 추가 -->
 	<insert id="insertNewCoach" parameterType="java.util.Map">
 		<![CDATA[
-		 insert into coachingTBL (coachNO, coach, lang, cImg, cTitle, basicPrice, cContents)
-		 values(#{coachNO}, #{coach}, #{lang}, #{cImg}, #{cTitle}, #{basicPrice}, #{cContents})
+		 insert into coachingTBL (coachNO, coach, cField, tool, cImg, cTitle, basicPrice, cContents)
+		 values(#{coachNO}, #{coach}, #{cField}, #{tool}, #{cImg}, #{cTitle}, #{basicPrice}, #{cContents})
 		]]>
 	</insert>
 
-	<!-- 코칭 글 넘버링 -->
+	<!-- 코치 글 넘버링 -->
 	<select id="selectNewCoachNO" resultType="int">
 		<![CDATA[
 			SELECT ifnull(max(coachNO), 0) + 1
@@ -30,18 +31,17 @@
 		]]>
 	</select>
 
-	<!-- 코치 글 전체 조회 -->
-	<!-- 해당 페이지의 게시글만 조회되도록 조건 추가 -->
+	<!-- 코치 글 조회 -->
 	<select id="selectAllCoachesList" resultMap="coachResult">
 		<![CDATA[
-			SELECT *
+			SELECT * 
 			from coachingTBL
-			where lang like concat(#{lang},"%")
+			where cField like concat(#{cField},"%") and tool like concat(#{tool}, "%")
 			limit #{pageStart}, #{perPageNum}
 		]]>
 	</select>
 
-	<!-- 전달된 코치 글 번호에 대한 글 정보 조회 -->
+	<!-- 코치 글 상세 조회 -->
 	<select id="selectCoach" resultType="coachVO"
 		parameterType="int">
 		<![CDATA[
@@ -51,13 +51,18 @@
 		]]>
 	</select>
 
-	<!-- 코치 글 수정 (CDATA 써주는 테스트) -->
+	<!-- 코치 글 수정 -->
 	<update id="updateCoach" parameterType="java.util.Map">
 		update coachingTBL
 		set cTitle=#{cTitle},
 		cContents=#{cContents},
-		basicPrice=#{basicPrice},
-		lang=#{lang}
+		basicPrice=#{basicPrice}
+		<if test="cField!=''">
+			, cField=#{cField}
+		</if>
+		<if test="tool!=''">
+			, tool=#{tool}
+		</if>
 		<if test="cImg!='' and cImg!=null">
 			, cImg=#{cImg}
 		</if>
@@ -71,13 +76,13 @@
       where coachNO = #{coachNO}
     ]]>
 	</delete>
-
+	
 	<!-- 코칭 글의 수 -->
 	<select id="countCoach" resultType="int" parameterType="int">
 		<![CDATA[
 			SELECT count(*) 
 			from coachingTBL
-			where lang = #{lang}
+			where cField like concat(#{cField},"%") and tool like concat(#{tool}, "%")
 		]]>
 	</select>
 

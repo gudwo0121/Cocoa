@@ -10,13 +10,14 @@ public interface ProjectService {
 
 	public int addNewProject(Map projectMap);
 
-	public List listProjects(Criteria cri);
+	public List<ProjectVO> listProjects(Criteria cri) throws Exception;
 
 	public ProjectVO searchProject(ProjectVO projectVO);
 
 	public void removeProject(int projectNO);
 
 	public void modProject(Map projectMap) throws Exception;
-
+	
 	public int countProject(Criteria cri) throws Exception;
+
 }

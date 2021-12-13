@@ -24,9 +24,9 @@ public class ProjectServiceImpl implements ProjectService {
 		return projectDAO.insertNewProject(projectMap);
 	}
 
-	// 프로젝트 리스트 가져오기
+	// 프로젝트 글 조회
 	@Override
-	public List listProjects(Criteria cri) {
+	public List<ProjectVO> listProjects(Criteria cri) throws Exception {
 		List projectsList = null;
 		projectsList = projectDAO.selectAllProjectList(cri);
 		return projectsList;
@@ -50,10 +50,11 @@ public class ProjectServiceImpl implements ProjectService {
 	public void modProject(Map projectMap) throws Exception {
 		projectDAO.updateProject(projectMap);
 	}
-
-	// 프로젝트 글 개수
+	
+	// 코칭 글 개수
 	@Override
 	public int countProject(Criteria cri) throws Exception {
 		return projectDAO.countProject(cri);
 	}
+
 }

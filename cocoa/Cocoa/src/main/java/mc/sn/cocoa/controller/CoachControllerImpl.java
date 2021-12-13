@@ -1,7 +1,6 @@
 package mc.sn.cocoa.controller;
 
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.OutputStream;
 import java.util.Enumeration;
 import java.util.HashMap;
@@ -32,6 +31,7 @@ import mc.sn.cocoa.vo.CoachVO;
 import mc.sn.cocoa.vo.Criteria;
 import mc.sn.cocoa.vo.MemberVO;
 import mc.sn.cocoa.vo.PageMaker;
+import net.coobird.thumbnailator.Thumbnails;
 
 @Controller("coachController")
 public class CoachControllerImpl implements CoachController {
@@ -42,38 +42,39 @@ public class CoachControllerImpl implements CoachController {
 	private CoachService coachService;
 	@Autowired
 	private CoachVO coachVO;
-
+	
 	// 코치 글 조회
-	@Override
-	@RequestMapping(value = "/view_coachCate", method = { RequestMethod.GET, RequestMethod.POST })
-	public ModelAndView view_CoachCate(HttpServletRequest request, HttpServletResponse response, Criteria cri)
-			throws Exception {
-		ModelAndView mav = new ModelAndView();
+		@Override
+		@RequestMapping(value = "/view_coachCate", method = { RequestMethod.GET, RequestMethod.POST })
+		public ModelAndView view_CoachCate(HttpServletRequest request, HttpServletResponse response, Criteria cri)
+				throws Exception {
+			ModelAndView mav = new ModelAndView();
 
-		// 쪽 번호 생성 메서드 객체 생성
-		PageMaker pageMaker = new PageMaker();
+			// 쪽 번호 생성 메서드 객체 생성
+			PageMaker pageMaker = new PageMaker();
 
-		// 쪽 번호와 한 페이지에 게시할 글의 수 세팅
-		pageMaker.setCri(cri);
+			// 쪽 번호와 한 페이지에 게시할 글의 수 세팅
+			pageMaker.setCri(cri);
 
-		// 총 게시글의 수
-		pageMaker.setTotalCount(coachService.countCoach(cri));
+			// 총 게시글의 수
+			pageMaker.setTotalCount(coachService.countCoach(cri));
 
-		// 서비스에서 listCoaches() 메소드 실행하여 리턴 값을 List타입의 coachesList에 저장
-		List coachesList = coachService.listCoaches(cri);
+			// 서비스에서 listCoaches() 메소드 실행하여 리턴 값을 List타입의 coachesList에 저장
+			List coachesList = coachService.listCoaches(cri);
 
-		// mav에 "coachesList" 키값으로 coachesList 밸류 값을 저장
-		mav.addObject("coachesList", coachesList);
+			// mav에 "coachesList" 키값으로 coachesList 밸류 값을 저장
+			mav.addObject("coachesList", coachesList);
 
-		mav.addObject("pageMaker", pageMaker);
-		
-		mav.addObject("cri", cri);
+			mav.addObject("pageMaker", pageMaker);
+			
+			mav.addObject("cri", cri);
 
-		String url = "/coachCate";
-		mav.setViewName(url);
+			String url = "/coachCate";
+			mav.setViewName(url);
 
-		return mav;
-	}
+			return mav;
+		}
+
 
 	// 코치 글 작성 창으로 이동
 	@Override
@@ -149,7 +150,7 @@ public class CoachControllerImpl implements CoachController {
 
 			message = " <script>";
 			message += " alert('오류가 발생했습니다. 다시 시도해주세요.');');";
-			message += " location.href='" + multipartRequest.getContextPath() + "/'; ";
+			message += " location.href='" + multipartRequest.getContextPath() + "/view_coachCate'; ";
 			message += " </script>";
 			resEnt = new ResponseEntity(message, responseHeaders, HttpStatus.CREATED);
 
@@ -188,24 +189,19 @@ public class CoachControllerImpl implements CoachController {
 		String downFile = COACH_IMAGE_REPO + "\\" + coach + "\\" + coachNO + "\\" + cImg;
 		File file = new File(downFile);
 
-		response.setHeader("Cache-Control", "no-cache");
-		response.addHeader("Content-disposition", "attachment; fileName=" + cImg);
-		FileInputStream in = new FileInputStream(file);
-		byte[] buffer = new byte[1024 * 8];
-		while (true) {
-			int count = in.read(buffer);
-			if (count == -1)
-				break;
-			out.write(buffer, 0, count);
+		if (file.exists()) {
+			// 원본 이미지에 대한 썸네일 이미지를 생성한 후 OutputStream 객체에 할당
+			Thumbnails.of(file).size(1024, 1024).outputFormat("png").toOutputStream(out);
 		}
-		in.close();
+		// 썸네일 이미지를 OutputStream 객체를 이용해 브라우저로 전송
+		byte[] buffer = new byte[1024 * 8];
+		out.write(buffer);
 		out.close();
-
 	}
 
 	// 전달된 글 번호를 이용해서 해당 글 정보 조회
-	@RequestMapping(value = "/viewCoach", method = RequestMethod.GET)
-	public ModelAndView viewCoach(@RequestParam("coachNO") int coachNO, HttpServletRequest request,
+	@RequestMapping(value = "/view_coachInfo", method = RequestMethod.GET)
+	public ModelAndView coachInfo(@RequestParam("coachNO") int coachNO, HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
 		ModelAndView mav = new ModelAndView();
 		String url = "/coach/coachInfo";
@@ -214,6 +210,26 @@ public class CoachControllerImpl implements CoachController {
 		coachVO = coachService.viewCoach(coachNO);
 		mav.addObject("coach", coachVO);
 		return mav;
+	}
+
+	// 이미지파일 썸네일로 다운로드
+	@RequestMapping("/cthumbnails")
+	// RequestParam으로 key&value 값을 가져와 변수에 저장
+	protected void cthumbnails(@RequestParam("cImg") String cImg, @RequestParam("coach") String coach,
+			@RequestParam("coachNO") String coachNO, HttpServletResponse response) throws Exception {
+		OutputStream out = response.getOutputStream();
+		// 파일 경로
+		String filePath = COACH_IMAGE_REPO + "\\" + coach + "\\" + coachNO + "\\" + cImg;
+		File image = new File(filePath);
+
+		if (image.exists()) {
+			// 원본 이미지에 대한 썸네일 이미지를 생성한 후 OutputStream 객체에 할당
+			Thumbnails.of(image).size(1024, 1024).outputFormat("png").toOutputStream(out);
+		}
+		// 썸네일 이미지를 OutputStream 객체를 이용해 브라우저로 전송
+		byte[] buffer = new byte[1024 * 8];
+		out.write(buffer);
+		out.close();
 	}
 
 	// 코칭 글 수정

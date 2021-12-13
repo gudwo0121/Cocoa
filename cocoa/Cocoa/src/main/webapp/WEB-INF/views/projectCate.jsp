@@ -8,7 +8,7 @@
 <meta charset="UTF-8">
 <link href="resources/css/styles.css" rel="stylesheet" />
 <script type="text/javascript" src="resources/js/jquery-3.6.0.min.js"></script>
-<title>CoCoa's Coaching</title>
+<title>CoCoa's Project</title>
 </head>
 <body style="background-color: #FFEBCD">
 
@@ -33,42 +33,33 @@
 						onClick="location.href='/cocoa/view_coachCate'" value="Coaching">
 				</div>
 				<br>
-				<!-- 코칭 Field -->
-				<div id="cFields"
+				<!-- 프로젝트 Field -->
+				<div id="pFields"
 					class="d-grid gap-3 d-sm-flex">
 					<h3 style="color:#FFF;" class="my-auto">영역</h3>
 					<input id="Web" type="button"
 						class="btn btn-primary btn-lg px-4 me-sm-3"
-						onClick="location.href='/cocoa/view_coachCate?cField=cField1'" value="Web">
+						onClick="location.href='/cocoa/view_projectCate?pField=pField1'" value="Web">
 					<input id="Mobile App" type="button"
 						class="btn btn-primary btn-lg px-4 me-sm-3"
-						onClick="location.href='/cocoa/view_coachCate?cField=cField2'" value="Mobile App">
+						onClick="location.href='/cocoa/view_projectCate?pField=pField2'" value="Mobile App">
 					<input id="Embedded" type="button"
 						class="btn btn-primary btn-lg px-4 me-sm-3"
-						onClick="location.href='/cocoa/view_coachCate?cField=cField3'" value="Embedded">
+						onClick="location.href='/cocoa/view_projectCate?pField=pField3'" value="Embedded">
 				</div>
 				<br>
-				<div id="tools"
+				<div id="level"
 					class="d-grid gap-3 d-sm-flex">
-					<h3 style="color:#FFF;" class="my-auto">도구</h3>
-					<input id="Spring" type="button"
+					<h3 style="color:#FFF;" class="my-auto">등급</h3>
+					<input id="Basic" type="button"
 						class="btn btn-primary btn-lg px-4 me-sm-3"
-						onClick="location.href='/cocoa/view_coachCate?cField=${cri.cField }&tool=tool1'" value="Spring"/>
-					<input id="Django" type="button"
+						onClick="location.href='/cocoa/view_projectCate?pField=${cri.pField }&level=level1'" value="Basic"/>
+					<input id="Intermediate" type="button"
 						class="btn btn-primary btn-lg px-4 me-sm-3"
-						onClick="location.href='/cocoa/view_coachCate?cField=${cri.cField }&tool=tool2'" value="Django"/>
-					<input id="AndroidStudio" type="button"
+						onClick="location.href='/cocoa/view_projectCate?pField=${cri.pField }&level=level2'" value="Intemediate"/>
+					<input id="Advanced" type="button"
 						class="btn btn-primary btn-lg px-4 me-sm-3"
-						onClick="location.href='/cocoa/view_coachCate?cField=${cri.cField }&tool=tool3'" value="Android Studio"/>
-					<input id="Xcode" type="button"
-						class="btn btn-primary btn-lg px-4 me-sm-3"
-						onClick="location.href='/cocoa/view_coachCate?cField=${cri.cField }&tool=tool4'" value="Xcode"/>
-					<input id="Arduino" type="button"
-						class="btn btn-primary btn-lg px-4 me-sm-3"
-						onClick="location.href='/cocoa/view_coachCate?cField=${cri.cField }&tool=tool5'" value="Arduino"/>
-					<input id="RaspberryPi" type="button"
-						class="btn btn-primary btn-lg px-4 me-sm-3"
-						onClick="location.href='/cocoa/view_coachCate?cField=${cri.cField }&tool=tool6'" value="Rasberry Pi"/>
+						onClick="location.href='/cocoa/view_projectCate?pField=${cri.pField }&level=level3'" value="Advanced"/>
 						
 				</div>
 			</div>
@@ -76,7 +67,7 @@
 		</div>
 	</header>
 
-	<!-- 코칭 카탈로그 구간 -->
+	<!-- 프로젝트 카탈로그 구간 -->
 	<section class="py-5">
 		<div class="container px-4 px-lg-5 mt-5">
 
@@ -85,7 +76,7 @@
 			<c:choose>
 				<c:when test="${isLogOn == true && member != null}">
 					<a id="cwrite_btn" class="btn btn-primary px-4 me-sm-3"
-						href="/cocoa/view_coachWrite" style="float: right">코치 등록</a>
+						href="/cocoa/view_projectWrite" style="float: right">프로젝트 등록</a>
 				</c:when>
 			</c:choose>
 			<br> <br> <br>
@@ -95,7 +86,7 @@
 				class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
 
 				<!-- 반복문 시작 컨트롤러에서 addObject한 coachList를 가져와서 coach라고 저장 -->
-				<c:forEach var="coach" items="${coachesList}">
+				<c:forEach var="project" items="${projectList}">
 
 					<!-- 카탈로그 틀 -->
 					<div class="col mb-5">
@@ -105,29 +96,26 @@
 							<div class="badge bg-dark text-white position-absolute"
 								style="top: 0.5rem; right: 0.5rem">
 								<c:choose>
-									<c:when test="${coach.tool == 'tool1'}">Spring</c:when>
-									<c:when test="${coach.tool == 'tool2'}">Django</c:when>
-									<c:when test="${coach.tool == 'tool3'}">Android Studio</c:when>
-									<c:when test="${coach.tool == 'tool4'}">Xcode</c:when>
-									<c:when test="${coach.tool == 'tool5'}">Arduino</c:when>
-									<c:when test="${coach.tool == 'tool6'}">Raspberry Pi</c:when>
+									<c:when test="${project.level == 'level1'}">Basic</c:when>
+									<c:when test="${project.level == 'level2'}">Intermediate</c:when>
+									<c:when test="${project.level == 'level3'}">Advanced</c:when>
 								</c:choose>
 							</div>
 
 							<!-- 간판 이미지 (src=경로) thumbnails로 보내면서 쿼리스트링을 사용 -->
 							<img class="card-img-top" alt="" height=200
 								onerror=" this.src='resources/image/sample.png'"
-								src="${contextPath}/cthumbnails?coach=${coach.coach}&cImg=${coach.cImg}&coachNO=${coach.coachNO}" />
+								src="${contextPath}/thumbnails?leader=${project.leader}&pImg=${project.pImg}&projectNO=${project.projectNO}" />
 
 							<!-- 간판이미지 아래 정보 -->
 							<div class="card-body p-4">
 								<div class="text-center">
 									<!-- 제목 -->
-									<h5 class="fw-bolder">${coach.cTitle}</h5>
-									<!-- 코치 -->
-									${coach.coach}<br>
-									<!-- 기본 요금 -->
-									${coach.basicPrice} 원
+									<h5 class="fw-bolder">${project.pTitle}</h5>
+									<!-- 리더 -->
+									${project.leader}<br>
+									<!-- 인원수 -->
+									${project.memberCount}명
 								</div>
 							</div>
 
@@ -135,7 +123,7 @@
 							<div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
 								<div class="text-center">
 									<a class="btn btn-outline-dark mt-auto"
-										href="${contextPath}/view_coachInfo?coachNO=${coach.coachNO}">Get
+										href="${contextPath}/view_projectInfo?id=${project.leader}&projectNO=${project.projectNO}">Get
 										in</a>
 								</div>
 							</div>
@@ -154,19 +142,19 @@
 
 		<c:if test="${pageMaker.prev }">
 			<a
-				href='<c:url value="/view_coachCate?cField=${cri.cField }&tool=${cri.tool }&page=${pageMaker.startPage-1 }"/>'><i
+				href='<c:url value="/view_projectCate?pField=${cri.pField }&level=${cri.level }&page=${pageMaker.startPage-1 }"/>'><i
 				class=""></i></a>
 		</c:if>
 
 		<c:forEach begin="${pageMaker.startPage }" end="${pageMaker.endPage }"
 			var="pageNum">
-			<a href='<c:url value="/view_coachCate?cField=${cri.cField }&tool=${cri.tool }&page=${pageNum }"/>'><i
+			<a href='<c:url value="/view_projectCate?pField=${cri.pField }&level=${cri.level }&page=${pageNum }"/>'><i
 				class="">${pageNum }</i></a>
 		</c:forEach>
 
 		<c:if test="${pageMaker.next && pageMaker.endPage >0 }">
 			<a
-				href='<c:url value="/view_coachCate?cField=${cri.cField }&tool=${cri.tool }&page=${pageMaker.endPage+1 }"/>'><i
+				href='<c:url value="/view_projectCate?pField=${cri.pField }&level=${cri.level }&page=${pageMaker.endPage+1 }"/>'><i
 				class=""></i></a>
 		</c:if>
 

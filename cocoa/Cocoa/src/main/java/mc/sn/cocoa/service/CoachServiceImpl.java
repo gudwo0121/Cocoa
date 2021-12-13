@@ -24,12 +24,12 @@ public class CoachServiceImpl implements CoachService {
 		return coachDAO.insertNewCoach(coachMap);
 	}
 
-	// 코칭 글 목록 조회 메서드 호출
+	// 코칭 글 전체 조회
 	public List<CoachVO> listCoaches(Criteria cri) throws Exception {
 		List<CoachVO> coachesList = coachDAO.selectAllCoachesList(cri);
 		return coachesList;
 	}
-
+	
 	// 코칭 글 상세 조회 창 호출
 	@Override
 	public CoachVO viewCoach(int coachNO) throws Exception {
@@ -48,11 +48,10 @@ public class CoachServiceImpl implements CoachService {
 	public void removeCoach(int coachNO) throws Exception {
 		coachDAO.deleteCoach(coachNO);
 	}
-
+	
 	// 코칭 글 개수
-	@Override
-	public int countCoach(Criteria cri) throws Exception {
-		return coachDAO.countCoach(cri);
-	}
-
+		@Override
+		public int countCoach(Criteria cri) throws Exception {
+			return coachDAO.countCoach(cri);
+		}
 }

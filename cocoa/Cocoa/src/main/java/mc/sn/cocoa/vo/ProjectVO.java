@@ -4,12 +4,13 @@ import org.springframework.stereotype.Component;
 
 @Component("projectVO")
 public class ProjectVO {
-	
+
 	private int projectNO;
 	private String leader;
 	private String pImg;
 	private String pTitle;
 	private int memberCount;
+	private String pField;
 	private String level;
 	private String pContents;
 	private String map;
@@ -19,14 +20,14 @@ public class ProjectVO {
 
 	}
 
-	public ProjectVO(int projectNO, String leader, String pImg, String pTitle, int memberCount, String level,
-			String pContents, String map, String kakao) {
-		super();
+	public ProjectVO(int projectNO, String leader, String pImg, String pTitle, int memberCount, String pField,
+			String level, String pContents, String map, String kakao) {
 		this.projectNO = projectNO;
 		this.leader = leader;
 		this.pImg = pImg;
 		this.pTitle = pTitle;
 		this.memberCount = memberCount;
+		this.pField = pField;
 		this.level = level;
 		this.pContents = pContents;
 		this.map = map;
@@ -71,6 +72,14 @@ public class ProjectVO {
 
 	public void setMemberCount(int memberCount) {
 		this.memberCount = memberCount;
+	}
+
+	public String getpField() {
+		return pField;
+	}
+
+	public void setpField(String pField) {
+		this.pField = pField;
 	}
 
 	public String getLevel() {

@@ -7,6 +7,7 @@ import java.io.UnsupportedEncodingException;
 import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -28,7 +29,9 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
 import mc.sn.cocoa.service.ProjectService;
+import mc.sn.cocoa.vo.Criteria;
 import mc.sn.cocoa.vo.MemberVO;
+import mc.sn.cocoa.vo.PageMaker;
 import mc.sn.cocoa.vo.ProjectVO;
 import net.coobird.thumbnailator.Thumbnails;
 
@@ -40,6 +43,38 @@ public class ProjectControllerImpl implements ProjectController {
 	@Autowired
 	private ProjectService projectService;
 
+	// 코치 글 조회
+	@Override
+	@RequestMapping(value = "/view_projectCate", method = { RequestMethod.GET, RequestMethod.POST })
+	public ModelAndView view_projectCate(HttpServletRequest request, HttpServletResponse response, Criteria cri)
+			throws Exception {
+		ModelAndView mav = new ModelAndView();
+
+		// 쪽 번호 생성 메서드 객체 생성
+		PageMaker pageMaker = new PageMaker();
+
+		// 쪽 번호와 한 페이지에 게시할 글의 수 세팅
+		pageMaker.setCri(cri);
+
+		// 총 게시글의 수
+		pageMaker.setTotalCount(projectService.countProject(cri));
+
+		// 서비스에서 listCoaches() 메소드 실행하여 리턴 값을 List타입의 coachesList에 저장
+		List projectList = projectService.listProjects(cri);
+
+		// mav에 "coachesList" 키값으로 coachesList 밸류 값을 저장
+		mav.addObject("projectList", projectList);
+
+		mav.addObject("pageMaker", pageMaker);
+		
+		mav.addObject("cri", cri);
+
+		String url = "/projectCate";
+		mav.setViewName(url);
+
+		return mav;
+	}
+	
 	// 프로젝트 글 작성 창으로 이동
 	@Override
 	@RequestMapping(value = "/view_projectWrite", method = RequestMethod.GET)
@@ -119,19 +154,18 @@ public class ProjectControllerImpl implements ProjectController {
 
 			message = "<script>";
 			message += " alert('등록이 완료되었습니다.');";
-			message += " location.href='" + multipartRequest.getContextPath() + "/'; ";
+			message += " location.href='" + multipartRequest.getContextPath() + "/view_projectCate'; ";
 			message += " </script>";
 			resEnt = new ResponseEntity(message, responseHeaders, HttpStatus.CREATED);
 
 		} catch (Exception e) {
-
 			// 예외발생시 취소 및 삭제
 			File srcFile = new File(project_IMAGE_REPO + "\\" + "temp" + "\\" + pImg);
 			srcFile.delete();
 
 			message = " <script>";
 			message += " alert('오류가 발생했습니다. 다시 시도해주세요.');');";
-			message += " location.href='" + multipartRequest.getContextPath() + "/'; ";
+			message += " location.href='" + multipartRequest.getContextPath() + "/view_projectCate'; ";
 			message += " </script>";
 			resEnt = new ResponseEntity(message, responseHeaders, HttpStatus.CREATED);
 			e.printStackTrace();
@@ -158,14 +192,14 @@ public class ProjectControllerImpl implements ProjectController {
 
 			message = "<script>";
 			message += " alert('프로젝트 게시글을 삭제하였습니다');";
-			message += " location.href='" + request.getContextPath() + "/';";
+			message += " location.href='" + request.getContextPath() + "/view_projectCate';";
 			message += " </script>";
 			resEnt = new ResponseEntity(message, responseHeaders, HttpStatus.CREATED);
 
 		} catch (Exception e) {
 			message = "<script>";
 			message += " alert('삭제에 실패했습니다');";
-			message += " location.href='" + request.getContextPath() + "/';";
+			message += " location.href='" + request.getContextPath() + "/view_projectCate';";
 			message += " </script>";
 			resEnt = new ResponseEntity(message, responseHeaders, HttpStatus.CREATED);
 			e.printStackTrace();
@@ -201,9 +235,9 @@ public class ProjectControllerImpl implements ProjectController {
 	}
 
 	// 이미지파일 썸네일로 다운로드
-	@RequestMapping("/thumbnails")
+	@RequestMapping("/pthumbnails")
 	// RequestParam으로 key&value 값을 가져와 변수에 저장
-	protected void thumbnails(@RequestParam("pImg") String pImg, @RequestParam("leader") String leader,
+	protected void pthumbnails(@RequestParam("pImg") String pImg, @RequestParam("leader") String leader,
 			@RequestParam("projectNO") String projectNO, HttpServletResponse response) throws Exception {
 		OutputStream out = response.getOutputStream();
 		// 파일 경로
@@ -228,21 +262,18 @@ public class ProjectControllerImpl implements ProjectController {
 		String filePath = project_IMAGE_REPO + "\\" + leader + "\\" + projectNO + "\\" + pImg;
 		File image = new File(filePath);
 
-		response.setHeader("Cache-Control", "no-cache");
-		response.addHeader("Content-disposition", "attachment; fileName=" + pImg);
-		FileInputStream in = new FileInputStream(image);
-		byte[] buffer = new byte[1024 * 8];
-		while (true) {
-			int count = in.read(buffer);
-			if (count == -1)
-				break;
-			out.write(buffer, 0, count);
+		if (image.exists()) {
+			// 원본 이미지에 대한 썸네일 이미지를 생성한 후 OutputStream 객체에 할당
+			Thumbnails.of(image).size(1024, 1024).outputFormat("png").toOutputStream(out);
 		}
-		in.close();
+		// 썸네일 이미지를 OutputStream 객체를 이용해 브라우저로 전송
+		byte[] buffer = new byte[1024 * 8];
+		out.write(buffer);
 		out.close();
 	}
 
 	// 프로젝트 글 수정
+	@Override
 	@RequestMapping(value = "/modProject", method = RequestMethod.POST)
 	@ResponseBody
 	public ResponseEntity modProject(MultipartHttpServletRequest multipartRequest, HttpServletResponse response)
@@ -280,7 +311,7 @@ public class ProjectControllerImpl implements ProjectController {
 			}
 			message = "<script>";
 			message += " alert('수정이 완료되었습니다.');";
-			message += " location.href='" + multipartRequest.getContextPath() + "/'; ";
+			message += " location.href='" + multipartRequest.getContextPath() + "/view_projectCate'; ";
 			message += " </script>";
 			resEnt = new ResponseEntity(message, responseHeaders, HttpStatus.CREATED);
 		} catch (Exception e) {
@@ -290,7 +321,7 @@ public class ProjectControllerImpl implements ProjectController {
 
 			message = " <script>";
 			message += " alert('오류가 발생했습니다. 다시 시도해주세요.');');";
-			message += " location.href='" + multipartRequest.getContextPath() + "/'; ";
+			message += " location.href='" + multipartRequest.getContextPath() + "/view_projectCate'; ";
 			message += " </script>";
 			resEnt = new ResponseEntity(message, responseHeaders, HttpStatus.CREATED);
 		}
