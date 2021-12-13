@@ -10,7 +10,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
+import mc.sn.cocoa.vo.Criteria;
+
 public interface ProjectController {
+	
+	public ModelAndView view_projectCate(HttpServletRequest request, HttpServletResponse response, Criteria cri) throws Exception;
 
 	public ModelAndView view_projectWrite(HttpServletRequest request, HttpServletResponse response) throws Exception;
 

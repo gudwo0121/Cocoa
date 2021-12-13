@@ -8,66 +8,68 @@
 <meta charset="UTF-8">
 <link href="resources/css/styles.css" rel="stylesheet" />
 <script type="text/javascript" src="resources/js/jquery-3.6.0.min.js"></script>
-<title>CoCoa</title>
+<title>CoCoa's Coaching</title>
 </head>
 <body style="background-color: #FFEBCD">
 
 	<!-- 상단바 -->
 	<jsp:include page="header.jsp"></jsp:include>
 
+
+
 	<!-- 카테고리 구간 -->
 	<header class="py-5" style="background-color: #663333">
 		<div class="row">
 			<div class='col-sm-2'></div>
-			<div class='col-sm-8' style="align: left;">
+			<div class='col-sm-8' style="align:left;">
 				<!-- 코칭 / 프로젝트 cate -->
 				<div class="d-grid gap-3 d-sm-flex">
-					<h3 style="color: #FFF;" class="my-auto">분류</h3>
+					<h3 style="color:#FFF;" class="my-auto">분류</h3> 
 					<input id="project" type="button"
 						class="btn btn-primary btn-lg px-4 me-sm-3"
-						onClick="location.href='/cocoa/'" value="Project"> <input
+						onClick="location.href='/cocoa/view_projectCate'" value="Project"> <input
 						id="project" type="button"
 						class="btn btn-primary btn-lg px-4 me-sm-3"
 						onClick="location.href='/cocoa/view_coachCate'" value="Coaching">
 				</div>
 				<br>
 				<!-- 코칭 Field -->
-				<div id="cFields" class="d-grid gap-3 d-sm-flex">
-					<h3 style="color: #FFF;" class="my-auto">영역</h3>
+				<div id="cFields"
+					class="d-grid gap-3 d-sm-flex">
+					<h3 style="color:#FFF;" class="my-auto">영역</h3>
 					<input id="Web" type="button"
 						class="btn btn-primary btn-lg px-4 me-sm-3"
-						onClick="location.href='/cocoa/view_coachCate?cField=cField1'"
-						value="Web"> <input id="Mobile App" type="button"
+						onClick="location.href='/cocoa/view_coachCate?cField=cField1'" value="Web">
+					<input id="Mobile App" type="button"
 						class="btn btn-primary btn-lg px-4 me-sm-3"
-						onClick="location.href='/cocoa/view_coachCate?cField=cField2'"
-						value="Mobile App"> <input id="Embedded" type="button"
+						onClick="location.href='/cocoa/view_coachCate?cField=cField2'" value="Mobile App">
+					<input id="Embedded" type="button"
 						class="btn btn-primary btn-lg px-4 me-sm-3"
-						onClick="location.href='/cocoa/view_coachCate?cField=cField3'"
-						value="Embedded">
+						onClick="location.href='/cocoa/view_coachCate?cField=cField3'" value="Embedded">
 				</div>
 				<br>
-				<div id="cFields" class="d-grid gap-3 d-sm-flex">
-					<h3 style="color: #FFF;" class="my-auto">도구</h3>
+				<div id="tools"
+					class="d-grid gap-3 d-sm-flex">
+					<h3 style="color:#FFF;" class="my-auto">도구</h3>
 					<input id="Spring" type="button"
 						class="btn btn-primary btn-lg px-4 me-sm-3"
-						onClick="location.href='/cocoa/view_coachCate?cField=${cri.cField }&tool=tool1'"
-						value="Spring" /> <input id="Django" type="button"
+						onClick="location.href='/cocoa/view_coachCate?cField=${cri.cField }&tool=tool1'" value="Spring"/>
+					<input id="Django" type="button"
 						class="btn btn-primary btn-lg px-4 me-sm-3"
-						onClick="location.href='/cocoa/view_coachCate?cField=${cri.cField }&tool=tool2'"
-						value="Django" /> <input id="AndroidStudio" type="button"
+						onClick="location.href='/cocoa/view_coachCate?cField=${cri.cField }&tool=tool2'" value="Django"/>
+					<input id="AndroidStudio" type="button"
 						class="btn btn-primary btn-lg px-4 me-sm-3"
-						onClick="location.href='/cocoa/view_coachCate?cField=${cri.cField }&tool=tool3'"
-						value="Android Studio" /> <input id="Xcode" type="button"
+						onClick="location.href='/cocoa/view_coachCate?cField=${cri.cField }&tool=tool3'" value="Android Studio"/>
+					<input id="Xcode" type="button"
 						class="btn btn-primary btn-lg px-4 me-sm-3"
-						onClick="location.href='/cocoa/view_coachCate?cField=${cri.cField }&tool=tool4'"
-						value="Xcode" /> <input id="Arduino" type="button"
+						onClick="location.href='/cocoa/view_coachCate?cField=${cri.cField }&tool=tool4'" value="Xcode"/>
+					<input id="Arduino" type="button"
 						class="btn btn-primary btn-lg px-4 me-sm-3"
-						onClick="location.href='/cocoa/view_coachCate?cField=${cri.cField }&tool=tool5'"
-						value="Arduino" /> <input id="RaspberryPi" type="button"
+						onClick="location.href='/cocoa/view_coachCate?cField=${cri.cField }&tool=tool5'" value="Arduino"/>
+					<input id="RaspberryPi" type="button"
 						class="btn btn-primary btn-lg px-4 me-sm-3"
-						onClick="location.href='/cocoa/view_coachCate?cField=${cri.cField }&tool=tool6'"
-						value="Rasberry Pi" />
-
+						onClick="location.href='/cocoa/view_coachCate?cField=${cri.cField }&tool=tool6'" value="Rasberry Pi"/>
+						
 				</div>
 			</div>
 			<div class='col-sm-2'></div>
@@ -83,7 +85,7 @@
 			<c:choose>
 				<c:when test="${isLogOn == true && member != null}">
 					<a id="cwrite_btn" class="btn btn-primary px-4 me-sm-3"
-						href="/cocoa/view_coachWrite" style="float: right">c글작성</a>
+						href="/cocoa/view_coachWrite" style="float: right">코치 등록</a>
 				</c:when>
 			</c:choose>
 			<br> <br> <br>
@@ -146,7 +148,7 @@
 		</div>
 		<!-- 위의 카탈로그 틀이 반복 생성 및 표시 -->
 	</section>
-
+	
 	<!-- 쪽 번호 구간 -->
 	<div style="margin: 0 auto; font-size: 30px;">
 
@@ -158,8 +160,7 @@
 
 		<c:forEach begin="${pageMaker.startPage }" end="${pageMaker.endPage }"
 			var="pageNum">
-			<a
-				href='<c:url value="/view_coachCate?cField=${cri.cField }&tool=${cri.tool }&page=${pageNum }"/>'><i
+			<a href='<c:url value="/view_coachCate?cField=${cri.cField }&tool=${cri.tool }&page=${pageNum }"/>'><i
 				class="">${pageNum }</i></a>
 		</c:forEach>
 

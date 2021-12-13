@@ -21,7 +21,7 @@
 		}
 	}
 </script>
-<title>CoCoa</title>
+<title>코치 등록</title>
 </head>
 <body style="background-color: #FFEBCD">
 

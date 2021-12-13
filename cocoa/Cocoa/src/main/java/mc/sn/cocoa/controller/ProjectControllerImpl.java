@@ -29,7 +29,9 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
 import mc.sn.cocoa.service.ProjectService;
+import mc.sn.cocoa.vo.Criteria;
 import mc.sn.cocoa.vo.MemberVO;
+import mc.sn.cocoa.vo.PageMaker;
 import mc.sn.cocoa.vo.ProjectVO;
 import net.coobird.thumbnailator.Thumbnails;
 
@@ -41,6 +43,38 @@ public class ProjectControllerImpl implements ProjectController {
 	@Autowired
 	private ProjectService projectService;
 
+	// 코치 글 조회
+	@Override
+	@RequestMapping(value = "/view_projectCate", method = { RequestMethod.GET, RequestMethod.POST })
+	public ModelAndView view_projectCate(HttpServletRequest request, HttpServletResponse response, Criteria cri)
+			throws Exception {
+		ModelAndView mav = new ModelAndView();
+
+		// 쪽 번호 생성 메서드 객체 생성
+		PageMaker pageMaker = new PageMaker();
+
+		// 쪽 번호와 한 페이지에 게시할 글의 수 세팅
+		pageMaker.setCri(cri);
+
+		// 총 게시글의 수
+		pageMaker.setTotalCount(projectService.countProject(cri));
+
+		// 서비스에서 listCoaches() 메소드 실행하여 리턴 값을 List타입의 coachesList에 저장
+		List projectList = projectService.listProjects(cri);
+
+		// mav에 "coachesList" 키값으로 coachesList 밸류 값을 저장
+		mav.addObject("projectList", projectList);
+
+		mav.addObject("pageMaker", pageMaker);
+		
+		mav.addObject("cri", cri);
+
+		String url = "/projectCate";
+		mav.setViewName(url);
+
+		return mav;
+	}
+	
 	// 프로젝트 글 작성 창으로 이동
 	@Override
 	@RequestMapping(value = "/view_projectWrite", method = RequestMethod.GET)
@@ -120,7 +154,7 @@ public class ProjectControllerImpl implements ProjectController {
 
 			message = "<script>";
 			message += " alert('등록이 완료되었습니다.');";
-			message += " location.href='" + multipartRequest.getContextPath() + "/'; ";
+			message += " location.href='" + multipartRequest.getContextPath() + "/view_projectCate'; ";
 			message += " </script>";
 			resEnt = new ResponseEntity(message, responseHeaders, HttpStatus.CREATED);
 
@@ -131,7 +165,7 @@ public class ProjectControllerImpl implements ProjectController {
 
 			message = " <script>";
 			message += " alert('오류가 발생했습니다. 다시 시도해주세요.');');";
-			message += " location.href='" + multipartRequest.getContextPath() + "/'; ";
+			message += " location.href='" + multipartRequest.getContextPath() + "/view_projectCate'; ";
 			message += " </script>";
 			resEnt = new ResponseEntity(message, responseHeaders, HttpStatus.CREATED);
 			e.printStackTrace();
@@ -158,14 +192,14 @@ public class ProjectControllerImpl implements ProjectController {
 
 			message = "<script>";
 			message += " alert('프로젝트 게시글을 삭제하였습니다');";
-			message += " location.href='" + request.getContextPath() + "/';";
+			message += " location.href='" + request.getContextPath() + "/view_projectCate';";
 			message += " </script>";
 			resEnt = new ResponseEntity(message, responseHeaders, HttpStatus.CREATED);
 
 		} catch (Exception e) {
 			message = "<script>";
 			message += " alert('삭제에 실패했습니다');";
-			message += " location.href='" + request.getContextPath() + "/';";
+			message += " location.href='" + request.getContextPath() + "/view_projectCate';";
 			message += " </script>";
 			resEnt = new ResponseEntity(message, responseHeaders, HttpStatus.CREATED);
 			e.printStackTrace();
@@ -277,7 +311,7 @@ public class ProjectControllerImpl implements ProjectController {
 			}
 			message = "<script>";
 			message += " alert('수정이 완료되었습니다.');";
-			message += " location.href='" + multipartRequest.getContextPath() + "/'; ";
+			message += " location.href='" + multipartRequest.getContextPath() + "/view_projectCate'; ";
 			message += " </script>";
 			resEnt = new ResponseEntity(message, responseHeaders, HttpStatus.CREATED);
 		} catch (Exception e) {
@@ -287,7 +321,7 @@ public class ProjectControllerImpl implements ProjectController {
 
 			message = " <script>";
 			message += " alert('오류가 발생했습니다. 다시 시도해주세요.');');";
-			message += " location.href='" + multipartRequest.getContextPath() + "/'; ";
+			message += " location.href='" + multipartRequest.getContextPath() + "/view_projectCate'; ";
 			message += " </script>";
 			resEnt = new ResponseEntity(message, responseHeaders, HttpStatus.CREATED);
 		}

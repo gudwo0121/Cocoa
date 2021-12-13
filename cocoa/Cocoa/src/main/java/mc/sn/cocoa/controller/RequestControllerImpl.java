@@ -31,7 +31,9 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
 import mc.sn.cocoa.service.RequestService;
+import mc.sn.cocoa.vo.Criteria;
 import mc.sn.cocoa.vo.MemberVO;
+import mc.sn.cocoa.vo.PageMaker;
 import mc.sn.cocoa.vo.RequestVO;
 import net.coobird.thumbnailator.Thumbnails;
 
@@ -148,40 +150,68 @@ public class RequestControllerImpl implements RequestController {
 	}
 
 	// 보낸 요청 리스트 화면 이동
-	@Override
-	@RequestMapping(value = "/view_sendReq", method = RequestMethod.GET)
-	public ModelAndView view_sendReq(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		ModelAndView mav = new ModelAndView();
-		HttpSession session = request.getSession();
-		MemberVO vo = (MemberVO) session.getAttribute("member");
-		String id = vo.getId();
+		@Override
+		@RequestMapping(value = "/view_sendReq", method = RequestMethod.GET)
+		public ModelAndView view_sendReq(HttpServletRequest request, HttpServletResponse response, Criteria cri)
+				throws Exception {
+			ModelAndView mav = new ModelAndView();
+			HttpSession session = request.getSession();
 
-		// 보낸 요청 리스트 가져오기
-		List reqSentList = requestService.listReqSent(id);
-		mav.addObject("reqSentList", reqSentList);
+			MemberVO vo = (MemberVO) session.getAttribute("member");
+			String id = vo.getId();
 
-		String url = "/myPage/myPageSent";
-		mav.setViewName(url);
-		return mav;
-	}
+			// id 반영
+			cri.setReqId(id);
 
-	// 받은 요청 리스트 화면 이동
-	@Override
-	@RequestMapping(value = "/view_receiveReq", method = RequestMethod.GET)
-	public ModelAndView view_receiveReq(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		ModelAndView mav = new ModelAndView();
-		HttpSession session = request.getSession();
-		MemberVO vo = (MemberVO) session.getAttribute("member");
-		String id = vo.getId();
+			// 쪽 번호 생성 매서드
+			PageMaker pageMaker = new PageMaker();
 
-		// 받은 요청 리스트 가져오기
-		List reqGotList = requestService.listReqGot(id);
-		mav.addObject("reqGotList", reqGotList);
+			pageMaker.setCri(cri);
 
-		String url = "/myPage/myPageGot";
-		mav.setViewName(url);
-		return mav;
-	}
+			pageMaker.setTotalCount(requestService.countSendRequest(id));
+
+			// 보낸 요청 리스트 가져오기
+			List reqSentList = requestService.listReqSent(cri);
+			mav.addObject("reqSentList", reqSentList);
+
+			mav.addObject("pageMaker", pageMaker);
+
+			String url = "/myPage/myPageSent";
+			mav.setViewName(url);
+			return mav;
+		}
+
+		// 받은 요청 리스트 화면 이동
+		@Override
+		@RequestMapping(value = "/view_receiveReq", method = RequestMethod.GET)
+		public ModelAndView view_receiveReq(HttpServletRequest request, HttpServletResponse response, Criteria cri)
+				throws Exception {
+			ModelAndView mav = new ModelAndView();
+			HttpSession session = request.getSession();
+
+			MemberVO vo = (MemberVO) session.getAttribute("member");
+			String id = vo.getId();
+
+			// id 반영
+			cri.setResId(id);
+
+			// 쪽 번호 생성 매서드
+			PageMaker pageMaker = new PageMaker();
+
+			pageMaker.setCri(cri);
+			
+			pageMaker.setTotalCount(requestService.countReceiveRequest(id));
+
+			// 받은 요청 리스트 가져오기
+			List reqGotList = requestService.listReqGot(cri);
+			mav.addObject("reqGotList", reqGotList);
+			
+			mav.addObject("pageMaker", pageMaker);
+
+			String url = "/myPage/myPageGot";
+			mav.setViewName(url);
+			return mav;
+		}
 
 	// 받은 요청 대기글 이동
 	@Override

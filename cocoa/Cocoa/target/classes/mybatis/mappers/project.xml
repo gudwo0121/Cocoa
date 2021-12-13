@@ -32,28 +32,13 @@
 		]]>
 	</select>
 
-	<!-- 프로젝트 글 1계층 조회 -->
-	<select id="selectAllProjectList1" resultType="projectVO">
+	<!-- 프로젝트 글 조회 -->
+	<select id="selectAllProjectList" resultMap="projectResult">
       <![CDATA[
-         select * from projectTBL
-      ]]>
-	</select>
-
-	<!-- 프로젝트 글 2계층 조회 -->
-	<select id="selectAllProjectList2" resultType="projectVO"
-		parameterType="projectVO">
-      <![CDATA[
-         select * from projectTBL
-         where pField=#{pField}
-      ]]>
-	</select>
-
-	<!-- 프로젝트 글 3계층 조회 -->
-	<select id="selectAllProjectList3" resultType="projectVO"
-		parameterType="projectVO">
-      <![CDATA[
-         select * from projectTBL
-         where pField=#{pField} and level=#{level}
+         select * 
+         from projectTBL
+         where pField like concat(#{pField},"%") and level like concat(#{level}, "%")
+         limit #{pageStart}, #{perPageNum}
       ]]>
 	</select>
 
@@ -76,15 +61,28 @@
 	<update id="updateProject" parameterType="java.util.Map">
 		update projectTBL
 		set pTitle=#{pTitle},
-		pContents=#{pContents},
-		pField=#{pField},
-		level=#{level},
-		kakao=#{kakao},
+		pContents=#{pContents}
+		<if test="pField!=''">
+			, pField=#{pField}
+		</if>
+		<if test="level!=''">
+			, level=#{level}
+		</if>
+		, kakao=#{kakao},
 		memberCount=#{memberCount}
 		<if test="pImg!='' and pImg!=null">
 			, pImg=#{pImg}
 		</if>
 		where projectNO=#{projectNO}
 	</update>
+	
+	<!-- 프로젝트 글의 수 -->
+	<select id="countProject" resultType="int" parameterType="int">
+		<![CDATA[
+			SELECT count(*) 
+			from projectTBL
+			where pField like concat(#{pField},"%") and level like concat(#{level}, "%")
+		]]>
+	</select>
 
 </mapper>

@@ -33,15 +33,15 @@
 			$('#kakaoLink').hide();
 			$('#p_modBtn').show();
 			$('#p_pTitle').prop('disabled', false);
+			$('#p_pField').prop('disabled', false);
 			$('#p_pLevel').prop('disabled', false);
 			$('#p_pMemberCount').prop('disabled', false);
-			$('#p_field').prop('disabled', false);
 			$('#p_pContents').prop('disabled', false);
 			return false;
 		});
 	});
 </script>
-<title>CoCoa</title>
+<title>프로젝트 정보</title>
 </head>
 <body style="background-color: #FFEBCD">
 
@@ -155,13 +155,20 @@
 							<b>명</b>
 							<hr>
 							
-							<!-- 분야 표시 -->
+							<!-- pField 표시 -->
 							분야 : <select
 								style="border: 0; text-align: center; width: 15%; background-color: #FFCC99; font-weight: 700; color: black;"
-								name="pfield" disabled id="p_field">
-								<option id="pfield1" value="pField1">Web</option>
-								<option id="pfield2" value="pField2">Mobile App</option>
-								<option id="pfield3" value="pField3">Embedded</option>
+								name="pField" disabled id="p_pField">
+								<option id="empty" value="">
+									<c:choose>
+										<c:when test="${projectInfo.pField == 'pField1'}">Web</c:when>
+										<c:when test="${projectInfo.pField == 'pField2'}">Mobile App</c:when>
+										<c:when test="${projectInfo.pField == 'pField3'}">Embedded</c:when>
+									</c:choose>
+								</option>
+								<option id="pField1" value="pField1">Web</option>
+								<option id="pField2" value="pField2">Mobile App</option>
+								<option id="pField3" value="pField3">Embedded</option>
 							</select>
 							<hr>
 
@@ -169,10 +176,16 @@
 							난이도 : <select
 								style="border: 0; text-align: center; width: 15%; background-color: #FFCC99; font-weight: 700; color: black;"
 								name="level" disabled id="p_pLevel">
-								<option id="empty">${projectInfo.level}</option>
-								<option id="level1">Beginner</option>
-								<option id="level2">Junior</option>
-								<option id="level3">Senior</option>
+								<option id="empty" value="">
+									<c:choose>
+										<c:when test="${projectInfo.level == 'level1'}">Basic</c:when>
+										<c:when test="${projectInfo.level == 'level2'}">Intermediate</c:when>
+										<c:when test="${projectInfo.level == 'level3'}">Advanced</c:when>
+									</c:choose>
+								</option>
+								<option id="level1" value="level1">Basic</option>
+								<option id="level2" value="level2">Intermediate</option>
+								<option id="level3" value="level3">Advanced</option>
 							</select>
 							<hr>
 

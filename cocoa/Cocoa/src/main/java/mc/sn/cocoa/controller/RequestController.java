@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
+import mc.sn.cocoa.vo.Criteria;
 import mc.sn.cocoa.vo.RequestVO;
 
 public interface RequestController {
@@ -21,9 +22,9 @@ public interface RequestController {
 	public ResponseEntity sendRequest(MultipartHttpServletRequest multipartRequest, HttpServletResponse response)
 			throws Exception;
 
-	public ModelAndView view_sendReq(HttpServletRequest request, HttpServletResponse response) throws Exception;
+	public ModelAndView view_sendReq(HttpServletRequest request, HttpServletResponse response, Criteria cri) throws Exception;
 
-	public ModelAndView view_receiveReq(HttpServletRequest request, HttpServletResponse response) throws Exception;
+	public ModelAndView view_receiveReq(HttpServletRequest request, HttpServletResponse response, Criteria cri) throws Exception;
 
 	public ModelAndView view_gotReqWait(@RequestParam("reqNO") int reqNO, HttpServletRequest request,
 			HttpServletResponse response) throws UnsupportedEncodingException;

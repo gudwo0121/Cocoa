@@ -50,7 +50,7 @@
 		obj.submit();
 	}
 </script>
-<title>CoCoa</title>
+<title>코치 정보</title>
 </head>
 <body style="background-color: #FFEBCD">
 

@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Repository;
 
+import mc.sn.cocoa.vo.Criteria;
 import mc.sn.cocoa.vo.ProjectVO;
 
 @Repository("projectDAO")
@@ -29,27 +30,11 @@ public class ProjectDAOImpl implements ProjectDAO {
 		return sqlSession.selectOne("mapper.project.selectNewProjectNO");
 	}
 
-	// 프로젝트 카탈로그 1계층 조회
+	// 프로젝트 전체 & 조건 조회
 	@Override
-	public List selectAllProjectList1() {
+	public List selectAllProjectList(Criteria cri) throws DataAccessException {
 		List<ProjectVO> projectsList = null;
-		projectsList = sqlSession.selectList("mapper.project.selectAllProjectList1");
-		return projectsList;
-	}
-
-	// 프로젝트 카탈로그 2계층 조회
-	@Override
-	public List selectAllProjectList2(ProjectVO projectVO) {
-		List<ProjectVO> projectsList = null;
-		projectsList = sqlSession.selectList("mapper.project.selectAllProjectList2", projectVO);
-		return projectsList;
-	}
-
-	// 프로젝트 카탈로그 3계층 조회
-	@Override
-	public List selectAllProjectList3(ProjectVO projectVO) {
-		List<ProjectVO> projectsList = null;
-		projectsList = sqlSession.selectList("mapper.project.selectAllProjectList3", projectVO);
+		projectsList = sqlSession.selectList("mapper.project.selectAllProjectList", cri);
 		return projectsList;
 	}
 
@@ -71,6 +56,12 @@ public class ProjectDAOImpl implements ProjectDAO {
 	@Override
 	public void updateProject(Map projectMap) {
 		sqlSession.update("mapper.project.updateProject", projectMap);
+	}
+	
+	// 프로젝트 글 개수
+	@Override
+	public int countProject(Criteria cri) throws DataAccessException {
+		return (Integer) sqlSession.selectOne("mapper.project.countProject", cri);
 	}
 
 }

@@ -21,7 +21,7 @@
 		}
 	}
 </script>
-<title>CoCoa</title>
+<title>프로젝트 등록</title>
 </head>
 <body style="background-color: #FFEBCD">
 
@@ -94,9 +94,9 @@
 							분야 : <select style="text-align: center; width: 30%;"
 								name="pField">
 								<option id="empty">-- 선택 --</option>
-								<option id="pfield1">Web</option>
-								<option id="pfield2">Mobile App</option>
-								<option id="pfield3">Embedded</option>
+								<option id="pField1" value="pField1">Web</option>
+								<option id="pField2" value="pField2">Mobile App</option>
+								<option id="pField3" value="pField3">Embedded</option>
 							</select>
 							<hr>
 
@@ -104,9 +104,9 @@
 							난이도 : <select style="text-align: center; width: 30%;"
 								name="level">
 								<option id="empty">-- 선택 --</option>
-								<option id="level1">Beginner</option>
-								<option id="level2">Junior</option>
-								<option id="level3">Senior</option>
+								<option id="level1" value="level1">Basic</option>
+								<option id="level2" value="level2">Intermediate</option>
+								<option id="level3" value="level3">Advanced</option>
 							</select>
 							<hr>
 
