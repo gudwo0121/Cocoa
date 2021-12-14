@@ -41,7 +41,7 @@
 		});
 	});
 </script>
-<title>프로젝트 정보</title>
+<title>CoCoa</title>
 </head>
 <body style="background-color: #FFEBCD">
 
@@ -156,7 +156,7 @@
 							<hr>
 							
 							<!-- pField 표시 -->
-							분야 : <select
+							영역 : <select
 								style="border: 0; text-align: center; width: 15%; background-color: #FFCC99; font-weight: 700; color: black;"
 								name="pField" disabled id="p_pField">
 								<option id="empty" value="">
@@ -173,7 +173,7 @@
 							<hr>
 
 							<!-- level 표시 -->
-							난이도 : <select
+							등급 : <select
 								style="border: 0; text-align: center; width: 15%; background-color: #FFCC99; font-weight: 700; color: black;"
 								name="level" disabled id="p_pLevel">
 								<option id="empty" value="">

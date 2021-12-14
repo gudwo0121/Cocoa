@@ -64,8 +64,8 @@ th, td {
 				style="width: 80%; margin: 0 auto; border: 1px solid grey; background-color: #FFCC99; color: black;">
 				<tr>
 					<th colspan="2"
-						style="vertical-align: middle; text-align: center; font-size: 20px;">${requestInfo.res}
-						코치에게 보낸 요청서</th>
+						style="vertical-align: middle; text-align: center; font-size: 20px;">${requestInfo.res}에게
+						보낸 요청서</th>
 				</tr>
 
 				<!-- rTitle -->
@@ -124,8 +124,8 @@ th, td {
 						style="background-color: white; color: black;"
 						onmouseover="this.style.color='white'; this.style.backgroundColor='black';"
 						onmouseout="this.style.color='black'; this.style.backgroundColor='white';"
-						value="확 인" /> <input type="button" onclick="yesOrNo()"
-						id="del" class="btn btn-outline-dark"
+						value="확 인" /> <input type="button" onclick="yesOrNo()" id="del"
+						class="btn btn-outline-dark"
 						style="background-color: white; color: black;"
 						onmouseover="this.style.color='white'; this.style.backgroundColor='black';"
 						onmouseout="this.style.color='black'; this.style.backgroundColor='white';"

@@ -75,11 +75,11 @@
 		</if>
 		where projectNO=#{projectNO}
 	</update>
-	
+
 	<!-- 프로젝트 글의 수 -->
 	<select id="countProject" resultType="int" parameterType="int">
 		<![CDATA[
-			SELECT count(*) 
+			SELECT count(*)
 			from projectTBL
 			where pField like concat(#{pField},"%") and level like concat(#{level}, "%")
 		]]>

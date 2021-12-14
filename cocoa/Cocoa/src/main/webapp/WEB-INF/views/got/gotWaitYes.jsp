@@ -18,13 +18,12 @@ th, td {
 </head>
 <body style="background-color: #FFEBCD">
 
-	<!-- UI 조정 필요 -->
 	<!-- 받은 요청 대기 (수락 전송) -->
 	<div class="card rcol my-5"
 		style="text-align: center; background-color: #FFEBCD; border: none; width: 80vw; height: 90vh;">
 		<form action="${contextPath}/submitReqYes" method="post">
 			<table
-				style="width: 80%; margin: 0 auto; border: 1px solid grey; background-color: #FFCC99; color: black;">
+				style="width: 80%; margin: 0 auto; border: 1px solid black; background-color: #FFCC99; color: black;">
 				<tr>
 					<th colspan="2"
 						style="vertical-align: middle; text-align: center; font-size: 20px;">${requestInfo.req}의
@@ -36,16 +35,16 @@ th, td {
 					<td style="text-align: center; width: 15%;"><b>연결수단</b></td>
 					<td style=""><input type="text" id="" name="contact"
 						class="form-control" value="" placeholder="연결수단의 링크를 입력하세요."
-						style="width: 95%; background-color: #FFCC99; border: 1px solid grey; color: black;">
+						style="width: 95%; background-color: #FFCC99; border: 1px solid black; color: black;">
 					</td>
 				</tr>
 
 				<!-- realPrice -->
 				<tr>
 					<td style="text-align: center; width: 15%;"><b>요 금</b></td>
-					<td style=""><input type="text" id="" name="realPrice"
+					<td style=""><input type="number" id="" name="realPrice"
 						class="form-control" value="" placeholder="측정된 요금을 입력하세요."
-						style="width: 95%; background-color: #FFCC99; border: 1px solid grey; color: black;">
+						style="width: 95%; background-color: #FFCC99; border: 1px solid black; color: black;">
 					</td>
 				</tr>
 
@@ -54,7 +53,7 @@ th, td {
 					<td style="text-align: center; width: 15%;"><b>결제수단</b></td>
 					<td style=""><input type="text" id="" name="pay"
 						class="form-control" value="" placeholder="결제 수단을 입력하세요." readonly
-						style="width: 95%; background-color: #FFCC99; border: 1px solid grey; color: black;">
+						style="width: 95%; background-color: #FFCC99; border: 1px solid black; color: black;">
 					</td>
 				</tr>
 
@@ -72,7 +71,16 @@ th, td {
 						</div></td>
 				</tr>
 
-				<!-- 전송 -->
+				<!-- 공지사항 -->
+				<tr>
+					<td style="text-align: center; width: 15%;"><b>공지사항</b></td>
+					<td style=""><textarea id="" name="reason" rows=3
+							class="form-control" placeholder="요청자에게 알릴 공지사항을 입력하세요."
+							style="width: 95%; background-color: #FFCC99; border: 1px solid black; color: black; resize: none;"></textarea>
+					</td>
+				</tr>
+
+				<!-- 전송, 취소 -->
 				<tr>
 					<td align="center" colspan="2"><input type="submit" id=""
 						class="btn btn-outline-dark mt-1"

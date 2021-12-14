@@ -150,68 +150,68 @@ public class RequestControllerImpl implements RequestController {
 	}
 
 	// 보낸 요청 리스트 화면 이동
-		@Override
-		@RequestMapping(value = "/view_sendReq", method = RequestMethod.GET)
-		public ModelAndView view_sendReq(HttpServletRequest request, HttpServletResponse response, Criteria cri)
-				throws Exception {
-			ModelAndView mav = new ModelAndView();
-			HttpSession session = request.getSession();
+	@Override
+	@RequestMapping(value = "/view_sendReq", method = RequestMethod.GET)
+	public ModelAndView view_sendReq(HttpServletRequest request, HttpServletResponse response, Criteria cri)
+			throws Exception {
+		ModelAndView mav = new ModelAndView();
+		HttpSession session = request.getSession();
 
-			MemberVO vo = (MemberVO) session.getAttribute("member");
-			String id = vo.getId();
+		MemberVO vo = (MemberVO) session.getAttribute("member");
+		String id = vo.getId();
 
-			// id 반영
-			cri.setReqId(id);
+		// id 반영
+		cri.setReqId(id);
 
-			// 쪽 번호 생성 매서드
-			PageMaker pageMaker = new PageMaker();
+		// 쪽 번호 생성 매서드
+		PageMaker pageMaker = new PageMaker();
 
-			pageMaker.setCri(cri);
+		pageMaker.setCri(cri);
 
-			pageMaker.setTotalCount(requestService.countSendRequest(id));
+		pageMaker.setTotalCount(requestService.countSendRequest(id));
 
-			// 보낸 요청 리스트 가져오기
-			List reqSentList = requestService.listReqSent(cri);
-			mav.addObject("reqSentList", reqSentList);
+		// 보낸 요청 리스트 가져오기
+		List reqSentList = requestService.listReqSent(cri);
+		mav.addObject("reqSentList", reqSentList);
 
-			mav.addObject("pageMaker", pageMaker);
+		mav.addObject("pageMaker", pageMaker);
 
-			String url = "/myPage/myPageSent";
-			mav.setViewName(url);
-			return mav;
-		}
+		String url = "/myPage/myPageSent";
+		mav.setViewName(url);
+		return mav;
+	}
 
-		// 받은 요청 리스트 화면 이동
-		@Override
-		@RequestMapping(value = "/view_receiveReq", method = RequestMethod.GET)
-		public ModelAndView view_receiveReq(HttpServletRequest request, HttpServletResponse response, Criteria cri)
-				throws Exception {
-			ModelAndView mav = new ModelAndView();
-			HttpSession session = request.getSession();
+	// 받은 요청 리스트 화면 이동
+	@Override
+	@RequestMapping(value = "/view_receiveReq", method = RequestMethod.GET)
+	public ModelAndView view_receiveReq(HttpServletRequest request, HttpServletResponse response, Criteria cri)
+			throws Exception {
+		ModelAndView mav = new ModelAndView();
+		HttpSession session = request.getSession();
 
-			MemberVO vo = (MemberVO) session.getAttribute("member");
-			String id = vo.getId();
+		MemberVO vo = (MemberVO) session.getAttribute("member");
+		String id = vo.getId();
 
-			// id 반영
-			cri.setResId(id);
+		// id 반영
+		cri.setResId(id);
 
-			// 쪽 번호 생성 매서드
-			PageMaker pageMaker = new PageMaker();
+		// 쪽 번호 생성 매서드
+		PageMaker pageMaker = new PageMaker();
 
-			pageMaker.setCri(cri);
-			
-			pageMaker.setTotalCount(requestService.countReceiveRequest(id));
+		pageMaker.setCri(cri);
 
-			// 받은 요청 리스트 가져오기
-			List reqGotList = requestService.listReqGot(cri);
-			mav.addObject("reqGotList", reqGotList);
-			
-			mav.addObject("pageMaker", pageMaker);
+		pageMaker.setTotalCount(requestService.countReceiveRequest(id));
 
-			String url = "/myPage/myPageGot";
-			mav.setViewName(url);
-			return mav;
-		}
+		// 받은 요청 리스트 가져오기
+		List reqGotList = requestService.listReqGot(cri);
+		mav.addObject("reqGotList", reqGotList);
+
+		mav.addObject("pageMaker", pageMaker);
+
+		String url = "/myPage/myPageGot";
+		mav.setViewName(url);
+		return mav;
+	}
 
 	// 받은 요청 대기글 이동
 	@Override
@@ -285,13 +285,13 @@ public class RequestControllerImpl implements RequestController {
 		try {
 			requestService.modRequest(requestMap);
 			if (rImg != null && rImg.length() != 0) {
-				File srcFile = new File(request_IMAGE_REPO + "\\" + "temp" + "\\" + rImg);
-				File destDir = new File(request_IMAGE_REPO + "\\" + reqNO);
-				FileUtils.moveFileToDirectory(srcFile, destDir, true);
-
 				String originalFileName = (String) requestMap.get("originalFileName");
 				File oldFile = new File(request_IMAGE_REPO + "\\" + reqNO + "\\" + originalFileName);
 				oldFile.delete();
+
+				File srcFile = new File(request_IMAGE_REPO + "\\" + "temp" + "\\" + rImg);
+				File destDir = new File(request_IMAGE_REPO + "\\" + reqNO);
+				FileUtils.moveFileToDirectory(srcFile, destDir, true);
 			}
 			message = "<script>";
 			message += " alert('수정이 완료되었습니다.');";
@@ -448,7 +448,7 @@ public class RequestControllerImpl implements RequestController {
 		if (result != 0) {
 			HttpSession session = request.getSession();
 			message = "<script>";
-			message += " alert('요청을 수락하였습니다.');";
+			message += " alert('수락정보를 전송하였습니다.');";
 			message += " location.href='" + request.getContextPath() + "/view_receiveReq'; ";
 			message += " </script>";
 			resEnt = new ResponseEntity(message, responseHeaders, HttpStatus.CREATED);

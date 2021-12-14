@@ -15,33 +15,6 @@ th, td {
 }
 </style>
 <script type="text/javascript">
-	function readURL(input) {
-
-		if (input.files && input.files[0]) {
-
-			var reader = new FileReader();
-			reader.onload = function(e) {
-				$('#preview').attr('src', e.target.result);
-			}
-			reader.readAsDataURL(input.files[0]);
-		}
-	}
-
-	$(document).ready(function() {
-		$('#mod_finish').hide();
-		$('#findImg').hide();
-		$('#mod_start').click(function() {
-			$('#del').hide();
-			$('#mod_start').hide();
-			$('#to_list').hide();
-			$('#findImg').show();
-			$('#mod_finish').show();
-			$('#rTitle').prop('disabled', false);
-			$('#rContents').prop('disabled', false);
-			return false;
-		});
-	});
-
 	function yesOrNo() {
 		if (confirm("철회하시겠습니까?")) {
 			location.href = '/cocoa/removeRequest?reqNO=${requestInfo.reqNO}'// Yes click
@@ -64,8 +37,8 @@ th, td {
 				style="width: 80%; margin: 0 auto; border: 1px solid grey; background-color: #FFCC99; color: black;">
 				<tr>
 					<th colspan="2"
-						style="vertical-align: middle; text-align: center; font-size: 20px;">${requestInfo.res}
-						코치에게 보낸 요청서</th>
+						style="vertical-align: middle; text-align: center; font-size: 20px;">거절된
+						나의 요청서</th>
 				</tr>
 
 				<!-- rTitle -->
@@ -90,33 +63,26 @@ th, td {
 							style="width: 95%; resize: none; background-color: #FFCC99; border: 1px solid grey; color: black;">${requestInfo.rContents}</textarea></td>
 				</tr>
 
-				<!-- rImg -->
+				<!-- 첨부된 파일 표시 -->
 				<tr>
-					<td style="text-align: center;"><b>파일첨부</b></td>
-					<td style="text-align: left;"><label
-						class="btn btn-outline-dark" id="findImg"
-						style="background-color: white; color: black;"
-						onmouseover="this.style.color='white'; this.style.backgroundColor='black';"
-						onmouseout="this.style.color='black'; this.style.backgroundColor='white';"
-						for="file"> 찾아보기 </label><input type="file" id="file" name="rImg"
-						onchange="readURL(this);" style="display: none;" /></td>
+					<td style="text-align: center;"><b>첨부파일</b></td>
+					<td style="text-align: left;">${requestInfo.rImg}</td>
 				</tr>
 
-				<!-- 사진 미리보기 -->
+				<!-- reason -->
 				<tr>
-					<td style="text-align: center;"></td>
-					<td style="text-align: left;"><input type="hidden"
-						name="originalFileName" value="${requestInfo.rImg }" /> <img
-						id="preview"
-						src="${contextPath}/downRImg?reqNO=${requestInfo.reqNO}" width=90%
-						height=300 style="border: 1px solid;" onerror="" /></td>
+					<td style="text-align: center; width: 15%;"><b>거절사유</b></td>
+					<td style=""><input type="text" id="" name="reason"
+						class="form-control" value="${requestInfo.reason}" readonly
+						style="width: 95%; background-color: #FFCC99; border: 1px solid grey; color: black;">
+						<input type="hidden" name="reqNO" value="${reqNO}" /> <input
+						type="hidden" name="status" value="거절"></td>
 				</tr>
 
 				<!-- 철회, 목록으로 -->
 				<tr>
-					<td align="center" colspan="2"><br>
-					<input type="button" onclick="yesOrNo()" id="del"
-						class="btn btn-outline-dark"
+					<td align="center" colspan="2"><br> <input type="button"
+						onclick="yesOrNo()" id="del" class="btn btn-outline-dark"
 						style="background-color: white; color: black;"
 						onmouseover="this.style.color='white'; this.style.backgroundColor='black';"
 						onmouseout="this.style.color='black'; this.style.backgroundColor='white';"

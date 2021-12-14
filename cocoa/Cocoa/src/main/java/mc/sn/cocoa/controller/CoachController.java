@@ -11,8 +11,9 @@ import org.springframework.web.servlet.ModelAndView;
 import mc.sn.cocoa.vo.Criteria;
 
 public interface CoachController {
-	
-	public ModelAndView view_CoachCate(HttpServletRequest request, HttpServletResponse response, Criteria cri) throws Exception;
+
+	public ModelAndView view_CoachCate(HttpServletRequest request, HttpServletResponse response, Criteria cri)
+			throws Exception;
 
 	public ModelAndView view_coachWrite(HttpServletRequest request, HttpServletResponse response) throws Exception;
 

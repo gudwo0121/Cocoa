@@ -10,9 +10,9 @@
 <script type="text/javascript" src="resources/js/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
 	function readURL(input) {
-		
+
 		if (input.files && input.files[0]) {
-			
+
 			var reader = new FileReader();
 			reader.onload = function(e) {
 				$('#preview').attr('src', e.target.result);
@@ -21,7 +21,7 @@
 		}
 	}
 </script>
-<title>프로젝트 등록</title>
+<title>CoCoa</title>
 </head>
 <body style="background-color: #FFEBCD">
 
@@ -119,16 +119,15 @@
 							<hr>
 
 							<!-- map (일단비워둠) -->
-							<div>
-								<center>이곳은 맵 공간입니다.</center>
-							</div>
+							<div style="text-align: center;">이곳은 맵 공간입니다.</div>
 							<hr>
 						</div>
 
 						<!-- 작성(submit) + 취소(버튼) -->
 						<div class="card-body" style="text-align: center">
 							<button type="submit" class="btn btn-outline-dark">작성</button>
-							&nbsp; <a href="/cocoa/" class="btn btn-outline-dark">취소</a>
+							&nbsp; <a href="/cocoa/view_projectCate"
+								class="btn btn-outline-dark">취소</a>
 						</div>
 					</div>
 

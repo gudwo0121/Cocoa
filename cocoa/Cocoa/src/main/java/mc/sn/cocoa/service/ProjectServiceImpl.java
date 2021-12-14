@@ -50,7 +50,7 @@ public class ProjectServiceImpl implements ProjectService {
 	public void modProject(Map projectMap) throws Exception {
 		projectDAO.updateProject(projectMap);
 	}
-	
+
 	// 코칭 글 개수
 	@Override
 	public int countProject(Criteria cri) throws Exception {

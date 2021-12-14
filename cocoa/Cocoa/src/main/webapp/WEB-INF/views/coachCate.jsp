@@ -8,79 +8,163 @@
 <meta charset="UTF-8">
 <link href="resources/css/styles.css" rel="stylesheet" />
 <script type="text/javascript" src="resources/js/jquery-3.6.0.min.js"></script>
-<title>CoCoa's Coaching</title>
+<title>CoCoa</title>
 </head>
 <body style="background-color: #FFEBCD">
 
 	<!-- 상단바 -->
 	<jsp:include page="header.jsp"></jsp:include>
 
-
-
 	<!-- 카테고리 구간 -->
-	<header class="py-5" style="background-color: #663333">
+	<header class="py-5"
+		style="background-color: #663333; text-align: center;">
 		<div class="row">
-			<div class='col-sm-2'></div>
-			<div class='col-sm-8' style="align:left;">
-				<!-- 코칭 / 프로젝트 cate -->
-				<div class="d-grid gap-3 d-sm-flex">
-					<h3 style="color:#FFF;" class="my-auto">분류</h3> 
-					<input id="project" type="button"
-						class="btn btn-primary btn-lg px-4 me-sm-3"
-						onClick="location.href='/cocoa/view_projectCate'" value="Project"> <input
-						id="project" type="button"
-						class="btn btn-primary btn-lg px-4 me-sm-3"
+
+			<!-- 분류 -->
+			<div class="col-sm-4">
+				<div id="class" class="d gap-3">
+					<div style="color: #CFFFE5; font-size: 25px;">분류</div>
+					<br> <input id="project" type="button"
+						class="btn btn-primary btn-lg px-4"
+						onClick="location.href='/cocoa/view_projectCate'" value="Project"><br>
+					<br> <input id="project" type="button"
+						class="btn btn-primary btn-lg px-4"
 						onClick="location.href='/cocoa/view_coachCate'" value="Coaching">
 				</div>
-				<br>
-				<!-- 코칭 Field -->
-				<div id="cFields"
-					class="d-grid gap-3 d-sm-flex">
-					<h3 style="color:#FFF;" class="my-auto">영역</h3>
-					<input id="Web" type="button"
-						class="btn btn-primary btn-lg px-4 me-sm-3"
-						onClick="location.href='/cocoa/view_coachCate?cField=cField1'" value="Web">
-					<input id="Mobile App" type="button"
-						class="btn btn-primary btn-lg px-4 me-sm-3"
-						onClick="location.href='/cocoa/view_coachCate?cField=cField2'" value="Mobile App">
-					<input id="Embedded" type="button"
-						class="btn btn-primary btn-lg px-4 me-sm-3"
-						onClick="location.href='/cocoa/view_coachCate?cField=cField3'" value="Embedded">
-				</div>
-				<br>
-				<div id="tools"
-					class="d-grid gap-3 d-sm-flex">
-					<h3 style="color:#FFF;" class="my-auto">도구</h3>
-					<input id="Spring" type="button"
-						class="btn btn-primary btn-lg px-4 me-sm-3"
-						onClick="location.href='/cocoa/view_coachCate?cField=${cri.cField }&tool=tool1'" value="Spring"/>
-					<input id="Django" type="button"
-						class="btn btn-primary btn-lg px-4 me-sm-3"
-						onClick="location.href='/cocoa/view_coachCate?cField=${cri.cField }&tool=tool2'" value="Django"/>
-					<input id="AndroidStudio" type="button"
-						class="btn btn-primary btn-lg px-4 me-sm-3"
-						onClick="location.href='/cocoa/view_coachCate?cField=${cri.cField }&tool=tool3'" value="Android Studio"/>
-					<input id="Xcode" type="button"
-						class="btn btn-primary btn-lg px-4 me-sm-3"
-						onClick="location.href='/cocoa/view_coachCate?cField=${cri.cField }&tool=tool4'" value="Xcode"/>
-					<input id="Arduino" type="button"
-						class="btn btn-primary btn-lg px-4 me-sm-3"
-						onClick="location.href='/cocoa/view_coachCate?cField=${cri.cField }&tool=tool5'" value="Arduino"/>
-					<input id="RaspberryPi" type="button"
-						class="btn btn-primary btn-lg px-4 me-sm-3"
-						onClick="location.href='/cocoa/view_coachCate?cField=${cri.cField }&tool=tool6'" value="Rasberry Pi"/>
-						
+			</div>
+
+			<!-- 영역 -->
+			<div class="col-sm-4">
+				<div id="cFields" class="d gap-3">
+					<div style="color: #CFFFE5; font-size: 25px; text-align: center;">영역
+					</div>
+					<br> <input id="Web" type="button"
+						class="btn btn-primary btn-lg px-4"
+						onClick="location.href='/cocoa/view_coachCate?cField=cField1'"
+						value="Web"> <br> <br> <input id="Mobile App"
+						type="button" class="btn btn-primary btn-lg px-4"
+						onClick="location.href='/cocoa/view_coachCate?cField=cField2'"
+						value="Mobile App"> <br> <br> <input
+						id="Embedded" type="button" class="btn btn-primary btn-lg px-4"
+						onClick="location.href='/cocoa/view_coachCate?cField=cField3'"
+						value="Embedded">
 				</div>
 			</div>
-			<div class='col-sm-2'></div>
+
+			<!-- 개발툴 -->
+			<div class="col-sm-4">
+				<div id="tools" class="d gap-3">
+					<div style="color: #CFFFE5; font-size: 25px; text-align: center;">개발툴</div>
+					<br> <input id="Spring" type="button"
+						class="btn btn-primary btn-lg px-4"
+						onClick="location.href='/cocoa/view_coachCate?tool=tool1'"
+						value="Spring" />&nbsp;&nbsp;<input id="Django" type="button"
+						class="btn btn-primary btn-lg px-4"
+						onClick="location.href='/cocoa/view_coachCate?tool=tool2'"
+						value="Django" /><br> <br> <input id="AndroidStudio"
+						type="button" class="btn btn-primary btn-lg px-4"
+						onClick="location.href='/cocoa/view_coachCate?tool=tool3'"
+						value="Android Studio" />&nbsp;&nbsp;<input id="Xcode"
+						type="button" class="btn btn-primary btn-lg px-4"
+						onClick="location.href='/cocoa/view_coachCate?tool=tool4'"
+						value="Xcode" /><br> <br> <input id="Arduino"
+						type="button" class="btn btn-primary btn-lg px-4"
+						onClick="location.href='/cocoa/view_coachCate?tool=tool5'"
+						value="Arduino" />&nbsp;&nbsp;<input id="RaspberryPi"
+						type="button" class="btn btn-primary btn-lg px-4"
+						onClick="location.href='/cocoa/view_coachCate?tool=tool6'"
+						value="Rasberry Pi" />
+				</div>
+			</div>
+
 		</div>
 	</header>
 
 	<!-- 코칭 카탈로그 구간 -->
 	<section class="py-5">
+
+		<!-- 선택된 카테고리 표시 -->
+		<div style="text-align: center;">
+			<c:choose>
+				<c:when test="${cri.cField == 'cField' && cri.tool == 'tool'}">
+					<hr>
+					<hr>
+					<h3 style="color: black; font-weight: 1000; font-size: 40px;">COACHING</h3>
+					<hr>
+					<hr>
+				</c:when>
+				<c:when test="${cri.cField == 'cField1'}">
+					<hr>
+					<hr>
+					<h3 style="color: black; font-weight: 1000; font-size: 40px;">WEB</h3>
+					<hr>
+					<hr>
+				</c:when>
+				<c:when test="${cri.cField == 'cField2'}">
+					<hr>
+					<hr>
+					<h3 style="color: black; font-weight: 1000; font-size: 40px;">MOBILE
+						APP</h3>
+					<hr>
+					<hr>
+				</c:when>
+				<c:when test="${cri.cField == 'cField3'}">
+					<hr>
+					<hr>
+					<h3 style="color: black; font-weight: 1000; font-size: 40px;">EMBEDDED</h3>
+					<hr>
+					<hr>
+				</c:when>
+				<c:when test="${cri.tool == 'tool1'}">
+					<hr>
+					<hr>
+					<h3 style="color: black; font-weight: 1000; font-size: 40px;">SPRING</h3>
+					<hr>
+					<hr>
+				</c:when>
+				<c:when test="${cri.tool == 'tool2'}">
+					<hr>
+					<hr>
+					<h3 style="color: black; font-weight: 1000; font-size: 40px;">DJANGO</h3>
+					<hr>
+					<hr>
+				</c:when>
+				<c:when test="${cri.tool == 'tool3'}">
+					<hr>
+					<hr>
+					<h3 style="color: black; font-weight: 1000; font-size: 40px;">ANDROID
+						STUDIO</h3>
+					<hr>
+					<hr>
+				</c:when>
+				<c:when test="${cri.tool == 'tool4'}">
+					<hr>
+					<hr>
+					<h3 style="color: black; font-weight: 1000; font-size: 40px;">XCODE</h3>
+					<hr>
+					<hr>
+				</c:when>
+				<c:when test="${cri.tool == 'tool5'}">
+					<hr>
+					<hr>
+					<h3 style="color: black; font-weight: 1000; font-size: 40px;">ARDUINO</h3>
+					<hr>
+					<hr>
+				</c:when>
+				<c:when test="${cri.tool == 'tool6'}">
+					<hr>
+					<hr>
+					<h3 style="color: black; font-weight: 1000; font-size: 40px;">RASPBERRY
+						PI</h3>
+					<hr>
+					<hr>
+				</c:when>
+			</c:choose>
+		</div>
+
 		<div class="container px-4 px-lg-5 mt-5">
 
-			<!-- 글 주제별 이동 -->
+			<!-- 글 분류별 이동 -->
 			<!-- 로그인 여부에따라 숨김 / 표시 -->
 			<c:choose>
 				<c:when test="${isLogOn == true && member != null}">
@@ -148,7 +232,7 @@
 		</div>
 		<!-- 위의 카탈로그 틀이 반복 생성 및 표시 -->
 	</section>
-	
+
 	<!-- 쪽 번호 구간 -->
 	<div style="margin: 0 auto; font-size: 30px;">
 
@@ -160,7 +244,8 @@
 
 		<c:forEach begin="${pageMaker.startPage }" end="${pageMaker.endPage }"
 			var="pageNum">
-			<a href='<c:url value="/view_coachCate?cField=${cri.cField }&tool=${cri.tool }&page=${pageNum }"/>'><i
+			<a
+				href='<c:url value="/view_coachCate?cField=${cri.cField }&tool=${cri.tool }&page=${pageNum }"/>'><i
 				class="">${pageNum }</i></a>
 		</c:forEach>
 

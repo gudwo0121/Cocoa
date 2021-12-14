@@ -21,7 +21,7 @@
 		}
 	}
 </script>
-<title>코치 등록</title>
+<title>CoCoa</title>
 </head>
 <body style="background-color: #FFEBCD">
 
@@ -85,24 +85,24 @@
 							<hr>
 
 							<!-- cField 선택 -->
-							분야 : <select style="text-align: center; width: 30%;"
+							영역 : <select style="text-align: center; width: 30%;"
 								name="cField">
 								<option id="empty">-- 선택 --</option>
-								<option id="cField1" value = "cField1">Web</option>
-								<option id="cField2" value = "cField2">Mobile App</option>
-								<option id="cField3" value = "cField3">Embedded</option>
+								<option id="cField1" value="cField1">Web</option>
+								<option id="cField2" value="cField2">Mobile App</option>
+								<option id="cField3" value="cField3">Embedded</option>
 							</select>
 							<hr>
 
 							<!-- tool 선택 -->
 							개발툴 : <select style="text-align: center; width: 30%;" name="tool">
 								<option id="empty">-- 선택 --</option>
-								<option id="tool1" value = "tool1">Spring</option>
-								<option id="tool2" value = "tool2">Django</option>
-								<option id="tool3" value = "tool3">Android Studio</option>
-								<option id="tool4" value = "tool3">Xcode</option>
-								<option id="tool5" value = "tool4">Arduino</option>
-								<option id="tool6" value = "tool5">Raspberry Pi</option>
+								<option id="tool1" value="tool1">Spring</option>
+								<option id="tool2" value="tool2">Django</option>
+								<option id="tool3" value="tool3">Android Studio</option>
+								<option id="tool4" value="tool4">Xcode</option>
+								<option id="tool5" value="tool5">Arduino</option>
+								<option id="tool6" value="tool6">Raspberry Pi</option>
 							</select>
 							<hr>
 
@@ -118,7 +118,7 @@
 						<!-- 작성(submit) + 취소(버튼) -->
 						<div class="card-body" style="text-align: center">
 							<input type="submit" class="btn btn-outline-dark" value="등록" />
-							&nbsp; <a href="/cocoa/"
+							&nbsp; <a href="/cocoa/view_coachCate"
 								class="btn btn-outline-dark">취소</a>
 						</div>
 					</div>

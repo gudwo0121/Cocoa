@@ -26,22 +26,30 @@
 
 	<!-- 받은 요청 클릭 (대기) -->
 	<div class="row" style="flex-wrap: unset; width: 15%;">
-	
+
 		<!-- 좌측 메뉴 -->
 		<div class="side"
 			style="background-color: #333333; text-align: center;">
 			<jsp:include page="../myPage/side.jsp"></jsp:include>
 		</div>
-		
+
 		<!-- 우측 내용 -->
 		<div class="col-sm-9">
-			<div id="main"><jsp:include page="gotWait.jsp"></jsp:include></div>
+			<c:if test="${requestInfo.status eq '수락'}">
+				<div id="main"><jsp:include page="gotYes.jsp"></jsp:include></div>
+			</c:if>
+			<c:if test="${requestInfo.status eq '대기'}">
+				<div id="main"><jsp:include page="gotWait.jsp"></jsp:include></div>
+			</c:if>
+			<c:if test="${requestInfo.status eq '거절'}">
+				<div id="main"><jsp:include page="gotNo.jsp"></jsp:include></div>
+			</c:if>
 		</div>
-		
+
 	</div>
 
 	<!-- 하단바 -->
 	<jsp:include page="../footer.jsp"></jsp:include>
-	
+
 </body>
 </html>

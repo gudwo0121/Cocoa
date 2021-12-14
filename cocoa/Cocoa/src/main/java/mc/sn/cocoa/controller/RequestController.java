@@ -22,9 +22,11 @@ public interface RequestController {
 	public ResponseEntity sendRequest(MultipartHttpServletRequest multipartRequest, HttpServletResponse response)
 			throws Exception;
 
-	public ModelAndView view_sendReq(HttpServletRequest request, HttpServletResponse response, Criteria cri) throws Exception;
+	public ModelAndView view_sendReq(HttpServletRequest request, HttpServletResponse response, Criteria cri)
+			throws Exception;
 
-	public ModelAndView view_receiveReq(HttpServletRequest request, HttpServletResponse response, Criteria cri) throws Exception;
+	public ModelAndView view_receiveReq(HttpServletRequest request, HttpServletResponse response, Criteria cri)
+			throws Exception;
 
 	public ModelAndView view_gotReqWait(@RequestParam("reqNO") int reqNO, HttpServletRequest request,
 			HttpServletResponse response) throws UnsupportedEncodingException;

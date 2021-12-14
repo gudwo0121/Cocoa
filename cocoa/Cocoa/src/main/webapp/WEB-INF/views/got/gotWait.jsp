@@ -54,7 +54,6 @@ th, td {
 						<input type="hidden" name="res" value="${requestInfo.res}">
 						<input type="hidden" name="reqNO" value="${requestInfo.reqNO}">
 					</td>
-
 				</tr>
 
 				<!-- rContents -->
@@ -78,7 +77,7 @@ th, td {
 				<!-- 첨부파일 다운로드 -->
 				<tr>
 					<td style="text-align: center;"><b>다운로드</b></td>
-					<td><a
+					<td style="float: left;"><a
 						href="${contextPath}/downloadGotImg?reqNO=${requestInfo.reqNO}">${requestInfo.rImg}</a></td>
 				</tr>
 

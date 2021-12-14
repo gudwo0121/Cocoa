@@ -117,3 +117,16 @@
 
 ***
 
+21.12.14 추가
+
+* 후기작성, 후기조회, 후기삭제 구현
+* 후기수정은 문제점이 발견되어 고치는 중
+* 거절사유 재전송 기능 삭제 = 수락만 재전송 가능
+* reviewTBL 생성
+* reviewInfo.jsp / coachRateForm.jsp 생성
+* home.jsp - coachCate.jsp / projectCate.jsp 계층별 각개조회 = UI 및 로직 보완
+* gotYes.jsp / gotNo.jsp 생성
+* 수락 전송에서 코치가 요청자에게 공지사항을 전달할 수 있게 입력란 추가
+
+***
+

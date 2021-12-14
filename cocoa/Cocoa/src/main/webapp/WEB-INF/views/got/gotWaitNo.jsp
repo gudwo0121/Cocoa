@@ -18,7 +18,6 @@ th, td {
 </head>
 <body style="background-color: #FFEBCD">
 
-	<!-- UI 조정 필요 -->
 	<!-- 받은 요청 대기 (거절 전송) -->
 	<div class="card rcol my-5"
 		style="text-align: center; background-color: #FFEBCD; border: none; width: 80vw; height: 90vh;">

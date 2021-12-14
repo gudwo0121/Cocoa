@@ -14,121 +14,117 @@ th, td {
 	color: black;
 }
 </style>
-<script type="text/javascript">
-	function readURL(input) {
-
-		if (input.files && input.files[0]) {
-
-			var reader = new FileReader();
-			reader.onload = function(e) {
-				$('#preview').attr('src', e.target.result);
-			}
-			reader.readAsDataURL(input.files[0]);
-		}
-	}
-
-	$(document).ready(function() {
-		$('#mod_finish').hide();
-		$('#findImg').hide();
-		$('#mod_start').click(function() {
-			$('#del').hide();
-			$('#mod_start').hide();
-			$('#to_list').hide();
-			$('#findImg').show();
-			$('#mod_finish').show();
-			$('#rTitle').prop('disabled', false);
-			$('#rContents').prop('disabled', false);
-			return false;
-		});
-	});
-
-	function yesOrNo() {
-		if (confirm("철회하시겠습니까?")) {
-			location.href = '/cocoa/removeRequest?reqNO=${requestInfo.reqNO}'// Yes click
-		} else {
-			// no click
-		}
-	}
-</script>
 <title>CoCoa</title>
 </head>
 <body style="background-color: #FFEBCD">
 
-	<!-- UI 조정 필요 -->
-	<!-- 보낸 요청 (대기) -->
+	<!-- 보낸 요청 (수락) -->
 	<div class="card rcol my-3"
 		style="text-align: center; background-color: #FFEBCD; border: none; width: 80vw; height: 90vh;">
-		<form action="${contextPath}/modRequest" method="post"
-			enctype="multipart/form-data">
-			<table
-				style="width: 80%; margin: 0 auto; border: 1px solid grey; background-color: #FFCC99; color: black;">
-				<tr>
-					<th colspan="2"
-						style="vertical-align: middle; text-align: center; font-size: 20px;">${requestInfo.res}
-						코치에게 보낸 요청서 수락상태</th>
-				</tr>
+		<table
+			style="width: 80%; margin: 0 auto; border: 1px solid grey; background-color: #FFCC99; color: black;">
+			<tr>
+				<th colspan="2"
+					style="vertical-align: middle; text-align: center; font-size: 20px;">수락된
+					나의 요청서</th>
+			</tr>
 
-				<!-- rTitle -->
-				<tr>
-					<td style="text-align: center; width: 15%;"><b>제 목</b></td>
-					<td style=""><input type="text" id="rTitle" name="rTitle"
-						class="form-control" value="${requestInfo.rTitle}" disabled
-						style="width: 95%; background-color: #FFCC99; border: 1px solid grey; color: black;">
-						<input type="hidden" name="req" value="${requestInfo.req}">
-						<input type="hidden" name="res" value="${requestInfo.res}">
-						<input type="hidden" name="reqNO" value="${requestInfo.reqNO}">
-					</td>
-				</tr>
+			<!-- rTitle -->
+			<tr>
+				<td style="text-align: center; width: 15%;"><b>제 목</b></td>
+				<td style=""><input type="text" id="rTitle" name="rTitle"
+					class="form-control" value="${requestInfo.rTitle}" disabled
+					style="width: 95%; background-color: #FFCC99; border: 1px solid grey; color: black;">
+					<input type="hidden" name="req" value="${requestInfo.req}">
+					<input type="hidden" name="res" value="${requestInfo.res}">
+					<input type="hidden" name="reqNO" value="${requestInfo.reqNO}">
+				</td>
+			</tr>
 
-				<!-- rContents -->
-				<tr>
-					<td style="text-align: center; vertical-align: top;" class="pt-1"><br>
-						<b>내 용</b></td>
-					<td style="text-align: left; vertical-align: top;"><textarea
-							rows="10" cols="20" class="form-control" id="rContents"
-							name="rContents" disabled
-							style="width: 95%; resize: none; background-color: #FFCC99; border: 1px solid grey; color: black;">${requestInfo.rContents}</textarea></td>
-				</tr>
+			<!-- rContents -->
+			<tr>
+				<td style="text-align: center; vertical-align: top;" class="pt-1">
+					<b>내 용</b>
+				</td>
+				<td style="text-align: left; vertical-align: top;"><textarea
+						rows="8" cols="20" class="form-control" id="rContents"
+						name="rContents" disabled
+						style="width: 95%; resize: none; background-color: #FFCC99; border: 1px solid grey; color: black;">${requestInfo.rContents}</textarea></td>
+			</tr>
 
-				<!-- rImg -->
-				<tr>
-					<td style="text-align: center;"><b>파일첨부</b></td>
-					<td style="text-align: left;"><label
-						class="btn btn-outline-dark" id="findImg"
-						style="background-color: white; color: black;"
-						onmouseover="this.style.color='white'; this.style.backgroundColor='black';"
-						onmouseout="this.style.color='black'; this.style.backgroundColor='white';"
-						for="file"> 찾아보기 </label><input type="file" id="file" name="rImg"
-						onchange="readURL(this);" style="display: none;" /></td>
-				</tr>
+			<!-- 첨부된 파일 표시 -->
+			<tr>
+				<td style="text-align: center; vertical-align: top;"><b>첨부파일</b></td>
+				<td style="text-align: left;">${requestInfo.rImg}</td>
+			</tr>
 
-				<!-- 사진 미리보기 -->
-				<tr>
-					<td style="text-align: center;"></td>
-					<td style="text-align: left;"><input type="hidden"
-						name="originalFileName" value="${requestInfo.rImg }" /> <img
-						id="preview"
-						src="${contextPath}/downRImg?reqNO=${requestInfo.reqNO}" width=90%
-						height=300 style="border: 1px solid;" onerror="" /></td>
-				</tr>
+			<!-- contact -->
+			<tr>
+				<td style="text-align: center; width: 15%;"><b>연결수단</b></td>
+				<td style=""><input type="text" id="" name="contact"
+					class="form-control" value="${requestInfo.contact}"
+					placeholder="${requestInfo.contact}" readonly
+					style="width: 30%; background-color: #FFCC99; border: 1px solid black; color: black;">
+				</td>
+			</tr>
 
-				<!-- 후기작성, 목록으로 -->
-				<tr>
-					<td align="center" colspan="2"><br> <input type="button"
-						onclick="yesOrNo()" id="del" class="btn btn-outline-dark"
-						style="background-color: white; color: black;"
-						onmouseover="this.style.color='white'; this.style.backgroundColor='black';"
-						onmouseout="this.style.color='black'; this.style.backgroundColor='white';"
-						value="후기작성" />&nbsp;&nbsp;&nbsp; <input type="button"
-						id="to_list" class="btn btn-outline-dark"
-						style="background-color: white; color: black;"
-						onmouseover="this.style.color='white'; this.style.backgroundColor='black';"
-						onmouseout="this.style.color='black'; this.style.backgroundColor='white';"
-						value="목록으로" onclick="location.href='/cocoa/view_sendReq'" /> <br>
-						<br></td>
-				</tr>
-			</table>
-		</form>
+			<!-- realPrice -->
+			<tr>
+				<td style="text-align: center; width: 15%;"><b>요 금</b></td>
+				<td style=""><input type="number" id="" name="realPrice"
+					class="form-control" value="${requestInfo.realPrice}" readonly
+					style="width: 30%; background-color: #FFCC99; border: 1px solid black; color: black; float: left;"><b
+					style="float: left; padding-top: 7px; margin-left: 3px;">원</b></td>
+			</tr>
+
+			<!-- pay (아임포트) -->
+			<tr>
+				<td style="text-align: center; width: 15%;"><b>결제수단</b></td>
+				<td style=""><input type="text" id="" name="pay"
+					class="form-control" value="${requestInfo.pay}" readonly
+					style="width: 30%; background-color: #FFCC99; border: 1px solid black; color: black;"></td>
+			</tr>
+
+			<!-- pay (아임포트) -->
+			<tr>
+				<td style="text-align: center; vertical-align: top;" class="pt-1"><b>QR
+						코드</b></td>
+				<td style="text-align: left;"><img id="qr" src="..." width=120
+					height=120 style="border: 1px solid;"
+					onerror="this.src='resources/image/qr.png'" />
+					<div style="padding-left: 3px; padding-top: 5px;">
+						<input type="button" value="QR 코드 생성" style="width: 100;">
+						<input type="hidden" name="reqNO" value="${requestInfo.reqNO}" />
+						<input type="hidden" name="status" value="수락">
+					</div></td>
+			</tr>
+
+			<!-- 공지사항(reason) -->
+			<tr>
+				<td style="text-align: center; width: 15%; vertical-align: top;"><b>공지사항</b></td>
+				<td style=""><textarea id="" name="reason" rows=3
+						class="form-control" readonly
+						style="width: 95%; background-color: #FFCC99; border: 1px solid black; color: black; resize: none;">${requestInfo.reason}</textarea>
+				</td>
+			</tr>
+
+			<!-- 후기작성, 목록으로 -->
+			<tr>
+				<td align="center" colspan="2"><br> <input type="button"
+					onclick="location.href='/cocoa/view_coachRateForm?target=${requestInfo.res}&writer=${requestInfo.req}'"
+					id="del" class="btn btn-outline-dark"
+					style="background-color: white; color: black;"
+					onmouseover="this.style.color='white'; this.style.backgroundColor='black';"
+					onmouseout="this.style.color='black'; this.style.backgroundColor='white';"
+					value="후기작성" />&nbsp;&nbsp;&nbsp; <input type="button"
+					id="to_list" class="btn btn-outline-dark"
+					style="background-color: white; color: black;"
+					onmouseover="this.style.color='white'; this.style.backgroundColor='black';"
+					onmouseout="this.style.color='black'; this.style.backgroundColor='white';"
+					value="목록으로" onclick="location.href='/cocoa/view_sendReq'" /> <br>
+					<br></td>
+			</tr>
+		</table>
 	</div>
 
 </body>

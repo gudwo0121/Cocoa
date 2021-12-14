@@ -50,7 +50,7 @@
 		obj.submit();
 	}
 </script>
-<title>코치 정보</title>
+<title>CoCoa</title>
 </head>
 <body style="background-color: #FFEBCD">
 
@@ -73,8 +73,9 @@
 
 								<!-- 후기 조회 이동 -->
 								<br> <span style="float: right;"><a
-									href="/cocoa/view_reviewInfo"> <input type="button"
-										name="view_reviewInfo" value="후 기" class="btn btn-third-dark"
+									href="/cocoa/view_reviewInfo?target=${coach.coach}"> <input
+										type="button" name="view_reviewInfo" value="후 기"
+										class="btn btn-third-dark"
 										style="font-size: 13px; border-radius: 12px;">
 								</a> </span>
 
@@ -151,9 +152,9 @@
 								style="border: 0; width: 10%; text-align: center; background-color: #FFCC99; font-weight: 700; color: black;">
 							<b>원</b>
 							<hr>
-							
+
 							<!-- cField 표시 -->
-							분야 : <select
+							영역 : <select
 								style="border: 0; text-align: center; width: 15%; background-color: #FFCC99; font-weight: 700; color: black;"
 								name="cField" disabled id="c_field">
 								<option id="empty" value="">
@@ -170,7 +171,7 @@
 							<hr>
 
 							<!-- tool 표시 -->
-							툴 : <select
+							개발툴 : <select
 								style="border: 0; text-align: center; width: 15%; background-color: #FFCC99; font-weight: 700; color: black;"
 								name="tool" disabled id="c_tool">
 								<option id="empty" value="">

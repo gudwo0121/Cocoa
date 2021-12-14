@@ -261,13 +261,14 @@ public class CoachControllerImpl implements CoachController {
 		try {
 			coachService.modCoach(coachMap);
 			if (cImg != null && cImg.length() != 0) {
-				File srcFile = new File(COACH_IMAGE_REPO + "\\" + "temp" + "\\" + cImg);
-				File destDir = new File(COACH_IMAGE_REPO + "\\" + coach + "\\" + coachNO);
-				FileUtils.moveFileToDirectory(srcFile, destDir, true);
-
+				
 				String originalFileName = (String) coachMap.get("originalFileName");
 				File oldFile = new File(COACH_IMAGE_REPO + "\\" + coach + "\\" + coachNO + "\\" + originalFileName);
 				oldFile.delete();
+				
+				File srcFile = new File(COACH_IMAGE_REPO + "\\" + "temp" + "\\" + cImg);
+				File destDir = new File(COACH_IMAGE_REPO + "\\" + coach + "\\" + coachNO);
+				FileUtils.moveFileToDirectory(srcFile, destDir, true);
 			}
 			message = "<script>";
 			message += " alert('수정이 완료되었습니다.');";

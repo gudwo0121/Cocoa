@@ -34,7 +34,7 @@
 	<!-- 코치 글 조회 -->
 	<select id="selectAllCoachesList" resultMap="coachResult">
 		<![CDATA[
-			SELECT * 
+			SELECT *
 			from coachingTBL
 			where cField like concat(#{cField},"%") and tool like concat(#{tool}, "%")
 			limit #{pageStart}, #{perPageNum}
@@ -76,11 +76,11 @@
       where coachNO = #{coachNO}
     ]]>
 	</delete>
-	
+
 	<!-- 코칭 글의 수 -->
 	<select id="countCoach" resultType="int" parameterType="int">
 		<![CDATA[
-			SELECT count(*) 
+			SELECT count(*)
 			from coachingTBL
 			where cField like concat(#{cField},"%") and tool like concat(#{tool}, "%")
 		]]>

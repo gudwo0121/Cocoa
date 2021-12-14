@@ -204,13 +204,13 @@ public class MemberControllerImpl implements MemberController {
 		try {
 			memberService.modProfile(profileMap);
 			if (proImg != null && proImg.length() != 0) {
-				File srcFile = new File(profile_IMAGE_REPO + "\\" + "temp" + "\\" + proImg);
-				File destDir = new File(profile_IMAGE_REPO + "\\" + id);
-				FileUtils.moveFileToDirectory(srcFile, destDir, true);
-
 				String originalFileName = (String) profileMap.get("originalFileName");
 				File oldFile = new File(profile_IMAGE_REPO + "\\" + id + "\\" + originalFileName);
 				oldFile.delete();
+
+				File srcFile = new File(profile_IMAGE_REPO + "\\" + "temp" + "\\" + proImg);
+				File destDir = new File(profile_IMAGE_REPO + "\\" + id);
+				FileUtils.moveFileToDirectory(srcFile, destDir, true);
 			}
 			message = "<script>";
 			message += " alert('수정이 완료되었습니다.');";

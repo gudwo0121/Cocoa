@@ -88,27 +88,29 @@
 	<update id="updateYes" parameterType="requestVO">
 		<![CDATA[
 		update requestTBL
-		set realPrice=#{realPrice}, contact=#{contact}, pay=#{pay}, status=#{status}
+		set realPrice=#{realPrice}, contact=#{contact}, pay=#{pay}, status=#{status}, reason=#{reason}
 		where reqNO=#{reqNO}
 		]]>
 	</update>
-	
+
 	<!-- 보낸 요청 글의 수 -->
-	<select id="countSendRequest" resultType="int" parameterType="int">
+	<select id="countSendRequest" resultType="int"
+		parameterType="int">
 		<![CDATA[
 			SELECT count(*) 
 			from requestTBL
 			where req=#{req}
 		]]>
 	</select>
-	
+
 	<!-- 받은 요청 글의 수 -->
-	<select id="countReceiveRequest" resultType="int" parameterType="int">
+	<select id="countReceiveRequest" resultType="int"
+		parameterType="int">
 		<![CDATA[
 			SELECT count(*) 
 			from requestTBL
 			where res=#{res}
 		]]>
 	</select>
-	
+
 </mapper>
