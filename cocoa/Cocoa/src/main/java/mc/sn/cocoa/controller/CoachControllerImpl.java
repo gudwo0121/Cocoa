@@ -44,36 +44,36 @@ public class CoachControllerImpl implements CoachController {
 	private CoachVO coachVO;
 	
 	// 코치 글 조회
-		@Override
-		@RequestMapping(value = "/view_coachCate", method = { RequestMethod.GET, RequestMethod.POST })
-		public ModelAndView view_CoachCate(HttpServletRequest request, HttpServletResponse response, Criteria cri)
-				throws Exception {
-			ModelAndView mav = new ModelAndView();
+	@Override
+	@RequestMapping(value = "/view_coachCate", method = { RequestMethod.GET, RequestMethod.POST })
+	public ModelAndView view_CoachCate(HttpServletRequest request, HttpServletResponse response, Criteria cri)
+			throws Exception {
+		ModelAndView mav = new ModelAndView();
 
-			// 쪽 번호 생성 메서드 객체 생성
-			PageMaker pageMaker = new PageMaker();
+		// 쪽 번호 생성 메서드 객체 생성
+		PageMaker pageMaker = new PageMaker();
 
-			// 쪽 번호와 한 페이지에 게시할 글의 수 세팅
-			pageMaker.setCri(cri);
+		// 쪽 번호와 한 페이지에 게시할 글의 수 세팅
+		pageMaker.setCri(cri);
 
-			// 총 게시글의 수
-			pageMaker.setTotalCount(coachService.countCoach(cri));
+		// 총 게시글의 수
+		pageMaker.setTotalCount(coachService.countCoach(cri));
 
-			// 서비스에서 listCoaches() 메소드 실행하여 리턴 값을 List타입의 coachesList에 저장
-			List coachesList = coachService.listCoaches(cri);
+		// 서비스에서 listCoaches() 메소드 실행하여 리턴 값을 List타입의 coachesList에 저장
+		List coachesList = coachService.listCoaches(cri);
 
-			// mav에 "coachesList" 키값으로 coachesList 밸류 값을 저장
-			mav.addObject("coachesList", coachesList);
+		// mav에 "coachesList" 키값으로 coachesList 밸류 값을 저장
+		mav.addObject("coachesList", coachesList);
 
-			mav.addObject("pageMaker", pageMaker);
-			
-			mav.addObject("cri", cri);
+		mav.addObject("pageMaker", pageMaker);
+		
+		mav.addObject("cri", cri);
 
-			String url = "/coachCate";
-			mav.setViewName(url);
+		String url = "/coachCate";
+		mav.setViewName(url);
 
-			return mav;
-		}
+		return mav;
+	}
 
 
 	// 코치 글 작성 창으로 이동

@@ -36,11 +36,11 @@ th, td {
 					<td style="text-align: center; width: 15%; vertical-align: top;"><br>
 						<b>평 점</b></td>
 					<td style="text-align: left; font-size: 30px;"><input
-						type="radio" name="rate" value="5"> ★ ★ ★ ★ ★ <br> <input
-						type="radio" name="rate" value="4"> ★ ★ ★ ★ <br> <input
-						type="radio" name="rate" value="3"> ★ ★ ★ <br> <input
-						type="radio" name="rate" value="2"> ★ ★ <br> <input
-						type="radio" name="rate" value="1"> ★ <br> <br></td>
+						type="radio" name="rate" value=5> ★ ★ ★ ★ ★ <br> <input
+						type="radio" name="rate" value=4> ★ ★ ★ ★ <br> <input
+						type="radio" name="rate" value=3> ★ ★ ★ <br> <input
+						type="radio" name="rate" value=2> ★ ★ <br> <input
+						type="radio" name="rate" value=1> ★ <br> <br></td>
 				</tr>
 				
 				<!-- review -->

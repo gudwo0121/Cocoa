@@ -10,6 +10,7 @@ public class Criteria {
 	private String level = "level";
 	private String reqId;
 	private String resId;
+	private String target;
 
 	// 특정 페이지의 게시글 시작 번호, 게시글 시작 행 번호
 	public int getPageStart() {
@@ -95,6 +96,14 @@ public class Criteria {
 
 	public void setResId(String resId) {
 		this.resId = resId;
+	}
+
+	public String getTarget() {
+		return target;
+	}
+
+	public void setTarget(String target) {
+		this.target = target;
 	}
 	
 }

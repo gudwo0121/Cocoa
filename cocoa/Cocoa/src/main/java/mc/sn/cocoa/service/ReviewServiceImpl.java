@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import mc.sn.cocoa.dao.ReviewDAO;
+import mc.sn.cocoa.vo.Criteria;
 import mc.sn.cocoa.vo.ReviewVO;
 
 @Service("reviewService")
@@ -19,7 +20,22 @@ public class ReviewServiceImpl implements ReviewService{
 	}
 	
 	@Override
-	public List searchReviewByTarget(String target) {
-		return reviewDAO.selectByTarget(target);
+	public List searchReviewByTarget(Criteria cri) {
+		return reviewDAO.selectByTarget(cri);
+	}
+	
+	@Override
+	public void modReview(ReviewVO reviewVO) {
+		reviewDAO.updateReview(reviewVO);
+	}
+	
+	@Override
+	public void deleteReview(ReviewVO reviewVO) {
+		reviewDAO.deleteReview(reviewVO);
+	}
+	
+	@Override
+	public int countReview(String target){
+		return reviewDAO.countReview(target);
 	}
 }

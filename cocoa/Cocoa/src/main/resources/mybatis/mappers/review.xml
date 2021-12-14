@@ -28,9 +28,36 @@
 		]]>
 	</select>
 	
+	<!-- 리뷰 글 조회 -->
 	<select id="selectByTarget" resultMap="reviewResult">
       <![CDATA[
          select * from reviewTBL where target=#{target}
+         limit #{pageStart}, #{perPageNum}
       ]]>
+	</select>
+	
+	<!-- 리뷰 글 수정 -->
+	<update id="updateReview" parameterType="java.util.Map">
+		update reviewTBL
+		set rate=#{rate},
+		review=#{review}
+		where reviewNO=#{reviewNO}
+	</update>
+	
+	<!-- 리뷰 글 삭제 -->
+	<delete id="deleteReview" parameterType="int">
+	<![CDATA[
+		delete from reviewTBL
+		where reviewNO = #{reviewNO}
+	]]>
+	</delete>
+	
+	<!-- 리뷰 글의 수 -->
+	<select id="countReview" resultType="int" parameterType="int">
+		<![CDATA[
+			SELECT count(*)
+			from reviewTBL
+			where target=#{target}
+		]]>
 	</select>
 </mapper>

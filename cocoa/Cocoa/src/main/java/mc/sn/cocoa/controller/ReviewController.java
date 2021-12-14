@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import mc.sn.cocoa.vo.Criteria;
 import mc.sn.cocoa.vo.ReviewVO;
 
 public interface ReviewController {
@@ -18,5 +19,11 @@ public interface ReviewController {
 			HttpServletResponse response);
 	
 	public ModelAndView view_reviewInfo(@RequestParam("target") String target, HttpServletRequest request,
+			HttpServletResponse response, Criteria cri);
+	
+	public ResponseEntity modifyReview(@ModelAttribute("review") ReviewVO reviewVO, HttpServletRequest request,
+			HttpServletResponse response);
+	
+	public ResponseEntity deleteReview(@ModelAttribute("review") ReviewVO reviewVO, HttpServletRequest request,
 			HttpServletResponse response);
 }
