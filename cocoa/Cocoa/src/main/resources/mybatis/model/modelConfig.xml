@@ -8,5 +8,6 @@
 		<typeAlias type="mc.sn.cocoa.vo.ProjectVO" alias="projectVO" />
 		<typeAlias type="mc.sn.cocoa.vo.CoachVO" alias="coachVO" />
 		<typeAlias type="mc.sn.cocoa.vo.RequestVO" alias="requestVO" />
+		<typeAlias type="mc.sn.cocoa.vo.ReviewVO" alias="reviewVO" />
 	</typeAliases>
 </configuration>

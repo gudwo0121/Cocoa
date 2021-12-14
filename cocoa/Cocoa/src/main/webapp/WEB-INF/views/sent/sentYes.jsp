@@ -115,7 +115,8 @@ th, td {
 				<!-- 후기작성, 목록으로 -->
 				<tr>
 					<td align="center" colspan="2"><br> <input type="button"
-						onclick="yesOrNo()" id="del" class="btn btn-outline-dark"
+						onclick="location.href='/cocoa/view_coachRateForm?target=${requestInfo.res}&writer=${requestInfo.req}'"
+						id="review" class="btn btn-outline-dark"
 						style="background-color: white; color: black;"
 						onmouseover="this.style.color='white'; this.style.backgroundColor='black';"
 						onmouseout="this.style.color='black'; this.style.backgroundColor='white';"

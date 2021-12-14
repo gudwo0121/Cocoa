@@ -285,13 +285,15 @@ public class RequestControllerImpl implements RequestController {
 		try {
 			requestService.modRequest(requestMap);
 			if (rImg != null && rImg.length() != 0) {
+				String originalFileName = (String) requestMap.get("originalFileName");
+				File oldFile = new File(request_IMAGE_REPO + "\\" + reqNO + "\\" + originalFileName);
+				oldFile.delete();
+				
 				File srcFile = new File(request_IMAGE_REPO + "\\" + "temp" + "\\" + rImg);
 				File destDir = new File(request_IMAGE_REPO + "\\" + reqNO);
 				FileUtils.moveFileToDirectory(srcFile, destDir, true);
 
-				String originalFileName = (String) requestMap.get("originalFileName");
-				File oldFile = new File(request_IMAGE_REPO + "\\" + reqNO + "\\" + originalFileName);
-				oldFile.delete();
+				
 			}
 			message = "<script>";
 			message += " alert('수정이 완료되었습니다.');";

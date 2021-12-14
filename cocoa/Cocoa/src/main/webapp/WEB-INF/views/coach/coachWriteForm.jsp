@@ -100,9 +100,9 @@
 								<option id="tool1" value = "tool1">Spring</option>
 								<option id="tool2" value = "tool2">Django</option>
 								<option id="tool3" value = "tool3">Android Studio</option>
-								<option id="tool4" value = "tool3">Xcode</option>
-								<option id="tool5" value = "tool4">Arduino</option>
-								<option id="tool6" value = "tool5">Raspberry Pi</option>
+								<option id="tool4" value = "tool4">Xcode</option>
+								<option id="tool5" value = "tool5">Arduino</option>
+								<option id="tool6" value = "tool6">Raspberry Pi</option>
 							</select>
 							<hr>
 

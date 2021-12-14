@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+      PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="mapper.review">
+	<resultMap id="reviewResult" type="reviewVO">
+		<result property="reviewNO" column="reviewNO" />
+		<result property="writer" column="writer" />
+		<result property="target" column="target" />
+		<result property="rate" column="rate" />
+		<result property="review" column="review" />
+	</resultMap>
+
+	<!-- 코치 글 추가 -->
+	<insert id="insertReview" parameterType="java.util.Map">
+		<![CDATA[
+		 insert into reviewTBL (reviewNO, writer, target, rate, review)
+		 values(#{reviewNO}, #{writer}, #{target}, #{rate}, #{review})
+		]]>
+	</insert>
+
+	<!-- 리뷰 넘버링 -->
+	<select id="selectNewReviewNO" resultType="int">
+		<![CDATA[
+			SELECT ifnull(max(reviewNO), 0) + 1
+			from reviewTBL
+		]]>
+	</select>
+	
+	<select id="selectByTarget" resultMap="reviewResult">
+      <![CDATA[
+         select * from reviewTBL where target=#{target}
+      ]]>
+	</select>
+</mapper>

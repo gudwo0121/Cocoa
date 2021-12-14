@@ -73,7 +73,7 @@
 
 								<!-- 후기 조회 이동 -->
 								<br> <span style="float: right;"><a
-									href="/cocoa/view_reviewInfo"> <input type="button"
+									href="/cocoa/view_reviewInfo?target=${coach.coach}"> <input type="button"
 										name="view_reviewInfo" value="후 기" class="btn btn-third-dark"
 										style="font-size: 13px; border-radius: 12px;">
 								</a> </span>

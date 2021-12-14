@@ -300,14 +300,16 @@ public class ProjectControllerImpl implements ProjectController {
 		try {
 			projectService.modProject(projectMap);
 			if (pImg != null && pImg.length() != 0) {
-				File srcFile = new File(project_IMAGE_REPO + "\\" + "temp" + "\\" + pImg);
-				File destDir = new File(project_IMAGE_REPO + "\\" + leader + "\\" + projectNO);
-				FileUtils.moveFileToDirectory(srcFile, destDir, true);
-
 				String originalFileName = (String) projectMap.get("originalFileName");
 				File oldFile = new File(
 						project_IMAGE_REPO + "\\" + leader + "\\" + projectNO + "\\" + originalFileName);
 				oldFile.delete();
+				
+				File srcFile = new File(project_IMAGE_REPO + "\\" + "temp" + "\\" + pImg);
+				File destDir = new File(project_IMAGE_REPO + "\\" + leader + "\\" + projectNO);
+				FileUtils.moveFileToDirectory(srcFile, destDir, true);
+
+				
 			}
 			message = "<script>";
 			message += " alert('수정이 완료되었습니다.');";
