@@ -9,6 +9,8 @@ public interface ReviewDAO {
 	public int insertReview(ReviewVO reviewVO);
 
 	public List selectByTarget(Criteria cri);
+	
+	public ReviewVO selectReview(int reviewNO);
 
 	public void updateReview(ReviewVO reviewVO);
 

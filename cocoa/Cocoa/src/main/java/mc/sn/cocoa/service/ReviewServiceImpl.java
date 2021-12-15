@@ -23,6 +23,12 @@ public class ReviewServiceImpl implements ReviewService {
 	public List searchReviewByTarget(Criteria cri) {
 		return reviewDAO.selectByTarget(cri);
 	}
+	
+	@Override
+	public ReviewVO viewReview(int reviewNO) throws Exception{
+		ReviewVO reviewVO = reviewDAO.selectReview(reviewNO);
+		return reviewVO;
+	}
 
 	@Override
 	public void modReview(ReviewVO reviewVO) {

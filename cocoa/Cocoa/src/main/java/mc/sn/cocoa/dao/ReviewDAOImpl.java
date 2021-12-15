@@ -34,6 +34,12 @@ public class ReviewDAOImpl implements ReviewDAO{
 		reviewList = sqlSession.selectList("mapper.review.selectByTarget", cri);
 		return reviewList;
 	}
+	
+	// 리뷰 글 상세 정보 조회
+	@Override
+	public ReviewVO selectReview(int reviewNO) {
+		return sqlSession.selectOne("mapper.review.selectReview", reviewNO);
+	}
 
 	// 리뷰 수정
 	@Override

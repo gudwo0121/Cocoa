@@ -10,6 +10,8 @@ public interface ReviewService {
 	public int addReview(ReviewVO reviewVO);
 
 	public List searchReviewByTarget(Criteria cri);
+	
+	public ReviewVO viewReview(int reviewNO) throws Exception;
 
 	public void modReview(ReviewVO reviewVO);
 

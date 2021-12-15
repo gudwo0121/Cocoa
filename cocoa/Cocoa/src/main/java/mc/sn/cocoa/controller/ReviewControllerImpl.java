@@ -26,6 +26,8 @@ import mc.sn.cocoa.vo.ReviewVO;
 public class ReviewControllerImpl implements ReviewController {
 	@Autowired
 	private ReviewService reviewService;
+	@Autowired
+	private ReviewVO reviewVO;
 
 	// 리뷰 작성 화면이동
 	@Override
@@ -95,6 +97,19 @@ public class ReviewControllerImpl implements ReviewController {
 		}
 		return resEnt;
 	}
+	
+	// 전달된 글 번호를 이용해서 해당 글 정보 조회
+	@RequestMapping(value = "/view_modReview", method = RequestMethod.GET)
+	public ModelAndView view_modReview(@RequestParam("reviewNO") int reviewNO, HttpServletRequest request,
+			HttpServletResponse response) throws Exception {
+		ModelAndView mav = new ModelAndView();
+		String url = "/review/modReview";
+		mav.setViewName(url);
+
+		reviewVO = reviewService.viewReview(reviewNO);
+		mav.addObject("reviewVO", reviewVO);
+		return mav;
+	}
 
 	// 리뷰 수정
 	@Override
@@ -129,7 +144,7 @@ public class ReviewControllerImpl implements ReviewController {
 
 	// 리뷰 삭제
 	@Override
-	@RequestMapping(value = "/removeReview", method = RequestMethod.POST)
+	@RequestMapping(value = "/removeReview", method = RequestMethod.GET)
 	@ResponseBody
 	public ResponseEntity deleteReview(@ModelAttribute("review") ReviewVO reviewVO, HttpServletRequest request,
 			HttpServletResponse response) {
