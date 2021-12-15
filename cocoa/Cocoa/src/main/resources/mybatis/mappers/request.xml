@@ -79,17 +79,17 @@
 	<!-- 요청서 거절 사유 전송 / 재전송 -->
 	<update id="updateReason" parameterType="requestVO">
 		<![CDATA[
-		update requestTBL
-		set reason=#{reason}, status=#{status} where reqNO=#{reqNO}
+			update requestTBL
+			set reason=#{reason}, status=#{status} where reqNO=#{reqNO}
 		]]>
 	</update>
 
 	<!-- 요청글 수락 정보 전송 / 재전송 -->
 	<update id="updateYes" parameterType="requestVO">
 		<![CDATA[
-		update requestTBL
-		set realPrice=#{realPrice}, contact=#{contact}, pay=#{pay}, status=#{status}, reason=#{reason}
-		where reqNO=#{reqNO}
+			update requestTBL
+			set realPrice=#{realPrice}, contact=#{contact}, pay=#{pay}, status=#{status}, reason=#{reason}
+			where reqNO=#{reqNO}
 		]]>
 	</update>
 
@@ -112,5 +112,13 @@
 			where res=#{res}
 		]]>
 	</select>
+
+	<!-- 후기작성 후 완료상태 변환 -->
+	<update id="updateReqFin" parameterType="requestVO">
+		<![CDATA[
+			update requestTBL
+			set status=#{status} where reqNO=#{reqNO}
+		]]>
+	</update>
 
 </mapper>

@@ -25,7 +25,7 @@ th, td {
 			style="width: 80%; margin: 0 auto; border: 1px solid grey; background-color: #FFCC99; color: black;">
 			<tr>
 				<td colspan="2"
-					style="text-align: center; border: 1px solid black; background-color: #CFFFE5;"><b>수락된
+					style="text-align: center; border: 1px solid black; background-color: #CFFFE5;"><b>완료된
 						나의 요청서</b></td>
 			</tr>
 
@@ -65,17 +65,15 @@ th, td {
 			<!-- 수락 정보 -->
 			<tr>
 				<td colspan="2"
-					style="text-align: center; border: 1px solid black; background-color: #CFFFE5;"><b>수락정보</b></td>
+					style="text-align: center; border: 1px solid black; background-color: #CFFFE5;"><b>완료정보</b></td>
 			</tr>
 
 			<!-- contact -->
 			<tr>
-				<td style="text-align: center; width: 15%;"><br>
-				<b>연결수단</b></td>
-				<td style=""><br>
-				<input type="text" id="" name="contact" class="form-control"
-					value="${requestInfo.contact}" placeholder="${requestInfo.contact}"
-					readonly
+				<td style="text-align: center; width: 15%;"><br> <b>연결수단</b></td>
+				<td style=""><br> <input type="text" id="" name="contact"
+					class="form-control" value="${requestInfo.contact}"
+					placeholder="${requestInfo.contact}" readonly
 					style="width: 30%; background-color: #FFCC99; border: 1px solid black; color: black;">
 				</td>
 			</tr>
@@ -89,28 +87,6 @@ th, td {
 					style="float: left; padding-top: 7px; margin-left: 3px;">원</b></td>
 			</tr>
 
-			<!-- pay (아임포트) -->
-			<tr>
-				<td style="text-align: center; width: 15%;"><b>결제수단</b></td>
-				<td style=""><input type="text" id="" name="pay"
-					class="form-control" value="${requestInfo.pay}" readonly
-					style="width: 30%; background-color: #FFCC99; border: 1px solid black; color: black;"></td>
-			</tr>
-
-			<!-- pay (아임포트) -->
-			<tr>
-				<td style="text-align: center; vertical-align: top;" class="pt-1"><b>QR
-						코드</b></td>
-				<td style="text-align: left;"><img id="qr" src="..." width=120
-					height=120 style="border: 1px solid;"
-					onerror="this.src='resources/image/qr.png'" />
-					<div style="padding-left: 3px; padding-top: 5px;">
-						<input type="button" value="QR 코드 생성" style="width: 100;">
-						<input type="hidden" name="reqNO" value="${requestInfo.reqNO}" />
-						<input type="hidden" name="status" value="수락">
-					</div></td>
-			</tr>
-
 			<!-- 공지사항(reason) -->
 			<tr>
 				<td style="text-align: center; width: 15%; vertical-align: top;"><b>공지사항</b></td>
@@ -120,21 +96,14 @@ th, td {
 				</td>
 			</tr>
 
-			<!-- 후기작성, 목록으로 -->
+			<!-- 목록으로 -->
 			<tr>
 				<td align="center" colspan="2"><br> <input type="button"
-					onclick="location.href='/cocoa/view_coachRateForm?target=${requestInfo.res}&writer=${requestInfo.req}&reqNO=${requestInfo.reqNO}'"
-					id="del" class="btn btn-outline-dark"
-					style="background-color: white; color: black;"
-					onmouseover="this.style.color='white'; this.style.backgroundColor='black';"
-					onmouseout="this.style.color='black'; this.style.backgroundColor='white';"
-					value="후기작성" />&nbsp;&nbsp;&nbsp; <input type="button"
 					id="to_list" class="btn btn-outline-dark"
 					style="background-color: white; color: black;"
 					onmouseover="this.style.color='white'; this.style.backgroundColor='black';"
 					onmouseout="this.style.color='black'; this.style.backgroundColor='white';"
-					value="목록으로" onclick="location.href='/cocoa/view_sendReq'" /> <br>
-					<br></td>
+					value="목록으로" onclick="history.back()" /> <br> <br></td>
 			</tr>
 		</table>
 	</div>

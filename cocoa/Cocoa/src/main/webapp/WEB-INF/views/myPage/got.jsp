@@ -17,8 +17,8 @@ request.setCharacterEncoding("UTF-8");
 <body>
 
 	<!-- 보낸 요청 리스트 -->
-	<div class="card rcol my-5"
-		style="text-align: center; background-color: #FFEBCD; border: none; width: 80vw;">
+	<div
+		style="text-align: center; padding: 50px; padding-left: 130px; width: 80vw;">
 		<div class="table-responsive" style="border: 1px solid grey;">
 			<table class="table table-striped table-sm">
 				<thead>
@@ -39,6 +39,7 @@ request.setCharacterEncoding("UTF-8");
 							<td>${gotList.req}</td>
 							<!-- gotReqWait로 이동 -->
 							<td><a
+								style="text-decoration-line: none; color: dark; font-weight: 700;"
 								href="${contextPath}/view_gotReqWait?reqNO=${gotList.reqNO}">${gotList.rTitle}</a></td>
 							<fmt:parseDate var="dateFmt" pattern="yyyy-MM-dd HH:mm:ss.SSS"
 								value="${gotList.rDate}" />

@@ -12,11 +12,16 @@
 <style type="text/css">
 .side {
 	float: left;
-	width: 10%;
-	height: 900px;
+	width: 100%;
+	height: 1200px;
 }
 </style>
 <script type="text/javascript" src="resources/js/jquery-3.6.0.min.js"></script>
+<script type="text/javascript">
+	$(document).ready(function() {
+		$('#receiveReq').css('background-color', 'black');
+	});
+</script>
 <title>CoCoa</title>
 </head>
 <body style="background-color: #FFEBCD; font-family: none;">
@@ -25,23 +30,25 @@
 	<jsp:include page="../header.jsp"></jsp:include>
 
 	<!-- 받은 요청 클릭 (대기-거절전송) -->
-	<div class="row" style="flex-wrap: unset; width: 15%;">
-	
+	<div class="row" style="flex-wrap: unset; width: 80%;">
+
 		<!-- 좌측 메뉴 -->
-		<div class="side"
-			style="background-color: #333333; text-align: center;">
-			<jsp:include page="../myPage/side.jsp"></jsp:include>
+		<div class="col-sm-2">
+			<div class="side"
+				style="background-color: #333333; text-align: center;">
+				<jsp:include page="../myPage/side.jsp"></jsp:include>
+			</div>
 		</div>
-		
+
 		<!-- 우측 내용 -->
-		<div class="col-sm-9">
+		<div class="col-sm-10">
 			<div id="main"><jsp:include page="gotWaitNo.jsp"></jsp:include></div>
 		</div>
-		
+
 	</div>
 
 	<!-- 하단바 -->
 	<jsp:include page="../footer.jsp"></jsp:include>
-	
+
 </body>
 </html>

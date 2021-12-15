@@ -10,7 +10,7 @@ import mc.sn.cocoa.vo.Criteria;
 import mc.sn.cocoa.vo.ReviewVO;
 
 @Repository("reviewDAO")
-public class ReviewDAOImpl implements ReviewDAO{
+public class ReviewDAOImpl implements ReviewDAO {
 	@Autowired
 	private SqlSession sqlSession;
 
@@ -35,6 +35,12 @@ public class ReviewDAOImpl implements ReviewDAO{
 		return reviewList;
 	}
 
+	// 리뷰 글 상세 정보 조회
+	@Override
+	public ReviewVO selectReview(int reviewNO) {
+		return sqlSession.selectOne("mapper.review.selectReview", reviewNO);
+	}
+
 	// 리뷰 수정
 	@Override
 	public void updateReview(ReviewVO reviewVO) {
@@ -51,5 +57,25 @@ public class ReviewDAOImpl implements ReviewDAO{
 	@Override
 	public int countReview(String target) {
 		return (Integer) sqlSession.selectOne("mapper.review.countReview", target);
+	}
+
+	// 타겟 id 리스트 저장
+	@Override
+	public List selectTargets() {
+		List<String> targetList = null;
+		targetList = sqlSession.selectList("mapper.review.selectTargets");
+		return targetList;
+	}
+
+	// 타겟 리뷰 갯수
+	@Override
+	public int selectReCountByTarget(String key) {
+		return sqlSession.selectOne("mapper.review.selectReCountByTarget", key);
+	}
+
+	// 타겟 리뷰 평균점수
+	@Override
+	public float selectReAvgByTarget(String key) {
+		return sqlSession.selectOne("mapper.review.selectReAvgByTarget", key);
 	}
 }

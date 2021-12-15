@@ -28,6 +28,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
 import mc.sn.cocoa.service.ProjectService;
+import mc.sn.cocoa.service.ReviewService;
 import mc.sn.cocoa.vo.Criteria;
 import mc.sn.cocoa.vo.MemberVO;
 import mc.sn.cocoa.vo.PageMaker;
@@ -41,6 +42,8 @@ public class ProjectControllerImpl implements ProjectController {
 	private static final String project_IMAGE_REPO = "C:\\cocoa\\project_image";
 	@Autowired
 	private ProjectService projectService;
+	@Autowired
+	private ReviewService reviewService;
 
 	// 코치 글 조회
 	@Override
@@ -60,6 +63,33 @@ public class ProjectControllerImpl implements ProjectController {
 
 		// 서비스에서 listCoaches() 메소드 실행하여 리턴 값을 List타입의 coachesList에 저장
 		List projectList = projectService.listProjects(cri);
+
+		// 맵 생성
+		Map<String, Object> reCountMap = new HashMap<String, Object>();
+		
+		// 리스트 생성해서 target들을 불러오고 불러온 값들로 for문을 돌려서 리뷰 갯수를 불러옴->맵에 저장
+		List target = reviewService.targetsReview();
+
+		for (int i = 0; i < target.size(); i++) {
+			String key = (String) target.get(i);
+			int value = reviewService.targetReviewCount(key);
+			reCountMap.put(key, value);
+		}
+
+		// 맵 생성
+		Map<String, Object> reAvgMap = new HashMap<String, Object>();
+
+		// target들을 불러오고 불러온 값들로 for문을 돌려서 리뷰 갯수를 불러옴->맵에 저장
+		for (int i = 0; i < target.size(); i++) {
+			String key = (String) target.get(i);
+			float value = reviewService.targetReviewAvg(key);
+			reAvgMap.put(key, value);
+		}
+
+		// mav에 reAvg 키값으로 reAvgMap 밸류 값을 저장
+		mav.addObject("reAvg", reAvgMap);
+		// mav에 reCount 키값으로 reCountMap 밸류 값을 저장
+		mav.addObject("reCount", reCountMap);
 
 		// mav에 "coachesList" 키값으로 coachesList 밸류 값을 저장
 		mav.addObject("projectList", projectList);

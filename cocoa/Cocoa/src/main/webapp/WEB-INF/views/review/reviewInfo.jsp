@@ -8,29 +8,7 @@
 <meta charset="UTF-8">
 <link href="resources/css/styles.css" rel="stylesheet" />
 <script type="text/javascript" src="resources/js/jquery-3.6.0.min.js"></script>
-<script type="text/javascript">
-	$(document).ready(function() {
-		$('#r_modBtn').hide();
-	});
-
-	function fn_enable(obj) {
-		$('#r_modBtn').show();
-		$('#r_mod').hide;
-		$('#r_rmv').hide;
-		$('#r_rate').prop('disabled', false);
-		$('#r_review').prop('disabled', false);
-		return false;
-	}
-	function fn_update(obj) {
-		obj.action = "${contextPath}/modReview";
-		obj.submit();
-	}
-	function fn_delete(obj) {
-		obj.action = "${contextPath}/removeReview"
-		obj.submit();
-	}
-</script>
-<title>[Cocoa] ${target }의 리뷰</title>
+<title>CoCoa</title>
 </head>
 <body style="background-color: #FFEBCD">
 
@@ -48,13 +26,6 @@
 						<div
 							class="col-md-12 col-md-12-sm-12 col-xs-12 user-image text-center"
 							style="width: 80%; height: 100%; border: 2px solid; background-color: #FFCCCC;">
-
-							<!-- 후기 조회 이동 -->
-							<br> <span style="float: right;"><a
-								href="/cocoa/view_reviewInfo"> <input type="button"
-									name="view_reviewInfo" value="후 기" class="btn btn-third-dark"
-									style="font-size: 13px; border-radius: 12px;">
-							</a> </span>
 
 							<!-- 프로필 조회 이동 -->
 							<br> <br> <a
@@ -90,65 +61,52 @@
 					<div class="card rcol my-5"
 						style="text-align: center; background-color: #FFEBCD; border: none; width: 100%; height: 100%;">
 						<div style="border: 1px solid grey;">
-							<form method="post" name="frmReview" action="${contextPath }">
-								<table style="margin: 0px auto;">
-									<tr>
-										<th colspan="5" style="text-align: center;"><b>${target}의
-												후기</b>
-											<hr></th>
+							<table style="margin: 0px auto;">
+								<tr>
+									<th colspan="5" style="text-align: center;"><b>${target}의
+											후기</b>
+										<hr></th>
+								</tr>
+
+								<!-- 후기 한 줄 -->
+								<c:forEach var="reviewInfo" items="${reviewList}">
+									<tr style="width: 100%;">
+										<td style="float: left;">작성자 : <input type="text"
+											readonly id="writer" name="writer"
+											value="${reviewInfo.writer}"
+											style="vertical-align: top; text-align: center; border: none; background-color: #FFEBCD; color: black;">
+											<input type="hidden" name="reviewNO"
+											value="${reviewInfo.reviewNO }" />
+										</td>
+										<td colspan="3" style="float: left; width: 250px">평점 : <c:choose>
+												<c:when test="${reviewInfo.rate == 1}">★</c:when>
+												<c:when test="${reviewInfo.rate == 2}">★★</c:when>
+												<c:when test="${reviewInfo.rate == 3}">★★★</c:when>
+												<c:when test="${reviewInfo.rate == 4}">★★★★</c:when>
+												<c:when test="${reviewInfo.rate == 5}">★★★★★</c:when>
+											</c:choose></td>
+										<c:if
+											test="${isLogOn == true && member.id == reviewInfo.writer}">
+											<td style="float: right;"><span><a
+													style="text-decoration-line: none;"
+													href="${contextPath}/view_modReview?reviewNO=${reviewInfo.reviewNO}">
+														<input type="button" name="view_modReview" value="수 정">
+												</a> </span>&nbsp;&nbsp;<input type="button" id="r_rmv" value="삭 제"
+												onClick="location.href='/cocoa/removeReview?reviewNO=${reviewInfo.reviewNO}'" /></td>
+										</c:if>
 									</tr>
-									
-									<!-- 후기 한 줄 -->
-									<c:forEach var="reviewInfo" items="${reviewList}">
-										<tr style="width: 100%;">
-											<td style="float: left;">작성자 : <input type="text"
-												readonly id="writer" name="writer"
-												value="${reviewInfo.writer}"
-												style="vertical-align: top; text-align: center; border: none; background-color: #FFEBCD; color: black;">
-												<input type="hidden" name="reviewNO"
-												value="${reviewInfo.reviewNO }" />
-											</td>
-											<td colspan="3" style="float: left; width: 250px">평점 : <select
-												style="border: 0; text-align: center; width: 80%; background-color: #FFCC99; font-weight: 700; color: black;"
-												name="rate" disabled id="r_rate">
-													<option id="present" value="">
-														<c:choose>
-															<c:when test="${reviewInfo.rate == 1}">★</c:when>
-															<c:when test="${reviewInfo.rate == 2}">★★</c:when>
-															<c:when test="${reviewInfo.rate == 3}">★★★</c:when>
-															<c:when test="${reviewInfo.rate == 4}">★★★★</c:when>
-															<c:when test="${reviewInfo.rate == 5}">★★★★★</c:when>
-														</c:choose>
-													</option>
-													<option id="rate1" value=5>★★★★★</option>
-													<option id="rate2" value=4>★★★★</option>
-													<option id="rate3" value=3>★★★</option>
-													<option id="rate4" value=2>★★</option>
-													<option id="rate5" value=1>★</option>
-											</select></td>
-											<c:if
-												test="${isLogOn == true && member.id == reviewInfo.writer}">
-												<td style="float: right;"><input type="button"
-													id="r_mod" value="수 정" onClick="fn_enable(frmReview)">&nbsp;&nbsp;<input
-													type="button" id="r_rmv" value="삭 제"
-													onClick="fn_delete(frmReview)"></td>
-											</c:if>
-										</tr>
-										<tr>
-											<td colspan="5"><textarea rows="2" cols="99" disabled
-													name="review" id="r_review"
-													style="border: 1px solid grey; margin: 0px auto; text-align: left; resize: none; color: black; background-color: #FFEBCD;">${reviewInfo.review }</textarea></td>
-										</tr>
-										<tr>
-											<!-- 후기 한 줄 사이의 간격 -->
-											<td colspan="5" style="float: right;"><input
-												type="button" id="r_modBtn" value="확 인"
-												onClick="fn_update(frmReview)"></td>
-										</tr>
-									</c:forEach>
-								
-								</table>
-							</form>
+									<tr>
+										<td colspan="5"><textarea rows="2" cols="99" disabled
+												name="review" id="r_review"
+												style="border: 1px solid grey; margin: 0px auto; text-align: left; resize: none; color: black; background-color: #FFEBCD;">${reviewInfo.review }</textarea></td>
+									</tr>
+									<tr>
+										<!-- 후기 한 줄 사이의 간격 -->
+										<td colspan="5" style="float: right;"></td>
+									</tr>
+								</c:forEach>
+
+							</table>
 						</div>
 
 						<!-- 쪽 번호 구간 (수정필요) -->
@@ -174,7 +132,7 @@
 							</c:if>
 
 						</div>
-					
+
 					</div>
 				</div>
 			</div>

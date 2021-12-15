@@ -17,23 +17,30 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import mc.sn.cocoa.service.RequestService;
 import mc.sn.cocoa.service.ReviewService;
 import mc.sn.cocoa.vo.Criteria;
 import mc.sn.cocoa.vo.PageMaker;
+import mc.sn.cocoa.vo.RequestVO;
 import mc.sn.cocoa.vo.ReviewVO;
 
 @Controller("reviewController")
 public class ReviewControllerImpl implements ReviewController {
 	@Autowired
 	private ReviewService reviewService;
+	@Autowired
+	private RequestService requestService;
+	@Autowired
+	private ReviewVO reviewVO;
 
 	// 리뷰 작성 화면이동
 	@Override
 	@RequestMapping(value = "/view_coachRateForm", method = RequestMethod.GET)
 	public ModelAndView view_reviewForm(@RequestParam("target") String target, @RequestParam("writer") String writer,
-			HttpServletRequest request, HttpServletResponse response) {
+			@RequestParam("reqNO") int reqNO, HttpServletRequest request, HttpServletResponse response) {
 		ModelAndView mav = new ModelAndView();
 		String url = "/review/coachRateForm";
+		mav.addObject("reqNO", reqNO);
 		mav.addObject("target", target);
 		mav.addObject("writer", writer);
 		mav.setViewName(url);
@@ -69,14 +76,18 @@ public class ReviewControllerImpl implements ReviewController {
 	@Override
 	@RequestMapping(value = "/reviewWrite", method = RequestMethod.POST)
 	@ResponseBody
-	public ResponseEntity reviewWrite(@ModelAttribute("review") ReviewVO reviewVO, HttpServletRequest request,
-			HttpServletResponse response) {
+	public ResponseEntity reviewWrite(@ModelAttribute("review") ReviewVO reviewVO, @RequestParam("reqNO") int reqNO,
+			@RequestParam("status") String status, HttpServletRequest request, HttpServletResponse response) {
 		String message;
+		RequestVO requestVO = new RequestVO();
+		requestVO.setStatus(status);
+		requestVO.setReqNO(reqNO);
 		ResponseEntity resEnt = null;
 		HttpHeaders responseHeaders = new HttpHeaders();
 		responseHeaders.add("Content-Type", "text/html; charset=utf-8");
 		try {
 			reviewService.addReview(reviewVO);
+			requestService.finishRequest(requestVO);
 			// insert 성공시 메시지창 뜨고 홈화면으로 이동
 			message = "<script>";
 			message += " alert('리뷰 등록이 완료되었습니다.');";
@@ -96,6 +107,19 @@ public class ReviewControllerImpl implements ReviewController {
 		return resEnt;
 	}
 
+	// 전달된 글 번호를 이용해서 해당 글 정보 조회
+	@RequestMapping(value = "/view_modReview", method = RequestMethod.GET)
+	public ModelAndView view_modReview(@RequestParam("reviewNO") int reviewNO, HttpServletRequest request,
+			HttpServletResponse response) throws Exception {
+		ModelAndView mav = new ModelAndView();
+		String url = "/review/modReview";
+		mav.setViewName(url);
+
+		reviewVO = reviewService.viewReview(reviewNO);
+		mav.addObject("reviewVO", reviewVO);
+		return mav;
+	}
+
 	// 리뷰 수정
 	@Override
 	@RequestMapping(value = "/modReview", method = RequestMethod.POST)
@@ -108,18 +132,19 @@ public class ReviewControllerImpl implements ReviewController {
 		responseHeaders.add("Content-Type", "text/html; charset=utf-8");
 		try {
 			reviewService.modReview(reviewVO);
-			// insert 성공시 메시지창 뜨고 홈화면으로 이동
+			// insert 성공시 메시지창 뜨고 화면유지
 			message = "<script>";
 			message += " alert('리뷰 수정이 완료되었습니다.');";
-			message += " location.href='" + request.getContextPath() + "/'; ";
+			message += " location.href='" + request.getContextPath() + "/view_reviewInfo?target=" + reviewVO.getTarget()
+					+ "'; ";
 			message += " </script>";
 			resEnt = new ResponseEntity(message, responseHeaders, HttpStatus.CREATED);
 
 		} catch (Exception e) {
-			// 예외발생시 취소 및 삭제
 			message = " <script>";
 			message += " alert('오류가 발생했습니다. 다시 시도해주세요.');');";
-			message += " location.href='" + request.getContextPath() + "/'; ";
+			message += " location.href='" + request.getContextPath() + "/view_reviewInfo?target=" + reviewVO.getTarget()
+					+ "'; ";
 			message += " </script>";
 			resEnt = new ResponseEntity(message, responseHeaders, HttpStatus.CREATED);
 			e.printStackTrace();
@@ -129,7 +154,7 @@ public class ReviewControllerImpl implements ReviewController {
 
 	// 리뷰 삭제
 	@Override
-	@RequestMapping(value = "/removeReview", method = RequestMethod.POST)
+	@RequestMapping(value = "/removeReview", method = RequestMethod.GET)
 	@ResponseBody
 	public ResponseEntity deleteReview(@ModelAttribute("review") ReviewVO reviewVO, HttpServletRequest request,
 			HttpServletResponse response) {
@@ -140,22 +165,31 @@ public class ReviewControllerImpl implements ReviewController {
 		responseHeaders.add("Content-Type", "text/html; charset=utf-8");
 		try {
 			reviewService.deleteReview(reviewVO);
-			// insert 성공시 메시지창 뜨고 홈화면으로 이동
+			// insert 성공시 메시지창 뜨고 화면유지
 			message = "<script>";
 			message += " alert('리뷰가 삭제되었습니다.');";
-			message += " location.href='" + request.getContextPath() + "/'; ";
+			message += " location.href='" + request.getContextPath() + "/view_reviewInfo?target=" + reviewVO.getTarget()
+					+ "'; ";
 			message += " </script>";
 			resEnt = new ResponseEntity(message, responseHeaders, HttpStatus.CREATED);
 
 		} catch (Exception e) {
-			// 예외발생시 취소 및 삭제
 			message = " <script>";
 			message += " alert('오류가 발생했습니다. 다시 시도해주세요.');');";
-			message += " location.href='" + request.getContextPath() + "/'; ";
+			message += " location.href='" + request.getContextPath() + "/view_reviewInfo?target=" + reviewVO.getTarget()
+					+ "'; ";
 			message += " </script>";
 			resEnt = new ResponseEntity(message, responseHeaders, HttpStatus.CREATED);
 			e.printStackTrace();
 		}
 		return resEnt;
+	}
+
+	// 후기 개수 세기
+	@RequestMapping(value = "/countReivew", method = RequestMethod.GET)
+	public int countReview(@RequestParam("target") String target, HttpServletRequest request,
+			HttpServletResponse response) {
+		int count = 0;
+		return count;
 	}
 }
