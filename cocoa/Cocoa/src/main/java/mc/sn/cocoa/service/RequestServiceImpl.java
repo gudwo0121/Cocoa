@@ -84,4 +84,9 @@ public class RequestServiceImpl implements RequestService {
 	public int countReceiveRequest(String res) throws Exception {
 		return requestDAO.countReceiveRequest(res);
 	}
+	
+	@Override
+	public void finishRequest(RequestVO vo) {
+		requestDAO.updateReqFin(vo);
+	}
 }

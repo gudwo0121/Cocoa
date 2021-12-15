@@ -17,23 +17,28 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import mc.sn.cocoa.service.RequestService;
 import mc.sn.cocoa.service.ReviewService;
 import mc.sn.cocoa.vo.Criteria;
 import mc.sn.cocoa.vo.PageMaker;
+import mc.sn.cocoa.vo.RequestVO;
 import mc.sn.cocoa.vo.ReviewVO;
 
 @Controller("reviewController")
 public class ReviewControllerImpl implements ReviewController {
 	@Autowired
 	private ReviewService reviewService;
-
+	@Autowired
+	private RequestService requestService;
+	
 	// 리뷰 작성 화면이동
 	@Override
 	@RequestMapping(value = "/view_coachRateForm", method = RequestMethod.GET)
 	public ModelAndView view_reviewForm(@RequestParam("target") String target, @RequestParam("writer") String writer,
-			HttpServletRequest request, HttpServletResponse response) {
+			@RequestParam("reqNO") int reqNO, HttpServletRequest request, HttpServletResponse response) {
 		ModelAndView mav = new ModelAndView();
 		String url = "/review/coachRateForm";
+		mav.addObject("reqNO", reqNO);
 		mav.addObject("target", target);
 		mav.addObject("writer", writer);
 		mav.setViewName(url);
@@ -69,14 +74,18 @@ public class ReviewControllerImpl implements ReviewController {
 	@Override
 	@RequestMapping(value = "/reviewWrite", method = RequestMethod.POST)
 	@ResponseBody
-	public ResponseEntity reviewWrite(@ModelAttribute("review") ReviewVO reviewVO, HttpServletRequest request,
-			HttpServletResponse response) {
+	public ResponseEntity reviewWrite(@ModelAttribute("review") ReviewVO reviewVO,@RequestParam("reqNO") int reqNO,
+			@RequestParam("status") String status, HttpServletRequest request, HttpServletResponse response) {
 		String message;
+		RequestVO requestVO = new RequestVO();
+		requestVO.setStatus(status);
+		requestVO.setReqNO(reqNO);
 		ResponseEntity resEnt = null;
 		HttpHeaders responseHeaders = new HttpHeaders();
 		responseHeaders.add("Content-Type", "text/html; charset=utf-8");
 		try {
 			reviewService.addReview(reviewVO);
+			requestService.finishRequest(requestVO);
 			// insert 성공시 메시지창 뜨고 홈화면으로 이동
 			message = "<script>";
 			message += " alert('리뷰 등록이 완료되었습니다.');";

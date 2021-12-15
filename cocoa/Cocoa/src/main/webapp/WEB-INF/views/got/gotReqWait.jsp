@@ -44,6 +44,9 @@
 			<c:if test="${requestInfo.status eq '거절'}">
 				<div id="main"><jsp:include page="gotNo.jsp"></jsp:include></div>
 			</c:if>
+			<c:if test="${requestInfo.status eq '완료'}">
+				<div id="main"><jsp:include page="gotFin.jsp"></jsp:include></div>
+			</c:if>
 		</div>
 
 	</div>

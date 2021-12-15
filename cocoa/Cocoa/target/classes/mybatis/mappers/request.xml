@@ -113,4 +113,10 @@
 		]]>
 	</select>
 
+	<update id="updateReqFin" parameterType="requestVO">
+		<![CDATA[
+		update requestTBL
+		set status=#{status} where reqNO=#{reqNO}
+		]]>
+	</update>
 </mapper>

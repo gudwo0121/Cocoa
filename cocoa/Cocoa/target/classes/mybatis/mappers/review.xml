@@ -40,7 +40,9 @@
 	<update id="updateReview" parameterType="java.util.Map">
 		update reviewTBL
 		set
-		rate=#{rate},
+		<if test="rate!=''">
+			rate=#{rate},
+		</if>
 		review=#{review}
 		where reviewNO=#{reviewNO}
 	</update>

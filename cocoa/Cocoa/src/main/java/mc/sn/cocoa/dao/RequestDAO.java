@@ -29,4 +29,6 @@ public interface RequestDAO {
 	public int countSendRequest(String req) throws DataAccessException;
 	
 	public int countReceiveRequest(String res) throws DataAccessException;
+	
+	public void updateReqFin(RequestVO vo) ;
 }

@@ -94,4 +94,9 @@ public class RequestDAOImpl implements RequestDAO {
 	public int countReceiveRequest(String res) throws DataAccessException {
 		return (Integer) sqlSession.selectOne("mapper.request.countReceiveRequest", res);
 	}
+	
+	@Override
+	public void updateReqFin(RequestVO vo) {
+		sqlSession.update("mapper.request.updateReqFin", vo);
+	}
 }
