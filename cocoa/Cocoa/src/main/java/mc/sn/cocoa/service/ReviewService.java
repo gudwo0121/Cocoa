@@ -16,4 +16,10 @@ public interface ReviewService {
 	public void deleteReview(ReviewVO reviewVO);
 
 	public int countReview(String target);
+	
+	public List targetsReview();
+	
+	public int targetReviewCount(String key);
+	
+	public float targetReviewAvg(String key);
 }

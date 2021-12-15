@@ -167,4 +167,12 @@ public class ReviewControllerImpl implements ReviewController {
 		}
 		return resEnt;
 	}
+	
+	@RequestMapping(value = "/countReivew", method = RequestMethod.GET)
+	public int countReview(@RequestParam("target") String target, HttpServletRequest request,
+			HttpServletResponse response) {
+		int count = 0;
+		
+		return count;
+	}
 }

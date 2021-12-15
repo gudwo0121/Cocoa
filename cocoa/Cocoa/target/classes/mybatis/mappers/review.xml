@@ -63,4 +63,22 @@
 			where target=#{target}
 		]]>
 	</select>
+	
+	<select id="selectTargets" resultType="String">
+		<![CDATA[
+			select DISTINCT  target from reviewTBL
+		]]>
+	</select>
+	
+	<select id="selectReCountByTarget" resultType="int">
+		<![CDATA[
+			select count(*)from reviewTBL where target=#{key};
+		]]>
+	</select>
+	
+	<select id="selectReAvgByTarget" resultType="float">
+		<![CDATA[
+			select round(avg(rate),1) from reviewTBL where target=#{key};
+		]]>
+	</select>
 </mapper>

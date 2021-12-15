@@ -15,4 +15,10 @@ public interface ReviewDAO {
 	public void deleteReview(ReviewVO reviewVO);
 
 	public int countReview(String target);
+	
+	public List selectTargets();
+	
+	public int selectReCountByTarget(String key);
+	
+	public float selectReAvgByTarget(String key);
 }
