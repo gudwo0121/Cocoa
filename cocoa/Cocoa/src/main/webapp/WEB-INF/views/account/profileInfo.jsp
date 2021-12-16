@@ -18,7 +18,7 @@
 	<!-- 타인 프로필 -->
 	<form name="proFileInfo" method="post"
 		action="${contextPath}/proFileInfo" enctype="multipart/form-data">
-		<section class="py-5">
+		<section class="py-5" style="height: 100vh;">
 			<div class="container main-secction">
 				<div class="row" style="flex-wrap: unset;">
 
@@ -54,9 +54,20 @@
 							<br> <b> 소개 및 경력 : </b><br> <br>
 							<textarea name="proFile" rows="15" cols="20"
 								style="border: 1; width: 100%; background-color: #FFCC99; resize: none;">${profileId.proContents}</textarea>
-							<br> <br>
+							<br>
+
+							<!-- 뒤로가기 -->
+							<div style="text-align: center; padding-bottom: 10px;">
+								<input type="button" id="" class="btn btn-outline-dark"
+									style="background-color: white; color: black;"
+									onmouseover="this.style.color='white'; this.style.backgroundColor='black';"
+									onmouseout="this.style.color='black'; this.style.backgroundColor='white';"
+									onclick="history.back()" value="뒤로가기" />
+							</div>
 						</div>
 					</div>
+
+
 				</div>
 			</div>
 		</section>

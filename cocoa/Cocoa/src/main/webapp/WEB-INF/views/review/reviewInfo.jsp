@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" isELIgnored="false"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
 <!DOCTYPE html>
 <html>
@@ -15,8 +16,8 @@
 	<!-- 상단바 -->
 	<jsp:include page="../header.jsp"></jsp:include>
 
-	<!-- 코치 글 구간 -->
-	<section class="py-5">
+	<!-- 타인 후기 구간 -->
+	<section class="py-5" style="height: 100vh;">
 		<div class="container main-secction">
 			<div class="row" style="flex-wrap: unset;">
 
@@ -39,18 +40,7 @@
 							<!-- coach -->
 							<input type="text" name="coach" value="${target}" readonly
 								style="text-align: center; border: 0; font-weight: 700; background-color: #FFCCCC; width: 70%;">
-							<br>
-
-							<!-- 요청서 작성 -->
-							<br>
-							<c:if test="${isLogOn == true && member.id !=target}">
-								<a href="/cocoa/view_reqWriteForm?coachId=${target}"> <input
-									type="button" name="requestForm" value="   요청서 작성   "
-									class="btn btn-third-dark"
-									style="text-align: center; border: 1; border-radius: 12px; width: 70%;">
-								</a>
-							</c:if>
-							<br> <br>
+							<br> <br> <br>
 						</div>
 					</div>
 				</div>
@@ -85,6 +75,14 @@
 												<c:when test="${reviewInfo.rate == 4}">★★★★</c:when>
 												<c:when test="${reviewInfo.rate == 5}">★★★★★</c:when>
 											</c:choose></td>
+
+										<!-- 작성시간 -->
+										<td><fmt:parseDate var="dateFmt"
+												pattern="yyyy-MM-dd HH:mm:ss" value="${reviewInfo.reDate}" />
+											<fmt:formatDate var="dateTempParse" pattern="yyyy-MM-dd"
+												value="${dateFmt}" />작성일 : ${dateTempParse}</td>
+
+										<!-- 본인이면 수정 및 삭제 가능 -->
 										<c:if
 											test="${isLogOn == true && member.id == reviewInfo.writer}">
 											<td style="float: right;"><span><a
@@ -109,7 +107,7 @@
 							</table>
 						</div>
 
-						<!-- 쪽 번호 구간 (수정필요) -->
+						<!-- 쪽 번호 구간 -->
 						<div style="margin: 0 auto; font-size: 30px;">
 
 							<c:if test="${pageMaker.prev }">
@@ -134,6 +132,16 @@
 						</div>
 
 					</div>
+
+					<!-- 뒤로가기 -->
+					<div style="text-align: center; padding-bottom: 10px;">
+						<input type="button" id="" class="btn btn-outline-dark"
+							style="background-color: white; color: black;"
+							onmouseover="this.style.color='white'; this.style.backgroundColor='black';"
+							onmouseout="this.style.color='black'; this.style.backgroundColor='white';"
+							onclick="history.back()" value="뒤로가기" />
+					</div>
+
 				</div>
 			</div>
 		</div>

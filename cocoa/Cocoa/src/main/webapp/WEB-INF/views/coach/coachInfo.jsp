@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" isELIgnored="false"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page import="mc.sn.cocoa.vo.CoachVO"%>
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
 <!DOCTYPE html>
 <html>
@@ -33,11 +34,65 @@
 			$('#c_modBtn').show();
 			$('#c_cTitle').prop('disabled', false);
 			$('#c_basicPrice').prop('disabled', false);
-			$('#c_field').prop('disabled', false);
-			$('#c_tool').prop('disabled', false);
+			$('#cField').prop('disabled', false);
+			$('#tool').prop('disabled', false);
 			$('#c_cContents').prop('disabled', false);
+			$('#getcField').attr('hidden', '');
 			return false;
 		});
+
+		var tool;
+
+		// 영역에 따른 툴 선택 제약 조건
+		$('#cField').change(function() {
+
+			var field = $('#cField').val();
+
+			if (tool != '') {
+				$('default').text('-- 선택 --');
+			}
+
+			if (field == 'cField1') {
+				$('#tool1').removeAttr('hidden');
+				$('#tool2').removeAttr('hidden');
+				$('#tool3').attr('hidden', '');
+				$('#tool4').attr('hidden', '');
+				$('#tool5').attr('hidden', '');
+				$('#tool6').attr('hidden', '');
+				$('#default').attr('hidden', '');
+			} else if (field == 'cField2') {
+				$('#tool1').attr('hidden', '');
+				$('#tool2').attr('hidden', '');
+				$('#tool3').removeAttr('hidden');
+				$('#tool4').removeAttr('hidden');
+				$('#tool5').attr('hidden', '');
+				$('#tool6').attr('hidden', '');
+				$('#default').attr('hidden', '');
+			} else if (field == 'cField3') {
+				$('#tool1').attr('hidden', '');
+				$('#tool2').attr('hidden', '');
+				$('#tool3').attr('hidden', '');
+				$('#tool4').attr('hidden', '');
+				$('#tool5').removeAttr('hidden');
+				$('#tool6').removeAttr('hidden');
+				$('#default').attr('hidden', '');
+			} else {
+				$('#tool1').attr('hidden', '');
+				$('#tool2').attr('hidden', '');
+				$('#tool3').attr('hidden', '');
+				$('#tool4').attr('hidden', '');
+				$('#tool5').attr('hidden', '');
+				$('#tool6').attr('hidden', '');
+				$('#default').attr('hidden', '');
+			}
+		});
+
+		$('#tool').change(function() {
+			tool = $('#tool').val();
+			alert($('#default').val());
+			alert(coach.tool);
+		});
+
 	});
 
 	function fn_modify_coach(obj) {
@@ -156,8 +211,8 @@
 							<!-- cField 표시 -->
 							영역 : <select
 								style="border: 0; text-align: center; width: 15%; background-color: #FFCC99; font-weight: 700; color: black;"
-								name="cField" disabled id="c_field">
-								<option id="empty" value="">
+								name="cField" disabled id="cField">
+								<option id="getcField" value="${coach.cField}">
 									<c:choose>
 										<c:when test="${coach.cField == 'cField1'}">Web</c:when>
 										<c:when test="${coach.cField == 'cField2'}">Mobile App</c:when>
@@ -173,8 +228,8 @@
 							<!-- tool 표시 -->
 							개발툴 : <select
 								style="border: 0; text-align: center; width: 15%; background-color: #FFCC99; font-weight: 700; color: black;"
-								name="tool" disabled id="c_tool">
-								<option id="empty" value="">
+								name="tool" disabled id="tool">
+								<option id="default" value="${coach.tool}">
 									<c:choose>
 										<c:when test="${coach.tool == 'tool1'}">Spring</c:when>
 										<c:when test="${coach.tool == 'tool2'}">Django</c:when>
@@ -184,12 +239,12 @@
 										<c:when test="${coach.tool == 'tool6'}">Raspberry Pi</c:when>
 									</c:choose>
 								</option>
-								<option id="tool1" value="tool1">Spring</option>
-								<option id="tool2" value="tool2">Django</option>
-								<option id="tool3" value="tool3">Android Studio</option>
-								<option id="tool4" value="tool4">Xcode</option>
-								<option id="tool5" value="tool5">Arduino</option>
-								<option id="tool6" value="tool6">Raspberry Pi</option>
+								<option id="tool1" value="tool1" hidden>Spring</option>
+								<option id="tool2" value="tool2" hidden>Django</option>
+								<option id="tool3" value="tool3" hidden>Android Studio</option>
+								<option id="tool4" value="tool4" hidden>Xcode</option>
+								<option id="tool5" value="tool5" hidden>Arduino</option>
+								<option id="tool6" value="tool6" hidden>Raspberry Pi</option>
 							</select>
 							<hr>
 

@@ -8,12 +8,39 @@
 <meta charset="UTF-8">
 <link href="resources/css/styles.css" rel="stylesheet" />
 <script type="text/javascript" src="resources/js/jquery-3.6.0.min.js"></script>
+<script type="text/javascript"
+	src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+<script type="text/javascript"
+	src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
 <style type="text/css">
 th, td {
 	padding: 6px;
 	color: black;
 }
 </style>
+<script>
+	function requestPay() {
+		IMP.init("iamport");
+		IMP.request_pay({
+			pg : "html5_inicis", //이니시스 웹표준 결제창
+			pay_method : "card", //결제방법
+			merchant_uid : "ORD20211216-0000001", //주문번호
+			name : "${requestInfo.res}'s coaching", //상품명
+			amount : "${requestInfo.realPrice}", //가격
+			buyer_email : "gildong@gmail.com", //이메일
+			buyer_name : "홍길동", //이름
+			buyer_tel : "010-1234-5678", //연락처
+			buyer_addr : "서울특별시 강남구 신사동", //주소
+			buyer_postcode : "00001" //상품코드
+		}, function(rsp) {
+			if (rsp.success) {
+				var msg = '결제가 완료되었습니다.';
+			} else {
+				var msg = '결제에 실패하였습니다.';
+			}
+		});
+	}
+</script>
 <title>CoCoa</title>
 </head>
 <body style="background-color: #FFEBCD">
@@ -70,12 +97,10 @@ th, td {
 
 			<!-- contact -->
 			<tr>
-				<td style="text-align: center; width: 15%;"><br>
-				<b>연결수단</b></td>
-				<td style=""><br>
-				<input type="text" id="" name="contact" class="form-control"
-					value="${requestInfo.contact}" placeholder="${requestInfo.contact}"
-					readonly
+				<td style="text-align: center; width: 15%;"><br> <b>연결수단</b></td>
+				<td style=""><br> <input type="text" id="" name="contact"
+					class="form-control" value="${requestInfo.contact}"
+					placeholder="${requestInfo.contact}" readonly
 					style="width: 30%; background-color: #FFCC99; border: 1px solid black; color: black;">
 				</td>
 			</tr>
@@ -86,29 +111,10 @@ th, td {
 				<td style=""><input type="number" id="" name="realPrice"
 					class="form-control" value="${requestInfo.realPrice}" readonly
 					style="width: 30%; background-color: #FFCC99; border: 1px solid black; color: black; float: left;"><b
-					style="float: left; padding-top: 7px; margin-left: 3px;">원</b></td>
-			</tr>
-
-			<!-- pay (아임포트) -->
-			<tr>
-				<td style="text-align: center; width: 15%;"><b>결제수단</b></td>
-				<td style=""><input type="text" id="" name="pay"
-					class="form-control" value="${requestInfo.pay}" readonly
-					style="width: 30%; background-color: #FFCC99; border: 1px solid black; color: black;"></td>
-			</tr>
-
-			<!-- pay (아임포트) -->
-			<tr>
-				<td style="text-align: center; vertical-align: top;" class="pt-1"><b>QR
-						코드</b></td>
-				<td style="text-align: left;"><img id="qr" src="..." width=120
-					height=120 style="border: 1px solid;"
-					onerror="this.src='resources/image/qr.png'" />
-					<div style="padding-left: 3px; padding-top: 5px;">
-						<input type="button" value="QR 코드 생성" style="width: 100;">
-						<input type="hidden" name="reqNO" value="${requestInfo.reqNO}" />
-						<input type="hidden" name="status" value="수락">
-					</div></td>
+					style="float: left; padding-top: 7px; margin-left: 3px;">원</b>
+					<button onclick="requestPay()"
+						style="float: left; margin-left: 10px; margin-top: 5px;">결
+						제</button></td>
 			</tr>
 
 			<!-- 공지사항(reason) -->

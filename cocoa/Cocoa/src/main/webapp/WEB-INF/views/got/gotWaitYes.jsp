@@ -48,29 +48,6 @@ th, td {
 					</td>
 				</tr>
 
-				<!-- pay (아임포트) -->
-				<tr>
-					<td style="text-align: center; width: 15%;"><b>결제수단</b></td>
-					<td style=""><input type="text" id="" name="pay"
-						class="form-control" value="" placeholder="결제 수단을 입력하세요." readonly
-						style="width: 95%; background-color: #FFCC99; border: 1px solid black; color: black;">
-					</td>
-				</tr>
-
-				<!-- pay (아임포트) -->
-				<tr>
-					<td style="text-align: center; vertical-align: top;" class="pt-1"><b>QR
-							코드</b></td>
-					<td style="text-align: left;"><img id="qr" src="..." width=120
-						height=120 style="border: 1px solid;"
-						onerror="this.src='resources/image/qr.png'" />
-						<div style="padding-left: 3px; padding-top: 5px;">
-							<input type="button" value="QR 코드 생성" style="width: 100;">
-							<input type="hidden" name="reqNO" value="${reqNO}" /> <input
-								type="hidden" name="status" value="수락">
-						</div></td>
-				</tr>
-
 				<!-- 공지사항 -->
 				<tr>
 					<td style="text-align: center; width: 15%;"><b>공지사항</b></td>

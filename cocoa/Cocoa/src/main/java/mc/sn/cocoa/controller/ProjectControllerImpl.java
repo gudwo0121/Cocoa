@@ -66,7 +66,7 @@ public class ProjectControllerImpl implements ProjectController {
 
 		// 맵 생성
 		Map<String, Object> reCountMap = new HashMap<String, Object>();
-		
+
 		// 리스트 생성해서 target들을 불러오고 불러온 값들로 for문을 돌려서 리뷰 갯수를 불러옴->맵에 저장
 		List target = reviewService.targetsReview();
 
@@ -88,6 +88,7 @@ public class ProjectControllerImpl implements ProjectController {
 
 		// mav에 reAvg 키값으로 reAvgMap 밸류 값을 저장
 		mav.addObject("reAvg", reAvgMap);
+		
 		// mav에 reCount 키값으로 reCountMap 밸류 값을 저장
 		mav.addObject("reCount", reCountMap);
 

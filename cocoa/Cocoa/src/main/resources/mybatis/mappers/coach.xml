@@ -32,11 +32,15 @@
 	</select>
 
 	<!-- 코치 글 조회 -->
+	<!-- 카테고리별 + 정렬순 -->
 	<select id="selectAllCoachesList" resultMap="coachResult">
 		<![CDATA[
 			SELECT *
 			from coachingTBL
+			inner join (select target, round(ifnull(avg(rate),0),1) as reviewRate from reviewTBL group by target)
+			ReviewRate on coachingTBL.coach = ReviewRate.target
 			where cField like concat(#{cField},"%") and tool like concat(#{tool}, "%")
+			order by ${coachOrder}
 			limit #{pageStart}, #{perPageNum}
 		]]>
 	</select>

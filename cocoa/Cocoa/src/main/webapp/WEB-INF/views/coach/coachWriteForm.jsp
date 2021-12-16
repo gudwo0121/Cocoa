@@ -20,6 +20,44 @@
 			reader.readAsDataURL(input.files[0]);
 		}
 	}
+
+	$(document).ready(function() {
+
+		// 영역에 따른 툴 선택 제약 조건
+		$('#cField').change(function() {
+			var field = $('#cField').val();
+
+			if (field == 'cField1') {
+				$('#tool1').removeAttr('hidden');
+				$('#tool2').removeAttr('hidden');
+				$('#tool3').attr('hidden', '');
+				$('#tool4').attr('hidden', '');
+				$('#tool5').attr('hidden', '');
+				$('#tool6').attr('hidden', '');
+			} else if (field == 'cField2') {
+				$('#tool1').attr('hidden', '');
+				$('#tool2').attr('hidden', '');
+				$('#tool3').removeAttr('hidden');
+				$('#tool4').removeAttr('hidden');
+				$('#tool5').attr('hidden', '');
+				$('#tool6').attr('hidden', '');
+			} else if (field == 'cField3') {
+				$('#tool1').attr('hidden', '');
+				$('#tool2').attr('hidden', '');
+				$('#tool3').attr('hidden', '');
+				$('#tool4').attr('hidden', '');
+				$('#tool5').removeAttr('hidden');
+				$('#tool6').removeAttr('hidden');
+			} else {
+				$('#tool1').attr('hidden', '');
+				$('#tool2').attr('hidden', '');
+				$('#tool3').attr('hidden', '');
+				$('#tool4').attr('hidden', '');
+				$('#tool5').attr('hidden', '');
+				$('#tool6').attr('hidden', '');
+			}
+		});
+	});
 </script>
 <title>CoCoa</title>
 </head>
@@ -85,7 +123,7 @@
 							<hr>
 
 							<!-- cField 선택 -->
-							영역 : <select style="text-align: center; width: 30%;"
+							영역 : <select style="text-align: center; width: 30%;" id="cField"
 								name="cField">
 								<option id="empty">-- 선택 --</option>
 								<option id="cField1" value="cField1">Web</option>
@@ -97,12 +135,15 @@
 							<!-- tool 선택 -->
 							개발툴 : <select style="text-align: center; width: 30%;" name="tool">
 								<option id="empty">-- 선택 --</option>
-								<option id="tool1" value="tool1">Spring</option>
-								<option id="tool2" value="tool2">Django</option>
-								<option id="tool3" value="tool3">Android Studio</option>
-								<option id="tool4" value="tool4">Xcode</option>
-								<option id="tool5" value="tool5">Arduino</option>
-								<option id="tool6" value="tool6">Raspberry Pi</option>
+
+								<option id="tool1" value="tool1" hidden>Spring</option>
+								<option id="tool2" value="tool2" hidden>Django</option>
+
+								<option id="tool3" value="tool3" hidden>Android Studio</option>
+								<option id="tool4" value="tool4" hidden>Xcode</option>
+
+								<option id="tool5" value="tool5" hidden>Arduino</option>
+								<option id="tool6" value="tool6" hidden>Raspberry Pi</option>
 							</select>
 							<hr>
 

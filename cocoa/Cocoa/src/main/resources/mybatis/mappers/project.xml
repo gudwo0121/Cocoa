@@ -33,11 +33,15 @@
 	</select>
 
 	<!-- 프로젝트 글 조회 -->
+	<!-- 카테고리별 + 정렬순 -->
 	<select id="selectAllProjectList" resultMap="projectResult">
       <![CDATA[
          select * 
          from projectTBL
+         inner join (select target, round(ifnull(avg(rate),0),1) as reviewRate from reviewTBL group by target)
+         ReviewRate on projectTBL.leader = ReviewRate.target
          where pField like concat(#{pField},"%") and level like concat(#{level}, "%")
+         order by ${projectOrder}
          limit #{pageStart}, #{perPageNum}
       ]]>
 	</select>

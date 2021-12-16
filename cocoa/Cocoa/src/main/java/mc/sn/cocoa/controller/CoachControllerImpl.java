@@ -67,7 +67,7 @@ public class CoachControllerImpl implements CoachController {
 
 		// 맵 생성
 		Map<String, Object> reCountMap = new HashMap<String, Object>();
-		
+
 		// 리스트 생성해서 target들을 불러오고 불러온 값들로 for문을 돌려서 리뷰 갯수를 불러옴->맵에 저장
 		List target = reviewService.targetsReview();
 

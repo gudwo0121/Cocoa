@@ -8,6 +8,14 @@
 <meta charset="UTF-8">
 <link href="resources/css/styles.css" rel="stylesheet" />
 <script type="text/javascript" src="resources/js/jquery-3.6.0.min.js"></script>
+<script type="text/javascript">
+	// 정렬 기준 동적으로 변경
+	function selChange() {
+		var sel = document.getElementById('projectOrder').value;
+		location.href = "view_projectCate?pField=${cri.pField }&level=${cri.level }&projectOrder="
+				+ sel;
+	}
+</script>
 <title>CoCoa</title>
 </head>
 <body style="background-color: #FFEBCD">
@@ -137,15 +145,22 @@
 			<c:choose>
 				<c:when test="${isLogOn == true && member != null}">
 					<a id="cwrite_btn" class="btn btn-primary px-4 me-sm-3"
-						href="/cocoa/view_projectWrite" style="float: right">프로젝트 등록</a>
+						href="/cocoa/view_projectWrite" style="float: right">프로젝트 모집</a>
 				</c:when>
 			</c:choose>
 
 			<!-- 정렬 버튼 -->
-			<select class="px-4 me-sm-3" style="float: right;">
-				<option>평점순</option>
-				<option>최신순</option>
-			</select><br> <br> <br> <br> <br>
+			<select class="me-sm-3"
+				style="float: right; text-align: center; width: 10%;"
+				id="projectOrder" onchange="selChange()">
+				<option value="reviewRate desc"
+					<c:if test="${cri.projectOrder == 'reviewRate desc' }">selected</c:if>>평점
+					높은순</option>
+				<option value="projectNO desc"
+					<c:if test="${cri.projectOrder == 'projectNO desc' }">selected</c:if>>최신순</option>
+				<option value="projectNO"
+					<c:if test="${cri.projectOrder == 'projectNO' }">selected</c:if>>오래된순</option>
+			</select><br> <br> <br> <br>
 
 			<!-- 생성된 코칭 카탈로그 표시 -->
 			<div
@@ -230,20 +245,20 @@
 
 		<c:if test="${pageMaker.prev }">
 			<a
-				href='<c:url value="/view_projectCate?pField=${cri.pField }&level=${cri.level }&page=${pageMaker.startPage-1 }"/>'><i
+				href='<c:url value="/view_projectCate?pField=${cri.pField }&level=${cri.level }&projectOrder=${cri.projectOrder}&page=${pageMaker.startPage-1 }"/>'><i
 				class=""></i></a>
 		</c:if>
 
 		<c:forEach begin="${pageMaker.startPage }" end="${pageMaker.endPage }"
 			var="pageNum">
 			<a
-				href='<c:url value="/view_projectCate?pField=${cri.pField }&level=${cri.level }&page=${pageNum }"/>'><i
+				href='<c:url value="/view_projectCate?pField=${cri.pField }&level=${cri.level }&projectOrder=${cri.projectOrder}&page=${pageNum }"/>'><i
 				class="">${pageNum }</i></a>
 		</c:forEach>
 
 		<c:if test="${pageMaker.next && pageMaker.endPage >0 }">
 			<a
-				href='<c:url value="/view_projectCate?pField=${cri.pField }&level=${cri.level }&page=${pageMaker.endPage+1 }"/>'><i
+				href='<c:url value="/view_projectCate?pField=${cri.pField }&level=${cri.level }&projectOrder=${cri.projectOrder}&page=${pageMaker.endPage+1 }"/>'><i
 				class=""></i></a>
 		</c:if>
 

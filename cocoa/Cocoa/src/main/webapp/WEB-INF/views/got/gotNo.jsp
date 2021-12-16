@@ -18,8 +18,7 @@ th, td {
 </head>
 <body style="background-color: #FFEBCD">
 
-	<!-- 상단에 요청서 내용 추가 -->
-	<!-- 받은 요청 (수락) -->
+	<!-- 받은 요청 (거절) -->
 	<div class="card rcol my-5"
 		style="text-align: center; background-color: #FFEBCD; border: none; width: 80vw; height: 90vh;">
 		<form action="" method="post">

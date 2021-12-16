@@ -27,7 +27,7 @@ th, td {
 </head>
 <body style="background-color: #FFEBCD">
 
-	<!-- 보낸 요청 (수락) -->
+	<!-- 보낸 요청 (거절) -->
 	<div class="card rcol my-5"
 		style="text-align: center; background-color: #FFEBCD; border: none; width: 80vw; height: 90vh;">
 		<table
@@ -71,10 +71,10 @@ th, td {
 				</td>
 			</tr>
 
-			<!-- 수락 정보 -->
+			<!-- 거절 사유 -->
 			<tr>
 				<td colspan="2"
-					style="text-align: center; border: 1px solid black; background-color: #CFFFE5;"><b>거절사유</b></td>
+					style="text-align: center; border: 1px solid black; background-color: #CFFFE5;"><b>거절 사유</b></td>
 			</tr>
 
 			<!-- 거절사유 -->
