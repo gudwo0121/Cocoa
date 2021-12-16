@@ -37,6 +37,7 @@
 			SELECT *
 			from coachingTBL
 			where cField like concat(#{cField},"%") and tool like concat(#{tool}, "%")
+			order by #{coachOrder} desc
 			limit #{pageStart}, #{perPageNum}
 		]]>
 	</select>

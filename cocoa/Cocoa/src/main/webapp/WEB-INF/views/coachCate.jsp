@@ -8,6 +8,12 @@
 <meta charset="UTF-8">
 <link href="resources/css/styles.css" rel="stylesheet" />
 <script type="text/javascript" src="resources/js/jquery-3.6.0.min.js"></script>
+<script type="text/javascript">
+function selChange() {
+	var sel = document.getElementById('coachOrder').value;
+	location.href="view_coachCate?coachOrder="+sel;
+}
+</script>
 <title>CoCoa</title>
 </head>
 <body style="background-color: #FFEBCD">
@@ -174,9 +180,9 @@
 			</c:choose>
 
 			<!-- 정렬 버튼 -->
-			<select class="px-4 me-sm-3" style="float: right;">
-				<option>평점순</option>
-				<option>최신순</option>
+			<select class="px-4 me-sm-3" style="float: right;" id="coachOrder" onchange="selChange()">
+				<option value="coachNO" <c:if test="${cri.coachOrder == 'coachNO' }">selected</c:if>>번호순</option>
+				<option value="basicPrice" <c:if test="${cri.coachOrder == 'basicPrice' }">selected</c:if>>가격순</option>
 			</select><br> <br> <br> <br> <br>
 
 			<!-- 생성된 코칭 카탈로그 표시 -->
@@ -262,20 +268,20 @@
 
 		<c:if test="${pageMaker.prev }">
 			<a
-				href='<c:url value="/view_coachCate?cField=${cri.cField }&tool=${cri.tool }&page=${pageMaker.startPage-1 }"/>'><i
+				href='<c:url value="/view_coachCate?coachOrder=${cri.coachOrder}&cField=${cri.cField }&tool=${cri.tool }&page=${pageMaker.startPage-1 }"/>'><i
 				class=""></i></a>
 		</c:if>
 
 		<c:forEach begin="${pageMaker.startPage }" end="${pageMaker.endPage }"
 			var="pageNum">
 			<a
-				href='<c:url value="/view_coachCate?cField=${cri.cField }&tool=${cri.tool }&page=${pageNum }"/>'><i
+				href='<c:url value="/view_coachCate?coachOrder=${cri.coachOrder}&cField=${cri.cField }&tool=${cri.tool }&page=${pageNum }"/>'><i
 				class="">${pageNum }</i></a>
 		</c:forEach>
 
 		<c:if test="${pageMaker.next && pageMaker.endPage >0 }">
 			<a
-				href='<c:url value="/view_coachCate?cField=${cri.cField }&tool=${cri.tool }&page=${pageMaker.endPage+1 }"/>'><i
+				href='<c:url value="/view_coachCate?coachOrder=${cri.coachOrder}&cField=${cri.cField }&tool=${cri.tool }&page=${pageMaker.endPage+1 }"/>'><i
 				class=""></i></a>
 		</c:if>
 

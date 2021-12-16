@@ -11,6 +11,7 @@ public class Criteria {
 	private String reqId;
 	private String resId;
 	private String target;
+	private String coachOrder = "coachNO";
 
 	// 특정 페이지의 게시글 시작 번호, 게시글 시작 행 번호
 	// 현재 페이지의 게시글 시작 번호 = (현재 페이지 번호 - 1) * 페이지 당 게시할 글의 수
@@ -104,6 +105,14 @@ public class Criteria {
 
 	public void setTarget(String target) {
 		this.target = target;
+	}
+
+	public String getCoachOrder() {
+		return coachOrder;
+	}
+
+	public void setCoachOrder(String coachOrder) {
+		this.coachOrder = coachOrder;
 	}
 
 }
