@@ -36,8 +36,10 @@
 		<![CDATA[
 			SELECT *
 			from coachingTBL
+			inner join (select target, round(ifnull(avg(rate),0),1) as reviewRate from reviewTBL group by target)
+			ReviewRate on coachingTBL.coach = ReviewRate.target
 			where cField like concat(#{cField},"%") and tool like concat(#{tool}, "%")
-			order by #{coachOrder} desc
+			order by ${coachOrder}
 			limit #{pageStart}, #{perPageNum}
 		]]>
 	</select>
