@@ -16,13 +16,4 @@ public class HomeController {
 		mav.setViewName(url);
 		return mav;
 	}
-	
-//	// 프로젝트, 코치 글 전체 조회
-//	@RequestMapping(value = "/test", method = { RequestMethod.GET, RequestMethod.POST })
-//	public ModelAndView test() throws Exception {
-//		ModelAndView mav = new ModelAndView();
-//		String url = "/review/reviewInfo";
-//		mav.setViewName(url);
-//		return mav;
-//	}
 }

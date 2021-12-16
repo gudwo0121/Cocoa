@@ -45,9 +45,9 @@
 
 	<!-- 회원 정보 수정 -->
 	<div class="container"
-		style="text-align: center; padding-top: 90px; padding-left: 400px; width: 100%;">
+		style="text-align: center; padding-top: 80px; padding-left: 50px; width: 50vw;">
 		<div class="card mt-3 px-2 pt-3 pb-3 mb-3"
-			style="width: 600px; height: 450px; background-color: #FFCC99; border: 1px solid black;">
+			style="width: 80%; height: 100%; background-color: #FFCC99; border: 1px solid black;">
 
 			<h5 class="mb-2">
 				<b>회 원 정 보</b>
@@ -56,7 +56,7 @@
 			<form id="updateInfo" action="${contextPath}/updateInfo"
 				method="post">
 				<table
-					style="width: 70%; background-color: #FFCC99; margin: 0 auto; color: black;">
+					style="width: 80%; background-color: #FFCC99; margin: 0 auto; color: black;">
 					<tr>
 						<td>
 							<div class="fone">
@@ -121,9 +121,9 @@
 					</tr>
 					<tr>
 						<td align="center"><button type="submit" id="modInfo"
-								onclick="nullCheck()" class="btn btn-outline-dark mt-5">수정하기</button>&nbsp;&nbsp;&nbsp;&nbsp;<input
-							type="button" id="delInfo" class="btn btn-outline-dark mt-5"
-							value="탈퇴하기" onClick="yesOrNo()"></td>
+								onclick="nullCheck()" class="btn btn-outline-dark mt-5">수
+								정</button>&nbsp;&nbsp;&nbsp;&nbsp;<input type="button" id="delInfo"
+							class="btn btn-outline-dark mt-5" value="탈 퇴" onClick="yesOrNo()"></td>
 					</tr>
 				</table>
 			</form>

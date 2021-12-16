@@ -25,15 +25,15 @@ th, td {
 			<table
 				style="width: 80%; margin: 0 auto; border: 1px solid grey; background-color: #FFCC99; color: black;">
 				<tr>
-					<th colspan="2"
-						style="vertical-align: middle; text-align: center; font-size: 20px;">${requestInfo.req}의
-						요청서 거절</th>
+					<td colspan="2"
+						style="text-align: center; border: 1px solid black; background-color: #CFFFE5;"><b>요청서
+							거절</b></td>
 				</tr>
 
 				<!-- reason -->
 				<tr>
-					<td style="text-align: center; width: 15%;"><b>거절사유</b></td>
-					<td style=""><input type="text" id="" name="reason"
+					<td style="text-align: center; width: 15%;"><br> <b>거절사유</b></td>
+					<td style=""><br> <input type="text" id="" name="reason"
 						class="form-control" value="" placeholder="거절사유를 입력하세요."
 						style="width: 95%; background-color: #FFCC99; border: 1px solid grey; color: black;">
 						<input type="hidden" name="reqNO" value="${reqNO}" /> <input

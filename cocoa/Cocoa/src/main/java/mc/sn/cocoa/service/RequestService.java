@@ -23,8 +23,10 @@ public interface RequestService {
 	public int submitReason(RequestVO requestVO);
 
 	public int submitReqYes(RequestVO requestVO);
-	
+
 	public int countSendRequest(String req) throws Exception;
-	
+
 	public int countReceiveRequest(String res) throws Exception;
+
+	public void finishRequest(RequestVO vo);
 }

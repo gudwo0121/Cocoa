@@ -16,11 +16,11 @@
 
 	<!-- 상단바 -->
 	<nav class="navbar navbar-expand-lg"
-		style="background-color: #663333; height: 8vh; width: 100%;">
+		style="background-color: #663333; width: 100%;">
 
 		<!-- 로고 -->
-		<span style="margin: 0 auto; padding-left: 430px;"> <a
-			class="navbar-brand" href="/cocoa/"
+		<span style="margin: 0 auto; padding-left: 430px; height: 100%;">
+			<a class="navbar-brand" href="/cocoa/"
 			style="color: #CFFFE5; font-size: 40px;"
 			onmouseover="this.style.color='black';"
 			onmouseout="this.style.color='#CFFFE5';"><b>CoCoa</b></a>
@@ -39,8 +39,7 @@
 					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-				</div>
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
 			</c:otherwise>
 		</c:choose>
 

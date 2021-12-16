@@ -15,11 +15,12 @@
 <body>
 
 	<!-- 하단바 -->
-	<footer class="py-5 bg-dark">
+	<footer class="py-5 bg-dark"
+		style="background-color: #212429; color: white;">
 		<div class="container">
 			<p class="m-0 text-center text-white">Copyright &copy; CoCoa 2021</p>
 		</div>
 	</footer>
-	
+
 </body>
 </html>

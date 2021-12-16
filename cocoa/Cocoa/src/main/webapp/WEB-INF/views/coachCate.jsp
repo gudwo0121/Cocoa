@@ -172,7 +172,12 @@
 						href="/cocoa/view_coachWrite" style="float: right">코치 등록</a>
 				</c:when>
 			</c:choose>
-			<br> <br> <br>
+
+			<!-- 정렬 버튼 -->
+			<select class="px-4 me-sm-3" style="float: right;">
+				<option>평점순</option>
+				<option>최신순</option>
+			</select><br> <br> <br> <br> <br>
 
 			<!-- 생성된 코칭 카탈로그 표시 -->
 			<div
@@ -181,13 +186,14 @@
 				<!-- 반복문 시작 컨트롤러에서 addObject한 coachList를 가져와서 coach라고 저장 -->
 				<c:forEach var="coach" items="${coachesList}">
 
-					<!-- 카탈로그 틀 -->
-					<div class="col mb-5">
-						<div class="card h-100">
+					<div class="col mb-5"
+						style="padding-left: 30px; padding-right: 30px;">
+						<div class="card h-100"
+							style="width: 110%; border: 1px solid black;">
 
 							<!-- 개발툴 표시 -->
 							<div class="badge bg-dark text-white position-absolute"
-								style="top: 0.5rem; right: 0.5rem">
+								style="top: 0.5rem; right: 0.5rem; background-color: black;">
 								<c:choose>
 									<c:when test="${coach.tool == 'tool1'}">Spring</c:when>
 									<c:when test="${coach.tool == 'tool2'}">Django</c:when>
@@ -204,19 +210,37 @@
 								src="${contextPath}/cthumbnails?coach=${coach.coach}&cImg=${coach.cImg}&coachNO=${coach.coachNO}" />
 
 							<!-- 간판이미지 아래 정보 -->
-							<div class="card-body p-4">
+							<div class="card-body" style="background-color: #FFCCCC;">
 								<div class="text-center">
+
+									<!-- 리더 -->
+									<b style="font-size: 15px; float: left; color: grey;">${coach.coach}</b>
+
+									<!-- 후기 개수 -->
+									<div style="font-size: 13px; float: right;">
+										<b>${reCount[coach.coach]}개의 후기</b>
+									</div>
+
+									<!-- 평점 평균 -->
+									<div style="font-size: 13px; float: right;">
+										<b
+											style="text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black; color: yellow;">★&nbsp;</b><b>${reAvg[coach.coach]}</b>&nbsp;|&nbsp;
+									</div>
+									<br> <br>
+
 									<!-- 제목 -->
-									<h5 class="fw-bolder">${coach.cTitle}</h5>
-									<!-- 코치 -->
-									${coach.coach}<br>
+									<b style="font-size: 15px; color: black;">${coach.cTitle}</b><br>
+									<br>
+
 									<!-- 기본 요금 -->
-									${coach.basicPrice} 원
+									<b style="font-size: 15px; color: #333333; float: right;">${coach.basicPrice}
+										원</b>
 								</div>
 							</div>
 
 							<!-- coachInfo 이동 -->
-							<div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+							<div class="card-footer border-top-0"
+								style="background-color: #FFCCCC;">
 								<div class="text-center">
 									<a class="btn btn-outline-dark mt-auto"
 										href="${contextPath}/view_coachInfo?coachNO=${coach.coachNO}">Get

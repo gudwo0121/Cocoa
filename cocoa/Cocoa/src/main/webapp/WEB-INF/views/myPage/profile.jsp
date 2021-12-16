@@ -45,10 +45,12 @@ request.setCharacterEncoding("UTF-8");
 	<!-- 본인 프로필 조회 및 수정 -->
 	<form name="proFileInfo" method="post"
 		action="${contextPath}/modProfile" enctype="multipart/form-data">
-		<section class="py-5" style="">
-			<div class="row" style="flex-wrap: unset;width:400%;">
-				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-				<div class="col-sm-4">
+		<section class="py-5" style="margin: 0 auto;">
+			<div class="row" style="flex-wrap: unset;">
+
+				<div style="width: 5%;"></div>
+
+				<div class="col-sm-2">
 
 					<!-- 좌측 프로필 : proImg / name -->
 					<div style="flex-wrap: unset; width: 100%;">
@@ -74,9 +76,12 @@ request.setCharacterEncoding("UTF-8");
 					</div>
 				</div>
 
+				<div style="width: 5%;"></div>
+
 				<!-- 우측 내용 : pContents -->
 				<div
-					style="border: 1px solid; background-color: #FFCC99; color: black; border-radius: 5px;" class="col-sm-8">
+					style="border: 1px solid; background-color: #FFCC99; color: black; border-radius: 5px; padding: 15px;"
+					class="col-sm-7">
 					<div class="proFile">
 
 						<!-- pContents 입력 -->
@@ -91,15 +96,15 @@ request.setCharacterEncoding("UTF-8");
 					<!-- 작성(submit) + 취소(버튼) -->
 					<div class="card-body" style="text-align: center">
 						<input type="submit" id="mod_profile" class="btn btn-outline-dark"
-							value="수정 확인" /> <a href="/cocoa/" id="mod_start"
-							class="btn btn-outline-dark">수정하기</a> &nbsp; <input type="button"
-							id="cancel" value="취소" onclick="history.go(0)"
+							value="확 인" /> <a href="/cocoa/" id="mod_start"
+							class="btn btn-outline-dark">프로필 수정</a> &nbsp; <input type="button"
+							id="cancel" value="취 소" onclick="history.go(0)"
 							class="btn btn-outline-dark">
 					</div>
 				</div>
 			</div>
 		</section>
 	</form>
-	
+
 </body>
 </html>

@@ -140,22 +140,29 @@
 						href="/cocoa/view_projectWrite" style="float: right">프로젝트 등록</a>
 				</c:when>
 			</c:choose>
-			<br> <br> <br>
+
+			<!-- 정렬 버튼 -->
+			<select class="px-4 me-sm-3" style="float: right;">
+				<option>평점순</option>
+				<option>최신순</option>
+			</select><br> <br> <br> <br> <br>
 
 			<!-- 생성된 코칭 카탈로그 표시 -->
 			<div
-				class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+				class="row gx-5 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
 
-				<!-- 반복문 시작 컨트롤러에서 addObject한 coachList를 가져와서 coach라고 저장 -->
+				<!-- 반복문 시작 컨트롤러에서 addObject한 projectList를 가져와서 project라고 저장 -->
 				<c:forEach var="project" items="${projectList}">
 
 					<!-- 카탈로그 틀 -->
-					<div class="col mb-5">
-						<div class="card h-100">
+					<div class="col mb-5"
+						style="padding-left: 30px; padding-right: 30px;">
+						<div class="card h-100"
+							style="width: 110%; border: 1px solid black;">
 
 							<!-- 개발툴 표시 -->
 							<div class="badge bg-dark text-white position-absolute"
-								style="top: 0.5rem; right: 0.5rem">
+								style="top: 0.5rem; right: 0.5rem; background-color: black;">
 								<c:choose>
 									<c:when test="${project.level == 'level1'}">Basic</c:when>
 									<c:when test="${project.level == 'level2'}">Intermediate</c:when>
@@ -169,19 +176,39 @@
 								src="${contextPath}/pthumbnails?leader=${project.leader}&pImg=${project.pImg}&projectNO=${project.projectNO}" />
 
 							<!-- 간판이미지 아래 정보 -->
-							<div class="card-body p-4">
+							<div class="card-body" style="background-color: #FFCCCC;">
 								<div class="text-center">
-									<!-- 제목 -->
-									<h5 class="fw-bolder">${project.pTitle}</h5>
+
 									<!-- 리더 -->
-									${project.leader}<br>
+									<b style="font-size: 15px; float: left; color: grey;">${project.leader}</b>
+
+									<!-- 후기 개수 -->
+									<div style="font-size: 13px; float: right;">
+
+										<b>${reCount[project.leader]}개의 후기</b>
+									</div>
+
+									<!-- 평점 평균 -->
+									<div style="font-size: 13px; float: right;">
+										<b
+											style="text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black; color: yellow;">★&nbsp;</b>
+										<b>${reAvg[project.leader]}</b>&nbsp;|&nbsp;
+									</div>
+									<br> <br>
+
+									<!-- 제목 -->
+									<b style="font-size: 15px; color: black;">${project.pTitle}</b><br>
+									<br>
+
 									<!-- 인원수 -->
-									${project.memberCount}명
+									<b style="font-size: 15px; color: #333333; float: right;">${project.memberCount}명
+										모집중</b>
 								</div>
 							</div>
 
-							<!-- coachInfo 이동 -->
-							<div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+							<!-- projectInfo 이동 -->
+							<div class="card-footer pt-2 border-top-0"
+								style="background-color: #FFCCCC;">
 								<div class="text-center">
 									<a class="btn btn-outline-dark mt-auto"
 										href="${contextPath}/view_projectInfo?id=${project.leader}&projectNO=${project.projectNO}">Get
@@ -190,9 +217,9 @@
 							</div>
 						</div>
 					</div>
-				</c:forEach>
-				<!-- Coach 반복문 끝 -->
 
+				</c:forEach>
+				<!-- project 반복문 끝 -->
 			</div>
 		</div>
 		<!-- 위의 카탈로그 틀이 반복 생성 및 표시 -->

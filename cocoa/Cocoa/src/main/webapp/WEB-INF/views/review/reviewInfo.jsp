@@ -8,7 +8,7 @@
 <meta charset="UTF-8">
 <link href="resources/css/styles.css" rel="stylesheet" />
 <script type="text/javascript" src="resources/js/jquery-3.6.0.min.js"></script>
-<title>[Cocoa] ${target }의 리뷰</title>
+<title>CoCoa</title>
 </head>
 <body style="background-color: #FFEBCD">
 
@@ -61,7 +61,6 @@
 					<div class="card rcol my-5"
 						style="text-align: center; background-color: #FFEBCD; border: none; width: 100%; height: 100%;">
 						<div style="border: 1px solid grey;">
-
 							<table style="margin: 0px auto;">
 								<tr>
 									<th colspan="5" style="text-align: center;"><b>${target}의
@@ -89,6 +88,7 @@
 										<c:if
 											test="${isLogOn == true && member.id == reviewInfo.writer}">
 											<td style="float: right;"><span><a
+													style="text-decoration-line: none;"
 													href="${contextPath}/view_modReview?reviewNO=${reviewInfo.reviewNO}">
 														<input type="button" name="view_modReview" value="수 정">
 												</a> </span>&nbsp;&nbsp;<input type="button" id="r_rmv" value="삭 제"
@@ -107,7 +107,6 @@
 								</c:forEach>
 
 							</table>
-
 						</div>
 
 						<!-- 쪽 번호 구간 (수정필요) -->

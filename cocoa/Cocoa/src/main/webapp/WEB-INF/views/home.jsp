@@ -33,7 +33,7 @@
 	</header>
 
 	<!-- 임의로 넣어둔 카탈로그 공간 -->
-	<div style="height: 500px;"></div>
+	<div style="height: 1000px;"></div>
 
 	<!-- 하단바 -->
 	<jsp:include page="footer.jsp"></jsp:include>

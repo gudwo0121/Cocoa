@@ -12,11 +12,12 @@ import mc.sn.cocoa.vo.Criteria;
 import mc.sn.cocoa.vo.ReviewVO;
 
 public interface ReviewController {
-	public ModelAndView view_reviewForm(@RequestParam("target") String target, @RequestParam("writer") String writer,
-			HttpServletRequest request, HttpServletResponse response);
 
-	public ResponseEntity reviewWrite(@ModelAttribute("review") ReviewVO reviewVO, HttpServletRequest request,
-			HttpServletResponse response);
+	public ModelAndView view_reviewForm(@RequestParam("target") String target, @RequestParam("writer") String writer,
+			@RequestParam("reqNO") int reqNO, HttpServletRequest request, HttpServletResponse response);
+
+	public ResponseEntity reviewWrite(@ModelAttribute("review") ReviewVO reviewVO, @RequestParam("reqNO") int reqNO,
+			@RequestParam("status") String status, HttpServletRequest request, HttpServletResponse response);
 
 	public ModelAndView view_reviewInfo(@RequestParam("target") String target, HttpServletRequest request,
 			HttpServletResponse response, Criteria cri);

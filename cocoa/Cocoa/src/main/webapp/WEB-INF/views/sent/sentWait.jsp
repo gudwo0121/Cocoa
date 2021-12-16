@@ -27,20 +27,47 @@ th, td {
 		}
 	}
 
-	$(document).ready(function() {
-		$('#mod_finish').hide();
-		$('#findImg').hide();
-		$('#mod_start').click(function() {
-			$('#del').hide();
-			$('#mod_start').hide();
-			$('#to_list').hide();
-			$('#findImg').show();
-			$('#mod_finish').show();
-			$('#rTitle').prop('disabled', false);
-			$('#rContents').prop('disabled', false);
-			return false;
-		});
-	});
+	$(document)
+			.ready(
+					function() {
+						$('#mod_finish').hide();
+						$('#cancel').hide();
+						$('#findImg').hide();
+						$('#space').hide();
+
+						$('#mod_start').click(function() {
+							$('#space').show();
+							$('#del').hide();
+							$('#mod_start').hide();
+							$('#to_list').hide();
+							$('#findImg').show();
+							$('#mod_finish').show();
+							$('#cancel').show();
+							$('#rTitle').prop('disabled', false);
+							$('#rContents').prop('disabled', false);
+							return false;
+						});
+
+						$('#cancel')
+								.click(
+										function() {
+											$('#space').hide();
+											$('#del').show();
+											$('#mod_start').show();
+											$('#to_list').show();
+											$('#findImg').hide();
+											$('#mod_finish').hide();
+											$('#cancel').hide();
+											$('#rTitle').prop('disabled', true);
+											$('#rContents').prop('disabled',
+													true);
+											$('#preview')
+													.attr('src',
+															'${contextPath}/downRImg?reqNO=${requestInfo.reqNO}');
+											return false;
+										});
+
+					});
 
 	function yesOrNo() {
 		if (confirm("철회하시겠습니까?")) {
@@ -54,25 +81,26 @@ th, td {
 </head>
 <body style="background-color: #FFEBCD">
 
-	<!-- UI 조정 필요 -->
 	<!-- 보낸 요청 (대기) -->
-	<div class="card rcol my-3"
+	<div class="card rcol my-5"
 		style="text-align: center; background-color: #FFEBCD; border: none; width: 80vw; height: 90vh;">
 		<form action="${contextPath}/modRequest" method="post"
 			enctype="multipart/form-data">
 			<table
 				style="width: 80%; margin: 0 auto; border: 1px solid grey; background-color: #FFCC99; color: black;">
 				<tr>
-					<th colspan="2"
-						style="vertical-align: middle; text-align: center; font-size: 20px;">${requestInfo.res}에게
-						보낸 요청서</th>
+					<td colspan="2"
+						style="text-align: center; border: 1px solid black; background-color: #CFFFE5;"><b>${requestInfo.res}에게
+							보낸 요청서</b></td>
 				</tr>
 
 				<!-- rTitle -->
 				<tr>
-					<td style="text-align: center; width: 15%;"><b>제 목</b></td>
-					<td style=""><input type="text" id="rTitle" name="rTitle"
-						class="form-control" value="${requestInfo.rTitle}" disabled
+					<td style="text-align: center; width: 15%;"><br> <b>제
+							목</b></td>
+					<td style=""><br> <input type="text" id="rTitle"
+						name="rTitle" class="form-control" value="${requestInfo.rTitle}"
+						disabled
 						style="width: 95%; background-color: #FFCC99; border: 1px solid grey; color: black;">
 						<input type="hidden" name="req" value="${requestInfo.req}">
 						<input type="hidden" name="res" value="${requestInfo.res}">
@@ -82,8 +110,9 @@ th, td {
 
 				<!-- rContents -->
 				<tr>
-					<td style="text-align: center; vertical-align: top;" class="pt-1"><br>
-						<b>내 용</b></td>
+					<td style="text-align: center; vertical-align: top;" class="pt-1">
+						<b>내 용</b>
+					</td>
 					<td style="text-align: left; vertical-align: top;"><textarea
 							rows="10" cols="20" class="form-control" id="rContents"
 							name="rContents" disabled
@@ -108,8 +137,9 @@ th, td {
 					<td style="text-align: left;"><input type="hidden"
 						name="originalFileName" value="${requestInfo.rImg }" /> <img
 						id="preview"
-						src="${contextPath}/downRImg?reqNO=${requestInfo.reqNO}" width=90%
-						height=300 style="border: 1px solid;" onerror="" /></td>
+						src="${contextPath}/downRImg?reqNO=${requestInfo.reqNO}" width=95%
+						height=300 style="border: 1px solid;"
+						onerror="this.src='resources/image/onerror.png'" /></td>
 				</tr>
 
 				<!-- 수정, 철회, 목록으로 -->
@@ -124,8 +154,13 @@ th, td {
 						style="background-color: white; color: black;"
 						onmouseover="this.style.color='white'; this.style.backgroundColor='black';"
 						onmouseout="this.style.color='black'; this.style.backgroundColor='white';"
-						value="확 인" /> <input type="button" onclick="yesOrNo()" id="del"
-						class="btn btn-outline-dark"
+						value="확 인" /> <span id="space">&nbsp;&nbsp;&nbsp;</span> <input
+						type="button" id="cancel" class="btn btn-outline-dark"
+						style="background-color: white; color: black;"
+						onmouseover="this.style.color='white'; this.style.backgroundColor='black';"
+						onmouseout="this.style.color='black'; this.style.backgroundColor='white';"
+						onclick="reload()" value="취 소" /> <input type="button"
+						onclick="yesOrNo()" id="del" class="btn btn-outline-dark"
 						style="background-color: white; color: black;"
 						onmouseover="this.style.color='white'; this.style.backgroundColor='black';"
 						onmouseout="this.style.color='black'; this.style.backgroundColor='white';"

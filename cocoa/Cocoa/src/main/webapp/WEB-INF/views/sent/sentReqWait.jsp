@@ -10,12 +10,13 @@
 <style type="text/css">
 .side {
 	float: left;
-	width: 10%;
-	height: 900px;
+	width: 100%;
+	height: 1200px;
 }
 </style>
 <script type="text/javascript" src="resources/js/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
+
 	function readURL(input) {
 		if (input.files && input.files[0]) {
 			var reader = new FileReader();
@@ -25,6 +26,11 @@
 			reader.readAsDataURL(input.files[0]);
 		}
 	}
+
+	$(document).ready(function() {
+		$('#sendReq').css('background-color', 'black');
+	});
+	
 </script>
 <title>CoCoa</title>
 </head>
@@ -34,16 +40,18 @@
 	<jsp:include page="../header.jsp"></jsp:include>
 
 	<!-- 메뉴와 내용 -->
-	<div class="row" style="flex-wrap: unset; width: 15%;">
+	<div class="row" style="flex-wrap: unset; width: 80%;">
 
 		<!-- 좌측 메뉴 -->
-		<div class="side"
-			style="background-color: #333333; text-align: center;">
-			<jsp:include page="../myPage/side.jsp"></jsp:include>
+		<div class="col-sm-2">
+			<div class="side"
+				style="background-color: #333333; text-align: center;">
+				<jsp:include page="../myPage/side.jsp"></jsp:include>
+			</div>
 		</div>
 
 		<!-- 우측 내용 -->
-		<div class="col-sm-9">
+		<div class="col-sm-10">
 			<c:if test="${requestInfo.status eq '수락'}">
 				<div id="main"><jsp:include page="sentYes.jsp"></jsp:include></div>
 			</c:if>
@@ -52,6 +60,9 @@
 			</c:if>
 			<c:if test="${requestInfo.status eq '거절'}">
 				<div id="main"><jsp:include page="sentNo.jsp"></jsp:include></div>
+			</c:if>
+			<c:if test="${requestInfo.status eq '완료'}">
+				<div id="main"><jsp:include page="sentFin.jsp"></jsp:include></div>
 			</c:if>
 		</div>
 

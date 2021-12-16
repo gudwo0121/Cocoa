@@ -20,23 +20,23 @@ th, td {
 
 	<!-- UI 조정 필요 -->
 	<!-- 후기 작성 -->
-	<div class="card rcol my-3"
+	<div class="card rcol my-5"
 		style="text-align: center; background-color: #FFEBCD; border: none; width: 80vw; height: 90vh;">
 		<form action="${contextPath}/reviewWrite" method="post"
 			enctype="multipart/form-data">
 			<table
-				style="width: 80%; margin: 0 auto; border: 1px solid grey; background-color: #FFCC99; color: black;">
+				style="width: 50%; margin: 0 auto; border: 1px solid grey; background-color: #FFCC99; color: black;">
 				<tr>
-					<th colspan="2"
-						style="vertical-align: middle; text-align: center; font-size: 20px;">${target}
-						에게 후기작성</th>
+					<td colspan="2"
+						style="text-align: center; border: 1px solid black; background-color: #CFFFE5;"><b>${target}
+							에게 후기작성</b></td>
 				</tr>
 
 				<!-- rate -->
 				<tr>
 					<td style="text-align: center; width: 15%; vertical-align: top;"><br>
-						<b>평 점</b></td>
-					<td style="text-align: left; font-size: 30px;"><input
+						<br> <b>평 점</b></td>
+					<td style="text-align: left; font-size: 20px;"><br> <input
 						type="radio" name="rate" value=5> ★ ★ ★ ★ ★ <br> <input
 						type="radio" name="rate" value=4> ★ ★ ★ ★ <br> <input
 						type="radio" name="rate" value=3> ★ ★ ★ <br> <input
@@ -51,11 +51,13 @@ th, td {
 					<td style="text-align: left; vertical-align: top;"><textarea
 							rows="3" cols="20" class="form-control" id="rContents"
 							name="review"
-							style="width: 95%; resize: none; background-color: #FFCC99; border: 1px solid grey; color: black;">${requestInfo.rContents}</textarea></td>
+							style="width: 90%; resize: none; background-color: #FFCC99; border: 1px solid grey; color: black;">${requestInfo.rContents}</textarea></td>
 				</tr>
 				<tr>
 					<td><input type="hidden" name="target" value="${target}">
-						<input type="hidden" name="writer" value="${writer}"></td>
+						<input type="hidden" name="writer" value="${writer}"> <input
+						type="hidden" name="reqNO" value="${reqNO}"> <input
+						type="hidden" name="status" value="완료"></td>
 				</tr>
 				<!-- 작성, 취소 -->
 				<tr>

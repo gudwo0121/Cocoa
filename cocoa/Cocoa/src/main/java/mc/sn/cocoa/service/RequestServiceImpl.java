@@ -72,16 +72,22 @@ public class RequestServiceImpl implements RequestService {
 	public int submitReqYes(RequestVO requestVO) {
 		return requestDAO.updateYes(requestVO);
 	}
-	
+
 	// 보낸 요청글 개수
 	@Override
 	public int countSendRequest(String req) throws Exception {
 		return requestDAO.countSendRequest(req);
 	}
-	
+
 	// 받은 요청글 개수
 	@Override
 	public int countReceiveRequest(String res) throws Exception {
 		return requestDAO.countReceiveRequest(res);
+	}
+
+	// 후기작성 후 완료 상태 변환
+	@Override
+	public void finishRequest(RequestVO vo) {
+		requestDAO.updateReqFin(vo);
 	}
 }

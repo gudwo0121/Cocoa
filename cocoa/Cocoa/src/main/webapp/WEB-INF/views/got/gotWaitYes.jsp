@@ -25,15 +25,15 @@ th, td {
 			<table
 				style="width: 80%; margin: 0 auto; border: 1px solid black; background-color: #FFCC99; color: black;">
 				<tr>
-					<th colspan="2"
-						style="vertical-align: middle; text-align: center; font-size: 20px;">${requestInfo.req}의
-						요청서 수락</th>
+					<td colspan="2"
+						style="text-align: center; border: 1px solid black; background-color: #CFFFE5;"><b>요청서
+							수락</b></td>
 				</tr>
 
 				<!-- contact -->
 				<tr>
-					<td style="text-align: center; width: 15%;"><b>연결수단</b></td>
-					<td style=""><input type="text" id="" name="contact"
+					<td style="text-align: center; width: 15%;"><br> <b>연결수단</b></td>
+					<td style=""><br> <input type="text" id="" name="contact"
 						class="form-control" value="" placeholder="연결수단의 링크를 입력하세요."
 						style="width: 95%; background-color: #FFCC99; border: 1px solid black; color: black;">
 					</td>

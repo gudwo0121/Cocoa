@@ -25,8 +25,10 @@ public interface RequestDAO {
 	public int updateReason(RequestVO requestVO);
 
 	public int updateYes(RequestVO requestVO);
-	
+
 	public int countSendRequest(String req) throws DataAccessException;
-	
+
 	public int countReceiveRequest(String res) throws DataAccessException;
+
+	public void updateReqFin(RequestVO vo);
 }

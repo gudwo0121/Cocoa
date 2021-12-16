@@ -23,9 +23,9 @@ public class ReviewServiceImpl implements ReviewService {
 	public List searchReviewByTarget(Criteria cri) {
 		return reviewDAO.selectByTarget(cri);
 	}
-	
+
 	@Override
-	public ReviewVO viewReview(int reviewNO) throws Exception{
+	public ReviewVO viewReview(int reviewNO) throws Exception {
 		ReviewVO reviewVO = reviewDAO.selectReview(reviewNO);
 		return reviewVO;
 	}
@@ -43,5 +43,20 @@ public class ReviewServiceImpl implements ReviewService {
 	@Override
 	public int countReview(String target) {
 		return reviewDAO.countReview(target);
+	}
+
+	@Override
+	public List targetsReview() {
+		return reviewDAO.selectTargets();
+	}
+
+	@Override
+	public int targetReviewCount(String key) {
+		return reviewDAO.selectReCountByTarget(key);
+	}
+
+	@Override
+	public float targetReviewAvg(String key) {
+		return reviewDAO.selectReAvgByTarget(key);
 	}
 }

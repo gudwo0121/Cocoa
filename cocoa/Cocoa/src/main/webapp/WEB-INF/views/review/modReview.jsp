@@ -9,12 +9,14 @@
 <link href="resources/css/styles.css" rel="stylesheet" />
 <script type="text/javascript" src="resources/js/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
+
 	function fn_modify_review(obj) {
 		obj.action = "${contextPath}/modReview";
 		obj.submit();
 	}
+	
 </script>
-<title>[Cocoa] ${reviewVO.target } 리뷰 수정</title>
+<title>CoCoa</title>
 </head>
 <body style="background-color: #FFEBCD">
 
