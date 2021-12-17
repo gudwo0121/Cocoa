@@ -40,6 +40,7 @@ th, td {
 						<input type="hidden" name="req" value="${requestInfo.req}">
 						<input type="hidden" name="res" value="${requestInfo.res}">
 						<input type="hidden" name="reqNO" value="${requestInfo.reqNO}">
+						<input type="hidden" name="status" value="${requestInfo.status}">
 					</td>
 				</tr>
 

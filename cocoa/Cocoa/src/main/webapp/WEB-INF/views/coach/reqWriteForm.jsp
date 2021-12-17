@@ -97,7 +97,7 @@ th, td {
 				<!-- 사진 미리보기 -->
 				<tr>
 					<td style="text-align: center;"></td>
-					<td><img id="preview" src="resources/image/sample.png"
+					<td><img id="preview" src="resources/image/onerror.png"
 						width=95% height=300 style="border: 1px solid;" /></td>
 				</tr>
 

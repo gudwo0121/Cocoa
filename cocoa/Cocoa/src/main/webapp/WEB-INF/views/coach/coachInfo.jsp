@@ -43,7 +43,7 @@
 
 		var tool;
 
-		// 영역에 따른 툴 선택 제약 조건
+		// 영역에 따른 툴 선택 제약 조건 = 툴값이 동적이므로 툴값에 따라서 숨길지 아니면 새로운걸 만들어서 표시할지 고민
 		$('#cField').change(function() {
 
 			var field = $('#cField').val();
@@ -139,7 +139,7 @@
 									href="/cocoa/view_profileInfo?profileId=${coach.coach}"> <img
 									name="proImg"
 									src="${contextPath}/downProfileImg?id=${coach.coach}"
-									onerror="this.src='resources/image/kakao.png'"
+									onerror="this.src='resources/image/onerror.png'"
 									style="border: 1px solid black;" width="50%" height="120px"><br>
 									<br>
 								</a>
@@ -258,8 +258,9 @@
 
 							<div align="center">
 								<input type=button value="확 인" class="btn btn-outline-dark"
-									onClick="fn_modify_coach(frmCoach)" id="c_modBtn"><br>
-								<br>
+									onClick="fn_modify_coach(frmCoach)" id="c_modBtn">&nbsp;&nbsp;<input
+									type=button value="목록으로" class="btn btn-outline-dark"
+									onClick="history.back()" id="goBack"><br> <br>
 							</div>
 						</div>
 					</div>

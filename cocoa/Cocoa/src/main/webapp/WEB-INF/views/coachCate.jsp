@@ -224,7 +224,7 @@
 
 							<!-- 간판 이미지 (src=경로) thumbnails로 보내면서 쿼리스트링을 사용 -->
 							<img class="card-img-top" alt="" height=200
-								onerror=" this.src='resources/image/sample.png'"
+								onerror=" this.src='resources/image/onerror.png'"
 								src="${contextPath}/cthumbnails?coach=${coach.coach}&cImg=${coach.cImg}&coachNO=${coach.coachNO}" />
 
 							<!-- 간판이미지 아래 정보 -->
@@ -234,15 +234,28 @@
 									<!-- 리더 -->
 									<b style="font-size: 15px; float: left; color: grey;">${coach.coach}</b>
 
-									<!-- 후기 개수 -->
+									<!-- 후기 개수 (없을시 0개) -->
 									<div style="font-size: 13px; float: right;">
-										<b>${reCount[coach.coach]}개의 후기</b>
+										<c:if test="${reCount[coach.coach] eq null}">
+											<b>0개의 후기</b>
+										</c:if>
+										<c:if test="${reCount[coach.coach] ne null}">
+											<b>${reCount[coach.coach]}개의 후기</b>
+										</c:if>
 									</div>
 
-									<!-- 평점 평균 -->
+									<!-- 평점 평균 (없을시 0.0) -->
 									<div style="font-size: 13px; float: right;">
-										<b
-											style="text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black; color: yellow;">★&nbsp;</b><b>${reAvg[coach.coach]}</b>&nbsp;|&nbsp;
+										<c:if test="${reAvg[coach.coach] eq null}">
+											<b
+												style="text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black; color: yellow;">
+												★&nbsp;</b>
+											<b>0.0</b>&nbsp;|&nbsp;</c:if>
+										<c:if test="${reAvg[coach.coach] ne null}">
+											<b
+												style="text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black; color: yellow;">
+												★&nbsp;</b>
+											<b>${reAvg[coach.coach]}</b>&nbsp;|&nbsp;</c:if>
 									</div>
 									<br> <br>
 

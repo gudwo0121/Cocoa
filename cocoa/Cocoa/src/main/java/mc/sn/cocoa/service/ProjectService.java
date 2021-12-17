@@ -17,7 +17,9 @@ public interface ProjectService {
 	public void removeProject(int projectNO);
 
 	public void modProject(Map projectMap) throws Exception;
-	
+
 	public int countProject(Criteria cri) throws Exception;
+
+	public String geocode(String words);
 
 }

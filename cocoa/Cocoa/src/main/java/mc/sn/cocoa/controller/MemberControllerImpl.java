@@ -37,7 +37,7 @@ import mc.sn.cocoa.vo.MemberVO;
 public class MemberControllerImpl implements MemberController {
 
 	// 프로필 이미지 저장 경로
-	private static final String profile_IMAGE_REPO = "C:\\cocoa\\profile_image";
+	private static final String profile_IMAGE_REPO = "/opt/cocoa/image/profile_img";
 	@Autowired
 	private MemberService memberService;
 	@Autowired
@@ -141,7 +141,7 @@ public class MemberControllerImpl implements MemberController {
 			MultipartFile mFile = multipartRequest.getFile(fileName);
 			proImg = mFile.getOriginalFilename();
 
-			File file = new File(profile_IMAGE_REPO + "\\" + "temp" + "\\" + fileName);
+			File file = new File(profile_IMAGE_REPO + "/" + "temp" + "/" + fileName);
 
 			if (mFile.getSize() != 0) {
 				if (!file.exists()) {
@@ -149,7 +149,7 @@ public class MemberControllerImpl implements MemberController {
 						file.createNewFile();
 					}
 				}
-				mFile.transferTo(new File(profile_IMAGE_REPO + "\\" + "temp" + "\\" + proImg));
+				mFile.transferTo(new File(profile_IMAGE_REPO + "/" + "temp" + "/" + proImg));
 			}
 		}
 		return proImg;
@@ -161,7 +161,7 @@ public class MemberControllerImpl implements MemberController {
 		OutputStream out = response.getOutputStream();
 		MemberVO vo = memberService.searchMember(id);
 		String proImg = vo.getproImg();
-		String filePath = profile_IMAGE_REPO + "\\" + id + "\\" + proImg;
+		String filePath = profile_IMAGE_REPO + "/" + id + "/" + proImg;
 		File image = new File(filePath);
 
 		response.setHeader("Cache-Control", "no-cache");
@@ -205,11 +205,11 @@ public class MemberControllerImpl implements MemberController {
 			memberService.modProfile(profileMap);
 			if (proImg != null && proImg.length() != 0) {
 				String originalFileName = (String) profileMap.get("originalFileName");
-				File oldFile = new File(profile_IMAGE_REPO + "\\" + id + "\\" + originalFileName);
+				File oldFile = new File(profile_IMAGE_REPO + "/" + id + "/" + originalFileName);
 				oldFile.delete();
 
-				File srcFile = new File(profile_IMAGE_REPO + "\\" + "temp" + "\\" + proImg);
-				File destDir = new File(profile_IMAGE_REPO + "\\" + id);
+				File srcFile = new File(profile_IMAGE_REPO + "/" + "temp" + "/" + proImg);
+				File destDir = new File(profile_IMAGE_REPO + "/" + id);
 				FileUtils.moveFileToDirectory(srcFile, destDir, true);
 			}
 			message = "<script>";
@@ -219,7 +219,7 @@ public class MemberControllerImpl implements MemberController {
 			resEnt = new ResponseEntity(message, responseHeaders, HttpStatus.CREATED);
 		} catch (Exception e) {
 			// 예외발생시 취소 및 삭제
-			File srcFile = new File(profile_IMAGE_REPO + "\\" + "temp" + "\\" + proImg);
+			File srcFile = new File(profile_IMAGE_REPO + "/" + "temp" + "/" + proImg);
 			srcFile.delete();
 
 			message = " <script>";

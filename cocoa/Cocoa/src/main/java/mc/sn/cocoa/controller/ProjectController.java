@@ -1,5 +1,6 @@
 package mc.sn.cocoa.controller;
 
+import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 
 import javax.servlet.http.HttpServletRequest;
@@ -30,4 +31,7 @@ public interface ProjectController {
 
 	public ResponseEntity modProject(MultipartHttpServletRequest multipartRequest, HttpServletResponse response)
 			throws Exception;
+
+	public void getGeo(HttpServletRequest req, HttpServletResponse res) throws IOException;
+
 }
