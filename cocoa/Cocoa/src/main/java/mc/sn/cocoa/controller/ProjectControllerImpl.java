@@ -1,6 +1,7 @@
 package mc.sn.cocoa.controller;
 
 import java.io.File;
+import java.io.IOException;
 import java.io.OutputStream;
 import java.io.UnsupportedEncodingException;
 import java.util.Enumeration;
@@ -356,5 +357,18 @@ public class ProjectControllerImpl implements ProjectController {
 			resEnt = new ResponseEntity(message, responseHeaders, HttpStatus.CREATED);
 		}
 		return resEnt;
+	}
+	
+	@Override
+	@ResponseBody
+	@RequestMapping(value="/map", method=RequestMethod.GET, produces = "application/text; charset=UTF-8")
+	public void getGeo(HttpServletRequest req, HttpServletResponse res) throws IOException {
+		req.setCharacterEncoding("utf-8");
+		System.out.println("controller");
+		String addr = req.getParameter("addr");
+		res.setContentType("text/text; charset=utf-8");
+		String result = projectService.geocode(addr);
+		System.out.println("controller "+result);
+		res.getWriter().print(result);
 	}
 }

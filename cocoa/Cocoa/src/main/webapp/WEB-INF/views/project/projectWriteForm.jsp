@@ -8,6 +8,7 @@
 <meta charset="UTF-8">
 <link href="resources/css/styles.css" rel="stylesheet" />
 <script type="text/javascript" src="resources/js/jquery-3.6.0.min.js"></script>
+<script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=mv43pl56eb"></script>
 <script type="text/javascript">
 	function readURL(input) {
 
@@ -20,6 +21,42 @@
 			reader.readAsDataURL(input.files[0]);
 		}
 	}
+$(document).ready(function(){
+	$('#sendMark').click(function(){
+			event.preventDefault();
+		$.ajax({
+	         type:"get",
+	         url:"/cocoa/map",
+	         contentType: "application/json",
+	         data :{"addr":$("#addr").val()},
+		     success:function (data,textStatus){
+		    	  //alert(data); // 2번
+		    	  resultText = JSON.parse(data);
+		    	  //text = resultText.results[0].region.area1.name+","+resultText.results[1]
+		    	  var lang1 = resultText.addresses[0].x;
+		    	  var lat1 = resultText.addresses[0].y;
+		    	 // alert(text); // 3번
+		    	 // $('#message').text(text);
+		    	  var mapOptions = {
+						    center: new naver.maps.LatLng(lat1, lang1),
+						    zoom: 15
+						};
+				var map = new naver.maps.Map('map', mapOptions);
+				var marker = new naver.maps.Marker({
+				    position: new naver.maps.LatLng(lat1, lang1),
+				    map: map
+				}); 
+		     },
+		     error:function(data,textStatus){
+		        alert("에러가! 발생했습니다.");
+		     },
+		     complete:function(data,textStatus){
+		    	 
+		     }
+		  });
+		
+	});
+});
 </script>
 <title>CoCoa</title>
 </head>
@@ -119,7 +156,9 @@
 							<hr>
 
 							<!-- map (일단비워둠) -->
-							<div style="text-align: center;">이곳은 맵 공간입니다.</div>
+							장소 <input type="text" name="map" id="addr" size="30" placeholder='원하는 장소를 입력해주세요.'>
+								<input type="button" name="send" id="sendMark" value="검색"><br>
+								<div id="map" style="width:100%;height:400px;"></div>
 							<hr>
 						</div>
 

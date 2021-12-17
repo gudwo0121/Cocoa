@@ -20,7 +20,7 @@
 	<insert id="insertNewProject" parameterType="java.util.Map">
 		<![CDATA[
 		 insert into projectTBL
-		 values(#{projectNO}, #{leader}, #{pImg}, #{pTitle}, #{memberCount}, #{pField}, #{level}, #{pContents}, "default", #{kakao})
+		 values(#{projectNO}, #{leader}, #{pImg}, #{pTitle}, #{memberCount}, #{pField}, #{level}, #{pContents}, #{map}, #{kakao})
 		]]>
 	</insert>
 
@@ -38,7 +38,7 @@
       <![CDATA[
          select * 
          from projectTBL
-         inner join (select target, round(ifnull(avg(rate),0),1) as reviewRate from reviewTBL group by target)
+         left outer join (select target, round(ifnull(avg(rate),0),1) as reviewRate from reviewTBL group by target)
          ReviewRate on projectTBL.leader = ReviewRate.target
          where pField like concat(#{pField},"%") and level like concat(#{level}, "%")
          order by ${projectOrder}

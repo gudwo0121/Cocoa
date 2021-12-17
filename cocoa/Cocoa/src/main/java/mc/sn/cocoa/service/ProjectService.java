@@ -20,4 +20,5 @@ public interface ProjectService {
 	
 	public int countProject(Criteria cri) throws Exception;
 
+	public String geocode(String words);
 }
