@@ -65,13 +65,13 @@
 					<div style="color: #CFFFE5; font-size: 25px; text-align: center;">등급</div>
 					<br> <input id="Basic" type="button"
 						class="btn btn-primary btn-lg px-4"
-						onClick="location.href='/cocoa/view_projectCate?level=level1'"
+						onClick="location.href='/cocoa/view_projectCate?pField=${cri.pField}&level=level1'"
 						value="Basic" /><br> <br> <input id="Intermediate"
 						type="button" class="btn btn-primary btn-lg px-4"
-						onClick="location.href='/cocoa/view_projectCate?level=level2'"
+						onClick="location.href='/cocoa/view_projectCate?pField=${cri.pField}&level=level2'"
 						value="Intemediate" /><br> <br> <input id="Advanced"
 						type="button" class="btn btn-primary btn-lg px-4"
-						onClick="location.href='/cocoa/view_projectCate?level=level3'"
+						onClick="location.href='/cocoa/view_projectCate?pField=${cri.pField}&level=level3'"
 						value="Advanced" />
 				</div>
 			</div>
@@ -86,55 +86,29 @@
 		<div style="text-align: center;">
 			<c:choose>
 				<c:when test="${cri.pField == 'pField' && cri.level == 'level'}">
-					<hr>
-					<hr>
-					<h3 style="color: black; font-weight: 1000; font-size: 40px;">PROJECT</h3>
-					<hr>
-					<hr>
+					<div style="padding: 10px; background-color: orange;">
+					<h3 style="color: black; font-weight: 1000; font-size: 30px;">Project</h3>
+				</div>
 				</c:when>
-				<c:when test="${cri.pField == 'pField1'}">
-					<hr>
-					<hr>
-					<h3 style="color: black; font-weight: 1000; font-size: 40px;">WEB</h3>
-					<hr>
-					<hr>
+				<c:when test="${cri.pField != 'pField' || cri.level != 'level'}">
+					<div style="padding: 10px; background-color: orange;">
+					<h3 style="color: black; font-weight: 1000; font-size: 30px;">Project
+						<c:choose>
+							<c:when test="${cri.pField == 'pField' }"></c:when>
+							<c:when test="${cri.pField == 'pField1' }"> - WEB</c:when>
+							<c:when test="${cri.pField == 'pField2' }"> - Mobile App</c:when>
+							<c:when test="${cri.pField == 'pField3'}"> - Embedded</c:when>
+						</c:choose>
+						<c:choose>
+							<c:when test="${cri.level == 'level' }"></c:when>
+							<c:when test="${cri.level == 'level1' }"> - Basic</c:when>
+							<c:when test="${cri.level == 'level2' }"> - Intermediate</c:when>
+							<c:when test="${cri.level == 'level3'}"> - Advanced</c:when>
+						</c:choose>
+					</h3>
+				</div>
 				</c:when>
-				<c:when test="${cri.pField == 'pField2'}">
-					<hr>
-					<hr>
-					<h3 style="color: black; font-weight: 1000; font-size: 40px;">MOBILE
-						APP</h3>
-					<hr>
-					<hr>
-				</c:when>
-				<c:when test="${cri.pField == 'pField3'}">
-					<hr>
-					<hr>
-					<h3 style="color: black; font-weight: 1000; font-size: 40px;">EMBEDDED</h3>
-					<hr>
-					<hr>
-				</c:when>
-				<c:when test="${cri.level == 'level1'}">
-					<hr>
-					<hr>
-					<h3 style="color: black; font-weight: 1000; font-size: 40px;">BASIC</h3>
-					<hr>
-					<hr>
-				</c:when>
-				<c:when test="${cri.level == 'level2'}">
-					<hr>
-					<hr>
-					<h3 style="color: black; font-weight: 1000; font-size: 40px;">INTEMEDIATE</h3>
-					<hr>
-					<hr>
-				</c:when>
-				<c:when test="${cri.level == 'level3'}">
-					<hr>
-					<hr>
-					<h3 style="color: black; font-weight: 1000; font-size: 40px;">ADVANCED</h3>
-					<hr>
-					<hr>
-				</c:when>
+				
 			</c:choose>
 		</div>
 

@@ -10,6 +10,7 @@ public class Criteria {
 	private String level = "level";
 	private String reqId;
 	private String resId;
+	private String status = "status";
 	private String target;
 	private String coachOrder = "reviewRate desc";
 	private String projectOrder = "reviewRate desc";
@@ -95,9 +96,17 @@ public class Criteria {
 	public String getResId() {
 		return resId;
 	}
-
+	
 	public void setResId(String resId) {
 		this.resId = resId;
+	}
+	
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
 	}
 
 	public String getTarget() {

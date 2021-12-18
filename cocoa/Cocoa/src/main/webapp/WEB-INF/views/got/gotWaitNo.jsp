@@ -37,7 +37,7 @@ th, td {
 						class="form-control" value="" placeholder="거절사유를 입력하세요."
 						style="width: 95%; background-color: #FFCC99; border: 1px solid grey; color: black;">
 						<input type="hidden" name="reqNO" value="${reqNO}" /> <input
-						type="hidden" name="status" value="거절"></td>
+						type="hidden" name="status" value="status3"></td>
 				</tr>
 
 				<!-- 전송, 취소 -->

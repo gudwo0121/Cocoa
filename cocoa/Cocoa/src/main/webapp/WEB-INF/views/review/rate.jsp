@@ -57,7 +57,7 @@ th, td {
 					<td><input type="hidden" name="target" value="${target}">
 						<input type="hidden" name="writer" value="${writer}"> <input
 						type="hidden" name="reqNO" value="${reqNO}"> <input
-						type="hidden" name="status" value="완료"></td>
+						type="hidden" name="status" value="status4"></td>
 				</tr>
 				<!-- 작성, 취소 -->
 				<tr>

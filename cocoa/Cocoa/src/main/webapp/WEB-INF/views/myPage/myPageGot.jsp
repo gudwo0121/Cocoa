@@ -22,7 +22,7 @@
 		$('#receiveReq').css('background-color', 'black');
 	});
 </script>
-<title>CoCoa</title>
+<title>받은 요청</title>
 </head>
 <body style="background-color: #FFEBCD; font-family: none;">
 

@@ -41,58 +41,6 @@
 			return false;
 		});
 
-		var tool;
-
-		// 영역에 따른 툴 선택 제약 조건 = 툴값이 동적이므로 툴값에 따라서 숨길지 아니면 새로운걸 만들어서 표시할지 고민
-		$('#cField').change(function() {
-
-			var field = $('#cField').val();
-
-			if (tool != '') {
-				$('default').text('-- 선택 --');
-			}
-
-			if (field == 'cField1') {
-				$('#tool1').removeAttr('hidden');
-				$('#tool2').removeAttr('hidden');
-				$('#tool3').attr('hidden', '');
-				$('#tool4').attr('hidden', '');
-				$('#tool5').attr('hidden', '');
-				$('#tool6').attr('hidden', '');
-				$('#default').attr('hidden', '');
-			} else if (field == 'cField2') {
-				$('#tool1').attr('hidden', '');
-				$('#tool2').attr('hidden', '');
-				$('#tool3').removeAttr('hidden');
-				$('#tool4').removeAttr('hidden');
-				$('#tool5').attr('hidden', '');
-				$('#tool6').attr('hidden', '');
-				$('#default').attr('hidden', '');
-			} else if (field == 'cField3') {
-				$('#tool1').attr('hidden', '');
-				$('#tool2').attr('hidden', '');
-				$('#tool3').attr('hidden', '');
-				$('#tool4').attr('hidden', '');
-				$('#tool5').removeAttr('hidden');
-				$('#tool6').removeAttr('hidden');
-				$('#default').attr('hidden', '');
-			} else {
-				$('#tool1').attr('hidden', '');
-				$('#tool2').attr('hidden', '');
-				$('#tool3').attr('hidden', '');
-				$('#tool4').attr('hidden', '');
-				$('#tool5').attr('hidden', '');
-				$('#tool6').attr('hidden', '');
-				$('#default').attr('hidden', '');
-			}
-		});
-
-		$('#tool').change(function() {
-			tool = $('#tool').val();
-			alert($('#default').val());
-			alert(coach.tool);
-		});
-
 	});
 
 	function fn_modify_coach(obj) {
@@ -104,6 +52,38 @@
 		obj.action = "${contextPath}/removeCoach";
 		obj.submit();
 	}
+	
+	function categoryChange(e){
+		var tool_cField1_value = ["tool1","tool1", "tool2"];
+		var tool_cField2_value = ["tool3","tool3", "tool4"];
+		var tool_cField3_value = ["tool5","tool5", "tool6"];
+		
+		var tool_cField1_out = ["선택","Spring", "Django"];
+		var tool_cField2_out = ["선택","Android Studio", "Xcode"];
+		var tool_cField3_out = ["선택","Arduino", "Rasberry Pi"];
+		var target = document.getElementById("tool");
+		
+		if(e.value == "cField1"){
+			var v = tool_cField1_value;
+			var o = tool_cField1_out;
+		} else if(e.value == "cField2"){
+			var v = tool_cField2_value;
+			var o = tool_cField2_out;
+		} else if(e.value == "cField3"){
+			var v = tool_cField3_value;
+			var o = tool_cField3_out;
+		}
+		
+		target.options.length = 0;
+		
+		for (x in v, o){
+			var opt = document.createElement("option");
+			opt.value = v[x];
+			opt.innerHTML = o[x];
+			target.appendChild(opt);
+		}
+	}
+	
 </script>
 <title>CoCoa</title>
 </head>
@@ -113,7 +93,7 @@
 	<jsp:include page="../header.jsp"></jsp:include>
 
 	<!-- 코치 글 구간 -->
-	<form method="post" enctype="multipart/form-data" name="frmCoach"
+	<form method="post" enctype="multipart/form-data" name="frmCoach" id="coachInfo"
 		action="${contextPath}">
 		<section class="py-5">
 			<div class="container main-secction">
@@ -211,7 +191,7 @@
 							<!-- cField 표시 -->
 							영역 : <select
 								style="border: 0; text-align: center; width: 15%; background-color: #FFCC99; font-weight: 700; color: black;"
-								name="cField" disabled id="cField">
+								name="cField" disabled id="cField" onchange="categoryChange(this)">
 								<option id="getcField" value="${coach.cField}">
 									<c:choose>
 										<c:when test="${coach.cField == 'cField1'}">Web</c:when>
@@ -239,12 +219,6 @@
 										<c:when test="${coach.tool == 'tool6'}">Raspberry Pi</c:when>
 									</c:choose>
 								</option>
-								<option id="tool1" value="tool1" hidden>Spring</option>
-								<option id="tool2" value="tool2" hidden>Django</option>
-								<option id="tool3" value="tool3" hidden>Android Studio</option>
-								<option id="tool4" value="tool4" hidden>Xcode</option>
-								<option id="tool5" value="tool5" hidden>Arduino</option>
-								<option id="tool6" value="tool6" hidden>Raspberry Pi</option>
 							</select>
 							<hr>
 
