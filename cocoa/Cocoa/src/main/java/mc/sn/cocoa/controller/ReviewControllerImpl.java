@@ -132,7 +132,7 @@ public class ReviewControllerImpl implements ReviewController {
 		responseHeaders.add("Content-Type", "text/html; charset=utf-8");
 		try {
 			reviewService.modReview(reviewVO);
-			// insert 성공시 메시지창 뜨고 화면유지
+			// update 성공시 메시지창 뜨고 화면유지
 			message = "<script>";
 			message += " alert('리뷰 수정이 완료되었습니다.');";
 			message += " location.href='" + request.getContextPath() + "/view_reviewInfo?target=" + reviewVO.getTarget()
@@ -165,19 +165,17 @@ public class ReviewControllerImpl implements ReviewController {
 		responseHeaders.add("Content-Type", "text/html; charset=utf-8");
 		try {
 			reviewService.deleteReview(reviewVO);
-			// insert 성공시 메시지창 뜨고 화면유지
+			// delete 성공시 메시지창 뜨고 화면유지
 			message = "<script>";
 			message += " alert('리뷰가 삭제되었습니다.');";
-			message += " location.href='" + request.getContextPath() + "/view_reviewInfo?target=" + reviewVO.getTarget()
-					+ "'; ";
+			message += " location.href='" + request.getContextPath() + "/'; ";
 			message += " </script>";
 			resEnt = new ResponseEntity(message, responseHeaders, HttpStatus.CREATED);
 
 		} catch (Exception e) {
 			message = " <script>";
 			message += " alert('오류가 발생했습니다. 다시 시도해주세요.');');";
-			message += " location.href='" + request.getContextPath() + "/view_reviewInfo?target=" + reviewVO.getTarget()
-					+ "'; ";
+			message += " location.href='" + request.getContextPath() + "/'; ";
 			message += " </script>";
 			resEnt = new ResponseEntity(message, responseHeaders, HttpStatus.CREATED);
 			e.printStackTrace();

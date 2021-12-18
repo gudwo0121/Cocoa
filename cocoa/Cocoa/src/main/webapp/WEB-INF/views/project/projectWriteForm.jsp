@@ -8,7 +8,8 @@
 <meta charset="UTF-8">
 <link href="resources/css/styles.css" rel="stylesheet" />
 <script type="text/javascript" src="resources/js/jquery-3.6.0.min.js"></script>
-<script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=mv43pl56eb"></script>
+<script type="text/javascript"
+	src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=ba36jg1kum"></script>
 <script type="text/javascript">
 	function readURL(input) {
 
@@ -21,42 +22,75 @@
 			reader.readAsDataURL(input.files[0]);
 		}
 	}
-$(document).ready(function(){
-	$('#sendMark').click(function(){
+
+	$(document).ready(function() {
+		$('#map').hide();
+		// 맵 geoCode
+		$('#sendMark').click(function() {
+			$('#map').show();
 			event.preventDefault();
-		$.ajax({
-	         type:"get",
-	         url:"/cocoa/map",
-	         contentType: "application/json",
-	         data :{"addr":$("#addr").val()},
-		     success:function (data,textStatus){
-		    	  //alert(data); // 2번
-		    	  resultText = JSON.parse(data);
-		    	  //text = resultText.results[0].region.area1.name+","+resultText.results[1]
-		    	  var lang1 = resultText.addresses[0].x;
-		    	  var lat1 = resultText.addresses[0].y;
-		    	 // alert(text); // 3번
-		    	 // $('#message').text(text);
-		    	  var mapOptions = {
-						    center: new naver.maps.LatLng(lat1, lang1),
-						    zoom: 15
-						};
-				var map = new naver.maps.Map('map', mapOptions);
-				var marker = new naver.maps.Marker({
-				    position: new naver.maps.LatLng(lat1, lang1),
-				    map: map
-				}); 
-		     },
-		     error:function(data,textStatus){
-		        alert("에러가! 발생했습니다.");
-		     },
-		     complete:function(data,textStatus){
-		    	 
-		     }
-		  });
-		
+			$.ajax({
+				type : "get",
+				url : "/cocoa/map",
+				contentType : "application/json",
+				data : {
+					"addr" : $("#addr").val()
+				},
+				success : function(data, textStatus) {
+					resultText = JSON.parse(data);
+					var lang1 = resultText.addresses[0].x;
+					var lat1 = resultText.addresses[0].y;
+					var mapOptions = {
+						center : new naver.maps.LatLng(lat1, lang1),
+						zoom : 15
+					};
+					var map = new naver.maps.Map('map', mapOptions);
+					var marker = new naver.maps.Marker({
+						position : new naver.maps.LatLng(lat1, lang1),
+						map : map
+					});
+				},
+				error : function(data, textStatus) {
+					alert("에러가! 발생했습니다.");
+				},
+				complete : function(data, textStatus) {
+
+				}
+			});
+
+		});
 	});
-});
+	
+	function nullCheck() {
+		var _kakao = $("#kakao").val();
+		var _pTitle = $("#pTitle").val();
+		var _memberCount = $("#memberCount").val();
+		var _pField = $("#pField").val();
+		var _level = $("#level").val();
+		var _pContents = $("#pContents").val();
+
+		if (_kakao == "") {
+			alert("카카오 오픈채팅 링크를 입력하세요");
+			$('#projectWrite').attr('onSubmit', "return false;");
+		} else if (_pTitle == "") {
+			alert("제목을 입력하세요");
+			$('#projectWrite').attr('onSubmit', "return false;");
+		} else if (_memberCount == "") {
+			alert("인원을 입력하세요");
+			$('#projectWrite').attr('onSubmit', "return false;");
+		} else if (_pField == "-- 선택 --") {
+			alert("영역을 선택해주세요");
+			$('#projectWrite').attr('onSubmit', "return false;");
+		} else if (level == "-- 선택 --") {
+			alert("수준을 선택해주세요");
+			$('#projectWrite').attr('onSubmit', "return false;");
+		} else if (_pContents == "") {
+			alert("내용을 입력하세요");
+			$('#projectWrite').attr('onSubmit', "return false;");
+		} else {
+			$('#projectWrite').removeAttr('onSubmit');
+		}
+	}
 </script>
 <title>CoCoa</title>
 </head>
@@ -66,7 +100,7 @@ $(document).ready(function(){
 	<jsp:include page="../header.jsp"></jsp:include>
 
 	<!-- 프로젝트 글 작성 -->
-	<form action="${contextPath}/projectWrite" method="post"
+	<form action="${contextPath}/projectWrite" method="post" id="projectWrite"
 		enctype="multipart/form-data">
 		<section class="py-5">
 			<div class="container main-secction">
@@ -83,7 +117,7 @@ $(document).ready(function(){
 								<br> <br> <img name="proImg"
 									src="${contextPath}/downProfileImg?id=${member.id}"
 									style="border: 1px solid;" width="50%" height="120px"
-									onerror="this.src='resources/image/kakao.png'"><br>
+									onerror="this.src='resources/image/onerror.png'"><br>
 								<br>
 
 								<!-- leader -->
@@ -93,7 +127,7 @@ $(document).ready(function(){
 
 								<!-- kakao -->
 								<b>카카오톡 오픈채팅 :</b><br> <br> <input type="text"
-									name="kakao" placeholder="링크 입력"
+									name="kakao" placeholder="링크 입력" id="kakao"
 									style="text-align: center; border: 1; background-color: #FFCCCC; width: 80%;"><br>
 								<br>
 							</div>
@@ -106,7 +140,7 @@ $(document).ready(function(){
 
 						<!-- pImg -->
 						<div align="center">
-							<br> <img id="preview" src="resources/image/sample.png"
+							<br> <img id="preview" src="resources/image/onerror.png"
 								width=100% height=300 style="border: 1px solid;" /><br> <br>
 							<label class="btn btn-outline-dark" for="pImg"> 대표 이미지 변경
 							</label><input type="file" id="pImg" name="pImg"
@@ -118,17 +152,17 @@ $(document).ready(function(){
 
 							<!-- pTitle 입력 -->
 							<hr>
-							<input name="pTitle" type="text" placeholder="제목을 입력하세요."
+							<input name="pTitle" type="text" placeholder="제목을 입력하세요." id="pTitle"
 								style="border: 1; text-align: center; width: 100%;">
 							<hr>
 
 							<!-- memberCount 입력 -->
-							인원 : <input name="memberCount" type="number"
+							인원 : <input name="memberCount" type="number" id="memberCount"
 								placeholder="인원수를 입력하세요." style="border: 1; width: 30%;">&nbsp;<b>명</b>
 							<hr>
 
 							<!-- pField 선택 -->
-							분야 : <select style="text-align: center; width: 30%;"
+							영역 : <select style="text-align: center; width: 30%;" id="pField"
 								name="pField">
 								<option id="empty">-- 선택 --</option>
 								<option id="pField1" value="pField1">Web</option>
@@ -138,7 +172,7 @@ $(document).ready(function(){
 							<hr>
 
 							<!-- level 선택 -->
-							난이도 : <select style="text-align: center; width: 30%;"
+							난이도 : <select style="text-align: center; width: 30%;" id="level"
 								name="level">
 								<option id="empty">-- 선택 --</option>
 								<option id="level1" value="level1">Basic</option>
@@ -150,21 +184,22 @@ $(document).ready(function(){
 							<!-- pContents 입력 -->
 							<!-- textarea 닫아주는거 붙여써야함 -->
 							세부 내용 : <br>
-							<textarea name="pContents" rows="10" cols="20"
-								placeholder="프로젝트 개요 및 포지션 별 자격요건을 써주세요."
+							<textarea name="pContents" rows="10" cols="20" id="pContents"
+								placeholder="프로젝트 개요 및 포지션 별 자격요건을 써주세요. 공백 포함 2000자를 넘을 수 없습니다."
 								style="border: 1; width: 100%; resize: none;"></textarea>
 							<hr>
 
-							<!-- map (일단비워둠) -->
-							장소 <input type="text" name="map" id="addr" size="30" placeholder='원하는 장소를 입력해주세요.'>
-								<input type="button" name="send" id="sendMark" value="검색"><br>
-								<div id="map" style="width:100%;height:400px;"></div>
+							장소 : <input type="text" name="map" id="addr" size="30"
+								placeholder='원하는 장소를 입력해주세요.'> <input type="button"
+								name="send" id="sendMark" value="검색"><br>
+							<div id="map" style="width: 100%; height: 400px;"></div>
 							<hr>
+
 						</div>
 
 						<!-- 작성(submit) + 취소(버튼) -->
 						<div class="card-body" style="text-align: center">
-							<button type="submit" class="btn btn-outline-dark">작성</button>
+							<button type="submit" class="btn btn-outline-dark" onclick="nullCheck()">작성</button>
 							&nbsp; <a href="/cocoa/view_projectCate"
 								class="btn btn-outline-dark">취소</a>
 						</div>

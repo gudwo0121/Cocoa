@@ -31,6 +31,7 @@ public interface ProjectController {
 
 	public ResponseEntity modProject(MultipartHttpServletRequest multipartRequest, HttpServletResponse response)
 			throws Exception;
-	
+
 	public void getGeo(HttpServletRequest req, HttpServletResponse res) throws IOException;
+
 }

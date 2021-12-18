@@ -58,6 +58,33 @@
 			}
 		});
 	});
+	
+	function nullCheck() {
+		var _cTitle = $("#cTitle").val();
+		var _basicPrice = $("#basicPrice").val();
+		var _cField = $("#cField").val();
+		var _tool = $("#tool").val();
+		var _cContents = $("#cContents").val();
+
+		if (_cTitle == "") {
+			alert("제목을 입력하세요");
+			$('#coachWrite').attr('onSubmit', "return false;");
+		} else if (_basicPrice == "") {
+			alert("가격을 입력하세요");
+			$('#coachWrite').attr('onSubmit', "return false;");
+		} else if (_cField == "-- 선택 --") {
+			alert("영역을 선택하세요");
+			$('#coachWrite').attr('onSubmit', "return false;");
+		} else if (_tool == "-- 선택 --") {
+			alert("개발툴을 선택하세요");
+			$('#coachWrite').attr('onSubmit', "return false;");
+		} else if (_cContents == "") {
+			alert("내용을 입력하세요");
+			$('#coachWrite').attr('onSubmit', "return false;");
+		} else {
+			$('#coachWrite').removeAttr('onSubmit');
+		}
+	}
 </script>
 <title>CoCoa</title>
 </head>
@@ -67,7 +94,7 @@
 	<jsp:include page="../header.jsp"></jsp:include>
 
 	<!-- 코칭 글 작성 -->
-	<form name="coachWriteForm" method="post"
+	<form name="coachWriteForm" method="post" id="coachWrite"
 		action="${contextPath}/coachWrite" enctype="multipart/form-data">
 		<section class="py-5">
 			<div class="container main-secction">
@@ -84,7 +111,7 @@
 								<br> <br> <img name="proImg"
 									src="${contextPath}/downProfileImg?id=${member.id}"
 									style="border: 1px solid;" width="50%" height="120px"
-									onerror="this.src='resources/image/kakao.png'"><br>
+									onerror="this.src='resources/image/onerror.png'"><br>
 								<br>
 
 								<!-- coach -->
@@ -101,7 +128,7 @@
 
 						<!-- cImg -->
 						<div align="center">
-							<br> <img id="preview" src="resources/image/sample.png"
+							<br> <img id="preview" src="resources/image/onerror.png"
 								width=100% height=300 style="border: 1px solid;" /><br> <br>
 							<label class="btn btn-outline-dark" for="cImg"> 대표 이미지 변경
 							</label><input type="file" id="cImg" name="cImg"
@@ -113,12 +140,12 @@
 
 							<!-- cTitle 입력 -->
 							<hr>
-							<input name="cTitle" type="text" placeholder="제목을 입력하세요."
+							<input name="cTitle" type="text" placeholder="제목을 입력하세요." id="cTitle"
 								style="border: 1; text-align: center; width: 100%;">
 							<hr>
 
 							<!-- basicPrice 입력 -->
-							요금 : <input name="basicPrice" type="number"
+							요금 : <input name="basicPrice" type="number" id="basicPrice"
 								placeholder="요금을 입력하세요." style="border: 1; width: 30%;">&nbsp;<b>원</b>
 							<hr>
 
@@ -133,7 +160,7 @@
 							<hr>
 
 							<!-- tool 선택 -->
-							개발툴 : <select style="text-align: center; width: 30%;" name="tool">
+							개발툴 : <select style="text-align: center; width: 30%;" id="tool"name="tool">
 								<option id="empty">-- 선택 --</option>
 
 								<option id="tool1" value="tool1" hidden>Spring</option>
@@ -151,14 +178,14 @@
 							<!-- textarea 닫아주는거 붙여써야함 -->
 							세부 내용 : <br>
 							<textarea name="cContents" rows="10" cols="20"
-								placeholder="요금 측정 기준 및 본인 PR을 해주세요."
+								placeholder="요금 측정 기준 및 본인 PR을 해주세요.공백 포함 2000자를 넘을수 없습니다." id="cContents"
 								style="border: 1; width: 100%; resize: none;"></textarea>
 							<hr>
 						</div>
 
 						<!-- 작성(submit) + 취소(버튼) -->
 						<div class="card-body" style="text-align: center">
-							<input type="submit" class="btn btn-outline-dark" value="등록" />
+							<input type="submit" onclick="nullCheck()" class="btn btn-outline-dark" value="등록" />
 							&nbsp; <a href="/cocoa/view_coachCate"
 								class="btn btn-outline-dark">취소</a>
 						</div>

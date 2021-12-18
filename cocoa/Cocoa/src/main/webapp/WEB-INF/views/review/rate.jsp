@@ -14,6 +14,21 @@ th, td {
 	color: black;
 }
 </style>
+<script type="text/javascript">
+function nullCheck() {
+	var _rate = $("#rate").val();
+	var _rContents = $("#rContents").val();
+	if (_rate == "") {
+		alert("평점을 선택하세요");
+		$('#reviewWrite').attr('onSubmit', "return false;");
+	} else if (_rContents == "") {
+		alert("한줄평을 작성하세요");
+		$('#reviewWrite').attr('onSubmit', "return false;");
+	} else {
+		$('#reviewWrite').removeAttr('onSubmit');
+	}
+}
+</script>
 <title>CoCoa</title>
 </head>
 <body style="background-color: #FFEBCD">
@@ -22,7 +37,7 @@ th, td {
 	<!-- 후기 작성 -->
 	<div class="card rcol my-5"
 		style="text-align: center; background-color: #FFEBCD; border: none; width: 80vw; height: 90vh;">
-		<form action="${contextPath}/reviewWrite" method="post"
+		<form action="${contextPath}/reviewWrite" method="post" id="reviewWrite"
 			enctype="multipart/form-data">
 			<table
 				style="width: 50%; margin: 0 auto; border: 1px solid grey; background-color: #FFCC99; color: black;">
@@ -37,11 +52,11 @@ th, td {
 					<td style="text-align: center; width: 15%; vertical-align: top;"><br>
 						<br> <b>평 점</b></td>
 					<td style="text-align: left; font-size: 20px;"><br> <input
-						type="radio" name="rate" value=5> ★ ★ ★ ★ ★ <br> <input
-						type="radio" name="rate" value=4> ★ ★ ★ ★ <br> <input
-						type="radio" name="rate" value=3> ★ ★ ★ <br> <input
-						type="radio" name="rate" value=2> ★ ★ <br> <input
-						type="radio" name="rate" value=1> ★ <br> <br></td>
+						type="radio" id="rate" name="rate" value=5> ★ ★ ★ ★ ★ <br> <input
+						type="radio" id="rate" name="rate" value=4> ★ ★ ★ ★ <br> <input
+						type="radio" id="rate" name="rate" value=3> ★ ★ ★ <br> <input
+						type="radio" id="rate" name="rate" value=2> ★ ★ <br> <input
+						type="radio" id="rate" name="rate" value=1> ★ <br> <br></td>
 				</tr>
 
 				<!-- review -->
@@ -62,7 +77,7 @@ th, td {
 				<!-- 작성, 취소 -->
 				<tr>
 					<td align="center" colspan="2"><br> <input type="submit"
-						id="del" class="btn btn-outline-dark"
+						id="del" class="btn btn-outline-dark" onclick="nullCheck()"
 						style="background-color: white; color: black;"
 						onmouseover="this.style.color='white'; this.style.backgroundColor='black';"
 						onmouseout="this.style.color='black'; this.style.backgroundColor='white';"

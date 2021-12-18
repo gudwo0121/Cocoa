@@ -62,7 +62,7 @@ request.setCharacterEncoding("UTF-8");
 								value="${profileId.proImg }" /> <img id="preview"
 								src="${contextPath}/downProfileImg?id=${profileId.id}"
 								style="border: 1px solid;" width="70%" height="120px"
-								onerror="this.src='resources/image/sample.png'" /> <br> <br>
+								onerror="this.src='resources/image/onerror.png'" /> <br> <br>
 							<label class="btn btn-outline-dark" for="proImg" id="proImgMod">대표
 								이미지 변경 </label> <input type="file" id="proImg" name="proImg"
 								onchange="readURL(this);" style="display: none;" />
@@ -88,7 +88,7 @@ request.setCharacterEncoding("UTF-8");
 						<!-- textarea 닫아주는거 붙여써야함 -->
 						<br> <b>소개 및 경력 :</b> <br> <br>
 						<textarea name="proContents" rows="20" cols="20" id="proContents"
-							disabled
+							disabled placeholder="소개글은 공백 포함 2000자를 넘을 수 없습니다."
 							style="border: 1px solid; background-color: #FFCC99; width: 100%; color: black; resize: none;">${profileId.proContents}</textarea>
 						<hr>
 					</div>

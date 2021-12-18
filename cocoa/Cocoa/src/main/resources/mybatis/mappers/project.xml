@@ -19,8 +19,8 @@
 	<!-- 프로젝트 글 추가 -->
 	<insert id="insertNewProject" parameterType="java.util.Map">
 		<![CDATA[
-		 insert into projectTBL
-		 values(#{projectNO}, #{leader}, #{pImg}, #{pTitle}, #{memberCount}, #{pField}, #{level}, #{pContents}, #{map}, #{kakao})
+			insert into projectTBL
+			values(#{projectNO}, #{leader}, #{pImg}, #{pTitle}, #{memberCount}, #{pField}, #{level}, #{pContents}, #{map}, #{kakao})
 		]]>
 	</insert>
 
@@ -65,6 +65,7 @@
 	<update id="updateProject" parameterType="java.util.Map">
 		update projectTBL
 		set pTitle=#{pTitle},
+		map=#{map},
 		pContents=#{pContents}
 		<if test="pField!=''">
 			, pField=#{pField}
