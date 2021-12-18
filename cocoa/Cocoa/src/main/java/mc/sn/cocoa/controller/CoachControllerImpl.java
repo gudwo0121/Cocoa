@@ -38,7 +38,7 @@ import net.coobird.thumbnailator.Thumbnails;
 public class CoachControllerImpl implements CoachController {
 
 	// 업로드, 다운로드되는 경로
-	private static final String COACH_IMAGE_REPO = "C:\\cocoa\\coach_image";
+	private static final String COACH_IMAGE_REPO = "/opt/cocoa/image/coach_img";
 	@Autowired
 	private CoachService coachService;
 	@Autowired
@@ -158,8 +158,8 @@ public class CoachControllerImpl implements CoachController {
 			// 삭제 로직 짤때 고려해야함
 			int coachNO = coachService.addNewCoach(coachMap);
 			if (cImg != null && cImg.length() != 0) {
-				File srcFile = new File(COACH_IMAGE_REPO + "\\" + "temp" + "\\" + cImg);
-				File destDir = new File(COACH_IMAGE_REPO + "\\" + id + "\\" + coachNO);
+				File srcFile = new File(COACH_IMAGE_REPO + "/" + "temp" + "/" + cImg);
+				File destDir = new File(COACH_IMAGE_REPO + "/" + id + "/" + coachNO);
 				FileUtils.moveFileToDirectory(srcFile, destDir, true);
 			}
 
@@ -172,7 +172,7 @@ public class CoachControllerImpl implements CoachController {
 		} catch (Exception e) {
 
 			// 예외발생시 취소 및 삭제
-			File srcFile = new File(COACH_IMAGE_REPO + "\\" + "temp" + "\\" + cImg);
+			File srcFile = new File(COACH_IMAGE_REPO + "/" + "temp" + "/" + cImg);
 			srcFile.delete();
 
 			message = " <script>";
@@ -194,14 +194,14 @@ public class CoachControllerImpl implements CoachController {
 			String fileName = fileNames.next();
 			MultipartFile mFile = multipartRequest.getFile(fileName);
 			cImg = mFile.getOriginalFilename();
-			File file = new File(COACH_IMAGE_REPO + "\\" + "temp" + "\\" + fileName);
+			File file = new File(COACH_IMAGE_REPO + "/" + "temp" + "/" + fileName);
 			if (mFile.getSize() != 0) {
 				if (!file.exists()) {
 					if (file.getParentFile().mkdirs()) {
 						file.createNewFile();
 					}
 				}
-				mFile.transferTo(new File(COACH_IMAGE_REPO + "\\" + "temp" + "\\" + cImg));
+				mFile.transferTo(new File(COACH_IMAGE_REPO + "/" + "temp" + "/" + cImg));
 			}
 		}
 		return cImg;
@@ -213,7 +213,7 @@ public class CoachControllerImpl implements CoachController {
 	public void download(@RequestParam("cImg") String cImg, @RequestParam("coach") String coach,
 			@RequestParam("coachNO") int coachNO, HttpServletResponse response) throws Exception {
 		OutputStream out = response.getOutputStream();
-		String downFile = COACH_IMAGE_REPO + "\\" + coach + "\\" + coachNO + "\\" + cImg;
+		String downFile = COACH_IMAGE_REPO + "/" + coach + "/" + coachNO + "/" + cImg;
 		File file = new File(downFile);
 
 		if (file.exists()) {
@@ -246,7 +246,7 @@ public class CoachControllerImpl implements CoachController {
 			@RequestParam("coachNO") String coachNO, HttpServletResponse response) throws Exception {
 		OutputStream out = response.getOutputStream();
 		// 파일 경로
-		String filePath = COACH_IMAGE_REPO + "\\" + coach + "\\" + coachNO + "\\" + cImg;
+		String filePath = COACH_IMAGE_REPO + "/" + coach + "/" + coachNO + "/" + cImg;
 		File image = new File(filePath);
 
 		if (image.exists()) {
@@ -290,11 +290,11 @@ public class CoachControllerImpl implements CoachController {
 			if (cImg != null && cImg.length() != 0) {
 
 				String originalFileName = (String) coachMap.get("originalFileName");
-				File oldFile = new File(COACH_IMAGE_REPO + "\\" + coach + "\\" + coachNO + "\\" + originalFileName);
+				File oldFile = new File(COACH_IMAGE_REPO + "/" + coach + "/" + coachNO + "/" + originalFileName);
 				oldFile.delete();
 
-				File srcFile = new File(COACH_IMAGE_REPO + "\\" + "temp" + "\\" + cImg);
-				File destDir = new File(COACH_IMAGE_REPO + "\\" + coach + "\\" + coachNO);
+				File srcFile = new File(COACH_IMAGE_REPO + "/" + "temp" + "/" + cImg);
+				File destDir = new File(COACH_IMAGE_REPO + "/" + coach + "/" + coachNO);
 				FileUtils.moveFileToDirectory(srcFile, destDir, true);
 			}
 			message = "<script>";
@@ -305,7 +305,7 @@ public class CoachControllerImpl implements CoachController {
 
 		} catch (Exception e) {
 			// 예외발생시 취소 및 삭제
-			File srcFile = new File(COACH_IMAGE_REPO + "\\" + "temp" + "\\" + cImg);
+			File srcFile = new File(COACH_IMAGE_REPO + "/" + "temp" + "/" + cImg);
 			srcFile.delete();
 
 			message = " <script>";
@@ -330,7 +330,7 @@ public class CoachControllerImpl implements CoachController {
 		responseHeaders.add("Content-Type", "text/html; charset=utf-8");
 		try {
 			coachService.removeCoach(coachNO);
-			File destDir = new File(COACH_IMAGE_REPO + "\\" + coach + "\\" + coachNO);
+			File destDir = new File(COACH_IMAGE_REPO + "/" + coach + "/" + coachNO);
 			FileUtils.deleteDirectory(destDir);
 
 			message = "<script>";

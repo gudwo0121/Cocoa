@@ -84,7 +84,7 @@
 								<br> <br> <img name="proImg"
 									src="${contextPath}/downProfileImg?id=${member.id}"
 									style="border: 1px solid;" width="50%" height="120px"
-									onerror="this.src='resources/image/kakao.png'"><br>
+									onerror="this.src='resources/image/onerror.png'"><br>
 								<br>
 
 								<!-- coach -->
@@ -101,7 +101,7 @@
 
 						<!-- cImg -->
 						<div align="center">
-							<br> <img id="preview" src="resources/image/sample.png"
+							<br> <img id="preview" src="resources/image/onerror.png"
 								width=100% height=300 style="border: 1px solid;" /><br> <br>
 							<label class="btn btn-outline-dark" for="cImg"> 대표 이미지 변경
 							</label><input type="file" id="cImg" name="cImg"

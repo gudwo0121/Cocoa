@@ -8,6 +8,8 @@
 <meta charset="UTF-8">
 <link href="resources/css/styles.css" rel="stylesheet" />
 <script type="text/javascript" src="resources/js/jquery-3.6.0.min.js"></script>
+<script type="text/javascript"
+	src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=ba36jg1kum"></script>
 <script type="text/javascript">
 	function readURL(input) {
 
@@ -20,6 +22,43 @@
 			reader.readAsDataURL(input.files[0]);
 		}
 	}
+
+	$(document).ready(function() {
+		
+		// 맵 geoCode
+		$('#sendMark').click(function() {
+			event.preventDefault();
+			$.ajax({
+				type : "get",
+				url : "/cocoa/map",
+				contentType : "application/json",
+				data : {
+					"addr" : $("#addr").val()
+				},
+				success : function(data, textStatus) {
+					resultText = JSON.parse(data);
+					var lang1 = resultText.addresses[0].x;
+					var lat1 = resultText.addresses[0].y;
+					var mapOptions = {
+						center : new naver.maps.LatLng(lat1, lang1),
+						zoom : 15
+					};
+					var map = new naver.maps.Map('map', mapOptions);
+					var marker = new naver.maps.Marker({
+						position : new naver.maps.LatLng(lat1, lang1),
+						map : map
+					});
+				},
+				error : function(data, textStatus) {
+					alert("에러가! 발생했습니다.");
+				},
+				complete : function(data, textStatus) {
+
+				}
+			});
+
+		});
+	});
 </script>
 <title>CoCoa</title>
 </head>
@@ -46,7 +85,7 @@
 								<br> <br> <img name="proImg"
 									src="${contextPath}/downProfileImg?id=${member.id}"
 									style="border: 1px solid;" width="50%" height="120px"
-									onerror="this.src='resources/image/kakao.png'"><br>
+									onerror="this.src='resources/image/onerror.png'"><br>
 								<br>
 
 								<!-- leader -->
@@ -69,7 +108,7 @@
 
 						<!-- pImg -->
 						<div align="center">
-							<br> <img id="preview" src="resources/image/sample.png"
+							<br> <img id="preview" src="resources/image/onerror.png"
 								width=100% height=300 style="border: 1px solid;" /><br> <br>
 							<label class="btn btn-outline-dark" for="pImg"> 대표 이미지 변경
 							</label><input type="file" id="pImg" name="pImg"
@@ -118,9 +157,12 @@
 								style="border: 1; width: 100%; resize: none;"></textarea>
 							<hr>
 
-							<!-- map (일단비워둠) -->
-							<div style="text-align: center;">이곳은 맵 공간입니다.</div>
+							장소 : <input type="text" name="map" id="addr" size="30"
+								placeholder='원하는 장소를 입력해주세요.'> <input type="button"
+								name="send" id="sendMark" value="검색"><br>
+							<div id="map" style="width: 100%; height: 400px;"></div>
 							<hr>
+
 						</div>
 
 						<!-- 작성(submit) + 취소(버튼) -->

@@ -41,7 +41,7 @@ import net.coobird.thumbnailator.Thumbnails;
 public class RequestControllerImpl implements RequestController {
 
 	// 파일 저장 경로
-	private static final String request_IMAGE_REPO = "C:\\cocoa\\request_image";
+	private static final String request_IMAGE_REPO = "/opt/cocoa/image/request_image";
 
 	@Autowired
 	private RequestService requestService;
@@ -95,8 +95,8 @@ public class RequestControllerImpl implements RequestController {
 			int reqNO = requestService.sendRequest(reqMap);
 			// temp 폴더에 있던 다운로드 파일을 요청글 넘버로 폴더 생성하여 이동
 			if (rImg != null && rImg.length() != 0) {
-				File srcFile = new File(request_IMAGE_REPO + "\\" + "temp" + "\\" + rImg);
-				File destDir = new File(request_IMAGE_REPO + "\\" + reqNO);
+				File srcFile = new File(request_IMAGE_REPO + "/" + "temp" + "/" + rImg);
+				File destDir = new File(request_IMAGE_REPO + "/" + reqNO);
 				FileUtils.moveFileToDirectory(srcFile, destDir, true);
 			}
 			// insert 성공시 메시지창 뜨고 홈화면으로 이동
@@ -109,7 +109,7 @@ public class RequestControllerImpl implements RequestController {
 		} catch (Exception e) {
 
 			// 예외발생시 취소 및 삭제
-			File srcFile = new File(request_IMAGE_REPO + "\\" + "temp" + "\\" + rImg);
+			File srcFile = new File(request_IMAGE_REPO + "/" + "temp" + "/" + rImg);
 			srcFile.delete();
 
 			message = " <script>";
@@ -135,7 +135,7 @@ public class RequestControllerImpl implements RequestController {
 			MultipartFile mFile = multipartRequest.getFile(fileName);
 			rImg = mFile.getOriginalFilename();
 
-			File file = new File(request_IMAGE_REPO + "\\" + "temp" + "\\" + fileName);
+			File file = new File(request_IMAGE_REPO + "/" + "temp" + "/" + fileName);
 
 			if (mFile.getSize() != 0) {
 				if (!file.exists()) {
@@ -143,7 +143,7 @@ public class RequestControllerImpl implements RequestController {
 						file.createNewFile();
 					}
 				}
-				mFile.transferTo(new File(request_IMAGE_REPO + "\\" + "temp" + "\\" + rImg));
+				mFile.transferTo(new File(request_IMAGE_REPO + "/" + "temp" + "/" + rImg));
 			}
 		}
 		return rImg;
@@ -247,7 +247,7 @@ public class RequestControllerImpl implements RequestController {
 		OutputStream out = response.getOutputStream();
 		RequestVO vo = requestService.searchRequest(reqNO);
 		String rImg = vo.getrImg();
-		String filePath = request_IMAGE_REPO + "\\" + reqNO + "\\" + rImg;
+		String filePath = request_IMAGE_REPO + "/" + reqNO + "/" + rImg;
 		File image = new File(filePath);
 
 		if (image.exists()) {
@@ -286,11 +286,11 @@ public class RequestControllerImpl implements RequestController {
 			requestService.modRequest(requestMap);
 			if (rImg != null && rImg.length() != 0) {
 				String originalFileName = (String) requestMap.get("originalFileName");
-				File oldFile = new File(request_IMAGE_REPO + "\\" + reqNO + "\\" + originalFileName);
+				File oldFile = new File(request_IMAGE_REPO + "/" + reqNO + "/" + originalFileName);
 				oldFile.delete();
 
-				File srcFile = new File(request_IMAGE_REPO + "\\" + "temp" + "\\" + rImg);
-				File destDir = new File(request_IMAGE_REPO + "\\" + reqNO);
+				File srcFile = new File(request_IMAGE_REPO + "/" + "temp" + "/" + rImg);
+				File destDir = new File(request_IMAGE_REPO + "/" + reqNO);
 				FileUtils.moveFileToDirectory(srcFile, destDir, true);
 			}
 			message = "<script>";
@@ -301,7 +301,7 @@ public class RequestControllerImpl implements RequestController {
 			resEnt = new ResponseEntity(message, responseHeaders, HttpStatus.CREATED);
 		} catch (Exception e) {
 			// 예외발생시 취소 및 삭제
-			File srcFile = new File(request_IMAGE_REPO + "\\" + "temp" + "\\" + rImg);
+			File srcFile = new File(request_IMAGE_REPO + "/" + "temp" + "/" + rImg);
 			srcFile.delete();
 
 			message = " <script>";
@@ -327,7 +327,7 @@ public class RequestControllerImpl implements RequestController {
 		responseHeaders.add("Content-Type", "text/html; charset=utf-8");
 		try {
 			requestService.removeRequest(reqNO);
-			File destDir = new File(request_IMAGE_REPO + "\\" + reqNO);
+			File destDir = new File(request_IMAGE_REPO + "/" + reqNO);
 			FileUtils.deleteDirectory(destDir);
 
 			message = "<script>";
@@ -355,7 +355,7 @@ public class RequestControllerImpl implements RequestController {
 		RequestVO vo = requestService.searchRequest(reqNO);
 		String rImg = vo.getrImg();
 		OutputStream out = response.getOutputStream();
-		String downFile = request_IMAGE_REPO + "\\" + reqNO + "\\" + rImg;
+		String downFile = request_IMAGE_REPO + "/" + reqNO + "/" + rImg;
 		File file = new File(downFile);
 		rImg = URLEncoder.encode(rImg, "UTF-8");
 

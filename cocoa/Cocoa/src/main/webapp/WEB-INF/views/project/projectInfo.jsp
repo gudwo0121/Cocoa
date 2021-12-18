@@ -64,8 +64,9 @@
 
 								<!-- 후기 조회 이동 -->
 								<br> <span style="float: right;"> <a
-									href="/cocoa/view_reviewInfo?target=${projectInfo.leader}"> <input type="button"
-										name="view_reviewInfo" value="후 기" class="btn btn-third-dark"
+									href="/cocoa/view_reviewInfo?target=${projectInfo.leader}">
+										<input type="button" name="view_reviewInfo" value="후 기"
+										class="btn btn-third-dark"
 										style="font-size: 13px; border-radius: 12px;">
 								</a>
 								</span>
@@ -75,7 +76,7 @@
 									href="/cocoa/view_profileInfo?profileId=${projectInfo.leader}">
 									<img name="proImg"
 									src="${contextPath}/downProfileImg?id=${projectInfo.leader }"
-									onerror="this.src='resources/image/kakao.png'"
+									onerror="this.src='resources/image/onerror.png'"
 									style="border: 1px solid black;" width="50%" height="120px"><br>
 									<br>
 								</a>
@@ -154,7 +155,7 @@
 								style="border: 0; width: 5%; text-align: center; background-color: #FFCC99; font-weight: 700; color: black;">
 							<b>명</b>
 							<hr>
-							
+
 							<!-- pField 표시 -->
 							영역 : <select
 								style="border: 0; text-align: center; width: 15%; background-color: #FFCC99; font-weight: 700; color: black;"
@@ -204,7 +205,9 @@
 							<!-- 수정 확인 -->
 							<div align="center">
 								<input type="submit" value="확 인" class="btn btn-outline-dark"
-									id="p_modBtn"><br> <br>
+									id="p_modBtn">&nbsp;&nbsp;<input type=button
+									value="목록으로" class="btn btn-outline-dark"
+									onClick="history.back()" id="goBack"><br> <br>
 							</div>
 						</div>
 					</div>

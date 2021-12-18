@@ -17,7 +17,6 @@ public class RequestVO {
 	private String status;
 	private int realPrice;
 	private String contact;
-	private String pay;
 	private String reason;
 
 	public RequestVO() {
@@ -25,7 +24,7 @@ public class RequestVO {
 	}
 
 	public RequestVO(int reqNO, String req, String res, String rTitle, String rContents, Timestamp rDate, String rImg,
-			String status, int realPrice, String contact, String pay, String reason) {
+			String status, int realPrice, String contact, String reason) {
 		super();
 		this.reqNO = reqNO;
 		this.req = req;
@@ -37,7 +36,6 @@ public class RequestVO {
 		this.status = status;
 		this.realPrice = realPrice;
 		this.contact = contact;
-		this.pay = pay;
 		this.reason = reason;
 	}
 
@@ -119,14 +117,6 @@ public class RequestVO {
 
 	public void setContact(String contact) {
 		this.contact = contact;
-	}
-
-	public String getPay() {
-		return pay;
-	}
-
-	public void setPay(String pay) {
-		this.pay = pay;
 	}
 
 	public String getReason() {

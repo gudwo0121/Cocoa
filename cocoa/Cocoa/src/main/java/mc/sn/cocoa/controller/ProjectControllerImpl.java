@@ -1,6 +1,7 @@
 package mc.sn.cocoa.controller;
 
 import java.io.File;
+import java.io.IOException;
 import java.io.OutputStream;
 import java.io.UnsupportedEncodingException;
 import java.util.Enumeration;
@@ -39,7 +40,7 @@ import net.coobird.thumbnailator.Thumbnails;
 public class ProjectControllerImpl implements ProjectController {
 
 	// 저장되는 경로
-	private static final String project_IMAGE_REPO = "C:\\cocoa\\project_image";
+	private static final String project_IMAGE_REPO = "/opt/cocoa/image/project_image";
 	@Autowired
 	private ProjectService projectService;
 	@Autowired
@@ -88,7 +89,7 @@ public class ProjectControllerImpl implements ProjectController {
 
 		// mav에 reAvg 키값으로 reAvgMap 밸류 값을 저장
 		mav.addObject("reAvg", reAvgMap);
-		
+
 		// mav에 reCount 키값으로 reCountMap 밸류 값을 저장
 		mav.addObject("reCount", reCountMap);
 
@@ -177,8 +178,8 @@ public class ProjectControllerImpl implements ProjectController {
 			// 삭제 로직 짤때 고려해야함
 			int projectNO = projectService.addNewProject(projectMap);
 			if (pImg != null && pImg.length() != 0) {
-				File srcFile = new File(project_IMAGE_REPO + "\\" + "temp" + "\\" + pImg);
-				File destDir = new File(project_IMAGE_REPO + "\\" + id + "\\" + projectNO);
+				File srcFile = new File(project_IMAGE_REPO + "/" + "temp" + "/" + pImg);
+				File destDir = new File(project_IMAGE_REPO + "/" + id + "/" + projectNO);
 				FileUtils.moveFileToDirectory(srcFile, destDir, true);
 			}
 
@@ -190,7 +191,7 @@ public class ProjectControllerImpl implements ProjectController {
 
 		} catch (Exception e) {
 			// 예외발생시 취소 및 삭제
-			File srcFile = new File(project_IMAGE_REPO + "\\" + "temp" + "\\" + pImg);
+			File srcFile = new File(project_IMAGE_REPO + "/" + "temp" + "/" + pImg);
 			srcFile.delete();
 
 			message = " <script>";
@@ -217,7 +218,7 @@ public class ProjectControllerImpl implements ProjectController {
 		responseHeaders.add("Content-Type", "text/html; charset=utf-8");
 		try {
 			projectService.removeProject(projectNO);
-			File destDir = new File(project_IMAGE_REPO + "\\" + id + "\\" + projectNO);
+			File destDir = new File(project_IMAGE_REPO + "/" + id + "/" + projectNO);
 			FileUtils.deleteDirectory(destDir);
 
 			message = "<script>";
@@ -250,7 +251,7 @@ public class ProjectControllerImpl implements ProjectController {
 			MultipartFile mFile = multipartRequest.getFile(fileName);
 			pImg = mFile.getOriginalFilename();
 
-			File file = new File(project_IMAGE_REPO + "\\" + "temp" + "\\" + fileName);
+			File file = new File(project_IMAGE_REPO + "/" + "temp" + "/" + fileName);
 
 			if (mFile.getSize() != 0) {
 				if (!file.exists()) {
@@ -258,7 +259,7 @@ public class ProjectControllerImpl implements ProjectController {
 						file.createNewFile();
 					}
 				}
-				mFile.transferTo(new File(project_IMAGE_REPO + "\\" + "temp" + "\\" + pImg));
+				mFile.transferTo(new File(project_IMAGE_REPO + "/" + "temp" + "/" + pImg));
 			}
 		}
 		return pImg;
@@ -271,7 +272,7 @@ public class ProjectControllerImpl implements ProjectController {
 			@RequestParam("projectNO") String projectNO, HttpServletResponse response) throws Exception {
 		OutputStream out = response.getOutputStream();
 		// 파일 경로
-		String filePath = project_IMAGE_REPO + "\\" + leader + "\\" + projectNO + "\\" + pImg;
+		String filePath = project_IMAGE_REPO + "/" + leader + "/" + projectNO + "/" + pImg;
 		File image = new File(filePath);
 
 		if (image.exists()) {
@@ -289,7 +290,7 @@ public class ProjectControllerImpl implements ProjectController {
 	protected void download(@RequestParam("pImg") String pImg, @RequestParam("leader") String leader,
 			@RequestParam("projectNO") String projectNO, HttpServletResponse response) throws Exception {
 		OutputStream out = response.getOutputStream();
-		String filePath = project_IMAGE_REPO + "\\" + leader + "\\" + projectNO + "\\" + pImg;
+		String filePath = project_IMAGE_REPO + "/" + leader + "/" + projectNO + "/" + pImg;
 		File image = new File(filePath);
 
 		if (image.exists()) {
@@ -331,12 +332,11 @@ public class ProjectControllerImpl implements ProjectController {
 			projectService.modProject(projectMap);
 			if (pImg != null && pImg.length() != 0) {
 				String originalFileName = (String) projectMap.get("originalFileName");
-				File oldFile = new File(
-						project_IMAGE_REPO + "\\" + leader + "\\" + projectNO + "\\" + originalFileName);
+				File oldFile = new File(project_IMAGE_REPO + "/" + leader + "/" + projectNO + "/" + originalFileName);
 				oldFile.delete();
 
-				File srcFile = new File(project_IMAGE_REPO + "\\" + "temp" + "\\" + pImg);
-				File destDir = new File(project_IMAGE_REPO + "\\" + leader + "\\" + projectNO);
+				File srcFile = new File(project_IMAGE_REPO + "/" + "temp" + "/" + pImg);
+				File destDir = new File(project_IMAGE_REPO + "/" + leader + "/" + projectNO);
 				FileUtils.moveFileToDirectory(srcFile, destDir, true);
 			}
 			message = "<script>";
@@ -346,7 +346,7 @@ public class ProjectControllerImpl implements ProjectController {
 			resEnt = new ResponseEntity(message, responseHeaders, HttpStatus.CREATED);
 		} catch (Exception e) {
 			// 예외발생시 취소 및 삭제
-			File srcFile = new File(project_IMAGE_REPO + "\\" + "temp" + "\\" + pImg);
+			File srcFile = new File(project_IMAGE_REPO + "/" + "temp" + "/" + pImg);
 			srcFile.delete();
 
 			message = " <script>";
@@ -356,5 +356,17 @@ public class ProjectControllerImpl implements ProjectController {
 			resEnt = new ResponseEntity(message, responseHeaders, HttpStatus.CREATED);
 		}
 		return resEnt;
+	}
+
+	// 맵 정보 추가
+	@Override
+	@ResponseBody
+	@RequestMapping(value = "/map", method = RequestMethod.GET, produces = "application/text; charset=UTF-8")
+	public void getGeo(HttpServletRequest req, HttpServletResponse res) throws IOException {
+		req.setCharacterEncoding("utf-8");
+		String addr = req.getParameter("addr");
+		res.setContentType("text/text; charset=utf-8");
+		String result = projectService.geocode(addr);
+		res.getWriter().print(result);
 	}
 }

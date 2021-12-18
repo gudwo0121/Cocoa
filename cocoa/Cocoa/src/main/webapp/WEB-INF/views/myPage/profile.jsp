@@ -62,7 +62,7 @@ request.setCharacterEncoding("UTF-8");
 								value="${profileId.proImg }" /> <img id="preview"
 								src="${contextPath}/downProfileImg?id=${profileId.id}"
 								style="border: 1px solid;" width="70%" height="120px"
-								onerror="this.src='resources/image/sample.png'" /> <br> <br>
+								onerror="this.src='resources/image/onerror.png'" /> <br> <br>
 							<label class="btn btn-outline-dark" for="proImg" id="proImgMod">대표
 								이미지 변경 </label> <input type="file" id="proImg" name="proImg"
 								onchange="readURL(this);" style="display: none;" />

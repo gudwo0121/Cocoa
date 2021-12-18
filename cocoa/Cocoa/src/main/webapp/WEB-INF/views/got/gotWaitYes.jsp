@@ -36,7 +36,8 @@ th, td {
 					<td style=""><br> <input type="text" id="" name="contact"
 						class="form-control" value="" placeholder="연결수단의 링크를 입력하세요."
 						style="width: 95%; background-color: #FFCC99; border: 1px solid black; color: black;">
-					</td>
+						<input type="hidden" name="reqNO" value="${reqNO}">
+						<input type="hidden" name="status" value="수락"></td>
 				</tr>
 
 				<!-- realPrice -->
