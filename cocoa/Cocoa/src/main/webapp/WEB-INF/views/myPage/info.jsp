@@ -28,6 +28,9 @@
 		if (_pwd1 == "" || _pwd2 == "") {
 			alert("비밀번호를 입력하세요");
 			$('#updateInfo').attr('onSubmit', "return false;");
+		} else if (_pwd1 != _pwd2) {
+			alert("비밀번호가 일치하지 않습니다");
+			$('#updateInfo').attr('onSubmit', "return false;");
 		} else if (_name == "") {
 			alert("이름(별명)을 입력하세요");
 			$('#updateInfo').attr('onSubmit', "return false;");
@@ -50,7 +53,7 @@
 			style="width: 80%; height: 100%; background-color: #FFCC99; border: 1px solid black;">
 
 			<h5 class="mb-2">
-				<b>회 원 정 보</b>
+				<b>회 원 정 보 &nbsp;&nbsp;수 정</b>
 			</h5>
 			<br>
 			<form id="updateInfo" action="${contextPath}/updateInfo"

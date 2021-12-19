@@ -16,7 +16,6 @@
 </style>
 <script type="text/javascript" src="resources/js/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
-
 	function readURL(input) {
 		if (input.files && input.files[0]) {
 			var reader = new FileReader();
@@ -30,7 +29,6 @@
 	$(document).ready(function() {
 		$('#sendReq').css('background-color', 'black');
 	});
-	
 </script>
 <title>CoCoa</title>
 </head>
@@ -52,16 +50,16 @@
 
 		<!-- 우측 내용 -->
 		<div class="col-sm-10">
-			<c:if test="${requestInfo.status eq '수락'}">
+			<c:if test="${requestInfo.status == 'status2'}">
 				<div id="main"><jsp:include page="sentYes.jsp"></jsp:include></div>
 			</c:if>
-			<c:if test="${requestInfo.status eq '대기'}">
+			<c:if test="${requestInfo.status == 'status1'}">
 				<div id="main"><jsp:include page="sentWait.jsp"></jsp:include></div>
 			</c:if>
-			<c:if test="${requestInfo.status eq '거절'}">
+			<c:if test="${requestInfo.status == 'status3'}">
 				<div id="main"><jsp:include page="sentNo.jsp"></jsp:include></div>
 			</c:if>
-			<c:if test="${requestInfo.status eq '완료'}">
+			<c:if test="${requestInfo.status == 'status4'}">
 				<div id="main"><jsp:include page="sentFin.jsp"></jsp:include></div>
 			</c:if>
 		</div>

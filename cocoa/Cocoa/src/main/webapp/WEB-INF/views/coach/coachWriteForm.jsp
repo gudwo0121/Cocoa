@@ -21,43 +21,54 @@
 		}
 	}
 
-	$(document).ready(function() {
+	// 영역 변경시 개발툴 초기화 셋팅
+	function categoryChange(e) {
+		var tool_cField1_value = [ "tool", "tool1", "tool2" ];
+		var tool_cField2_value = [ "tool", "tool3", "tool4" ];
+		var tool_cField3_value = [ "tool", "tool5", "tool6" ];
 
-		// 영역에 따른 툴 선택 제약 조건
-		$('#cField').change(function() {
-			var field = $('#cField').val();
+		var tool_cField1_out = [ "-- 선택 --", "Spring", "Django" ];
+		var tool_cField2_out = [ "-- 선택 --", "Android Studio", "Xcode" ];
+		var tool_cField3_out = [ "-- 선택 --", "Arduino", "Rasberry Pi" ];
+		var target = document.getElementById("tool");
 
-			if (field == 'cField1') {
-				$('#tool1').removeAttr('hidden');
-				$('#tool2').removeAttr('hidden');
-				$('#tool3').attr('hidden', '');
-				$('#tool4').attr('hidden', '');
-				$('#tool5').attr('hidden', '');
-				$('#tool6').attr('hidden', '');
-			} else if (field == 'cField2') {
-				$('#tool1').attr('hidden', '');
-				$('#tool2').attr('hidden', '');
-				$('#tool3').removeAttr('hidden');
-				$('#tool4').removeAttr('hidden');
-				$('#tool5').attr('hidden', '');
-				$('#tool6').attr('hidden', '');
-			} else if (field == 'cField3') {
-				$('#tool1').attr('hidden', '');
-				$('#tool2').attr('hidden', '');
-				$('#tool3').attr('hidden', '');
-				$('#tool4').attr('hidden', '');
-				$('#tool5').removeAttr('hidden');
-				$('#tool6').removeAttr('hidden');
-			} else {
-				$('#tool1').attr('hidden', '');
-				$('#tool2').attr('hidden', '');
-				$('#tool3').attr('hidden', '');
-				$('#tool4').attr('hidden', '');
-				$('#tool5').attr('hidden', '');
-				$('#tool6').attr('hidden', '');
-			}
-		});
-	});
+		if (e.value == "cField1") {
+			var v = tool_cField1_value;
+			var o = tool_cField1_out;
+		} else if (e.value == "cField2") {
+			var v = tool_cField2_value;
+			var o = tool_cField2_out;
+		} else if (e.value == "cField3") {
+			var v = tool_cField3_value;
+			var o = tool_cField3_out;
+		}
+
+		target.options.length = 0;
+
+		for (x in v, o) {
+			var opt = document.createElement("option");
+			opt.value = v[x];
+			opt.innerHTML = o[x];
+			target.appendChild(opt);
+		}
+	}
+
+	// 유효성 검증
+	function nullCheck() {
+		var _cTitle = $("#cTitle").val();
+		var _basicPrice = $("#basicPrice").val();
+		var _cField = $("#cField").val();
+		var _tool = $("#tool").val();
+		var _cContents = $("#cContents").val();
+
+		if (_cTitle == "" || _basicPrice == "" || _cField == "empty"
+				|| _tool == "tool" || _cContents == "") {
+			alert("빈칸없이 입력하세요");
+			$('#coachWrite').attr('onSubmit', "return false;");
+		} else {
+			$('#coachWrite').removeAttr('onSubmit');
+		}
+	}
 </script>
 <title>CoCoa</title>
 </head>
@@ -67,7 +78,7 @@
 	<jsp:include page="../header.jsp"></jsp:include>
 
 	<!-- 코칭 글 작성 -->
-	<form name="coachWriteForm" method="post"
+	<form name="coachWriteForm" method="post" id="coachWrite"
 		action="${contextPath}/coachWrite" enctype="multipart/form-data">
 		<section class="py-5">
 			<div class="container main-secction">
@@ -114,18 +125,18 @@
 							<!-- cTitle 입력 -->
 							<hr>
 							<input name="cTitle" type="text" placeholder="제목을 입력하세요."
-								style="border: 1; text-align: center; width: 100%;">
+								id="cTitle" style="border: 1; text-align: center; width: 100%;">
 							<hr>
 
 							<!-- basicPrice 입력 -->
-							요금 : <input name="basicPrice" type="number"
+							요금 : <input name="basicPrice" type="number" id="basicPrice"
 								placeholder="요금을 입력하세요." style="border: 1; width: 30%;">&nbsp;<b>원</b>
 							<hr>
 
 							<!-- cField 선택 -->
 							영역 : <select style="text-align: center; width: 30%;" id="cField"
-								name="cField">
-								<option id="empty">-- 선택 --</option>
+								name="cField" onchange="categoryChange(this)">
+								<option id="empty" value="empty">-- 선택 --</option>
 								<option id="cField1" value="cField1">Web</option>
 								<option id="cField2" value="cField2">Mobile App</option>
 								<option id="cField3" value="cField3">Embedded</option>
@@ -133,8 +144,9 @@
 							<hr>
 
 							<!-- tool 선택 -->
-							개발툴 : <select style="text-align: center; width: 30%;" name="tool">
-								<option id="empty">-- 선택 --</option>
+							개발툴 : <select style="text-align: center; width: 30%;" name="tool"
+								id="tool">
+								<option id="empty" value="empty">-- 선택 --</option>
 
 								<option id="tool1" value="tool1" hidden>Spring</option>
 								<option id="tool2" value="tool2" hidden>Django</option>
@@ -150,17 +162,17 @@
 							<!-- cContents 입력 -->
 							<!-- textarea 닫아주는거 붙여써야함 -->
 							세부 내용 : <br>
-							<textarea name="cContents" rows="10" cols="20"
-								placeholder="요금 측정 기준 및 본인 PR을 해주세요."
+							<textarea name="cContents" rows="10" cols="20" id="cContents"
+								placeholder="요금 측정 기준 및 본인 PR을 해주세요. (공백 포함 2000자 이내)"
 								style="border: 1; width: 100%; resize: none;"></textarea>
 							<hr>
 						</div>
 
 						<!-- 작성(submit) + 취소(버튼) -->
 						<div class="card-body" style="text-align: center">
-							<input type="submit" class="btn btn-outline-dark" value="등록" />
-							&nbsp; <a href="/cocoa/view_coachCate"
-								class="btn btn-outline-dark">취소</a>
+							<input type="submit" class="btn btn-outline-dark"
+								onClick="nullCheck()" value="등록" /> &nbsp; <a
+								href="/cocoa/view_coachCate" class="btn btn-outline-dark">취소</a>
 						</div>
 					</div>
 

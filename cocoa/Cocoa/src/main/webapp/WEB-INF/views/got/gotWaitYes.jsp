@@ -36,15 +36,15 @@ th, td {
 					<td style=""><br> <input type="text" id="" name="contact"
 						class="form-control" value="" placeholder="연결수단의 링크를 입력하세요."
 						style="width: 95%; background-color: #FFCC99; border: 1px solid black; color: black;">
-						<input type="hidden" name="reqNO" value="${reqNO}">
-						<input type="hidden" name="status" value="수락"></td>
+						<input type="hidden" name="reqNO" value="${reqNO}"> <input
+						type="hidden" name="status" value="status2"></td>
 				</tr>
 
 				<!-- realPrice -->
 				<tr>
 					<td style="text-align: center; width: 15%;"><b>요 금</b></td>
 					<td style=""><input type="number" id="" name="realPrice"
-						class="form-control" value="" placeholder="측정된 요금을 입력하세요."
+						class="form-control" value=""
 						style="width: 95%; background-color: #FFCC99; border: 1px solid black; color: black;">
 					</td>
 				</tr>

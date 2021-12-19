@@ -32,15 +32,13 @@
 							<br> <br> <a
 								href="/cocoa/view_profileInfo?profileId=${target}"> <img
 								name="proImg" src="${contextPath}/downProfileImg?id=${target}"
-								onerror="this.src='resources/image/kakao.png'"
+								onerror="this.src='resources/image/onerror.png'"
 								style="border: 1px solid black;" width="50%" height="120px"><br>
 								<br>
 							</a>
 
 							<!-- coach -->
-							<input type="text" name="coach" value="${target}" readonly
-								style="text-align: center; border: 0; font-weight: 700; background-color: #FFCCCC; width: 70%;">
-							<br> <br> <br>
+							<b>${target}</b> <br> <br> <br>
 						</div>
 					</div>
 				</div>
@@ -61,12 +59,8 @@
 								<!-- 후기 한 줄 -->
 								<c:forEach var="reviewInfo" items="${reviewList}">
 									<tr style="width: 100%;">
-										<td style="float: left;">작성자 : <input type="text"
-											readonly id="writer" name="writer"
-											value="${reviewInfo.writer}"
-											style="vertical-align: top; text-align: center; border: none; background-color: #FFEBCD; color: black;">
-											<input type="hidden" name="reviewNO"
-											value="${reviewInfo.reviewNO }" />
+										<td style="float: left;">작성자 : ${reviewInfo.writer} <input
+											type="hidden" name="reviewNO" value="${reviewInfo.reviewNO }" />
 										</td>
 										<td colspan="3" style="float: left; width: 250px">평점 : <c:choose>
 												<c:when test="${reviewInfo.rate == 1}">★</c:when>

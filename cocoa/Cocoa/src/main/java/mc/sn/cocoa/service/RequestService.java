@@ -24,9 +24,9 @@ public interface RequestService {
 
 	public int submitReqYes(RequestVO requestVO);
 
-	public int countSendRequest(String req) throws Exception;
+	public int countSendRequest(Criteria cri) throws Exception;
 
-	public int countReceiveRequest(String res) throws Exception;
+	public int countReceiveRequest(Criteria cri) throws Exception;
 
 	public void finishRequest(RequestVO vo);
 }

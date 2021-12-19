@@ -54,6 +54,7 @@ public class MemberDAOImpl implements MemberDAO {
 	public int deleteMember(String id) {
 		int result = 0;
 		result = sqlSession.delete("mapper.member.deleteMember", id);
+		sqlSession.insert("mapper.member.preserveId", id);
 		return result;
 	}
 }

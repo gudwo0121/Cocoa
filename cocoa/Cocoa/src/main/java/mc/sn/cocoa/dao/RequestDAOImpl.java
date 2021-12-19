@@ -85,14 +85,14 @@ public class RequestDAOImpl implements RequestDAO {
 
 	// 보낸 요청글 개수
 	@Override
-	public int countSendRequest(String req) throws DataAccessException {
-		return (Integer) sqlSession.selectOne("mapper.request.countSendRequest", req);
+	public int countSendRequest(Criteria cri) throws DataAccessException {
+		return (Integer) sqlSession.selectOne("mapper.request.countSendRequest", cri);
 	}
 
 	// 빋은 요청글 개수
 	@Override
-	public int countReceiveRequest(String res) throws DataAccessException {
-		return (Integer) sqlSession.selectOne("mapper.request.countReceiveRequest", res);
+	public int countReceiveRequest(Criteria cri) throws DataAccessException {
+		return (Integer) sqlSession.selectOne("mapper.request.countReceiveRequest", cri);
 	}
 
 	// 후기작성 후 완료 상태 변환

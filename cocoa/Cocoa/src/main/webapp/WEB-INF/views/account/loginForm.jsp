@@ -12,6 +12,23 @@
 <link href='https://use.fontawesome.com/releases/v5.7.2/css/all.css'
 	rel='stylesheet'>
 <link href="resources/css/login-styles.css" rel="stylesheet" />
+<script type="text/javascript" src="resources/js/jquery-3.6.0.min.js"></script>
+<script type="text/javascript">
+	function nullCheck() {
+		var _id = $("#id").val();
+		var _pwd = $("#pwd").val().replace(/\s/g, "");
+
+		if (_id == "") {
+			alert("아이디를 입력하세요");
+			$('#login').attr('onSubmit', "return false;");
+		} else if (_pwd == "") {
+			alert("비밀번호를 입력하세요");
+			$('#login').attr('onSubmit', "return false;");
+		} else {
+			$('#login').removeAttr('onSubmit');
+		}
+	}
+</script>
 <!-- 로그인 실패시 알림 -->
 <c:choose>
 	<c:when test="${result=='loginFailed'}">
@@ -27,7 +44,7 @@
 <body>
 
 	<!-- 로그인 -->
-	<form action="/cocoa/login" method="post">
+	<form action="/cocoa/login" method="post" id="login">
 		<div class="container">
 			<div class="card rcol py">
 				<h2 class="heading mt-5 mb-4" align="center">
@@ -40,17 +57,18 @@
 				<div class="fone mt-3">
 					<i class="fas fa-id-card"
 						style="color: black; padding-left: 10px; padding-top: 4px;"></i> <input
-						type="text" name="id" class="form-control"
+						type="text" name="id" class="form-control" id="id"
 						style="padding-left: 50px;" placeholder="ID">
 				</div>
 				<div class="fone mt-5">
 					<i class="fas fa-lock"
 						style="color: black; padding-left: 10px; padding-top: 4px;"></i> <input
-						type="password" name="pwd" class="form-control"
+						type="password" name="pwd" class="form-control" id="pwd"
 						style="padding-left: 50px;" placeholder="Password">
 				</div>
 				<button type="submit" class="btn btn-success mt-5"
-					style="margin: 0 auto; width: 50%;">Log In</button>
+					onclick="nullcheck()" style="margin: 0 auto; width: 50%;">Log
+					In</button>
 
 				<br>
 				<p class="exist mt-2">

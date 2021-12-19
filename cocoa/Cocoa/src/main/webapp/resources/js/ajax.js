@@ -7,34 +7,45 @@
 			var flag = false;
 			var user_id = $('#id').val();
 			var user_pwd = $('#pwd1').val();
+			var user_pwd2 = $('#pwd2').val();
 			var user_name = $('#name').val();
 			var user_phone = $('#phone').val();
 			
-			//Ajax연결해서 
-			$.ajax({
-				data :  {id : user_id, pwd : user_pwd , name : user_name , phone : user_phone },
-				type : "post",
-				dataType: "json",
-				async: false,
-				url : '/cocoa/join',
-				success : function(data){
-					if (data == 1) {
-						alert("회원가입에 성공했습니다.\n마이페이지에서 프로필을 작성해주세요!");
-						location.href='/cocoa/';
-					} else {
-						alert("회원가입에 실패했습니다");
-						location.href='/cocoa/view_join';
-					}
-				},
-				error : function(data, textStatus){
-					alert('실패');
-					location.href='/cocoa/view_join';
-				},
-				complete : function(data,textStatus){
-					
-				}
-			});
+			//Ajax 구간
+			if(user_pwd != user_pwd2){
 			
+				alert("비밀번호가 일치하지 않습니다.");
+				
+			} else if(user_pwd == user_pwd2){
+			
+				$.ajax({
+				
+					data :  {id : user_id, pwd : user_pwd , name : user_name , phone : user_phone },
+					type : "post",
+					dataType: "json",
+					async: false,
+					url : '/cocoa/join',
+					
+					success : function(data){
+						if (data == 1) {
+							alert("회원가입에 성공했습니다.\n마이페이지에서 프로필을 작성해주세요!");
+							location.href='/cocoa/';
+						} else {
+							alert("회원가입에 실패했습니다");
+							location.href='/cocoa/view_join';
+						}
+					},
+					
+					error : function(data, textStatus){
+						alert('실패');
+						location.href='/cocoa/view_join';
+					},
+					
+					complete : function(data,textStatus){
+					}
+				});
+				
+			}
 			return flag;
 		});
 		

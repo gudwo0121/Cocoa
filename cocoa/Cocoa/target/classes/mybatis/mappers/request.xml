@@ -36,7 +36,9 @@
 	<!-- 받은 요청 리스트 -->
 	<select id="selectAllReqGot" resultMap="requestResult">
       <![CDATA[
-         select * from requestTBL where res=#{resId}
+         select * from requestTBL
+         where res=#{resId} and status like concat(#{status},"%")
+         order by reqNO desc
          limit #{pageStart}, #{perPageNum}
       ]]>
 	</select>
@@ -44,7 +46,9 @@
 	<!-- 보낸 요청 리스트 -->
 	<select id="selectAllReqSent" resultMap="requestResult">
       <![CDATA[
-         select * from requestTBL where req=#{reqId}
+         select * from requestTBL
+         where req=#{reqId} and status like concat(#{status},"%")
+         order by reqNO desc
          limit #{pageStart}, #{perPageNum}
       ]]>
 	</select>
@@ -98,7 +102,7 @@
 		<![CDATA[
 			SELECT count(*) 
 			from requestTBL
-			where req=#{req}
+			where req=#{reqId} and status like concat(#{status},"%")
 		]]>
 	</select>
 
@@ -108,7 +112,7 @@
 		<![CDATA[
 			SELECT count(*) 
 			from requestTBL
-			where res=#{res}
+			where res=#{resId} and status like concat(#{status},"%")
 		]]>
 	</select>
 

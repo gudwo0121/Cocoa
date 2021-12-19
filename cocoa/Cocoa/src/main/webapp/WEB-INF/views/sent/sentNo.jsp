@@ -74,7 +74,8 @@ th, td {
 			<!-- 거절 사유 -->
 			<tr>
 				<td colspan="2"
-					style="text-align: center; border: 1px solid black; background-color: #CFFFE5;"><b>거절 사유</b></td>
+					style="text-align: center; border: 1px solid black; background-color: #CFFFE5;"><b>거절
+						사유</b></td>
 			</tr>
 
 			<!-- 거절사유 -->
@@ -84,7 +85,7 @@ th, td {
 					class="form-control" value="${requestInfo.reason}" readonly
 					style="width: 95%; background-color: #FFCC99; border: 1px solid grey; color: black;">
 					<input type="hidden" name="reqNO" value="${reqNO}" /> <input
-					type="hidden" name="status" value="거절"></td>
+					type="hidden" name="status" value="status3"></td>
 			</tr>
 
 			<!-- 목록으로 -->

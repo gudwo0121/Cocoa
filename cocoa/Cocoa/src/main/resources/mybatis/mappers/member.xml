@@ -67,7 +67,17 @@
 	<!-- 회원정보 삭제 -->
 	<delete id="deleteMember" parameterType="String">
 		<![CDATA[
-		delete from memberTBL where id=#{id}
+			delete (pwd, name, phone, proImg, proContents)
+			from memberTBL where id=#{id}
 		]]>
 	</delete>
+
+	<!-- 회원 탈퇴 후 아이디만 보존 -->
+	<insert id="preserveId" parameterType="String">
+		<![CDATA[
+		 insert into memberTBL(id, pwd, name, phone)
+		 values(#{id}, '', '', '')
+		]]>
+	</insert>
+	
 </mapper>

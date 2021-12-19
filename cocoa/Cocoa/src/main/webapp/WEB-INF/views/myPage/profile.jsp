@@ -88,7 +88,7 @@ request.setCharacterEncoding("UTF-8");
 						<!-- textarea 닫아주는거 붙여써야함 -->
 						<br> <b>소개 및 경력 :</b> <br> <br>
 						<textarea name="proContents" rows="20" cols="20" id="proContents"
-							disabled
+							disabled placeholder="공백 포함 2000자 이내로 입력"
 							style="border: 1px solid; background-color: #FFCC99; width: 100%; color: black; resize: none;">${profileId.proContents}</textarea>
 						<hr>
 					</div>

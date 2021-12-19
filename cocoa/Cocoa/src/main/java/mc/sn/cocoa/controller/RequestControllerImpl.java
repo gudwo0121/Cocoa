@@ -163,17 +163,21 @@ public class RequestControllerImpl implements RequestController {
 		// id 반영
 		cri.setReqId(id);
 
+		// 1페이지에 게시될 글의 수
+		int perPageNum = 15;
+		cri.setPerPageNum(perPageNum);
+
 		// 쪽 번호 생성 매서드
 		PageMaker pageMaker = new PageMaker();
 
 		pageMaker.setCri(cri);
 
-		pageMaker.setTotalCount(requestService.countSendRequest(id));
+		pageMaker.setTotalCount(requestService.countSendRequest(cri));
 
 		// 보낸 요청 리스트 가져오기
 		List reqSentList = requestService.listReqSent(cri);
 		mav.addObject("reqSentList", reqSentList);
-
+		mav.addObject("cri", cri);
 		mav.addObject("pageMaker", pageMaker);
 
 		String url = "/myPage/myPageSent";
@@ -195,17 +199,21 @@ public class RequestControllerImpl implements RequestController {
 		// id 반영
 		cri.setResId(id);
 
+		// 1페이지에 게시될 글의 수
+		int perPageNum = 15;
+		cri.setPerPageNum(perPageNum);
+
 		// 쪽 번호 생성 매서드
 		PageMaker pageMaker = new PageMaker();
 
 		pageMaker.setCri(cri);
 
-		pageMaker.setTotalCount(requestService.countReceiveRequest(id));
+		pageMaker.setTotalCount(requestService.countReceiveRequest(cri));
 
 		// 받은 요청 리스트 가져오기
 		List reqGotList = requestService.listReqGot(cri);
 		mav.addObject("reqGotList", reqGotList);
-
+		mav.addObject("cri", cri);
 		mav.addObject("pageMaker", pageMaker);
 
 		String url = "/myPage/myPageGot";

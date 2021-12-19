@@ -65,22 +65,22 @@
 					<div style="color: #CFFFE5; font-size: 25px; text-align: center;">개발툴</div>
 					<br> <input id="Spring" type="button"
 						class="btn btn-primary btn-lg px-4"
-						onClick="location.href='/cocoa/view_coachCate?tool=tool1'"
+						onClick="location.href='/cocoa/view_coachCate?cField=${cri.cField}&tool=tool1'"
 						value="Spring" />&nbsp;&nbsp;<input id="Django" type="button"
 						class="btn btn-primary btn-lg px-4"
-						onClick="location.href='/cocoa/view_coachCate?tool=tool2'"
+						onClick="location.href='/cocoa/view_coachCate?cField=${cri.cField}&tool=tool2'"
 						value="Django" /><br> <br> <input id="AndroidStudio"
 						type="button" class="btn btn-primary btn-lg px-4"
-						onClick="location.href='/cocoa/view_coachCate?tool=tool3'"
+						onClick="location.href='/cocoa/view_coachCate?cField=${cri.cField}&tool=tool3'"
 						value="Android Studio" />&nbsp;&nbsp;<input id="Xcode"
 						type="button" class="btn btn-primary btn-lg px-4"
-						onClick="location.href='/cocoa/view_coachCate?tool=tool4'"
+						onClick="location.href='/cocoa/view_coachCate?cField=${cri.cField}&tool=tool4'"
 						value="Xcode" /><br> <br> <input id="Arduino"
 						type="button" class="btn btn-primary btn-lg px-4"
-						onClick="location.href='/cocoa/view_coachCate?tool=tool5'"
+						onClick="location.href='/cocoa/view_coachCate?cField=${cri.cField}&tool=tool5'"
 						value="Arduino" />&nbsp;&nbsp;<input id="RaspberryPi"
 						type="button" class="btn btn-primary btn-lg px-4"
-						onClick="location.href='/cocoa/view_coachCate?tool=tool6'"
+						onClick="location.href='/cocoa/view_coachCate?cField=${cri.cField}&tool=tool6'"
 						value="Rasberry Pi" />
 				</div>
 			</div>
@@ -95,78 +95,33 @@
 		<div style="text-align: center;">
 			<c:choose>
 				<c:when test="${cri.cField == 'cField' && cri.tool == 'tool'}">
-					<hr>
-					<hr>
-					<h3 style="color: black; font-weight: 1000; font-size: 40px;">COACHING</h3>
-					<hr>
-					<hr>
+					<div style="padding: 10px; background-color: orange;">
+						<h3 style="color: black; font-weight: 1000; font-size: 30px;">Coaching</h3>
+					</div>
 				</c:when>
-				<c:when test="${cri.cField == 'cField1'}">
-					<hr>
-					<hr>
-					<h3 style="color: black; font-weight: 1000; font-size: 40px;">WEB</h3>
-					<hr>
-					<hr>
+				<c:when test="${cri.cField != 'cField' || cri.tool != 'tool'}">
+					<div style="padding: 10px; background-color: orange;">
+						<h3 style="color: black; font-weight: 1000; font-size: 30px;">
+							Coaching
+							<c:choose>
+								<c:when test="${cri.cField == 'cField' }"></c:when>
+								<c:when test="${cri.cField == 'cField1' }"> - Web</c:when>
+								<c:when test="${cri.cField == 'cField2' }"> - Mobile App</c:when>
+								<c:when test="${cri.cField == 'cField3'}"> - Embedded</c:when>
+							</c:choose>
+							<c:choose>
+								<c:when test="${cri.tool == 'tool' }"></c:when>
+								<c:when test="${cri.tool == 'tool1' }"> - Web - Spring</c:when>
+								<c:when test="${cri.tool == 'tool2' }"> - Web - Django</c:when>
+								<c:when test="${cri.tool == 'tool3'}"> - Mobile App - Android Studio</c:when>
+								<c:when test="${cri.tool == 'tool4'}"> - Mobile App - Xcode</c:when>
+								<c:when test="${cri.tool == 'tool5'}"> - Embedded - Arduino</c:when>
+								<c:when test="${cri.tool == 'tool6'}"> - Embedded - Rasberry Pi</c:when>
+							</c:choose>
+						</h3>
+					</div>
 				</c:when>
-				<c:when test="${cri.cField == 'cField2'}">
-					<hr>
-					<hr>
-					<h3 style="color: black; font-weight: 1000; font-size: 40px;">MOBILE
-						APP</h3>
-					<hr>
-					<hr>
-				</c:when>
-				<c:when test="${cri.cField == 'cField3'}">
-					<hr>
-					<hr>
-					<h3 style="color: black; font-weight: 1000; font-size: 40px;">EMBEDDED</h3>
-					<hr>
-					<hr>
-				</c:when>
-				<c:when test="${cri.tool == 'tool1'}">
-					<hr>
-					<hr>
-					<h3 style="color: black; font-weight: 1000; font-size: 40px;">SPRING</h3>
-					<hr>
-					<hr>
-				</c:when>
-				<c:when test="${cri.tool == 'tool2'}">
-					<hr>
-					<hr>
-					<h3 style="color: black; font-weight: 1000; font-size: 40px;">DJANGO</h3>
-					<hr>
-					<hr>
-				</c:when>
-				<c:when test="${cri.tool == 'tool3'}">
-					<hr>
-					<hr>
-					<h3 style="color: black; font-weight: 1000; font-size: 40px;">ANDROID
-						STUDIO</h3>
-					<hr>
-					<hr>
-				</c:when>
-				<c:when test="${cri.tool == 'tool4'}">
-					<hr>
-					<hr>
-					<h3 style="color: black; font-weight: 1000; font-size: 40px;">XCODE</h3>
-					<hr>
-					<hr>
-				</c:when>
-				<c:when test="${cri.tool == 'tool5'}">
-					<hr>
-					<hr>
-					<h3 style="color: black; font-weight: 1000; font-size: 40px;">ARDUINO</h3>
-					<hr>
-					<hr>
-				</c:when>
-				<c:when test="${cri.tool == 'tool6'}">
-					<hr>
-					<hr>
-					<h3 style="color: black; font-weight: 1000; font-size: 40px;">RASPBERRY
-						PI</h3>
-					<hr>
-					<hr>
-				</c:when>
+
 			</c:choose>
 		</div>
 

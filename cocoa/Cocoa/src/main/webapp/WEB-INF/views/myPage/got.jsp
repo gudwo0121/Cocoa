@@ -12,6 +12,13 @@ request.setCharacterEncoding("UTF-8");
 <meta charset="UTF-8">
 <title>CoCoa</title>
 <script src="http://code.jquery.com/jquery-latest.js"></script>
+<script type="text/javascript">
+	// 정렬 기준 동적으로 변경
+	function selChange() {
+		var sel = document.getElementById('requestStatus').value;
+		location.href = "view_receiveReq?status=" + sel;
+	}
+</script>
 <link href="resources/css/styles.css" rel="stylesheet" />
 </head>
 <body>
@@ -23,7 +30,32 @@ request.setCharacterEncoding("UTF-8");
 			<table class="table table-striped table-sm">
 				<thead>
 					<tr>
-						<th colspan="4" style="text-align: center;"><b>받은 요청 리스트</b></th>
+						<th colspan="4" style="text-align: center;"><b>${member.id }님이
+								받은 요청 리스트</b></th>
+					</tr>
+					<tr>
+						<td colspan="4" style="align: right;">
+							<!-- 조건 조회 버튼 --> <select class="me-sm-3"
+							style="float: right; text-align: center; width: 20%;"
+							id="requestStatus" onchange="selChange()">
+								<option value="status"
+									<c:if test="${cri.status == 'status' }">selected</c:if>>전체
+									요청글</option>
+								<option value="status1"
+									<c:if test="${cri.status == 'status1' }">selected</c:if>>대기중인
+									요청</option>
+								<option value="status2"
+									<c:if test="${cri.status == 'status2' }">selected</c:if>>수락한
+									요청</option>
+								<option value="status3"
+									<c:if test="${cri.status == 'status3' }">selected</c:if>>거절한
+									요청</option>
+								<option value="status4"
+									<c:if test="${cri.status == 'status4' }">selected</c:if>>코칭
+									완료한 요청</option>
+						</select>
+
+						</td>
 					</tr>
 					<tr>
 						<th scope="col">요청자</th>
@@ -38,7 +70,7 @@ request.setCharacterEncoding("UTF-8");
 						<tr>
 							<td>${gotList.req}</td>
 							<!-- gotReqWait로 이동 -->
-							<td><a
+							<td style="text-align: left;"><a
 								style="text-decoration-line: none; color: dark; font-weight: 700;"
 								href="${contextPath}/view_gotReqWait?reqNO=${gotList.reqNO}">${gotList.rTitle}</a></td>
 							<fmt:parseDate var="dateFmt" pattern="yyyy-MM-dd HH:mm:ss.SSS"
@@ -46,7 +78,12 @@ request.setCharacterEncoding("UTF-8");
 							<fmt:formatDate var="dateTempParse" pattern="yyyy-MM-dd"
 								value="${dateFmt}" />
 							<td>${dateTempParse }</td>
-							<td>${gotList.status }</td>
+							<td><c:choose>
+									<c:when test="${gotList.status == 'status1'}">대기</c:when>
+									<c:when test="${gotList.status == 'status2'}">수락</c:when>
+									<c:when test="${gotList.status == 'status3'}">거절</c:when>
+									<c:when test="${gotList.status == 'status4'}">완료</c:when>
+								</c:choose></td>
 						</tr>
 					</c:forEach>
 				</tbody>
@@ -58,19 +95,20 @@ request.setCharacterEncoding("UTF-8");
 
 			<c:if test="${pageMaker.prev }">
 				<a
-					href='<c:url value="/view_receiveReq?page=${pageMaker.startPage-1 }"/>'><i
+					href='<c:url value="/view_receiveReq?status=${cri.status }&page=${pageMaker.startPage-1 }"/>'><i
 					class=""></i></a>
 			</c:if>
 
 			<c:forEach begin="${pageMaker.startPage }"
 				end="${pageMaker.endPage }" var="pageNum">
-				<a href='<c:url value="/view_receiveReq?page=${pageNum }"/>'><i
+				<a
+					href='<c:url value="/view_receiveReq?status=${cri.status }&page=${pageNum }"/>'><i
 					class="">${pageNum }</i></a>
 			</c:forEach>
 
 			<c:if test="${pageMaker.next && pageMaker.endPage >0 }">
 				<a
-					href='<c:url value="/view_receiveReq?page=${pageMaker.endPage+1 }"/>'><i
+					href='<c:url value="/view_receiveReq?status=${cri.status }&page=${pageMaker.endPage+1 }"/>'><i
 					class=""></i></a>
 			</c:if>
 

@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" isELIgnored="false"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ page import="mc.sn.cocoa.vo.CoachVO"%>
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
 <!DOCTYPE html>
 <html>
@@ -21,7 +20,8 @@
 	}
 
 	$(document).ready(function() {
-		$('#c_cImgMod').hide(); //페이지를 로드할 때 숨길 요소
+		//페이지를 로드할 때 숨길 요소
+		$('#c_cImgMod').hide();
 		$('#c_modBtn').hide();
 		$('#c_mod').show();
 		$('#c_rmv').show();
@@ -41,68 +41,61 @@
 			return false;
 		});
 
-		var tool;
-
-		// 영역에 따른 툴 선택 제약 조건 = 툴값이 동적이므로 툴값에 따라서 숨길지 아니면 새로운걸 만들어서 표시할지 고민
-		$('#cField').change(function() {
-
-			var field = $('#cField').val();
-
-			if (tool != '') {
-				$('default').text('-- 선택 --');
-			}
-
-			if (field == 'cField1') {
-				$('#tool1').removeAttr('hidden');
-				$('#tool2').removeAttr('hidden');
-				$('#tool3').attr('hidden', '');
-				$('#tool4').attr('hidden', '');
-				$('#tool5').attr('hidden', '');
-				$('#tool6').attr('hidden', '');
-				$('#default').attr('hidden', '');
-			} else if (field == 'cField2') {
-				$('#tool1').attr('hidden', '');
-				$('#tool2').attr('hidden', '');
-				$('#tool3').removeAttr('hidden');
-				$('#tool4').removeAttr('hidden');
-				$('#tool5').attr('hidden', '');
-				$('#tool6').attr('hidden', '');
-				$('#default').attr('hidden', '');
-			} else if (field == 'cField3') {
-				$('#tool1').attr('hidden', '');
-				$('#tool2').attr('hidden', '');
-				$('#tool3').attr('hidden', '');
-				$('#tool4').attr('hidden', '');
-				$('#tool5').removeAttr('hidden');
-				$('#tool6').removeAttr('hidden');
-				$('#default').attr('hidden', '');
-			} else {
-				$('#tool1').attr('hidden', '');
-				$('#tool2').attr('hidden', '');
-				$('#tool3').attr('hidden', '');
-				$('#tool4').attr('hidden', '');
-				$('#tool5').attr('hidden', '');
-				$('#tool6').attr('hidden', '');
-				$('#default').attr('hidden', '');
-			}
-		});
-
-		$('#tool').change(function() {
-			tool = $('#tool').val();
-			alert($('#default').val());
-			alert(coach.tool);
-		});
-
 	});
 
-	function fn_modify_coach(obj) {
-		obj.action = "${contextPath}/modCoach";
-		obj.submit();
-	}
-
+	// 삭제 액션
 	function fn_remove_coach(obj) {
 		obj.action = "${contextPath}/removeCoach";
 		obj.submit();
+	}
+
+	// 영역 변경시 개발툴 초기화 셋팅
+	function categoryChange(e) {
+		var tool_cField1_value = [ "tool", "tool1", "tool2" ];
+		var tool_cField2_value = [ "tool", "tool3", "tool4" ];
+		var tool_cField3_value = [ "tool", "tool5", "tool6" ];
+
+		var tool_cField1_out = [ "-- 선택 --", "Spring", "Django" ];
+		var tool_cField2_out = [ "-- 선택 --", "Android Studio", "Xcode" ];
+		var tool_cField3_out = [ "-- 선택 --", "Arduino", "Rasberry Pi" ];
+		var target = document.getElementById("tool");
+
+		if (e.value == "cField1") {
+			var v = tool_cField1_value;
+			var o = tool_cField1_out;
+		} else if (e.value == "cField2") {
+			var v = tool_cField2_value;
+			var o = tool_cField2_out;
+		} else if (e.value == "cField3") {
+			var v = tool_cField3_value;
+			var o = tool_cField3_out;
+		}
+
+		target.options.length = 0;
+
+		for (x in v, o) {
+			var opt = document.createElement("option");
+			opt.value = v[x];
+			opt.innerHTML = o[x];
+			target.appendChild(opt);
+		}
+	}
+
+	function nullCheck() {
+		var _cTitle = $("#c_cTitle").val();
+		var _basicPrice = $("#c_basicPrice").val();
+		var _tool = $("#tool").val();
+		alert(_cField);
+		alert(_tool);
+		var _cContents = $("#c_cContents").val();
+
+		if (_cTitle == "" || _basicPrice == "" || _tool == "tool"
+				|| _cContents == "") {
+			alert("빈칸없이 입력하세요");
+			$('#coachInfo').attr('onSubmit', "return false;");
+		} else {
+			$('#coachInfo').removeAttr('onSubmit');
+		}
 	}
 </script>
 <title>CoCoa</title>
@@ -114,7 +107,7 @@
 
 	<!-- 코치 글 구간 -->
 	<form method="post" enctype="multipart/form-data" name="frmCoach"
-		action="${contextPath}">
+		id="coachInfo" action="${contextPath}/modCoach">
 		<section class="py-5">
 			<div class="container main-secction">
 				<div class="row" style="flex-wrap: unset;">
@@ -125,14 +118,6 @@
 							<div
 								class="col-md-12 col-md-12-sm-12 col-xs-12 user-image text-center"
 								style="width: 80%; height: 100%; border: 2px solid; background-color: #FFCCCC;">
-
-								<!-- 후기 조회 이동 -->
-								<br> <span style="float: right;"><a
-									href="/cocoa/view_reviewInfo?target=${coach.coach}"> <input
-										type="button" name="view_reviewInfo" value="후 기"
-										class="btn btn-third-dark"
-										style="font-size: 13px; border-radius: 12px;">
-								</a> </span>
 
 								<!-- 프로필 조회 이동 -->
 								<br> <br> <a
@@ -150,8 +135,15 @@
 								<input type="hidden" name="coachNO" value="${coach.coachNO}" />
 								<br>
 
+								<!-- 후기 조회 이동 -->
+								<br> <span style="text-align: center;"><a
+									href="/cocoa/view_reviewInfo?target=${coach.coach}"> <input
+										type="button" name="view_reviewInfo" value="후기보기"
+										class="btn btn-third-dark"
+										style="font-size: 15px; border-radius: 12px; width: 50%;">
+								</a> </span><br> <br>
+
 								<!-- 요청서 작성 -->
-								<br>
 								<c:if test="${isLogOn == true && member.id !=coach.coach}">
 									<a href="/cocoa/view_reqWriteForm?coachId=${coach.coach}">
 										<input type="button" name="requestForm" value="   요청서 작성   "
@@ -183,7 +175,7 @@
 								value="${coach.cImg }" /> <br> <img id="preview"
 								src="${contextPath}/coachImgDownload?coach=${coach.coach }&coachNO=${coach.coachNO}&cImg=${coach.cImg}"
 								width=100% height=300 style="border: 1px solid;"
-								onerror="this.src='resources/image/sample.png'" /> <br> <br>
+								onerror="this.src='resources/image/onerror.png'" /> <br> <br>
 
 							<!-- 수정 누르면 활성화 -->
 							<label class="btn btn-outline-dark" for="c_cImg" id="c_cImgMod">
@@ -211,7 +203,8 @@
 							<!-- cField 표시 -->
 							영역 : <select
 								style="border: 0; text-align: center; width: 15%; background-color: #FFCC99; font-weight: 700; color: black;"
-								name="cField" disabled id="cField">
+								name="cField" disabled id="cField"
+								onchange="categoryChange(this)">
 								<option id="getcField" value="${coach.cField}">
 									<c:choose>
 										<c:when test="${coach.cField == 'cField1'}">Web</c:when>
@@ -239,12 +232,6 @@
 										<c:when test="${coach.tool == 'tool6'}">Raspberry Pi</c:when>
 									</c:choose>
 								</option>
-								<option id="tool1" value="tool1" hidden>Spring</option>
-								<option id="tool2" value="tool2" hidden>Django</option>
-								<option id="tool3" value="tool3" hidden>Android Studio</option>
-								<option id="tool4" value="tool4" hidden>Xcode</option>
-								<option id="tool5" value="tool5" hidden>Arduino</option>
-								<option id="tool6" value="tool6" hidden>Raspberry Pi</option>
 							</select>
 							<hr>
 
@@ -257,8 +244,8 @@
 							<hr>
 
 							<div align="center">
-								<input type=button value="확 인" class="btn btn-outline-dark"
-									onClick="fn_modify_coach(frmCoach)" id="c_modBtn">&nbsp;&nbsp;<input
+								<input type="submit" onclick="nullCheck()" value="확 인"
+									class="btn btn-outline-dark" id="c_modBtn">&nbsp;&nbsp;<input
 									type=button value="목록으로" class="btn btn-outline-dark"
 									onClick="history.back()" id="goBack"><br> <br>
 							</div>

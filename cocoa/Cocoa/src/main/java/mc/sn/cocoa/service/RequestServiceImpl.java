@@ -75,14 +75,14 @@ public class RequestServiceImpl implements RequestService {
 
 	// 보낸 요청글 개수
 	@Override
-	public int countSendRequest(String req) throws Exception {
-		return requestDAO.countSendRequest(req);
+	public int countSendRequest(Criteria cri) throws Exception {
+		return requestDAO.countSendRequest(cri);
 	}
 
 	// 받은 요청글 개수
 	@Override
-	public int countReceiveRequest(String res) throws Exception {
-		return requestDAO.countReceiveRequest(res);
+	public int countReceiveRequest(Criteria cri) throws Exception {
+		return requestDAO.countReceiveRequest(cri);
 	}
 
 	// 후기작성 후 완료 상태 변환

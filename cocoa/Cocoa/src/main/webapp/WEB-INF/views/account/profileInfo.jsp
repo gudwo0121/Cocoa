@@ -32,7 +32,7 @@
 								<!-- proImg -->
 								<br> <br> <img name="proImg"
 									src="${contextPath}/downProfileImg?id=${profileId.id }"
-									onerror="this.src='resources/image/kakao.png'"
+									onerror="this.src='resources/image/onerror.png'"
 									style="border: 1px solid;" width="50%" height="120px"><br>
 								<br>
 

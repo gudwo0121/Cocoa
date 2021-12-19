@@ -8,6 +8,8 @@
 <meta charset="UTF-8">
 <link href="resources/css/styles.css" rel="stylesheet" />
 <script type="text/javascript" src="resources/js/jquery-3.6.0.min.js"></script>
+<script type="text/javascript"
+	src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=ba36jg1kum"></script>
 <script type="text/javascript">
 	function readURL(input) {
 		if (input.files && input.files[0]) {
@@ -23,6 +25,7 @@
 		$('#p_pImgMod').hide(); //페이지를 로드할 때 숨길 요소
 		$('#p_modBtn').hide();
 		$('#mod_kakaoLink').hide();
+		$('#sendMark').hide();
 		$('#p_mod').show();
 		$('#p_rmv').show();
 		$('#p_mod').click(function() {
@@ -30,6 +33,7 @@
 			$('#p_rmv').hide(); //클릭 시 첫 번째 요소 숨김
 			$('#p_pImgMod').show(); //클릭 시 두 번째 요소 표시
 			$('#mod_kakaoLink').show();
+			$('#sendMark').show();
 			$('#kakaoLink').hide();
 			$('#p_modBtn').show();
 			$('#p_pTitle').prop('disabled', false);
@@ -37,7 +41,69 @@
 			$('#p_pLevel').prop('disabled', false);
 			$('#p_pMemberCount').prop('disabled', false);
 			$('#p_pContents').prop('disabled', false);
+			$('#addr').prop('disabled', false);
 			return false;
+		});
+
+		// 맵
+		$.ajax({
+			type : "get",
+			url : "/cocoa/map",
+			contentType : "application/json",
+			data : {
+				"addr" : $("#addr").val()
+			},
+			success : function(data, textStatus) {
+				resultText = JSON.parse(data);
+				var lang1 = resultText.addresses[0].x;
+				var lat1 = resultText.addresses[0].y;
+				var mapOptions = {
+					center : new naver.maps.LatLng(lat1, lang1),
+					zoom : 15
+				};
+				var map = new naver.maps.Map('map', mapOptions);
+				var marker = new naver.maps.Marker({
+					position : new naver.maps.LatLng(lat1, lang1),
+					map : map
+				});
+			},
+			error : function(data, textStatus) {
+				alert("에러가! 발생했습니다.");
+			},
+			complete : function(data, textStatus) {
+
+			}
+		});
+
+		$('#sendMark').click(function() {
+			event.preventDefault();
+			$.ajax({
+				type : "get",
+				url : "/cocoa/map",
+				contentType : "application/json",
+				data : {
+					"addr" : $("#addr").val()
+				},
+				success : function(data, textStatus) {
+					resultText = JSON.parse(data);
+					var lang1 = resultText.addresses[0].x;
+					var lat1 = resultText.addresses[0].y;
+					var mapOptions = {
+						center : new naver.maps.LatLng(lat1, lang1),
+						zoom : 15
+					};
+					var map = new naver.maps.Map('map', mapOptions);
+					var marker = new naver.maps.Marker({
+						position : new naver.maps.LatLng(lat1, lang1),
+						map : map
+					});
+				},
+				error : function(data, textStatus) {
+					alert("에러가! 발생했습니다.");
+				},
+				complete : function(data, textStatus) {
+				}
+			});
 		});
 	});
 </script>
@@ -62,15 +128,6 @@
 								class="col-md-12 col-md-12-sm-12 col-xs-12 user-image text-center"
 								style="width: 80%; height: 100%; border: 2px solid; background-color: #FFCCCC;">
 
-								<!-- 후기 조회 이동 -->
-								<br> <span style="float: right;"> <a
-									href="/cocoa/view_reviewInfo?target=${projectInfo.leader}">
-										<input type="button" name="view_reviewInfo" value="후 기"
-										class="btn btn-third-dark"
-										style="font-size: 13px; border-radius: 12px;">
-								</a>
-								</span>
-
 								<!-- 프로필 조회 이동 -->
 								<br> <br> <a
 									href="/cocoa/view_profileInfo?profileId=${projectInfo.leader}">
@@ -88,6 +145,14 @@
 								<input type="hidden" name="projectNO"
 									value="${projectInfo.projectNO}" /> <br>
 
+								<!-- 후기 조회 이동 -->
+								<span style="text-align: center;"><a
+									href="/cocoa/view_reviewInfo?target=${projectInfo.leader}">
+										<input type="button" name="view_reviewInfo" value="후기보기"
+										class="btn btn-third-dark"
+										style="font-size: 15px; border-radius: 12px; width: 50%;">
+								</a> </span><br> <br>
+
 								<!-- kakao -->
 								<!-- 본인 검증 -->
 								<c:if
@@ -99,7 +164,7 @@
 									</a>
 								</c:if>
 
-								<!-- 수정 -->
+								<!-- 카카오톡 링크 (수정시) -->
 								<div id="mod_kakaoLink">
 									<b>카카오톡 오픈채팅 :</b><br> <br> <input type="text"
 										name="kakao" id="mod_kakaoLink" name="kakao"
@@ -133,7 +198,7 @@
 								value="${projectInfo.pImg }" /> <br> <img id="preview"
 								src="${contextPath}/download?leader=${projectInfo.leader}&pImg=${projectInfo.pImg}&projectNO=${projectInfo.projectNO}"
 								width=90% height=300 style="border: 1px solid;"
-								onerror="this.src='resources/image/sample.png'" /><br> <br>
+								onerror="this.src='resources/image/onerror.png'" /><br> <br>
 							<label class="btn btn-outline-dark" for="p_pImg" id="p_pImgMod">대표
 								이미지 변경 </label> <input type="file" id="p_pImg" name="pImg"
 								onchange="readURL(this);" style="display: none;" /> <br> <br>
@@ -198,8 +263,13 @@
 								style="border: 1; width: 100%; background-color: #FFCC99; font-weight: 700; color: black; resize: none;">${projectInfo.pContents}</textarea>
 							<hr>
 
-							<!-- map (일단비워둠) -->
-							<div style="text-align: center;">이곳은 맵 공간입니다.</div>
+							<!-- map -->
+							&nbsp; 장소 <input type="text" name="map" id="addr" size="30"
+								value="${projectInfo.map}" disabled> <input
+								type="button" name="send" id="sendMark" value="검색"><br>
+							<br>
+							<div id="map" style="width: 100%; height: 400px;"></div>
+							<hr>
 							<hr>
 
 							<!-- 수정 확인 -->

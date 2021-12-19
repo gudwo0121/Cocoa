@@ -36,7 +36,7 @@ request.setCharacterEncoding("UTF-8");
 			style="text-align: center; color: white; background-color: #333333; font-size: 25px; border: 0; width: 90%;"><br>
 
 		<br> <br> <input type="button" class="btn btn-primary"
-			name="side_info" id="memberInfo" value="회원 정보"
+			name="side_info" id="memberInfo" value="회원정보 수정"
 			onClick="location.href='/cocoa/view_memberInfo'"
 			style="text-align: center; color: white; background-color: #333333; font-size: 25px; border: 0; width: 90%;"><br>
 		<br> <br>

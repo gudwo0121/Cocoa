@@ -65,6 +65,7 @@
 	<update id="updateProject" parameterType="java.util.Map">
 		update projectTBL
 		set pTitle=#{pTitle},
+		map=#{map},
 		pContents=#{pContents}
 		<if test="pField!=''">
 			, pField=#{pField}

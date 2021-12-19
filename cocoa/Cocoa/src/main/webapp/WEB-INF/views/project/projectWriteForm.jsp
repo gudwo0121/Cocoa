@@ -24,9 +24,10 @@
 	}
 
 	$(document).ready(function() {
-		
+		$('#map').hide();
 		// 맵 geoCode
 		$('#sendMark').click(function() {
+			$('#map').show();
 			event.preventDefault();
 			$.ajax({
 				type : "get",
@@ -53,12 +54,40 @@
 					alert("에러가! 발생했습니다.");
 				},
 				complete : function(data, textStatus) {
-
 				}
 			});
-
 		});
 	});
+
+	function nullCheck() {
+		var _kakao = $("#kakao").val();
+		var _pTitle = $("#pTitle").val();
+		var _memberCount = $("#memberCount").val();
+		var _pField = $("#pField").val();
+		var _level = $("#level").val();
+		var _pContents = $("#pContents").val();
+		if (_kakao == "") {
+			alert("카카오 오픈채팅 링크를 입력하세요");
+			$('#projectWrite').attr('onSubmit', "return false;");
+		} else if (_pTitle == "") {
+			alert("제목을 입력하세요");
+			$('#projectWrite').attr('onSubmit', "return false;");
+		} else if (_memberCount == "") {
+			alert("인원을 입력하세요");
+			$('#projectWrite').attr('onSubmit', "return false;");
+		} else if (_pField == "-- 선택 --") {
+			alert("영역을 선택해주세요");
+			$('#projectWrite').attr('onSubmit', "return false;");
+		} else if (level == "-- 선택 --") {
+			alert("수준을 선택해주세요");
+			$('#projectWrite').attr('onSubmit', "return false;");
+		} else if (_pContents == "") {
+			alert("내용을 입력하세요");
+			$('#projectWrite').attr('onSubmit', "return false;");
+		} else {
+			$('#projectWrite').removeAttr('onSubmit');
+		}
+	}
 </script>
 <title>CoCoa</title>
 </head>
@@ -69,7 +98,7 @@
 
 	<!-- 프로젝트 글 작성 -->
 	<form action="${contextPath}/projectWrite" method="post"
-		enctype="multipart/form-data">
+		id="projectWrite" enctype="multipart/form-data">
 		<section class="py-5">
 			<div class="container main-secction">
 				<div class="row" style="flex-wrap: unset;">
@@ -95,7 +124,7 @@
 
 								<!-- kakao -->
 								<b>카카오톡 오픈채팅 :</b><br> <br> <input type="text"
-									name="kakao" placeholder="링크 입력"
+									name="kakao" placeholder="링크 입력" id="kakao"
 									style="text-align: center; border: 1; background-color: #FFCCCC; width: 80%;"><br>
 								<br>
 							</div>
@@ -121,16 +150,16 @@
 							<!-- pTitle 입력 -->
 							<hr>
 							<input name="pTitle" type="text" placeholder="제목을 입력하세요."
-								style="border: 1; text-align: center; width: 100%;">
+								id="pTitle" style="border: 1; text-align: center; width: 100%;">
 							<hr>
 
 							<!-- memberCount 입력 -->
-							인원 : <input name="memberCount" type="number"
+							인원 : <input name="memberCount" type="number" id="memberCount"
 								placeholder="인원수를 입력하세요." style="border: 1; width: 30%;">&nbsp;<b>명</b>
 							<hr>
 
 							<!-- pField 선택 -->
-							분야 : <select style="text-align: center; width: 30%;"
+							분야 : <select style="text-align: center; width: 30%;" id="pField"
 								name="pField">
 								<option id="empty">-- 선택 --</option>
 								<option id="pField1" value="pField1">Web</option>
@@ -140,7 +169,7 @@
 							<hr>
 
 							<!-- level 선택 -->
-							난이도 : <select style="text-align: center; width: 30%;"
+							난이도 : <select style="text-align: center; width: 30%;" id="level"
 								name="level">
 								<option id="empty">-- 선택 --</option>
 								<option id="level1" value="level1">Basic</option>
@@ -152,14 +181,14 @@
 							<!-- pContents 입력 -->
 							<!-- textarea 닫아주는거 붙여써야함 -->
 							세부 내용 : <br>
-							<textarea name="pContents" rows="10" cols="20"
-								placeholder="프로젝트 개요 및 포지션 별 자격요건을 써주세요."
+							<textarea name="pContents" rows="10" cols="20" id="pContents"
+								placeholder="프로젝트 개요 및 포지션 별 자격요건을 써주세요. (공백포함 2000자 이내)"
 								style="border: 1; width: 100%; resize: none;"></textarea>
 							<hr>
 
-							장소 : <input type="text" name="map" id="addr" size="30"
-								placeholder='원하는 장소를 입력해주세요.'> <input type="button"
-								name="send" id="sendMark" value="검색"><br>
+							모임 장소 : <input type="text" name="map" id="addr" size="35"
+								placeholder='장소를 입력해주세요.(시,구,동,읍,면,리)'> <input
+								type="button" name="send" id="sendMark" value="검색"><br>
 							<div id="map" style="width: 100%; height: 400px;"></div>
 							<hr>
 
@@ -167,7 +196,8 @@
 
 						<!-- 작성(submit) + 취소(버튼) -->
 						<div class="card-body" style="text-align: center">
-							<button type="submit" class="btn btn-outline-dark">작성</button>
+							<button type="submit" class="btn btn-outline-dark"
+								onclick="nullCheck()">작성</button>
 							&nbsp; <a href="/cocoa/view_projectCate"
 								class="btn btn-outline-dark">취소</a>
 						</div>
