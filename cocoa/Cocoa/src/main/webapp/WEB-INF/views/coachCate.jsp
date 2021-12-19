@@ -111,12 +111,12 @@
 							</c:choose>
 							<c:choose>
 								<c:when test="${cri.tool == 'tool' }"></c:when>
-								<c:when test="${cri.tool == 'tool1' }"> - Web - Spring</c:when>
-								<c:when test="${cri.tool == 'tool2' }"> - Web - Django</c:when>
-								<c:when test="${cri.tool == 'tool3'}"> - Mobile App - Android Studio</c:when>
-								<c:when test="${cri.tool == 'tool4'}"> - Mobile App - Xcode</c:when>
-								<c:when test="${cri.tool == 'tool5'}"> - Embedded - Arduino</c:when>
-								<c:when test="${cri.tool == 'tool6'}"> - Embedded - Rasberry Pi</c:when>
+								<c:when test="${cri.tool == 'tool1' }"> - Spring</c:when>
+								<c:when test="${cri.tool == 'tool2' }"> - Django</c:when>
+								<c:when test="${cri.tool == 'tool3'}"> - Android Studio</c:when>
+								<c:when test="${cri.tool == 'tool4'}"> - Xcode</c:when>
+								<c:when test="${cri.tool == 'tool5'}"> - Arduino</c:when>
+								<c:when test="${cri.tool == 'tool6'}"> - Rasberry Pi</c:when>
 							</c:choose>
 						</h3>
 					</div>
