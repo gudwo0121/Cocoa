@@ -48,12 +48,11 @@ request.setCharacterEncoding("UTF-8");
 		<section class="py-5" style="margin: 0 auto;">
 			<div class="row" style="flex-wrap: unset;">
 
-				<div style="width: 5%;"></div>
 
-				<div class="col-sm-2">
+				<div class="col-sm-3 px-3">
 
 					<!-- 좌측 프로필 : proImg / name -->
-					<div style="flex-wrap: unset; width: 100%;">
+					<div style="flex-wrap: unset;">
 						<div
 							style="text-align: center; width: 100%; height: 60%; border: 2px solid; background-color: #FFCCCC;">
 
@@ -76,12 +75,11 @@ request.setCharacterEncoding("UTF-8");
 					</div>
 				</div>
 
-				<div style="width: 5%;"></div>
 
 				<!-- 우측 내용 : pContents -->
 				<div
 					style="border: 1px solid; background-color: #FFCC99; color: black; border-radius: 5px; padding: 15px;"
-					class="col-sm-7">
+					class="col-sm-9 px-5">
 					<div class="proFile">
 
 						<!-- pContents 입력 -->

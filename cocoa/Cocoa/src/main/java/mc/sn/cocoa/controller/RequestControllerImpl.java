@@ -164,7 +164,7 @@ public class RequestControllerImpl implements RequestController {
 		cri.setReqId(id);
 
 		// 1페이지에 게시될 글의 수
-		int perPageNum = 15;
+		int perPageNum = 10;
 		cri.setPerPageNum(perPageNum);
 
 		// 쪽 번호 생성 매서드
@@ -200,7 +200,7 @@ public class RequestControllerImpl implements RequestController {
 		cri.setResId(id);
 
 		// 1페이지에 게시될 글의 수
-		int perPageNum = 15;
+		int perPageNum = 10;
 		cri.setPerPageNum(perPageNum);
 
 		// 쪽 번호 생성 매서드

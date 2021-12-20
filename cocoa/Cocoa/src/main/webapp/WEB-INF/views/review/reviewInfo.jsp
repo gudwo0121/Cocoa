@@ -17,7 +17,7 @@
 	<jsp:include page="../header.jsp"></jsp:include>
 
 	<!-- 타인 후기 구간 -->
-	<section class="py-5" style="height: 100vh;">
+	<section class="py-5" style="height: 100%;">
 		<div class="container main-secction">
 			<div class="row" style="flex-wrap: unset;">
 
