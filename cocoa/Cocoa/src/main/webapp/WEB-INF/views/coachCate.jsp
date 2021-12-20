@@ -241,31 +241,33 @@
 			</div>
 		</div>
 		<!-- 위의 카탈로그 틀이 반복 생성 및 표시 -->
+		
+		<!-- 쪽 번호 구간 -->
+		<div style="text-align: center; font-size: 30px;">
+
+			<c:if test="${pageMaker.prev }">
+				<a
+					href='<c:url value="/view_coachCate?cField=${cri.cField }&tool=${cri.tool }&coachOrder=${cri.coachOrder}&page=${pageMaker.startPage-1 }"/>'><i
+					class=""></i></a>
+			</c:if>
+
+			<c:forEach begin="${pageMaker.startPage }"
+				end="${pageMaker.endPage }" var="pageNum">
+				<a
+					href='<c:url value="/view_coachCate?cField=${cri.cField }&tool=${cri.tool }&coachOrder=${cri.coachOrder}&page=${pageNum }"/>'><i
+					class="">${pageNum }</i></a>
+			</c:forEach>
+
+			<c:if test="${pageMaker.next && pageMaker.endPage >0 }">
+				<a
+					href='<c:url value="/view_coachCate?cField=${cri.cField }&tool=${cri.tool }&coachOrder=${cri.coachOrder}&page=${pageMaker.endPage+1 }"/>'><i
+					class=""></i></a>
+			</c:if>
+
+		</div>
 	</section>
 
-	<!-- 쪽 번호 구간 -->
-	<div style="margin: 0 auto; font-size: 30px;">
 
-		<c:if test="${pageMaker.prev }">
-			<a
-				href='<c:url value="/view_coachCate?cField=${cri.cField }&tool=${cri.tool }&coachOrder=${cri.coachOrder}&page=${pageMaker.startPage-1 }"/>'><i
-				class=""></i></a>
-		</c:if>
-
-		<c:forEach begin="${pageMaker.startPage }" end="${pageMaker.endPage }"
-			var="pageNum">
-			<a
-				href='<c:url value="/view_coachCate?cField=${cri.cField }&tool=${cri.tool }&coachOrder=${cri.coachOrder}&page=${pageNum }"/>'><i
-				class="">${pageNum }</i></a>
-		</c:forEach>
-
-		<c:if test="${pageMaker.next && pageMaker.endPage >0 }">
-			<a
-				href='<c:url value="/view_coachCate?cField=${cri.cField }&tool=${cri.tool }&coachOrder=${cri.coachOrder}&page=${pageMaker.endPage+1 }"/>'><i
-				class=""></i></a>
-		</c:if>
-
-	</div>
 
 	<!-- 하단바 -->
 	<jsp:include page="footer.jsp"></jsp:include>

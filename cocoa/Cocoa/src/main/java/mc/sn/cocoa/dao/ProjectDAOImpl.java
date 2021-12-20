@@ -57,7 +57,7 @@ public class ProjectDAOImpl implements ProjectDAO {
 	public void updateProject(Map projectMap) {
 		sqlSession.update("mapper.project.updateProject", projectMap);
 	}
-	
+
 	// 프로젝트 글 개수
 	@Override
 	public int countProject(Criteria cri) throws DataAccessException {

@@ -85,8 +85,6 @@
 		var _cTitle = $("#c_cTitle").val();
 		var _basicPrice = $("#c_basicPrice").val();
 		var _tool = $("#tool").val();
-		alert(_cField);
-		alert(_tool);
 		var _cContents = $("#c_cContents").val();
 
 		if (_cTitle == "" || _basicPrice == "" || _tool == "tool"

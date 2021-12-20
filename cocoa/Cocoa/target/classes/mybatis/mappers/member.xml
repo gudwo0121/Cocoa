@@ -67,8 +67,7 @@
 	<!-- 회원정보 삭제 -->
 	<delete id="deleteMember" parameterType="String">
 		<![CDATA[
-			delete (pwd, name, phone, proImg, proContents)
-			from memberTBL where id=#{id}
+			delete from memberTBL where id=#{id}
 		]]>
 	</delete>
 

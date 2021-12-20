@@ -17,7 +17,7 @@ public interface CoachService {
 	public void modCoach(Map coachMap) throws Exception;
 
 	public void removeCoach(int coachNO) throws Exception;
-	
+
 	public int countCoach(Criteria cri) throws Exception;
 
 }
