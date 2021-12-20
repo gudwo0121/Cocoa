@@ -16,9 +16,9 @@ th, td {
 </style>
 <script type="text/javascript">
 	function nullCheck() {
-		var _rate = $("#rate").val();
+		var _rate = $('input[name="rate"]:checked').val();
 		var _rContents = $("#rContents").val();
-		if (_rate == "") {
+		if (_rate == null) {
 			alert("평점을 선택하세요");
 			$('#reviewWrite').attr('onSubmit', "return false;");
 		} else if (_rContents == "") {

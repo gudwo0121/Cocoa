@@ -16,7 +16,7 @@ import mc.sn.cocoa.vo.RequestVO;
 
 public interface RequestController {
 
-	public ModelAndView view_reqWriteForm(@RequestParam("coachId") String res, HttpServletRequest request,
+	public ModelAndView view_reqWriteForm(@RequestParam("coachId") String res,@RequestParam("basicPrice") int basicPrice, HttpServletRequest request,
 			HttpServletResponse response);
 
 	public ResponseEntity sendRequest(MultipartHttpServletRequest multipartRequest, HttpServletResponse response)

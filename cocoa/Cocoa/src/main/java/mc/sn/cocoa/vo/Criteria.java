@@ -12,8 +12,8 @@ public class Criteria {
 	private String resId;
 	private String status = "status";
 	private String target;
-	private String coachOrder = "reviewRate desc";
-	private String projectOrder = "reviewRate desc";
+	private String coachOrder = "order by reviewRate desc";
+	private String projectOrder = "order by reviewRate desc";
 
 	// 특정 페이지의 게시글 시작 번호, 게시글 시작 행 번호
 	// 현재 페이지의 게시글 시작 번호 = (현재 페이지 번호 - 1) * 페이지 당 게시할 글의 수

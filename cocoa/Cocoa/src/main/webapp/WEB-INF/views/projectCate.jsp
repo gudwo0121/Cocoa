@@ -126,15 +126,20 @@
 
 			<!-- 정렬 버튼 -->
 			<select class="me-sm-3"
-				style="float: right; text-align: center; width: 10%;"
+				style="float: right; text-align: center; width: 130px; height: 40px;"
 				id="projectOrder" onchange="selChange()">
-				<option value="reviewRate desc"
-					<c:if test="${cri.projectOrder == 'reviewRate desc' }">selected</c:if>>평점
-					높은순</option>
-				<option value="projectNO desc"
-					<c:if test="${cri.projectOrder == 'projectNO desc' }">selected</c:if>>최신순</option>
-				<option value="projectNO"
-					<c:if test="${cri.projectOrder == 'projectNO' }">selected</c:if>>오래된순</option>
+				<option value="order by reviewRate desc"
+					<c:if test="${cri.projectOrder == 'order by reviewRate desc' }">selected</c:if>>평점높은순</option>
+				<option value="order by projectNO desc"
+					<c:if test="${cri.projectOrder == 'order by projectNO desc' }">selected</c:if>>최신순</option>
+				<option value="order by projectNO"
+					<c:if test="${cri.projectOrder == 'order by projectNO' }">selected</c:if>>오래된순</option>
+				<c:choose>
+				<c:when test="${isLogOn == true && member != null}">
+				<option value="and leader like"
+					<c:if test="${cri.projectOrder == 'and leader like' }">selected</c:if>>내가 쓴 글</option>
+				</c:when>
+				</c:choose>
 			</select><br> <br> <br> <br>
 
 			<!-- 생성된 코칭 카탈로그 표시 -->
@@ -173,28 +178,30 @@
 									<b style="font-size: 15px; float: left; color: grey;">${project.leader}</b>
 
 									<!-- 후기 개수 (없을시 0개) -->
-									<div style="font-size: 13px; float: right;">
-										<c:if test="${reCount[project.leader] eq null}">
-											<b>0개의 후기</b>
-										</c:if>
-										<c:if test="${reCount[project.leader] ne null}">
-											<b>${reCount[project.leader]}개의 후기</b>
-										</c:if>
-									</div>
+									<a href="/cocoa/view_reviewInfo?target=${project.leader}">
+										<div style="font-size: 13px; float: right;">
+											<c:if test="${reCount[project.leader] eq null}">
+												<b>0개의 후기</b>
+											</c:if>
+											<c:if test="${reCount[project.leader] ne null}">
+												<b>${reCount[project.leader]}개의 후기</b>
+											</c:if>
+										</div>
 
 									<!-- 평점 평균 (없을시 0.0) -->
-									<div style="font-size: 13px; float: right;">
-										<c:if test="${reAvg[project.leader] eq null}">
-											<b
-												style="text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black; color: yellow;">
-												★&nbsp;</b>
-											<b>0.0</b>&nbsp;|&nbsp;</c:if>
-										<c:if test="${reAvg[project.leader] ne null}">
-											<b
-												style="text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black; color: yellow;">
-												★&nbsp;</b>
-											<b>${reAvg[project.leader]}</b>&nbsp;|&nbsp;</c:if>
-									</div>
+										<div style="font-size: 13px; float: right;">
+											<c:if test="${reAvg[project.leader] eq null}">
+												<b
+													style="text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black; color: yellow;">
+													★&nbsp;</b>
+												<b>0.0</b>&nbsp;|&nbsp;</c:if>
+											<c:if test="${reAvg[project.leader] ne null}">
+												<b
+													style="text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black; color: yellow;">
+													★&nbsp;</b>
+												<b>${reAvg[project.leader]}</b>&nbsp;|&nbsp;</c:if>
+										</div>
+									</a>
 									<br> <br>
 
 									<!-- 제목 -->
@@ -226,7 +233,7 @@
 		<!-- 위의 카탈로그 틀이 반복 생성 및 표시 -->
 
 		<!-- 쪽 번호 구간 -->
-		<div style="text-align: center; font-size: 30px;">
+		<div style="text-align: center; font-size: 30px;" >
 
 			<c:if test="${pageMaker.prev }">
 				<a

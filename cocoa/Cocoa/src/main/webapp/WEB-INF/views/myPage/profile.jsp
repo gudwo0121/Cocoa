@@ -66,7 +66,15 @@ request.setCharacterEncoding("UTF-8");
 							<label class="btn btn-outline-dark" for="proImg" id="proImgMod">대표
 								이미지 변경 </label> <input type="file" id="proImg" name="proImg"
 								onchange="readURL(this);" style="display: none;" />
-
+								
+							<!-- 후기 조회 이동 -->
+								<br> <span style="text-align: center;"><a
+									href="/cocoa/view_reviewInfo?target=${profileId.id}"> <input
+										type="button" name="view_reviewInfo" value="후기보기"
+										class="btn btn-third-dark"
+										style="font-size: 15px; border-radius: 12px; width: 50%;">
+								</a> </span><br> <br>
+								
 							<!-- name -->
 							<input type="hidden" name="id" value="${profileId.id}" /> <input
 								type="text" name="nickName" value="${profileId.name}" disabled
