@@ -30,18 +30,16 @@
 	<jsp:include page="../header.jsp"></jsp:include>
 
 	<!-- 메뉴와 내용 -->
-	<div class="row" style="flex-wrap: unset; width: 80%;">
+	<div class="row" style="flex-wrap: unset; width: 100%;">
 
 		<!-- 좌측 메뉴 -->
-		<div class="col-sm-2">
-			<div class="side"
-				style="background-color: #333333; text-align: center;">
-				<jsp:include page="side.jsp"></jsp:include>
-			</div>
+		<div class="col-sm-3 side"
+			style="background-color: #333333; text-align: center; width: auto;">
+			<jsp:include page="side.jsp"></jsp:include>
 		</div>
 
 		<!-- 우측 내용 -->
-		<div class="col-sm-12">
+		<div class="col-sm-9">
 			<div id="main"><jsp:include page="sent.jsp"></jsp:include></div>
 		</div>
 

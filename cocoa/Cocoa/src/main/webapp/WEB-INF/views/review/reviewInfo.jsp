@@ -17,7 +17,7 @@
 	<jsp:include page="../header.jsp"></jsp:include>
 
 	<!-- 타인 후기 구간 -->
-	<section class="py-5" style="height: 100vh;">
+	<section class="py-5" style="height: 100%;">
 		<div class="container main-secction">
 			<div class="row" style="flex-wrap: unset;">
 
@@ -105,26 +105,31 @@
 						<div style="margin: 0 auto; font-size: 30px;">
 
 							<c:if test="${pageMaker.prev }">
-								<a
-									href='<c:url value="/view_reviewInfo?target=${target}&page=${pageMaker.startPage-1 }"/>'><i
-									class=""></i></a>
+								<a style="text-decoration: none; color: black; font-size: 15pt;"
+									href='<c:url value="/view_reviewInfo?target=${target}&page=${pageMaker.startPage-1 }"/>'>이전</a>
 							</c:if>
 
 							<c:forEach begin="${pageMaker.startPage }"
 								end="${pageMaker.endPage }" var="pageNum">
-								<a
-									href='<c:url value="/view_reviewInfo?target=${target}&page=${pageNum }"/>'><i
-									class="">${pageNum }</i></a>
+								<c:choose>
+									<c:when test="${pageNum == pageNum}">
+										<a style="text-decoration: none; color: red; font-size: 15pt;"
+											href='<c:url value="/view_reviewInfo?target=${target}&page=${pageNum }"/>'>${pageNum }</a>
+									</c:when>
+									<c:when test="${pageNum != pageNum}">
+										<a
+											style="text-decoration: none; color: black; font-size: 15pt;"
+											href='<c:url value="/view_reviewInfo?target=${target}&page=${pageNum }"/>'>${pageNum }</a>
+									</c:when>
+								</c:choose>
 							</c:forEach>
 
 							<c:if test="${pageMaker.next && pageMaker.endPage >0 }">
-								<a
-									href='<c:url value="/view_reviewInfo?target=${target}&page=${pageMaker.endPage+1 }"/>'><i
-									class=""></i></a>
+								<a style="text-decoration: none; color: black; font-size: 15pt;"
+									href='<c:url value="/view_reviewInfo?target=${target}&page=${pageMaker.endPage+1 }"/>'>다음</a>
 							</c:if>
 
 						</div>
-
 					</div>
 
 					<!-- 뒤로가기 -->

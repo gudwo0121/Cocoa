@@ -48,9 +48,9 @@
 
 	<!-- 회원 정보 수정 -->
 	<div class="container"
-		style="text-align: center; padding-top: 80px; padding-left: 50px; width: 50vw;">
+		style="text-align: center; padding-top: 100px; padding-left: 100px; width: 35vw;">
 		<div class="card mt-3 px-2 pt-3 pb-3 mb-3"
-			style="width: 80%; height: 100%; background-color: #FFCC99; border: 1px solid black;">
+			style="width: 100%; height: 100%; background-color: #FFCC99; border: 1px solid black;">
 
 			<h5 class="mb-2">
 				<b>회 원 정 보 &nbsp;&nbsp;수 정</b>
@@ -118,7 +118,7 @@
 									style="color: black; padding-left: 10px;"></i> <input
 									type="text" name="phone" id="phone" class="form-control"
 									style="border: 1px solid grey; padding-left: 30px; color: black;"
-									placeholder="전화번호(Phone Number)">
+									placeholder="전화번호( '-' 제외하고 입력 )">
 							</div>
 						</td>
 					</tr>

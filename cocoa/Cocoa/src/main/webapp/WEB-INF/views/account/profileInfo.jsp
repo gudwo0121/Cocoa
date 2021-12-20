@@ -38,7 +38,7 @@
 
 								<!-- 글 작성자 -->
 								<input type="text" name="id" value="${profileId.id }" readonly
-									style="text-align: center; border: 0; font-weight: 700; background-color: #FFCCCC; width: 70%;"><br>
+									style="outline: none; text-align: center; border: 0; font-weight: 700; background-color: #FFCCCC; width: 70%;"><br>
 								<br>
 							</div>
 						</div>

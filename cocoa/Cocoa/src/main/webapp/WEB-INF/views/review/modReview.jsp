@@ -9,12 +9,10 @@
 <link href="resources/css/styles.css" rel="stylesheet" />
 <script type="text/javascript" src="resources/js/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
-
 	function fn_modify_review(obj) {
 		obj.action = "${contextPath}/modReview";
 		obj.submit();
 	}
-	
 </script>
 <title>CoCoa</title>
 </head>
@@ -40,7 +38,7 @@
 								href="/cocoa/view_profileInfo?profileId=${reviewVO.target}">
 								<img name="proImg"
 								src="${contextPath}/downProfileImg?id=${reviewVO.target}"
-								onerror="this.src='resources/image/kakao.png'"
+								onerror="this.src='resources/image/onerror.png'"
 								style="border: 1px solid black;" width="50%" height="120px"><br>
 								<br>
 							</a>
@@ -49,18 +47,7 @@
 							<input type="text" name="coach" value="${reviewVO.target}"
 								readonly
 								style="text-align: center; border: 0; font-weight: 700; background-color: #FFCCCC; width: 70%;">
-							<br>
-
-							<!-- 요청서 작성 -->
-							<br>
-							<c:if test="${isLogOn == true && member.id != reviewVO.target}">
-								<a href="/cocoa/view_reqWriteForm?coachId=${reviewVO.target}">
-									<input type="button" name="requestForm" value="   요청서 작성   "
-									class="btn btn-third-dark"
-									style="text-align: center; border: 1; border-radius: 12px; width: 70%;">
-								</a>
-							</c:if>
-							<br> <br>
+							<br> <br> <br>
 						</div>
 					</div>
 				</div>

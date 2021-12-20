@@ -42,6 +42,7 @@
 			$('#p_pMemberCount').prop('disabled', false);
 			$('#p_pContents').prop('disabled', false);
 			$('#addr').prop('disabled', false);
+			$('#getpField').attr('hidden', '');
 			return false;
 		});
 
@@ -106,6 +107,39 @@
 			});
 		});
 	});
+
+	// 영역 변경시 개발툴 초기화 셋팅
+	function categoryChange(e) {
+		var level_pField_value = [ "level", "level1", "level2", "level3" ];
+		var level_pField_out = [ "-- 선택 --", "Basic", "Intermediate",
+				"Advanced" ];
+		var target = document.getElementById("p_pLevel");
+		var v = level_pField_value;
+		var o = level_pField_out;
+		target.options.length = 0;
+		for (x in v, o) {
+			var opt = document.createElement("option");
+			opt.value = v[x];
+			opt.innerHTML = o[x];
+			target.appendChild(opt);
+		}
+	}
+
+	function nullCheck() {
+		var _pTitle = $("#p_pTitle").val();
+		var _pMemberCount = $("#p_pMemberCount").val();
+		var _level = $("#p_pLevel").val();
+		var _pContents = $("#p_pContents").val();
+		if (_pTitle == "" || _level == "" || _pContents == "") {
+			alert("빈칸없이 입력하세요.");
+			$('#projectInfo').attr('onSubmit', "return false;");
+		} else if (_pMemberCount < 2) {
+			alert("인원 수를 확인하세요. (최소 인원 수 : 2명)");
+			$('#projectInfo').attr('onSubmit', "return false;");
+		} else {
+			$('#projectInfo').removeAttr('onSubmit');
+		}
+	}
 </script>
 <title>CoCoa</title>
 </head>
@@ -116,7 +150,7 @@
 
 	<!-- 프로젝트 글 구간 -->
 	<form method="post" enctype="multipart/form-data" name="frmProject"
-		action="${contextPath}/modProject">
+		action="${contextPath}/modProject" id="projectInfo">
 		<section class="py-5">
 			<div class="container main-secction">
 				<div class="row" style="flex-wrap: unset;">
@@ -141,7 +175,7 @@
 								<!-- leader -->
 								<input type="text" name="leader" value="${projectInfo.leader}"
 									readonly
-									style="text-align: center; border: 0; font-weight: 700; background-color: #FFCCCC; width: 70%"><br>
+									style="outline: none; text-color: black; text-align: center; border: 0; font-weight: 700; background-color: #FFCCCC; width: 70%"><br>
 								<input type="hidden" name="projectNO"
 									value="${projectInfo.projectNO}" /> <br>
 
@@ -189,7 +223,7 @@
 					</div>
 
 					<!-- 우측 내용 : pImg / pTitle / memberCount / level / pContents -->
-					<div class="card"
+					<div class="card px-3"
 						style="width: 50rem; border: 1px solid; background-color: #FFCC99">
 
 						<!-- pImg -->
@@ -223,9 +257,10 @@
 
 							<!-- pField 표시 -->
 							영역 : <select
-								style="border: 0; text-align: center; width: 15%; background-color: #FFCC99; font-weight: 700; color: black;"
-								name="pField" disabled id="p_pField">
-								<option id="empty" value="">
+								style="border: 0; text-align: center; width: auto; background-color: #FFCC99; font-weight: 700; color: black;"
+								name="pField" disabled id="p_pField"
+								onchange="categoryChange(this)">
+								<option id="getpField" value="${projectInfo.pField}">
 									<c:choose>
 										<c:when test="${projectInfo.pField == 'pField1'}">Web</c:when>
 										<c:when test="${projectInfo.pField == 'pField2'}">Mobile App</c:when>
@@ -240,18 +275,15 @@
 
 							<!-- level 표시 -->
 							등급 : <select
-								style="border: 0; text-align: center; width: 15%; background-color: #FFCC99; font-weight: 700; color: black;"
+								style="border: 0; text-align: center; width: auto; background-color: #FFCC99; font-weight: 700; color: black;"
 								name="level" disabled id="p_pLevel">
-								<option id="empty" value="">
+								<option id="default" value="${projectInfo.level}">
 									<c:choose>
 										<c:when test="${projectInfo.level == 'level1'}">Basic</c:when>
 										<c:when test="${projectInfo.level == 'level2'}">Intermediate</c:when>
 										<c:when test="${projectInfo.level == 'level3'}">Advanced</c:when>
 									</c:choose>
 								</option>
-								<option id="level1" value="level1">Basic</option>
-								<option id="level2" value="level2">Intermediate</option>
-								<option id="level3" value="level3">Advanced</option>
 							</select>
 							<hr>
 
@@ -274,9 +306,9 @@
 
 							<!-- 수정 확인 -->
 							<div align="center">
-								<input type="submit" value="확 인" class="btn btn-outline-dark"
-									id="p_modBtn">&nbsp;&nbsp;<input type=button
-									value="목록으로" class="btn btn-outline-dark"
+								<input type="submit" onclick="nullCheck()" value="확 인"
+									class="btn btn-outline-dark" id="p_modBtn">&nbsp;&nbsp;<input
+									type=button value="목록으로" class="btn btn-outline-dark"
 									onClick="history.back()" id="goBack"><br> <br>
 							</div>
 						</div>

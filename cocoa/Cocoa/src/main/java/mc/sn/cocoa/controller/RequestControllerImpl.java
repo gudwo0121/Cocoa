@@ -50,12 +50,13 @@ public class RequestControllerImpl implements RequestController {
 	// RequestParam으로 쿼리스트링으로 받아온 "coachId"를 res로 저장
 	@Override
 	@RequestMapping(value = "/view_reqWriteForm", method = RequestMethod.GET)
-	public ModelAndView view_reqWriteForm(@RequestParam("coachId") String res, HttpServletRequest request,
-			HttpServletResponse response) {
+	public ModelAndView view_reqWriteForm(@RequestParam("coachId") String res,
+			@RequestParam("basicPrice") int basicPrice, HttpServletRequest request, HttpServletResponse response) {
 		ModelAndView mav = new ModelAndView();
 		String url = "/coach/reqWriteForm";
 		// 위의 res를 키값 'res'로 addobject
 		mav.addObject("res", res);
+		mav.addObject("basicPrice", basicPrice);
 		mav.setViewName(url);
 		// reqWriteForm.jsp를 열었을 때 res object도 같이 보내짐
 		return mav;
@@ -164,7 +165,7 @@ public class RequestControllerImpl implements RequestController {
 		cri.setReqId(id);
 
 		// 1페이지에 게시될 글의 수
-		int perPageNum = 15;
+		int perPageNum = 10;
 		cri.setPerPageNum(perPageNum);
 
 		// 쪽 번호 생성 매서드
@@ -200,7 +201,7 @@ public class RequestControllerImpl implements RequestController {
 		cri.setResId(id);
 
 		// 1페이지에 게시될 글의 수
-		int perPageNum = 15;
+		int perPageNum = 10;
 		cri.setPerPageNum(perPageNum);
 
 		// 쪽 번호 생성 매서드
@@ -388,7 +389,8 @@ public class RequestControllerImpl implements RequestController {
 			HttpServletResponse response) throws UnsupportedEncodingException {
 		request.setCharacterEncoding("utf-8");
 		ModelAndView mav = new ModelAndView();
-		mav.addObject("reqNO", reqNO);
+		RequestVO vo = requestService.searchRequest(reqNO);
+		mav.addObject("requestInfo", vo);
 		String url = "/got/gotReqWaitY";
 		mav.setViewName(url);
 		return mav;

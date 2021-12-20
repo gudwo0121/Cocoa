@@ -53,6 +53,16 @@ public class ProjectControllerImpl implements ProjectController {
 			throws Exception {
 		ModelAndView mav = new ModelAndView();
 
+		// 내가 쓴 글을 선택시 실행해서 projectOrder 설정
+		String projectOrder = cri.getProjectOrder();
+		if (projectOrder.equals("and leader like")) {
+			HttpSession session = request.getSession();
+			MemberVO vo = (MemberVO) session.getAttribute("member");
+			String id = vo.getId();
+			String project = projectOrder + " '" + id + "'";
+			cri.setProjectOrder(project);
+		}
+
 		// 쪽 번호 생성 메서드 객체 생성
 		PageMaker pageMaker = new PageMaker();
 

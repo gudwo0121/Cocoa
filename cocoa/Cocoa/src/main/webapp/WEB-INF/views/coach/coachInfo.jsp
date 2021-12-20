@@ -129,7 +129,7 @@
 
 								<!-- coach -->
 								<input type="text" name="coach" value="${coach.coach}" readonly
-									style="text-align: center; border: 0; font-weight: 700; background-color: #FFCCCC; width: 70%;">
+									style="outline: none; text-align: center; border: 0; font-weight: 700; background-color: #FFCCCC; width: 70%;">
 								<input type="hidden" name="coachNO" value="${coach.coachNO}" />
 								<br>
 
@@ -143,7 +143,8 @@
 
 								<!-- 요청서 작성 -->
 								<c:if test="${isLogOn == true && member.id !=coach.coach}">
-									<a href="/cocoa/view_reqWriteForm?coachId=${coach.coach}">
+									<a
+										href="/cocoa/view_reqWriteForm?coachId=${coach.coach}&basicPrice=${coach.basicPrice}">
 										<input type="button" name="requestForm" value="   요청서 작성   "
 										class="btn btn-third-dark"
 										style="text-align: center; border: 1; border-radius: 12px; width: 70%;">
@@ -164,7 +165,7 @@
 					</div>
 
 					<!-- 우측 내용 : cImg / cTitle / basicPrice / tool / cContents -->
-					<div class="card"
+					<div class="card px-3"
 						style="width: 50rem; border: 1px solid; background-color: #FFCC99">
 
 						<!-- cImg -->

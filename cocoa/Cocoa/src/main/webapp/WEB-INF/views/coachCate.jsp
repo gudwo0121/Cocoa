@@ -89,7 +89,7 @@
 	</header>
 
 	<!-- 코칭 카탈로그 구간 -->
-	<section class="py-5">
+	<section>
 
 		<!-- 선택된 카테고리 표시 -->
 		<div style="text-align: center;">
@@ -126,31 +126,47 @@
 		</div>
 
 		<div class="container px-4 px-lg-5 mt-5">
-
-			<!-- 글 분류별 이동 -->
-			<!-- 로그인 여부에따라 숨김 / 표시 -->
-			<c:choose>
-				<c:when test="${isLogOn == true && member != null}">
-					<a id="cwrite_btn" class="btn btn-primary px-4 me-sm-3"
-						href="/cocoa/view_coachWrite" style="float: right">코칭 등록</a>
-				</c:when>
-			</c:choose>
-
-			<!-- 정렬 버튼 -->
-			<select class="me-sm-3"
-				style="float: right; text-align: center; width: 10%;"
-				id="coachOrder" onchange="selChange()">
-				<option value="reviewRate desc"
-					<c:if test="${cri.coachOrder == 'reviewRate desc' }">selected</c:if>>평점높은순</option>
-				<option value="coachNO desc"
-					<c:if test="${cri.coachOrder == 'coachNO desc' }">selected</c:if>>최신순</option>
-				<option value="coachNO"
-					<c:if test="${cri.coachOrder == 'coachNO' }">selected</c:if>>오래된순</option>
-				<option value="basicPrice desc"
-					<c:if test="${cri.coachOrder == 'basicPrice desc' }">selected</c:if>>가격높은순</option>
-				<option value="basicPrice"
-					<c:if test="${cri.coachOrder == 'basicPrice' }">selected</c:if>>가격낮은순</option>
-			</select><br> <br> <br> <br>
+			<div class="row">
+				<table style="float: right;">
+					<tr>
+						<td>
+							<!-- 글 분류별 이동 --> <!-- 로그인 여부에따라 숨김 / 표시 --> <c:choose>
+								<c:when test="${isLogOn == true && member != null}">
+									<a id="cwrite_btn" class="btn btn-primary px-auto me-sm-3"
+										href="/cocoa/view_coachWrite" style="float: right">코칭 등록</a>
+									<br>
+									<br>
+								</c:when>
+							</c:choose>
+						</td>
+					</tr>
+					<tr>
+						<td style="vertical-align: middle;">
+							<!-- 정렬 버튼 --> <select class="me-sm-3"
+							style="float: right; text-align: center; width: auto;"
+							id="coachOrder" onchange="selChange()">
+								<option value="order by reviewRate desc"
+									<c:if test="${cri.coachOrder == 'order by reviewRate desc' }">selected</c:if>>평점높은순</option>
+								<option value="order by coachNO desc"
+									<c:if test="${cri.coachOrder == 'order by coachNO desc' }">selected</c:if>>최신순</option>
+								<option value="order by coachNO"
+									<c:if test="${cri.coachOrder == 'order by coachNO' }">selected</c:if>>오래된순</option>
+								<option value="order by basicPrice desc"
+									<c:if test="${cri.coachOrder == 'order by basicPrice desc' }">selected</c:if>>가격높은순</option>
+								<option value="order by basicPrice"
+									<c:if test="${cri.coachOrder == 'order by basicPrice' }">selected</c:if>>가격낮은순</option>
+								<c:choose>
+									<c:when test="${isLogOn == true && member != null}">
+										<option value="and coach like"
+											<c:if test="${cri.coachOrder.contains('and coach like') }">selected</c:if>>내가
+											쓴 글</option>
+									</c:when>
+								</c:choose>
+						</select><br> <br>
+						</td>
+					</tr>
+				</table>
+			</div>
 
 			<!-- 생성된 코칭 카탈로그 표시 -->
 			<div
@@ -190,29 +206,28 @@
 									<b style="font-size: 15px; float: left; color: grey;">${coach.coach}</b>
 
 									<!-- 후기 개수 (없을시 0개) -->
-									<div style="font-size: 13px; float: right;">
-										<c:if test="${reCount[coach.coach] eq null}">
-											<b>0개의 후기</b>
-										</c:if>
-										<c:if test="${reCount[coach.coach] ne null}">
-											<b>${reCount[coach.coach]}개의 후기</b>
-										</c:if>
-									</div>
-
-									<!-- 평점 평균 (없을시 0.0) -->
-									<div style="font-size: 13px; float: right;">
-										<c:if test="${reAvg[coach.coach] eq null}">
-											<b
-												style="text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black; color: yellow;">
-												★&nbsp;</b>
-											<b>0.0</b>&nbsp;|&nbsp;</c:if>
-										<c:if test="${reAvg[coach.coach] ne null}">
-											<b
-												style="text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black; color: yellow;">
-												★&nbsp;</b>
-											<b>${reAvg[coach.coach]}</b>&nbsp;|&nbsp;</c:if>
-									</div>
-									<br> <br>
+									<a href="/cocoa/view_reviewInfo?target=${coach.coach}">
+										<div style="font-size: 13px; float: right;">
+											<c:if test="${reCount[coach.coach] eq null}">
+												<b>0개의 후기</b>
+											</c:if>
+											<c:if test="${reCount[coach.coach] ne null}">
+												<b>${reCount[coach.coach]}개의 후기</b>
+											</c:if>
+										</div> <!-- 평점 평균 (없을시 0.0) -->
+										<div style="font-size: 13px; float: right;">
+											<c:if test="${reAvg[coach.coach] eq null}">
+												<b
+													style="text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black; color: yellow;">
+													★&nbsp;</b>
+												<b>0.0</b>&nbsp;|&nbsp;</c:if>
+											<c:if test="${reAvg[coach.coach] ne null}">
+												<b
+													style="text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black; color: yellow;">
+													★&nbsp;</b>
+												<b>${reAvg[coach.coach]}</b>&nbsp;|&nbsp;</c:if>
+										</div>
+									</a> <br> <br>
 
 									<!-- 제목 -->
 									<b style="font-size: 15px; color: black;">${coach.cTitle}</b><br>
@@ -237,37 +252,41 @@
 					</div>
 				</c:forEach>
 				<!-- Coach 반복문 끝 -->
-
 			</div>
+
+			<!-- 쪽 번호 구간 -->
+			<div class="pb-3"
+				style="text-align: center; font-size: 30px; width: 100%;">
+
+				<c:if test="${pageMaker.prev }">
+					<a style="text-decoration: none; color: black; font-size: 15pt;"
+						href='<c:url value="/view_coachCate?cField=${cri.cField }&tool=${cri.tool }&coachOrder=${cri.coachOrder}&page=${pageMaker.startPage-1 }"/>'>이전</a>
+				</c:if>
+
+				<c:forEach begin="${pageMaker.startPage }"
+					end="${pageMaker.endPage }" var="pageNum">
+					<c:choose>
+						<c:when test="${cri.page == pageNum}">
+							<a style="text-decoration: none; color: red; font-size: 15pt;"
+								href='<c:url value="/view_coachCate?cField=${cri.cField }&tool=${cri.tool }&coachOrder=${cri.coachOrder}&page=${pageNum }"/>'>${pageNum }</a>
+						</c:when>
+						<c:when test="${cri.page != pageNum}">
+							<a style="text-decoration: none; color: black; font-size: 15pt;"
+								href='<c:url value="/view_coachCate?cField=${cri.cField }&tool=${cri.tool }&coachOrder=${cri.coachOrder}&page=${pageNum }"/>'>${pageNum }</a>
+						</c:when>
+					</c:choose>
+				</c:forEach>
+
+				<c:if test="${pageMaker.next && pageMaker.endPage >0 }">
+					<a style="text-decoration: none; color: black; font-size: 15pt;"
+						href='<c:url value="/view_coachCate?cField=${cri.cField }&tool=${cri.tool }&coachOrder=${cri.coachOrder}&page=${pageMaker.endPage+1 }"/>'>다음</a>
+				</c:if>
+			</div>
+
 		</div>
 		<!-- 위의 카탈로그 틀이 반복 생성 및 표시 -->
-		
-		<!-- 쪽 번호 구간 -->
-		<div style="text-align: center; font-size: 30px;">
 
-			<c:if test="${pageMaker.prev }">
-				<a
-					href='<c:url value="/view_coachCate?cField=${cri.cField }&tool=${cri.tool }&coachOrder=${cri.coachOrder}&page=${pageMaker.startPage-1 }"/>'><i
-					class=""></i></a>
-			</c:if>
-
-			<c:forEach begin="${pageMaker.startPage }"
-				end="${pageMaker.endPage }" var="pageNum">
-				<a
-					href='<c:url value="/view_coachCate?cField=${cri.cField }&tool=${cri.tool }&coachOrder=${cri.coachOrder}&page=${pageNum }"/>'><i
-					class="">${pageNum }</i></a>
-			</c:forEach>
-
-			<c:if test="${pageMaker.next && pageMaker.endPage >0 }">
-				<a
-					href='<c:url value="/view_coachCate?cField=${cri.cField }&tool=${cri.tool }&coachOrder=${cri.coachOrder}&page=${pageMaker.endPage+1 }"/>'><i
-					class=""></i></a>
-			</c:if>
-
-		</div>
 	</section>
-
-
 
 	<!-- 하단바 -->
 	<jsp:include page="footer.jsp"></jsp:include>

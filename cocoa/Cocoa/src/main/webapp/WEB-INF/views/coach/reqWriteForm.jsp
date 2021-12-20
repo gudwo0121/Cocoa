@@ -64,7 +64,8 @@ th, td {
 					<!-- form을 submit 할 때 요청자의 아이디(${member.id})와 
 					응답하는 코치(${res})의 아이디가 있어야해서 hidden으로 함 -->
 					<td><input type="hidden" name="res" value="${res}" /> <input
-						type="hidden" name="req" value="${member.id}" /></td>
+						type="hidden" name="req" value="${member.id}" /><input
+						type="hidden" name="realPrice" value="${basicPrice}" /></td>
 				</tr>
 
 				<!-- rTitle -->

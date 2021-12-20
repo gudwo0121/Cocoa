@@ -52,7 +52,17 @@ public class CoachControllerImpl implements CoachController {
 	public ModelAndView view_CoachCate(HttpServletRequest request, HttpServletResponse response, Criteria cri)
 			throws Exception {
 		ModelAndView mav = new ModelAndView();
-
+		
+		// 내가 쓴 글을 선택시 실행해서 coachOrder 설정
+		String coachOrder = cri.getCoachOrder();
+		if (coachOrder.equals("and coach like")) {
+			HttpSession session = request.getSession();
+			MemberVO vo = (MemberVO) session.getAttribute("member");
+			String id = vo.getId();
+			String coach = coachOrder + " '" + id + "'";
+			cri.setCoachOrder(coach);
+		}
+		
 		// 쪽 번호 생성 메서드 객체 생성
 		PageMaker pageMaker = new PageMaker();
 

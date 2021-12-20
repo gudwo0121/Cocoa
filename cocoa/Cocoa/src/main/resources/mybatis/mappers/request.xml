@@ -20,8 +20,8 @@
 	<!-- 요청서 추가 -->
 	<insert id="insertRequest" parameterType="java.util.Map">
 		<![CDATA[
-		 insert into requestTBL (reqNO, req, res, rTitle, rContents, rImg)
-		 values(#{reqNO}, #{req}, #{res}, #{rTitle}, #{rContents}, #{rImg})
+		 insert into requestTBL (reqNO, req, res, rTitle, rContents, rImg, realPrice)
+		 values(#{reqNO}, #{req}, #{res}, #{rTitle}, #{rContents}, #{rImg}, #{realPrice})
 		]]>
 	</insert>
 

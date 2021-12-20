@@ -48,12 +48,11 @@ request.setCharacterEncoding("UTF-8");
 		<section class="py-5" style="margin: 0 auto;">
 			<div class="row" style="flex-wrap: unset;">
 
-				<div style="width: 5%;"></div>
 
-				<div class="col-sm-2">
+				<div class="col-sm-3 px-3">
 
 					<!-- 좌측 프로필 : proImg / name -->
-					<div style="flex-wrap: unset; width: 100%;">
+					<div style="flex-wrap: unset;">
 						<div
 							style="text-align: center; width: 100%; height: 60%; border: 2px solid; background-color: #FFCCCC;">
 
@@ -65,7 +64,15 @@ request.setCharacterEncoding("UTF-8");
 								onerror="this.src='resources/image/onerror.png'" /> <br> <br>
 							<label class="btn btn-outline-dark" for="proImg" id="proImgMod">대표
 								이미지 변경 </label> <input type="file" id="proImg" name="proImg"
-								onchange="readURL(this);" style="display: none;" />
+								onchange="readURL(this);" style="display: none;" /><br>
+
+							<!-- 후기 조회 이동 -->
+							<br> <span style="text-align: center;"><a
+								href="/cocoa/view_reviewInfo?target=${profileId.id}"> <input
+									type="button" name="view_reviewInfo" value="후기보기"
+									class="btn btn-third-dark"
+									style="font-size: 15px; border-radius: 12px; width: 50%;">
+							</a> </span><br> <br>
 
 							<!-- name -->
 							<input type="hidden" name="id" value="${profileId.id}" /> <input
@@ -76,12 +83,10 @@ request.setCharacterEncoding("UTF-8");
 					</div>
 				</div>
 
-				<div style="width: 5%;"></div>
-
 				<!-- 우측 내용 : pContents -->
 				<div
 					style="border: 1px solid; background-color: #FFCC99; color: black; border-radius: 5px; padding: 15px;"
-					class="col-sm-7">
+					class="col-sm-9 px-5">
 					<div class="proFile">
 
 						<!-- pContents 입력 -->
@@ -97,8 +102,8 @@ request.setCharacterEncoding("UTF-8");
 					<div class="card-body" style="text-align: center">
 						<input type="submit" id="mod_profile" class="btn btn-outline-dark"
 							value="확 인" /> <a href="/cocoa/" id="mod_start"
-							class="btn btn-outline-dark">프로필 수정</a> &nbsp; <input type="button"
-							id="cancel" value="취 소" onclick="history.go(0)"
+							class="btn btn-outline-dark">프로필 수정</a> &nbsp; <input
+							type="button" id="cancel" value="취 소" onclick="history.go(0)"
 							class="btn btn-outline-dark">
 					</div>
 				</div>
