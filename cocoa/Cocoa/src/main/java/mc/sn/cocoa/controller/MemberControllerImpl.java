@@ -57,10 +57,11 @@ public class MemberControllerImpl implements MemberController {
 	@Override
 	@RequestMapping(value = "/view_login", method = RequestMethod.GET)
 	public ModelAndView view_login(@RequestParam(value = "result", required = false) String result,
-			HttpServletRequest request, HttpServletResponse response) {
+			@RequestParam("view") String view, HttpServletRequest request, HttpServletResponse response) {
 		ModelAndView mav = new ModelAndView();
 		String url = "/account/loginForm";
 		mav.addObject("result", result);
+		mav.addObject("view", view);
 		mav.setViewName(url);
 		return mav;
 	}
@@ -96,11 +97,12 @@ public class MemberControllerImpl implements MemberController {
 			HttpServletRequest request, HttpServletResponse response) {
 		ModelAndView mav = new ModelAndView();
 		MemberVO memberVO = memberService.login(member);
+		String view = request.getParameter("view");
 		if (memberVO != null) {
 			HttpSession session = request.getSession();
 			session.setAttribute("member", memberVO);
 			session.setAttribute("isLogOn", true);
-			mav.setViewName("redirect:/");
+			mav.setViewName("redirect:/" + view);
 		} else {
 			rAttr.addAttribute("result", "loginFailed");
 			mav.setViewName("redirect:/view_login");

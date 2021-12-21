@@ -59,7 +59,7 @@ public class ProjectControllerImpl implements ProjectController {
 			HttpSession session = request.getSession();
 			MemberVO vo = (MemberVO) session.getAttribute("member");
 			String id = vo.getId();
-			String project = projectOrder + " '" + id + "'";
+			String project = projectOrder + "'" + id + "'";
 			cri.setProjectOrder(project);
 		}
 

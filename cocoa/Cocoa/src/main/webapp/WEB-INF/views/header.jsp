@@ -56,6 +56,19 @@
 				</c:when>
 				<c:otherwise>
 					<form action="/cocoa/view_login" method="get" class="d-flex">
+						<c:set var="path"
+							value="${requestScope['javax.servlet.forward.servlet_path']}" />
+						<c:choose>
+							<c:when test="${path.contains('coach') }">
+								<input type="hidden" name="view" value="view_coachCate">
+							</c:when>
+							<c:when test="${path.contains('project') }">
+								<input type="hidden" name="view" value="view_projectCate">
+							</c:when>
+							<c:otherwise>
+								<input type="hidden" name="view" value="">
+							</c:otherwise>
+						</c:choose>
 						<input name="login" class="btn btn-outline-dark" type="submit"
 							value="Login" />&nbsp; <input name="join"
 							class="btn btn-outline-dark" type="button" value="Sign in"

@@ -7,13 +7,6 @@
 <head>
 <meta charset="UTF-8">
 <link href="resources/css/styles.css" rel="stylesheet" />
-<style type="text/css">
-.side {
-	float: left;
-	width: 100%;
-	height: 1200px;
-}
-</style>
 <script type="text/javascript" src="resources/js/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
 	$(document).ready(function() {
@@ -38,7 +31,7 @@
 		</div>
 
 		<!-- 우측 내용 -->
-		<div class="col-sm-9">
+		<div class="col-sm-9" style="min-height: 80.7vh;">
 			<div id="main"><jsp:include page="profile.jsp"></jsp:include></div>
 		</div>
 

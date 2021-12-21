@@ -20,7 +20,7 @@ public interface MemberController {
 			HttpServletResponse response) throws UnsupportedEncodingException;
 
 	public ModelAndView view_login(@RequestParam(value = "result", required = false) String result,
-			HttpServletRequest request, HttpServletResponse response);
+			@RequestParam("view") String view, HttpServletRequest request, HttpServletResponse response);
 
 	public ModelAndView login(@ModelAttribute("member") MemberVO member, RedirectAttributes rAttr,
 			HttpServletRequest request, HttpServletResponse response);

@@ -132,7 +132,7 @@
 					</div>
 
 					<!-- 우측 내용 : pImg / pTitle / memberCount / pContents -->
-					<div class="card"
+					<div class="card px-3"
 						style="width: 50rem; border: 1px solid; background-color: #FFCC99">
 
 						<!-- pImg -->
@@ -187,8 +187,8 @@
 							<hr>
 
 							모임 장소 : <input type="text" name="map" id="addr" size="35"
-								placeholder='장소를 입력해주세요.(시,구,동,읍,면,리)'> <input
-								type="button" name="send" id="sendMark" value="검색"><br>
+								placeholder='장소를 입력해주세요.'> <input type="button"
+								name="send" id="sendMark" value="검색"><br>
 							<div id="map" style="width: 100%; height: 400px;"></div>
 							<hr>
 

@@ -9,13 +9,6 @@
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" />
 <link href="resources/css/styles.css" rel="stylesheet" />
-<style type="text/css">
-.side {
-	float: left;
-	width: 100%;
-	height: 1200px;
-}
-</style>
 <script type="text/javascript" src="resources/js/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
 	$(document).ready(function() {
@@ -39,7 +32,7 @@
 		</div>
 
 		<!-- 우측 내용 -->
-		<div class="col-sm-10">
+		<div class="col-sm-10" style="min-height: 80.7vh;">
 			<c:if test="${requestInfo.status == 'status2'}">
 				<div id="main"><jsp:include page="gotYes.jsp"></jsp:include></div>
 			</c:if>

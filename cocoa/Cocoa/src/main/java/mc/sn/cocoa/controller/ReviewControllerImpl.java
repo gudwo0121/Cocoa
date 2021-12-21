@@ -66,6 +66,7 @@ public class ReviewControllerImpl implements ReviewController {
 		mav.addObject("reviewList", reviewList);
 		mav.addObject("pageMaker", pageMaker);
 		mav.addObject("target", target);
+		mav.addObject("cri", cri);
 		mav.setViewName(url);
 
 		// reqWriteForm.jsp를 열었을 때 res object도 같이 보내짐

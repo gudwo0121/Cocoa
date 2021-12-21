@@ -17,7 +17,7 @@
 	<jsp:include page="../header.jsp"></jsp:include>
 
 	<!-- 타인 후기 구간 -->
-	<section class="py-5" style="height: 100%;">
+	<section class="py-5" style="min-height: 80.7vh;">
 		<div class="container main-secction">
 			<div class="row" style="flex-wrap: unset;">
 
@@ -62,13 +62,15 @@
 										<td style="float: left;">작성자 : ${reviewInfo.writer} <input
 											type="hidden" name="reviewNO" value="${reviewInfo.reviewNO }" />
 										</td>
-										<td colspan="3" style="float: left; width: 250px">평점 : <c:choose>
+										<td colspan="3" style="text-align: left; width: 250px">평점
+											: <c:choose>
 												<c:when test="${reviewInfo.rate == 1}">★</c:when>
 												<c:when test="${reviewInfo.rate == 2}">★★</c:when>
 												<c:when test="${reviewInfo.rate == 3}">★★★</c:when>
 												<c:when test="${reviewInfo.rate == 4}">★★★★</c:when>
 												<c:when test="${reviewInfo.rate == 5}">★★★★★</c:when>
-											</c:choose></td>
+											</c:choose>
+										</td>
 
 										<!-- 작성시간 -->
 										<td><fmt:parseDate var="dateFmt"
@@ -112,11 +114,11 @@
 							<c:forEach begin="${pageMaker.startPage }"
 								end="${pageMaker.endPage }" var="pageNum">
 								<c:choose>
-									<c:when test="${pageNum == pageNum}">
+									<c:when test="${cri.page == pageNum}">
 										<a style="text-decoration: none; color: red; font-size: 15pt;"
 											href='<c:url value="/view_reviewInfo?target=${target}&page=${pageNum }"/>'>${pageNum }</a>
 									</c:when>
-									<c:when test="${pageNum != pageNum}">
+									<c:when test="${cri.page != pageNum}">
 										<a
 											style="text-decoration: none; color: black; font-size: 15pt;"
 											href='<c:url value="/view_reviewInfo?target=${target}&page=${pageNum }"/>'>${pageNum }</a>

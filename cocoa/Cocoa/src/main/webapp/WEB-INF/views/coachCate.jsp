@@ -35,11 +35,14 @@
 					<br> <input id="project" type="button"
 						class="btn btn-primary btn-lg px-4"
 						onClick="location.href='/cocoa/view_projectCate'" value="Project"><br>
-					<br> <input id="project" type="button"
+					<br> <input id="coaching" type="button"
 						class="btn btn-primary btn-lg px-4"
 						onClick="location.href='/cocoa/view_coachCate'" value="Coaching">
 				</div>
 			</div>
+			<script type="text/javascript">
+				
+			</script>
 
 			<!-- 영역 -->
 			<div class="col-sm-4">
@@ -89,7 +92,7 @@
 	</header>
 
 	<!-- 코칭 카탈로그 구간 -->
-	<section>
+	<section style="min-height: 50vh;">
 
 		<!-- 선택된 카테고리 표시 -->
 		<div style="text-align: center;">

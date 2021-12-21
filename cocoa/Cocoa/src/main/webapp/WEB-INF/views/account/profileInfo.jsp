@@ -45,19 +45,20 @@
 					</div>
 
 					<!-- 우측 내용 : pContents -->
-					<div class="card"
+					<div class="card px-3"
 						style="width: 50rem; border: 1px solid; background-color: #FFCC99;">
-						<div class="proFile">
+						<div class="proFile" style="padding: 20px; height: 90vh;">
 
 							<!-- pContents 입력 -->
 							<!-- textarea 닫아주는거 붙여써야함 -->
 							<br> <b> 소개 및 경력 : </b><br> <br>
-							<textarea name="proFile" rows="15" cols="20"
-								style="border: 1; width: 100%; background-color: #FFCC99; resize: none;">${profileId.proContents}</textarea>
-							<br>
+							<textarea name="proFile" rows=30% cols="20"
+								style="border: 1; width: 100%; height: 80%; background-color: #FFCC99; resize: none;">${profileId.proContents}</textarea>
+							<br> <br>
 
 							<!-- 뒤로가기 -->
-							<div style="text-align: center; padding-bottom: 10px;">
+							<div
+								style="text-align: center; padding-bottom: 10px; height: 80%;">
 								<input type="button" id="" class="btn btn-outline-dark"
 									style="background-color: white; color: black;"
 									onmouseover="this.style.color='white'; this.style.backgroundColor='black';"
