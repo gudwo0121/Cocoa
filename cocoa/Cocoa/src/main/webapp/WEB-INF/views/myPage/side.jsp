@@ -23,22 +23,22 @@ request.setCharacterEncoding("UTF-8");
 		<input type="button" class="btn btn-primary" name="side_profile"
 			id="profile" value="프로필"
 			onClick="location.href='/cocoa/view_myPageProfile'"
-			style="text-align: center; color: white; background-color: #333333; font-size: 25px; border: 0; width: 90%;"><br>
+			style="text-align: center; color: white; background-color: #333333; font-size: 25px; border: 0; width: 100%;"><br>
 
 		<br> <br> <input type="button" class="btn btn-primary"
 			name="side_send" id="sendReq" value="보낸 요청"
 			onClick="location.href='/cocoa/view_sendReq'"
-			style="text-align: center; color: white; background-color: #333333; font-size: 25px; border: 0; width: 90%;"><br>
+			style="text-align: center; color: white; background-color: #333333; font-size: 25px; border: 0; width: 100%;"><br>
 
 		<br> <br> <input type="button" class="btn btn-primary"
 			name="side_get" id="receiveReq" value="받은 요청"
 			onClick="location.href='/cocoa/view_receiveReq'"
-			style="text-align: center; color: white; background-color: #333333; font-size: 25px; border: 0; width: 90%;"><br>
+			style="text-align: center; color: white; background-color: #333333; font-size: 25px; border: 0; width: 100%;"><br>
 
 		<br> <br> <input type="button" class="btn btn-primary"
 			name="side_info" id="memberInfo" value="회원정보 수정"
 			onClick="location.href='/cocoa/view_memberInfo'"
-			style="text-align: center; color: white; background-color: #333333; font-size: 25px; border: 0; width: 90%;"><br>
+			style="text-align: center; color: white; background-color: #333333; font-size: 25px; border: 0; width: 100%;"><br>
 		<br> <br>
 	</h2>
 

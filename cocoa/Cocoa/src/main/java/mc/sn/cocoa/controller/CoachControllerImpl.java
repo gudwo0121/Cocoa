@@ -52,15 +52,17 @@ public class CoachControllerImpl implements CoachController {
 	public ModelAndView view_CoachCate(HttpServletRequest request, HttpServletResponse response, Criteria cri)
 			throws Exception {
 		ModelAndView mav = new ModelAndView();
+		
 		// 내가 쓴 글을 선택시 실행해서 coachOrder 설정
 		String coachOrder = cri.getCoachOrder();
-		if(coachOrder.equals("and coach like")) {
-		HttpSession session = request.getSession();
-		MemberVO vo = (MemberVO) session.getAttribute("member");
-		String id = vo.getId();
-		String coach = coachOrder+" '"+id+"'";
-		cri.setCoachOrder(coach);
+		if (coachOrder.equals("and coach like")) {
+			HttpSession session = request.getSession();
+			MemberVO vo = (MemberVO) session.getAttribute("member");
+			String id = vo.getId();
+			String coach = coachOrder + " '" + id + "'";
+			cri.setCoachOrder(coach);
 		}
+		
 		// 쪽 번호 생성 메서드 객체 생성
 		PageMaker pageMaker = new PageMaker();
 
@@ -69,8 +71,7 @@ public class CoachControllerImpl implements CoachController {
 
 		// 총 게시글의 수
 		pageMaker.setTotalCount(coachService.countCoach(cri));
-		
-		
+
 		// 서비스에서 listCoaches() 메소드 실행하여 리턴 값을 List타입의 coachesList에 저장
 		List coachesList = coachService.listCoaches(cri);
 

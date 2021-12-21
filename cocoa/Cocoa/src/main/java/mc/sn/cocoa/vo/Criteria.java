@@ -44,13 +44,7 @@ public class Criteria {
 	}
 
 	public void setPerPageNum(int pageCount) {
-		// 한 페이지에 게시할 글의 수가 변하지 않게 설정
-		int cnt = this.perPageNum;
-		if (pageCount != cnt) {
-			this.perPageNum = cnt;
-		} else {
-			this.perPageNum = pageCount;
-		}
+		this.perPageNum = pageCount;
 	}
 
 	public String getcField() {

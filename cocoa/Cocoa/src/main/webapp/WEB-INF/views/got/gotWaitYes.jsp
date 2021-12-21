@@ -34,7 +34,8 @@ th, td {
 	<!-- 받은 요청 대기 (수락 전송) -->
 	<div class="card rcol my-5"
 		style="text-align: center; background-color: #FFEBCD; border: none; width: 80vw; height: 90vh;">
-		<form action="${contextPath}/submitReqYes" method="post" id="submitReqYes">
+		<form action="${contextPath}/submitReqYes" method="post"
+			id="submitReqYes">
 			<table
 				style="width: 80%; margin: 0 auto; border: 1px solid black; background-color: #FFCC99; color: black;">
 				<tr>
@@ -46,18 +47,20 @@ th, td {
 				<!-- contact -->
 				<tr>
 					<td style="text-align: center; width: 15%;"><br> <b>연결수단</b></td>
-					<td style=""><br> <input type="text" id="contact" name="contact"
-						class="form-control" value="" placeholder="연결수단의 링크를 입력하세요."
+					<td style=""><br> <input type="text" id="contact"
+						name="contact" class="form-control" value=""
+						placeholder="연결수단의 링크를 입력하세요."
 						style="width: 95%; background-color: #FFCC99; border: 1px solid black; color: black;">
-						<input type="hidden" name="reqNO" value="${requestInfo.reqNO}"> <input
-						type="hidden" name="status" value="status2"></td>
+						<input type="hidden" name="reqNO" value="${requestInfo.reqNO}">
+						<input type="hidden" name="status" value="status2"></td>
 				</tr>
 
 				<!-- realPrice -->
 				<tr>
 					<td style="text-align: center; width: 15%;"><b>요 금</b></td>
-					<td style=""><input type="number" id="realPrice" name="realPrice"
-						class="form-control" value="${requestInfo.realPrice}"
+					<td style=""><input type="number" id="realPrice"
+						name="realPrice" class="form-control"
+						value="${requestInfo.realPrice}"
 						style="width: 95%; background-color: #FFCC99; border: 1px solid black; color: black;">
 					</td>
 				</tr>
@@ -73,8 +76,8 @@ th, td {
 
 				<!-- 전송, 취소 -->
 				<tr>
-					<td align="center" colspan="2"><input type="submit" id="" onclick="nullCheck()"
-						class="btn btn-outline-dark mt-1"
+					<td align="center" colspan="2"><input type="submit" id=""
+						onclick="nullCheck()" class="btn btn-outline-dark mt-1"
 						style="background-color: white; color: black;"
 						onmouseover="this.style.color='white'; this.style.backgroundColor='black';"
 						onmouseout="this.style.color='black'; this.style.backgroundColor='white';"

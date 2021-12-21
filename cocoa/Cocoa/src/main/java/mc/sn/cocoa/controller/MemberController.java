@@ -19,7 +19,7 @@ public interface MemberController {
 	public int join(@ModelAttribute("member") MemberVO memberVO, HttpServletRequest request,
 			HttpServletResponse response) throws UnsupportedEncodingException;
 
-	public ModelAndView view_login(@RequestParam(value = "result", required = false) String result,
+	public ModelAndView view_login(@RequestParam(value = "result", required = false) String result,@RequestParam("view") String view,
 			HttpServletRequest request, HttpServletResponse response);
 
 	public ModelAndView login(@ModelAttribute("member") MemberVO member, RedirectAttributes rAttr,

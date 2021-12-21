@@ -87,7 +87,7 @@
 								<i class="fas fa-phone"
 									style="color: black; padding-left: 10px;"></i> <input
 									type="text" name="phone" id="phone" class="form-control"
-									style="padding-left: 30px;" placeholder="전화번호(Phone Number)">
+									style="padding-left: 30px;" placeholder="전화번호( '-' 제외하고 입력 )">
 							</div></td>
 					</tr>
 					<tr>

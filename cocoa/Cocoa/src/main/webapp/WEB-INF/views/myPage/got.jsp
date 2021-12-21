@@ -24,9 +24,8 @@ request.setCharacterEncoding("UTF-8");
 <body>
 
 	<!-- 보낸 요청 리스트 -->
-	<div
-		style="text-align: center; padding: 50px; padding-left: 130px; width: 80vw;">
-		<div class="table-responsive" style="border: 1px solid grey;">
+	<div style="text-align: center; padding: 50px; padding-left: 130px;">
+		<div class="table-responsive px-3" style="border: 1px solid grey;">
 			<table class="table table-striped table-sm">
 				<thead>
 					<tr>
@@ -87,31 +86,30 @@ request.setCharacterEncoding("UTF-8");
 						</tr>
 					</c:forEach>
 				</tbody>
+				<tr>
+					<td colspan="4" style="text-align: center;"><c:if
+							test="${pageMaker.prev }">
+							<a style="text-decoration: none; color: black; font-size: 15pt;"
+								href='<c:url value="/view_receiveReq?status=${cri.status }&page=${pageMaker.startPage-1 }"/>'>이전</a>
+						</c:if> <c:forEach begin="${pageMaker.startPage }"
+							end="${pageMaker.endPage }" var="pageNum">
+							<c:choose>
+								<c:when test="${cri.page == pageNum}">
+									<a style="text-decoration: none; color: red; font-size: 15pt;"
+										href='<c:url value="/view_receiveReq?status=${cri.status }&page=${pageNum }"/>'>${pageNum }</a>
+								</c:when>
+								<c:when test="${cri.page != pageNum}">
+									<a
+										style="text-decoration: none; color: black; font-size: 15pt;"
+										href='<c:url value="/view_receiveReq?status=${cri.status }&page=${pageNum }"/>'>${pageNum }</a>
+								</c:when>
+							</c:choose>
+						</c:forEach> <c:if test="${pageMaker.next && pageMaker.endPage >0 }">
+							<a style="text-decoration: none; color: black; font-size: 15pt;"
+								href='<c:url value="/view_receiveReq?status=${cri.status }&page=${pageMaker.endPage+1 }"/>'>다음</a>
+						</c:if></td>
+				</tr>
 			</table>
-		</div>
-
-		<!-- 쪽 번호 구간 -->
-		<div style="margin: 0 auto; font-size: 30px;">
-
-			<c:if test="${pageMaker.prev }">
-				<a
-					href='<c:url value="/view_receiveReq?status=${cri.status }&page=${pageMaker.startPage-1 }"/>'><i
-					class=""></i></a>
-			</c:if>
-
-			<c:forEach begin="${pageMaker.startPage }"
-				end="${pageMaker.endPage }" var="pageNum">
-				<a
-					href='<c:url value="/view_receiveReq?status=${cri.status }&page=${pageNum }"/>'><i
-					class="">${pageNum }</i></a>
-			</c:forEach>
-
-			<c:if test="${pageMaker.next && pageMaker.endPage >0 }">
-				<a
-					href='<c:url value="/view_receiveReq?status=${cri.status }&page=${pageMaker.endPage+1 }"/>'><i
-					class=""></i></a>
-			</c:if>
-
 		</div>
 	</div>
 

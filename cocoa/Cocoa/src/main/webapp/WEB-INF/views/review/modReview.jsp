@@ -9,12 +9,10 @@
 <link href="resources/css/styles.css" rel="stylesheet" />
 <script type="text/javascript" src="resources/js/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
-
 	function fn_modify_review(obj) {
 		obj.action = "${contextPath}/modReview";
 		obj.submit();
 	}
-	
 </script>
 <title>CoCoa</title>
 </head>
@@ -49,10 +47,7 @@
 							<input type="text" name="coach" value="${reviewVO.target}"
 								readonly
 								style="text-align: center; border: 0; font-weight: 700; background-color: #FFCCCC; width: 70%;">
-							<br>
-
-							
-							<br> <br>
+							<br> <br> <br>
 						</div>
 					</div>
 				</div>

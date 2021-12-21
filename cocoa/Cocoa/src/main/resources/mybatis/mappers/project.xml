@@ -84,7 +84,7 @@
 	<!-- 프로젝트 글의 수 -->
 	<select id="countProject" resultType="int" parameterType="int">
 		<![CDATA[
-		select count(*) 
+			select count(*) 
          	from projectTBL
 	        left outer join (select target, round(ifnull(avg(rate),0),1) as reviewRate from reviewTBL group by target)
 	        ReviewRate on projectTBL.leader = ReviewRate.target

@@ -66,6 +66,7 @@
 						type="password" name="pwd" class="form-control" id="pwd"
 						style="padding-left: 50px;" placeholder="Password">
 				</div>
+				<input type="hidden" name="view" value="${view}">
 				<button type="submit" class="btn btn-success mt-5"
 					onclick="nullcheck()" style="margin: 0 auto; width: 50%;">Log
 					In</button>
