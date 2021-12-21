@@ -89,7 +89,7 @@
 	</header>
 
 	<!-- 코칭 카탈로그 구간 -->
-	<section>
+	<section style="min-height:50vh;">
 
 		<!-- 선택된 카테고리 표시 -->
 		<div style="text-align: center;">

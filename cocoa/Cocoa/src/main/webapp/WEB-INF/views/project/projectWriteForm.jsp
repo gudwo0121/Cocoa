@@ -132,7 +132,7 @@
 					</div>
 
 					<!-- 우측 내용 : pImg / pTitle / memberCount / pContents -->
-					<div class="card"
+					<div class="card px-3"
 						style="width: 50rem; border: 1px solid; background-color: #FFCC99">
 
 						<!-- pImg -->

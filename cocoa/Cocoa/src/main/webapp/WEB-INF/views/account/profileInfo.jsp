@@ -45,7 +45,7 @@
 					</div>
 
 					<!-- 우측 내용 : pContents -->
-					<div class="card"
+					<div class="card px-3"
 						style="width: 50rem; border: 1px solid; background-color: #FFCC99;">
 						<div class="proFile">
 

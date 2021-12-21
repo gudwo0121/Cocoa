@@ -36,8 +36,7 @@
 		</div>
 	</header>
 
-	<section class="py-5 border-bottom" id="categories"
-		style="height: 70vh;">
+	<section id="categories" style="min-height:46.4vh;">
 		<div class="container px-5 my-5">
 			<div class="row gx-5 justify-content-center">
 				<div class="mb-5 mx-3 px-2 py-2"
