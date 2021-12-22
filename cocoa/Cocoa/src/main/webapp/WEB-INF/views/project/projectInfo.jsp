@@ -296,12 +296,11 @@
 							<hr>
 
 							<!-- map -->
-							&nbsp; 장소 <input type="text" name="map" id="addr" size="30"
+							&nbsp;모임 장소 <input type="text" name="map" id="addr" size="30"
 								value="${projectInfo.map}" disabled> <input
 								type="button" name="send" id="sendMark" value="검색"><br>
 							<br>
 							<div id="map" style="width: 100%; height: 400px;"></div>
-							<hr>
 							<hr>
 
 							<!-- 수정 확인 -->

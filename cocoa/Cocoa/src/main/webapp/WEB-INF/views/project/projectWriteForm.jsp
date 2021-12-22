@@ -180,15 +180,15 @@
 
 							<!-- pContents 입력 -->
 							<!-- textarea 닫아주는거 붙여써야함 -->
-							세부 내용 : <br>
+							세부 내용 : <br> <br>
 							<textarea name="pContents" rows="10" cols="20" id="pContents"
 								placeholder="프로젝트 개요 및 포지션 별 자격요건을 써주세요. (공백포함 2000자 이내)"
 								style="border: 1; width: 100%; resize: none;"></textarea>
 							<hr>
 
-							모임 장소 : <input type="text" name="map" id="addr" size="35"
+							&nbsp;모임 장소 : <input type="text" name="map" id="addr" size="35"
 								placeholder='장소를 입력해주세요.'> <input type="button"
-								name="send" id="sendMark" value="검색"><br>
+								name="send" id="sendMark" value="검색"><br> <br>
 							<div id="map" style="width: 100%; height: 400px;"></div>
 							<hr>
 

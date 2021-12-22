@@ -72,11 +72,11 @@ request.setCharacterEncoding("UTF-8");
 							<td style="text-align: left;"><a
 								style="text-decoration-line: none; color: dark; font-weight: 700;"
 								href="${contextPath}/view_gotReqWait?reqNO=${gotList.reqNO}">${gotList.rTitle}</a></td>
-							<fmt:parseDate var="dateFmt" pattern="yyyy-MM-dd HH:mm:ss.SSS"
+							<fmt:parseDate var="dateFmt" pattern="yyyy-MM-dd HH:mm:ss"
 								value="${gotList.rDate}" />
 							<fmt:formatDate var="dateTempParse" pattern="yyyy-MM-dd"
 								value="${dateFmt}" />
-							<td>${dateTempParse }</td>
+							<td>${dateTempParse}</td>
 							<td><c:choose>
 									<c:when test="${gotList.status == 'status1'}">대기</c:when>
 									<c:when test="${gotList.status == 'status2'}">수락</c:when>

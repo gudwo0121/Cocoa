@@ -55,11 +55,12 @@ request.setCharacterEncoding("UTF-8");
 						</select>
 
 						</td>
+					</tr>
 					<tr>
 						<th scope="col">코치</th>
 						<th scope="col">요청 제목</th>
 						<th scope="col">요청 날짜</th>
-						<th scope="col">상태</th>
+						<th scope="col">요청 상태</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -68,8 +69,8 @@ request.setCharacterEncoding("UTF-8");
 						<tr>
 							<td>${sentList.res }</td>
 							<!-- sentReqWait로 이동 -->
-							<td><a
-								style="text-decoration-line: none; color: dark; font-weight: 700; float: left;"
+							<td style="text-align: left;"><a
+								style="text-decoration-line: none; color: dark; font-weight: 700;"
 								href="${contextPath}/view_sentReqWait?reqNO=${sentList.reqNO}">${sentList.rTitle }</a></td>
 							<fmt:parseDate var="dateFmt" pattern="yyyy-MM-dd HH:mm:ss"
 								value="${sentList.rDate}" />

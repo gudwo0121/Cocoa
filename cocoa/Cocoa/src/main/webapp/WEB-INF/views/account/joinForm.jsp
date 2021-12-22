@@ -97,10 +97,10 @@
 					</tr>
 				</table>
 			</form>
-			<br>
 			<p class="exist mt-2">
 				have an account? <a class="warning" href="view_login?view=">Login</a>
 			</p>
+			<br>
 		</div>
 	</div>
 
