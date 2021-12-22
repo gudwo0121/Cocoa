@@ -3,7 +3,7 @@
  */
 	$(document).ready(function() {
 		$('#validate').click(function() {
-			
+		
 			var flag = false;
 			var user_id = $('#id').val();
 			var user_pwd = $('#pwd1').val();
@@ -12,9 +12,13 @@
 			var user_phone = $('#phone').val();
 			
 			//Ajax 구간
-			if(user_pwd != user_pwd2){
+			if(user_id == '' || user_pwd =='' || user_name =='' || user_phone ==''){
+	
+				alert("빈칸없이 입력하세요");
+		
+			} else if( user_pwd != user_pwd2){
 			
-				alert("비밀번호가 일치하지 않습니다.");
+				alert("비밀번호가 일치하지 않습니다");
 				
 			} else if(user_pwd == user_pwd2){
 			

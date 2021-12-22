@@ -19,7 +19,8 @@
 	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css"
 	rel="stylesheet" />
 <link href="resources/css/join-styles.css" rel="stylesheet" />
-<script type="text/javascript" src="resources/js/ajax.js"></script>
+<script type="text/javascript" src="resources/js/ajax.js?ver=1"></script>
+<script type="text/javascript" src="resources/js/jquery-3.6.0.min.js"></script>
 <title>CoCoa</title>
 </head>
 <body>
@@ -34,7 +35,7 @@
 				<b>회원가입</b>
 			</h5>
 			<br>
-			<form action="${contextPath}/join" method="post">
+			<form action="${contextPath}/join" method="post" id="join">
 				<table style="width: 100%;">
 					<tr>
 						<td><div class="fone">
@@ -98,7 +99,7 @@
 			</form>
 			<br>
 			<p class="exist mt-2">
-				have an account? <a class="warning" href="view_login">Login</a>
+				have an account? <a class="warning" href="view_login?view=">Login</a>
 			</p>
 		</div>
 	</div>

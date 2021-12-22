@@ -51,9 +51,9 @@
 						<div style="border: 1px solid grey;">
 							<table style="margin: 0px auto;">
 								<tr>
-									<th colspan="5" style="text-align: center;"><b>${target}의
+									<th colspan="6" style="text-align: center;"><b>${target}의
 											후기</b>
-										<hr></th>
+									<hr></th>
 								</tr>
 
 								<!-- 후기 한 줄 -->
@@ -90,13 +90,13 @@
 										</c:if>
 									</tr>
 									<tr>
-										<td colspan="5"><textarea rows="2" cols="99" disabled
+										<td colspan="6"><textarea rows="2" cols="99" disabled
 												name="review" id="r_review"
 												style="border: 1px solid grey; margin: 0px auto; text-align: left; resize: none; color: black; background-color: #FFEBCD;">${reviewInfo.review }</textarea></td>
 									</tr>
 									<tr>
 										<!-- 후기 한 줄 사이의 간격 -->
-										<td colspan="5" style="float: right;"></td>
+										<td colspan="6" style="float: right;"></td>
 									</tr>
 								</c:forEach>
 
