@@ -66,8 +66,8 @@ public class ProjectServiceImpl implements ProjectService {
 	@Override
 	public String geocode(String words) {
 		StringBuffer res = null;
-		String clientId = "ba36jg1kum";
-		String clientSecret = "MJVJ9viVdngag1Uy7ceA3MqYzkdMxJLyFmtY6q4o";
+		String clientId = "jp1by0tzk9";
+		String clientSecret = "Tib7u9Bk51p4pora8nRwIRY46RaRujMMXsrPrOa4";
 		try {
 			String text = URLEncoder.encode(words, "UTF-8");
 			String apiURL = "https://naveropenapi.apigw.ntruss.com/map-geocode/v2/geocode?query=" + text;
