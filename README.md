@@ -213,3 +213,9 @@
 
 ***
 
+21.12.27 보완
+
+* HomeController / CoachControllerImpl 분석 및 주석 수정
+
+***
+

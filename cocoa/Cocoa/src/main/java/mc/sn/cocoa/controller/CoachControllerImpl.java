@@ -37,8 +37,9 @@ import net.coobird.thumbnailator.Thumbnails;
 @Controller("coachController")
 public class CoachControllerImpl implements CoachController {
 
-	// 업로드, 다운로드되는 경로
+	// 코치 글 간판 이미지 업로드, 다운로드 경로 (FTP)
 	private static final String COACH_IMAGE_REPO = "/opt/cocoa/image/coach_img";
+
 	@Autowired
 	private CoachService coachService;
 	@Autowired
@@ -46,14 +47,14 @@ public class CoachControllerImpl implements CoachController {
 	@Autowired
 	private ReviewService reviewService;
 
-	// 코치 글 조회
+	// 코칭 리스트 조회
 	@Override
 	@RequestMapping(value = "/view_coachCate", method = { RequestMethod.GET, RequestMethod.POST })
 	public ModelAndView view_CoachCate(HttpServletRequest request, HttpServletResponse response, Criteria cri)
 			throws Exception {
 		ModelAndView mav = new ModelAndView();
-
-		// 내가 쓴 글을 선택시 실행해서 coachOrder 설정
+		
+		// 코칭 리스트 필터링 쿼리문 설정
 		String coachOrder = cri.getCoachOrder();
 		if (coachOrder.equals("and coach like")) {
 			HttpSession session = request.getSession();
@@ -63,49 +64,36 @@ public class CoachControllerImpl implements CoachController {
 			cri.setCoachOrder(coach);
 		}
 
-		// 쪽 번호 생성 메서드 객체 생성
+		// 쪽번호 설정
 		PageMaker pageMaker = new PageMaker();
-
-		// 쪽 번호와 한 페이지에 게시할 글의 수 세팅
 		pageMaker.setCri(cri);
-
-		// 총 게시글의 수
 		pageMaker.setTotalCount(coachService.countCoach(cri));
 
-		// 서비스에서 listCoaches() 메소드 실행하여 리턴 값을 List타입의 coachesList에 저장
+		// 코칭 리스트 정보 설정
 		List coachesList = coachService.listCoaches(cri);
 
-		// 맵 생성
+		// 리뷰 개수 설정
 		Map<String, Object> reCountMap = new HashMap<String, Object>();
-
-		// 리스트 생성해서 target들을 불러오고 불러온 값들로 for문을 돌려서 리뷰 갯수를 불러옴->맵에 저장
 		List target = reviewService.targetsReview();
-
 		for (int i = 0; i < target.size(); i++) {
 			String key = (String) target.get(i);
 			int value = reviewService.targetReviewCount(key);
 			reCountMap.put(key, value);
 		}
 
-		// 맵 생성
+		// 평균 평점 설정
 		Map<String, Object> reAvgMap = new HashMap<String, Object>();
-
-		// target들을 불러오고 불러온 값들로 for문을 돌려서 평균점수를 불러옴->맵에 저장
 		for (int i = 0; i < target.size(); i++) {
 			String key = (String) target.get(i);
 			float value = reviewService.targetReviewAvg(key);
 			reAvgMap.put(key, value);
 		}
 
-		// mav에 reAvg 키값으로 reAvgMap 밸류 값을 저장
+		// mav로 jsp로 보낼 값들 key&value 형식으로 추가
 		mav.addObject("reAvg", reAvgMap);
-		// mav에 reCount 키값으로 reCountMap 밸류 값을 저장
 		mav.addObject("reCount", reCountMap);
-		// mav에 "coachesList" 키값으로 coachesList 밸류 값을 저장
 		mav.addObject("coachesList", coachesList);
-
 		mav.addObject("pageMaker", pageMaker);
-
 		mav.addObject("cri", cri);
 
 		String url = "/coachCate";
@@ -113,7 +101,7 @@ public class CoachControllerImpl implements CoachController {
 		return mav;
 	}
 
-	// 코치 글 작성 창으로 이동
+	// 코칭 등록 화면으로 이동
 	@Override
 	@RequestMapping(value = "/view_coachWrite", method = RequestMethod.GET)
 	public ModelAndView view_coachWrite(HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -123,19 +111,18 @@ public class CoachControllerImpl implements CoachController {
 		return mav;
 	}
 
-	// 코치 글 작성
+	// 코칭 등록
 	@Override
 	@RequestMapping(value = "/coachWrite", method = RequestMethod.POST)
 	@ResponseBody
 	public ResponseEntity addNewCoach(MultipartHttpServletRequest multipartRequest, HttpServletResponse response)
 			throws Exception {
-
 		multipartRequest.setCharacterEncoding("utf-8");
 
-		// DB에 담을 코치 글 정보
+		// 입력된 정보를 담을 map 정의
 		Map<String, Object> coachMap = new HashMap<String, Object>();
 
-		// 받아온 정보들을 coachMap에 [key & value]로 설정
+		// 입력된 정보 map에 담기
 		Enumeration enu = multipartRequest.getParameterNames();
 		while (enu.hasMoreElements()) {
 			String name = (String) enu.nextElement();
