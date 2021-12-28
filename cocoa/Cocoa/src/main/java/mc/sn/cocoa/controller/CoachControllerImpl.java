@@ -139,6 +139,7 @@ public class CoachControllerImpl implements CoachController {
 		// coachWriteForm에 존재하지 않는 id 직접 입력
 		String id = memberVO.getId();
 		coachMap.put("coach", id);
+		
 		// coachWriteForm에 불러온 파일(이미지) 직접 입력
 		String cImg = this.upload(multipartRequest);
 		coachMap.put("cImg", cImg);
