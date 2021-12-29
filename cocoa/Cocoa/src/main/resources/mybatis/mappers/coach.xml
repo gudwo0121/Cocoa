@@ -18,8 +18,10 @@
 	<!-- 코치 글 추가 -->
 	<insert id="insertNewCoach" parameterType="java.util.Map">
 		<![CDATA[
-		 insert into coachingTBL (coachNO, coach, cField, tool, cImg, cTitle, basicPrice, cContents)
-		 values(#{coachNO}, #{coach}, #{cField}, #{tool}, #{cImg}, #{cTitle}, #{basicPrice}, #{cContents})
+			INSERT INTO coachingTBL
+			(coachNO, coach, cField, tool, cImg, cTitle, basicPrice, cContents)
+			VALUES
+			(#{coachNO}, #{coach}, #{cField}, #{tool}, #{cImg}, #{cTitle}, #{basicPrice}, #{cContents})
 		]]>
 	</insert>
 
@@ -27,7 +29,7 @@
 	<select id="selectNewCoachNO" resultType="int">
 		<![CDATA[
 			SELECT ifnull(max(coachNO), 0) + 1
-			from coachingTBL
+			FROM coachingTBL
 		]]>
 	</select>
 
@@ -36,12 +38,16 @@
 	<select id="selectAllCoachesList" resultMap="coachResult">
 		<![CDATA[
 			SELECT *
-			from coachingTBL
-			left outer join (select target, round(ifnull(avg(rate),0),1) as reviewRate from reviewTBL group by target)
-			ReviewRate on coachingTBL.coach = ReviewRate.target
-			where cField like concat(#{cField},"%") and tool like concat(#{tool}, "%")
-			${coachOrder}
-			limit #{pageStart}, #{perPageNum}
+			FROM coachingTBL
+			LEFT OUTER JOIN
+			(SELECT target, round(ifnull(avg(rate),0),1) as reviewRate
+				FROM reviewTBL
+				GROUP BY target)
+			ReviewRate
+			ON coachingTBL.coach = ReviewRate.target
+			WHERE cField
+			LIKE concat(#{cField}, "%") AND tool LIKE concat(#{tool}, "%")
+			${coachOrder} LIMIT #{pageStart}, #{perPageNum}
 		]]>
 	</select>
 
@@ -50,45 +56,49 @@
 		parameterType="int">
 		<![CDATA[
 			SELECT *
-			from coachingTBL
-			where coachNO = #{coachNO}
+			FROM coachingTBL
+			WHERE coachNO = #{coachNO}
 		]]>
 	</select>
 
 	<!-- 코치 글 수정 -->
 	<update id="updateCoach" parameterType="java.util.Map">
-		update coachingTBL
-		set cTitle=#{cTitle},
-		cContents=#{cContents},
-		basicPrice=#{basicPrice}
-		<if test="cField!=''">
-			, cField=#{cField}
-		</if>
-		<if test="tool!=''">
-			, tool=#{tool}
-		</if>
-		<if test="cImg!='' and cImg!=null">
-			, cImg=#{cImg}
-		</if>
-		where coachNO=#{coachNO}
+		UPDATE coachingTBL
+		SET cTitle = #{cTitle},
+			cContents = #{cContents},
+			basicPrice = #{basicPrice}
+			<if test="cField!=''">
+				, cField = #{cField}
+			</if>
+			<if test="tool!=''">
+				, tool = #{tool}
+			</if>
+			<if test="cImg!='' and cImg!=null">
+				, cImg = #{cImg}
+			</if>
+		WHERE coachNO=#{coachNO}
 	</update>
 
 	<!-- 코치 글 삭제 -->
 	<delete id="deleteCoach" parameterType="int">
-    <![CDATA[
-      delete from coachingTBL
-      where coachNO = #{coachNO}
-    ]]>
+    		<![CDATA[
+	    		DELETE FROM coachingTBL
+	    		WHERE coachNO = #{coachNO}
+    		]]>
 	</delete>
 
 	<!-- 코칭 글의 수 -->
 	<select id="countCoach" resultType="int" parameterType="int">
 		<![CDATA[
 			SELECT count(*)
-			from coachingTBL
-			left outer join (select target, round(ifnull(avg(rate),0),1) as reviewRate from reviewTBL group by target)
-			ReviewRate on coachingTBL.coach = ReviewRate.target
-			where cField like concat(#{cField},"%") and tool like concat(#{tool}, "%")
+			FROM coachingTBL
+			LEFT OUTER JOIN
+			(SELECT target, round(ifnull(avg(rate),0),1) as reviewRate
+				FROM reviewTBL
+				GROUP BY target)
+			ReviewRate
+			ON coachingTBL.coach = ReviewRate.target
+			WHERE cField LIKE concat(#{cField}, "%") AND tool LIKE concat(#{tool}, "%")
 			${coachOrder}
 		]]>
 	</select>

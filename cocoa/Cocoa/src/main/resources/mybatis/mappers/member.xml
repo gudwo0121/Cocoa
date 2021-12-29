@@ -15,8 +15,10 @@
 	<!-- 회원가입 -->
 	<insert id="insertMember" parameterType="memberVO">
 		<![CDATA[
-		 insert into memberTBL(id,pwd,name,phone)
-		 values(#{id}, #{pwd}, #{name}, #{phone})
+			INSERT INTO memberTBL
+			(id, pwd, name, phone)
+			VALUES
+			(#{id}, #{pwd}, #{name}, #{phone})
 		]]>
 	</insert>
 
@@ -24,16 +26,18 @@
 	<select id="loginById" resultType="memberVO"
 		parameterType="memberVO">
 		<![CDATA[
-		 select * from memberTBL
-		 where id = #{id} and pwd = #{pwd}
+			SELECT *
+			FROM memberTBL
+			WHERE id = #{id} AND pwd = #{pwd}
 		]]>
 	</select>
 
 	<!-- 중복확인 -->
 	<select id="idChk" resultType="int" parameterType="memberVO">
 		<![CDATA[
-		 select count(*) from memberTBL
-		 where id = #{id}
+			SELECT count(*)
+			FROM memberTBL
+			WHERE id = #{id}
 		]]>
 	</select>
 
@@ -41,42 +45,47 @@
 	<select id="selectById" resultType="memberVO"
 		parameterType="String">
 		<![CDATA[
-		 select * from memberTBL
-		 where id = #{id}
+			SELECT *
+			FROM memberTBL
+			WHERE id = #{id}
 		]]>
 	</select>
 
 	<!-- 프로필 수정 -->
 	<update id="updateProfile" parameterType="java.util.Map">
-		update memberTBL
-		set proContents=#{proContents}
-		<if test="proImg!='' and proImg!=null">
-			, proImg=#{proImg}
-		</if>
-		where id=#{id}
+		UPDATE memberTBL
+		SET proContents = #{proContents}
+			<if test="proImg!='' and proImg!=null">
+				, proImg = #{proImg}
+			</if>
+		WHERE id = #{id}
 	</update>
 
 	<!-- 회원정보 수정 -->
 	<update id="updateMember" parameterType="memberVO">
 		<![CDATA[
-		update memberTBL
-		set pwd=#{pwd}, name=#{name}, phone=#{phone} where id=#{id}
+			UPDATE memberTBL
+			SET pwd = #{pwd}, name = #{name}, phone = #{phone}
+			WHERE id = #{id}
 		]]>
 	</update>
 
 	<!-- 회원정보 삭제 -->
 	<delete id="deleteMember" parameterType="String">
 		<![CDATA[
-			delete from memberTBL where id=#{id}
+			DELETE FROM memberTBL
+			WHERE id = #{id}
 		]]>
 	</delete>
 
 	<!-- 회원 탈퇴 후 아이디만 보존 -->
 	<insert id="preserveId" parameterType="String">
 		<![CDATA[
-		 insert into memberTBL(id, pwd, name, phone)
-		 values(#{id}, '', '', '')
+			INSERT INTO memberTBL
+			(id, pwd, name, phone)
+			VALUES
+			(#{id}, '', '', '')
 		]]>
 	</insert>
-	
+
 </mapper>

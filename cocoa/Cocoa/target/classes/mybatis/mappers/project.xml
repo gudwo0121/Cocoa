@@ -19,8 +19,9 @@
 	<!-- 프로젝트 글 추가 -->
 	<insert id="insertNewProject" parameterType="java.util.Map">
 		<![CDATA[
-			insert into projectTBL
-			values(#{projectNO}, #{leader}, #{pImg}, #{pTitle}, #{memberCount}, #{pField}, #{level}, #{pContents}, #{map}, #{kakao})
+			INSERT INTO projectTBL
+			VALUES
+			(#{projectNO}, #{leader}, #{pImg}, #{pTitle}, #{memberCount}, #{pField}, #{level}, #{pContents}, #{map}, #{kakao})
 		]]>
 	</insert>
 
@@ -28,67 +29,76 @@
 	<select id="selectNewProjectNO" resultType="int">
 		<![CDATA[
 			SELECT ifnull(max(projectNO), 0) + 1
-			from projectTBL
+			FROM projectTBL
 		]]>
 	</select>
 
 	<!-- 프로젝트 글 조회 -->
 	<!-- 카테고리별 + 정렬순 -->
 	<select id="selectAllProjectList" resultMap="projectResult">
-      <![CDATA[
-         select * 
-         from projectTBL
-         left outer join (select target, round(ifnull(avg(rate),0),1) as reviewRate from reviewTBL group by target)
-         ReviewRate on projectTBL.leader = ReviewRate.target
-         where pField like concat(#{pField},"%") and level like concat(#{level}, "%")
-         ${projectOrder}
-         limit #{pageStart}, #{perPageNum}
-      ]]>
+    		<![CDATA[
+	      	SELECT * 
+	      	FROM projectTBL
+	      	LEFT OUTER JOIN
+	      	(SELECT target, round(ifnull(avg(rate),0),1) as reviewRate
+	      		FROM reviewTBL
+	      		GROUP BY target)
+	        	ReviewRate
+	        	ON projectTBL.leader = ReviewRate.target
+	        	WHERE pField LIKE concat(#{pField}, "%") AND level LIKE concat(#{level}, "%")
+	        	${projectOrder} LIMIT #{pageStart}, #{perPageNum}
+    		]]>
 	</select>
 
 	<!-- 프로젝트 글 상세 조회 -->
 	<select id="selectById" resultType="projectVO">
-      <![CDATA[
-         select * from projectTBL where leader=#{leader} and projectNO=#{projectNO}
-      ]]>
+    		<![CDATA[
+        		SELECT *
+        		FROM projectTBL
+        		WHERE leader = #{leader} AND projectNO = #{projectNO}
+    		]]>
 	</select>
 
 	<!-- 프로젝트 글 삭제 -->
 	<delete id="deleteProject" parameterType="int">
-    <![CDATA[
-      delete from projectTBL
-      where projectNO=#{projectNO}
-    ]]>
+    		<![CDATA[
+      		DELETE FROM projectTBL
+      		WHERE projectNO = #{projectNO}
+    		]]>
 	</delete>
 
 	<!-- 프로젝트 글 수정 -->
 	<update id="updateProject" parameterType="java.util.Map">
-		update projectTBL
-		set pTitle=#{pTitle},
-		map=#{map},
-		pContents=#{pContents}
-		<if test="pField!=''">
-			, pField=#{pField}
-		</if>
-		<if test="level!=''">
-			, level=#{level}
-		</if>
-		, kakao=#{kakao},
-		memberCount=#{memberCount}
-		<if test="pImg!='' and pImg!=null">
-			, pImg=#{pImg}
-		</if>
-		where projectNO=#{projectNO}
+		UPDATE projectTBL
+		SET pTitle = #{pTitle},
+			map = #{map},
+			pContents = #{pContents}
+			<if test="pField!=''">
+				, pField = #{pField}
+			</if>
+			<if test="level!=''">
+				, level = #{level}
+			</if>
+			, kakao = #{kakao},
+			memberCount = #{memberCount}
+			<if test="pImg!='' and pImg!=null">
+				, pImg = #{pImg}
+			</if>
+		WHERE projectNO=#{projectNO}
 	</update>
 
 	<!-- 프로젝트 글의 수 -->
 	<select id="countProject" resultType="int" parameterType="int">
 		<![CDATA[
-			select count(*) 
-         	from projectTBL
-	        left outer join (select target, round(ifnull(avg(rate),0),1) as reviewRate from reviewTBL group by target)
-	        ReviewRate on projectTBL.leader = ReviewRate.target
-	        where pField like concat(#{pField},"%") and level like concat(#{level}, "%")
+			SELECT count(*) 
+         	FROM projectTBL
+	        LEFT OUTER JOIN
+	        (SELECT target, round(ifnull(avg(rate),0),1) as reviewRate
+	        		FROM reviewTBL
+	        		GROUP BY target)
+	        ReviewRate
+	        ON projectTBL.leader = ReviewRate.target
+	        WHERE pField LIKE concat(#{pField}, "%") AND level LIKE concat(#{level}, "%")
 	        ${projectOrder}
 		]]>
 	</select>

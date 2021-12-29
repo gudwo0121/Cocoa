@@ -20,8 +20,10 @@
 	<!-- 요청서 추가 -->
 	<insert id="insertRequest" parameterType="java.util.Map">
 		<![CDATA[
-		 insert into requestTBL (reqNO, req, res, rTitle, rContents, rImg, realPrice)
-		 values(#{reqNO}, #{req}, #{res}, #{rTitle}, #{rContents}, #{rImg}, #{realPrice})
+			INSERT INTO requestTBL
+			(reqNO, req, res, rTitle, rContents, rImg, realPrice)
+			VALUES
+			(#{reqNO}, #{req}, #{res}, #{rTitle}, #{rContents}, #{rImg}, #{realPrice})
 		]]>
 	</insert>
 
@@ -29,70 +31,75 @@
 	<select id="selectNewReqNO" resultType="int">
 		<![CDATA[
 			SELECT ifnull(max(reqNO), 0) + 1
-			from requestTBL
+			FROM requestTBL
 		]]>
 	</select>
 
 	<!-- 받은 요청 리스트 -->
 	<select id="selectAllReqGot" resultMap="requestResult">
-      <![CDATA[
-         select * from requestTBL
-         where res=#{resId} and status like concat(#{status},"%")
-         order by reqNO desc
-         limit #{pageStart}, #{perPageNum}
-      ]]>
+    		<![CDATA[
+	      	SELECT *
+	      	FROM requestTBL
+	      	WHERE res = #{resId} AND status LIKE concat(#{status}, "%")
+	        	ORDER BY reqNO DESC
+	        	LIMIT #{pageStart}, #{perPageNum}
+    		]]>
 	</select>
 
 	<!-- 보낸 요청 리스트 -->
 	<select id="selectAllReqSent" resultMap="requestResult">
-      <![CDATA[
-         select * from requestTBL
-         where req=#{reqId} and status like concat(#{status},"%")
-         order by reqNO desc
-         limit #{pageStart}, #{perPageNum}
-      ]]>
+    		<![CDATA[
+	        SELECT *
+	        FROM requestTBL
+	        	WHERE req = #{reqId} AND status LIKE concat(#{status}, "%")
+	        	ORDER BY reqNO DESC
+	        	LIMIT #{pageStart}, #{perPageNum}
+    		]]>
 	</select>
 
 	<!-- 보낸 / 받은 요청서 상세 조회 -->
 	<select id="selectByReqNO" resultType="requestVO">
-      <![CDATA[
-         select * from requestTBL where reqNO=#{reqNO}
-      ]]>
+   		<![CDATA[
+        		SELECT *
+        		FROM requestTBL
+        		WHERE reqNO = #{reqNO}
+    		]]>
 	</select>
 
 	<!-- 보낸 요청서 수정 -->
 	<update id="updateRequest" parameterType="java.util.Map">
-		update requestTBL
-		set rTitle=#{rTitle},
-		rContents=#{rContents}
-		<if test="rImg!='' and rImg!=null">
-			, rImg=#{rImg}
-		</if>
-		where reqNO=#{reqNO}
+		UPDATE requestTBL
+		SET rTitle = #{rTitle},
+			rContents = #{rContents}
+			<if test="rImg!='' and rImg!=null">
+				, rImg = #{rImg}
+			</if>
+		WHERE reqNO = #{reqNO}
 	</update>
 
 	<!-- 보낸 요청서 삭제 -->
 	<delete id="deleteRequest" parameterType="int">
 		<![CDATA[
-	      delete from requestTBL
-	      where reqNO=#{reqNO}
+	    		DELETE FROM requestTBL
+	    		WHERE reqNO = #{reqNO}
       	]]>
 	</delete>
 
 	<!-- 요청서 거절 사유 전송 / 재전송 -->
 	<update id="updateReason" parameterType="requestVO">
 		<![CDATA[
-			update requestTBL
-			set reason=#{reason}, status=#{status} where reqNO=#{reqNO}
+			UPDATE requestTBL
+			SET reason = #{reason}, status = #{status}
+			WHERE reqNO = #{reqNO}
 		]]>
 	</update>
 
 	<!-- 요청글 수락 정보 전송 / 재전송 -->
 	<update id="updateYes" parameterType="requestVO">
 		<![CDATA[
-			update requestTBL
-			set realPrice=#{realPrice}, contact=#{contact}, status=#{status}, reason=#{reason}
-			where reqNO=#{reqNO}
+			UPDATE requestTBL
+			SET realPrice = #{realPrice}, contact = #{contact}, status = #{status}, reason = #{reason}
+			WHERE reqNO = #{reqNO}
 		]]>
 	</update>
 
@@ -101,8 +108,8 @@
 		parameterType="int">
 		<![CDATA[
 			SELECT count(*) 
-			from requestTBL
-			where req=#{reqId} and status like concat(#{status},"%")
+			FROM requestTBL
+			WHERE req = #{reqId} AND status LIKE concat(#{status}, "%")
 		]]>
 	</select>
 
@@ -111,16 +118,17 @@
 		parameterType="int">
 		<![CDATA[
 			SELECT count(*) 
-			from requestTBL
-			where res=#{resId} and status like concat(#{status},"%")
+			FROM requestTBL
+			WHERE res = #{resId} AND status LIKE concat(#{status}, "%")
 		]]>
 	</select>
 
 	<!-- 후기작성 후 완료상태 변환 -->
 	<update id="updateReqFin" parameterType="requestVO">
 		<![CDATA[
-			update requestTBL
-			set status=#{status} where reqNO=#{reqNO}
+			UPDATE requestTBL
+			SET status = #{status}
+			WHERE reqNO = #{reqNO}
 		]]>
 	</update>
 
