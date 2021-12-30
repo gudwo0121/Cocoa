@@ -76,10 +76,7 @@
 	</section>
 
 	<!-- 하단바 -->
-	<footer class="py-5 bg-dark mb-0"
-		style="background-color: #212429; color: white;">
-		<p class="m-0 text-center text-white">Copyright &copy; CoCoa 2021</p>
-	</footer>
+	<jsp:include page="footer.jsp"></jsp:include>
 
 </body>
 </html>

@@ -231,3 +231,9 @@
 
 ***
 
+21.12.30 보완
+
+* home.jsp - footer 부분 include
+
+***
+
