@@ -153,7 +153,6 @@ public class CoachControllerImpl implements CoachController {
 		try {
 			// 다운로드 파일을 작성하는 회원의 id(coach)로 폴더 생성
 			// 삭제가 되어도 그 후에 해당 회원이 업로드를 하면 같은 폴더에 생성이 됌
-			// 삭제 로직 짤때 고려해야함
 			int coachNO = coachService.addNewCoach(coachMap);
 			if (cImg != null && cImg.length() != 0) {
 				File srcFile = new File(COACH_IMAGE_REPO + "/" + "temp" + "/" + cImg);
@@ -169,7 +168,6 @@ public class CoachControllerImpl implements CoachController {
 
 		} catch (Exception e) {
 
-			// 예외발생시 취소 및 삭제
 			File srcFile = new File(COACH_IMAGE_REPO + "/" + "temp" + "/" + cImg);
 			srcFile.delete();
 
@@ -302,7 +300,6 @@ public class CoachControllerImpl implements CoachController {
 			resEnt = new ResponseEntity(message, responseHeaders, HttpStatus.CREATED);
 
 		} catch (Exception e) {
-			// 예외발생시 취소 및 삭제
 			File srcFile = new File(COACH_IMAGE_REPO + "/" + "temp" + "/" + cImg);
 			srcFile.delete();
 

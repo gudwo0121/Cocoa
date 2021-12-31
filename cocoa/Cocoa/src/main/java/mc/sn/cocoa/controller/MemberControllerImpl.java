@@ -220,7 +220,6 @@ public class MemberControllerImpl implements MemberController {
 			message += " </script>";
 			resEnt = new ResponseEntity(message, responseHeaders, HttpStatus.CREATED);
 		} catch (Exception e) {
-			// 예외발생시 취소 및 삭제
 			File srcFile = new File(profile_IMAGE_REPO + "/" + "temp" + "/" + proImg);
 			srcFile.delete();
 

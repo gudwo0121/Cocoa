@@ -109,7 +109,6 @@ public class RequestControllerImpl implements RequestController {
 
 		} catch (Exception e) {
 
-			// 예외발생시 취소 및 삭제
 			File srcFile = new File(request_IMAGE_REPO + "/" + "temp" + "/" + rImg);
 			srcFile.delete();
 
