@@ -1,7 +1,7 @@
-/**
- * 
- */
+	
 	$(document).ready(function() {
+	
+		// 유효성 검증
 		$('#validate').click(function() {
 		
 			var flag = false;
@@ -11,7 +11,6 @@
 			var user_name = $('#name').val();
 			var user_phone = $('#phone').val();
 			
-			//Ajax 구간
 			if(user_id == '' || user_pwd =='' || user_name =='' || user_phone ==''){
 	
 				alert("빈칸없이 입력하세요");
@@ -22,6 +21,7 @@
 				
 			} else if(user_pwd == user_pwd2){
 			
+				// 회원가입 비동기
 				$.ajax({
 				
 					data :  {id : user_id, pwd : user_pwd , name : user_name , phone : user_phone },
@@ -54,6 +54,7 @@
 		});
 		
 	
+		// 1차 2차 비밀번호 일치 여부
 		$('.form-control').focusout(function () {
 	        var pwd1 = $("#pwd1").val();
 	        var pwd2 = $("#pwd2").val();
@@ -72,6 +73,7 @@
 	        }
 	    });
 		
+		// ID 중복확인
 		$('#idCheck').click(function(){
 			var _id = $("#id").val();
 			if (_id == "") {
@@ -86,32 +88,20 @@
 				data : {"id" : _id},
 				
 				success : function(data, textStatus) {
-					
 
 					if (data == 1) {
 						alert("사용할 수 없는 ID입니다.");
 					} else {
 						alert("사용할 수 있는 ID입니다.");
 					}
-					
-					// 수호님 검증 테스트 로직 (joinForm display 속성은 빼놨습니다!)
-//					if (data == 1) {
-//						alert("사용할 수 없는 ID입니다.");
-//						$("#validate").css('display', 'none');
-//					} else {
-//						alert("사용할 수 있는 ID입니다.");
-//						$("#validate").css('display', 'inline-block');
-//					}
 				},
 				
 				error : function(data) {
 					alert("에러가! 발생했습니다.");
-					
 				},
 				
 				complete : function(data) {
-					//alert("작업을 완료 했습니다");
 				}
-			}); //end ajax	 
+			});
 		});
 	});
