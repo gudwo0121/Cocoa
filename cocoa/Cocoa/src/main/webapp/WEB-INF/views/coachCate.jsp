@@ -145,23 +145,23 @@
 					</tr>
 					<tr>
 						<td style="vertical-align: middle;">
-							<!-- 정렬 버튼 --> <select class="me-sm-3"
-							style="float: right; text-align: center; width: auto;"
+							<!-- 정렬 버튼 --> 
+							<select class="me-sm-3" style="float: right; text-align: center; width: auto;"
 							id="coachOrder" onchange="selChange()">
 								<option value="order by reviewRate desc"
-									<c:if test="${cri.coachOrder == 'order by reviewRate desc' }">selected</c:if>>평점높은순</option>
+									<c:if test="${cri.coachOrder == 'ORDER BY reviewRate DESC'}">selected</c:if>>평점높은순</option>
 								<option value="order by coachNO desc"
-									<c:if test="${cri.coachOrder == 'order by coachNO desc' }">selected</c:if>>최신순</option>
+									<c:if test="${cri.coachOrder == 'ORDER BY coachNO DESC'}">selected</c:if>>최신순</option>
 								<option value="order by coachNO"
-									<c:if test="${cri.coachOrder == 'order by coachNO' }">selected</c:if>>오래된순</option>
+									<c:if test="${cri.coachOrder == 'ORDER BY coachNO'}">selected</c:if>>오래된순</option>
 								<option value="order by basicPrice desc"
-									<c:if test="${cri.coachOrder == 'order by basicPrice desc' }">selected</c:if>>가격높은순</option>
+									<c:if test="${cri.coachOrder == 'ORDER BY basicPrice DESC'}">selected</c:if>>가격높은순</option>
 								<option value="order by basicPrice"
-									<c:if test="${cri.coachOrder == 'order by basicPrice' }">selected</c:if>>가격낮은순</option>
+									<c:if test="${cri.coachOrder == 'ORDER BY basicPrice'}">selected</c:if>>가격낮은순</option>
 								<c:choose>
 									<c:when test="${isLogOn == true && member != null}">
 										<option value="and coach like"
-											<c:if test="${cri.coachOrder.contains('and coach like') }">selected</c:if>>내가
+											<c:if test="${cri.coachOrder.contains('and coach LIKE') }">selected</c:if>>내가
 											쓴 글</option>
 									</c:when>
 								</c:choose>
@@ -217,7 +217,8 @@
 											<c:if test="${reCount[coach.coach] ne null}">
 												<b>${reCount[coach.coach]}개의 후기</b>
 											</c:if>
-										</div> <!-- 평점 평균 (없을시 0.0) -->
+										</div> 
+										<!-- 평점 평균 (없을시 0.0) -->
 										<div style="font-size: 13px; float: right;">
 											<c:if test="${reAvg[coach.coach] eq null}">
 												<b
