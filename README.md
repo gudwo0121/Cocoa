@@ -2,6 +2,12 @@
 
 ****
 
+Google Drive : [Documents](https://drive.google.com/drive/folders/1KDTLvOZrIHK_2mzjv3B7vCxkIADdESIl)
+
+Link : [CoCoa](http://49.50.173.116:8080/cocoa/)
+
+***
+
 21.11.29 추가
 
 * 회원가입 (성공시 alert / 중복확인 / 비번일치확인)
