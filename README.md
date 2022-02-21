@@ -4,7 +4,7 @@
 
 Google Drive : [Documents](https://drive.google.com/drive/folders/1KDTLvOZrIHK_2mzjv3B7vCxkIADdESIl)
 
-Link : [CoCoa](http://49.50.173.116:8080/cocoa/)
+Link : [CoCoa](http://101.101.211.109:8080/cocoa/)
 
 ***
 
@@ -162,7 +162,7 @@ Link : [CoCoa](http://49.50.173.116:8080/cocoa/)
 * 실제 정보 재생성
 * MAP API 검색 및 삽입 구현 = 삽입된 정보 조회는 아직
 * 평점평균, 후기개수 디폴트로 0.0 / 0개 설정
-* tomcat 서버 실배포 = [CoCoa](http://49.50.173.116:8080/cocoa/)
+* tomcat 서버 실배포 = [CoCoa](http://101.101.211.109:8080/cocoa/)
 * 서버에 이미지 FileZilla - /opt/cocoa/image/~ 경로로 업로드
 * 서버가 안될 때는 카타리나 문제 확인
 
@@ -195,15 +195,13 @@ Link : [CoCoa](http://49.50.173.116:8080/cocoa/)
 * 사소한 UI 부분 수정
 * MemberController 에서 로그인 처리 후 이동하는 경로 재설정
 * footer 임의로 하단 고정
-* QA 계속하여 진행 중
+* QA 진행 중
 
 ***
 
 21.12.22 추가
 
 * QA 종료
-* 발표자료 준비 완료
-* 시연 시나리오 준비 완료
 
 ***
 
@@ -266,6 +264,4 @@ Link : [CoCoa](http://49.50.173.116:8080/cocoa/)
 * jsp 재정렬
 
 ***
-
-
 

@@ -44,7 +44,8 @@
 		</c:choose>
 
 		<!-- 우측 상단 변경 -->
-		<span style="padding-right: 80px;"> <c:choose>
+		<span style="padding-right: 80px;">
+		<c:choose>
 				<c:when test="${isLogOn == true && member != null}">
 					<form action="/cocoa/logout" method="get" class="d-flex">
 						<input name="My Page" class="btn btn-outline-dark" type="button"

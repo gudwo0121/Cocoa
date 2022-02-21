@@ -96,7 +96,7 @@
 	<!-- 상단바 -->
 	<jsp:include page="../header.jsp"></jsp:include>
 
-	<!-- 프로젝트 글 작성 -->
+	<!-- 프로젝트 모집 작성 -->
 	<form action="${contextPath}/projectWrite" method="post"
 		id="projectWrite" enctype="multipart/form-data">
 		<section class="py-5">

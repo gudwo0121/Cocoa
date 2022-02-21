@@ -90,11 +90,8 @@ public class ProjectServiceImpl implements ProjectService {
 				res.append(inputLine);
 			}
 			br.close();
-			// System.out.println("service " + res.toString());
 		} catch (Exception e) {
-			// System.out.println(e);
 		}
-
 		return res.toString();
 	}
 

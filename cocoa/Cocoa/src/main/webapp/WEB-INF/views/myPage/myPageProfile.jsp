@@ -24,7 +24,6 @@
 	<div class="row" style="flex-wrap: unset; width: 100%;">
 
 		<!-- 좌측 메뉴 -->
-		<!-- 좌측 메뉴 -->
 		<div class="col-sm-3 side"
 			style="background-color: #333333; text-align: center; width: auto;">
 			<jsp:include page="side.jsp"></jsp:include>
