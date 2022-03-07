@@ -2,8 +2,6 @@
 
 ****
 
-Google Drive : [Documents](https://drive.google.com/drive/folders/1KDTLvOZrIHK_2mzjv3B7vCxkIADdESIl)
-
 Link : [CoCoa](http://101.101.211.109:8080/cocoa/)
 
 ***
@@ -213,55 +211,7 @@ Link : [CoCoa](http://101.101.211.109:8080/cocoa/)
 
 21.12.24 추가
 
-* 발표 및 수료
-
-***
-
-21.12.27 보완
-
-* HomeController / CoachControllerImpl 분석 및 주석 수정
-
-***
-
-21.12.28 보완
-
-* UI 새로운 템플릿 적용 = 실패 = 아직 공부 더해야함
-
-***
-
-21.12.29 보완
-
-* mappers.xml 코드 재정렬
-
-***
-
-21.12.30 보완
-
-* home.jsp - footer 부분 include
-
-***
-
-21.12.31 보완
-
-* 컨트롤러 주석 정리
-
-***
-
-22.01.01 보완
-
-* Ajax.js 주석 추가
-
-***
-
-22.01.02 보완
-
-* 하드코딩 제거
-
-***
-
-22.01.03 보완
-
-* jsp 재정렬
+* 프로젝트 종료
 
 ***
 
